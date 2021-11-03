@@ -2,22 +2,19 @@
 @model DDtrafic.ViewModels.EvidencijaVozacaIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Evidencija";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Evidencija</h1>
-        <p>Evidencija radnog vremena vozaca</p>
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">Evidencija</h1>
+    <p style="font-size:16px">Evidencija radnog vremena vozaca</p>
 </div>
 <hr />
-<div class="row" style="background:#eee;">
+<div class="row" style="margin:0; padding:0; background:#eee;">
     <div class="card">
         <div class="card-body">
-            <div id="toolbar" class="columns columns-left btn-group ">
-
+            <div id="toolbar" class="columns columns-left btn-group table-buttons ">
                 <button id="add" class="btn btn-primary" disabled>
                     Dodaj
                 </button>
@@ -31,9 +28,6 @@
                     Uvezi evidenciju
                 </button>
             </div>
-
-
-
             <div class="table-responsive" style="min-height:300px;">
                 <table id="table"
                        data-pagination="true"
@@ -46,7 +40,6 @@
                        data-detail-view="true"
                        data-page-list="[10, 25, 50, 100]"
                        data-toolbar="#toolbar">
-
                     <thead>
                         <tr>
                             <th data-checkbox="true"></th>
@@ -65,13 +58,8 @@
                             <th data-field="NocniRad" data-sortable="true" data-filter-control="input">Noćni rad</th>
                         </tr>
                     </thead>
-
                 </table>
-
-
             </div>
-
-
         </div>
     </div>
 </div>

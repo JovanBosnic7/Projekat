@@ -2,22 +2,20 @@
 @model DDtrafic.ViewModels.GorivoIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Gorivo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Evidencija goriva</h1>
-        <p>Pregled svih točenja goriva po vozilima</p>
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">Evidencija goriva</h1>
+    <p style="font-size:16px">Pregled svih točenja goriva po vozilima</p>
 </div>
+
 <hr />
-<div class="row" style="background:#eee;">
+<div class="row" style="margin:0; padding:0; background:#eee;">
     <div class="card">
         <div class="card-body">
-            <div id="toolbar" class="columns columns-left btn-group ">
-
+            <div id="toolbar" class="columns columns-left btn-group table-buttons ">
                 <button id="add" class="btn btn-primary" disabled>
                     Dodaj
                 </button>
@@ -31,8 +29,6 @@
                     Uvezi gorivo
                 </button>
             </div>
-
-
 
             <div class="table-responsive" style="min-height:300px;">
                 <table id="table"
@@ -51,7 +47,7 @@
                         <tr>
                             <th data-checkbox="true"></th>
                             <th data-field="Datum" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum</th>
-                            <th data-field="Vreme" data-formatter="timeFormat" data-sortable="true" data-filter-control="input">Vreme</th>                           
+                            <th data-field="Vreme" data-formatter="timeFormat" data-sortable="true" data-filter-control="input">Vreme</th>
                             <th data-field="Registracija" data-sortable="true" data-filter-control="input">Registracija</th>
                             <th data-field="PropisanaPotrosnja" data-formatter="intFormat" data-sortable="true" data-filter-control="input">Propisano</th>
                             <th data-field="Pumpa" data-sortable="true" data-filter-control="input">Pumpa</th>

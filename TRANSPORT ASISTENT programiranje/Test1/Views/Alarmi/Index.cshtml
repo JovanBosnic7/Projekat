@@ -2,22 +2,20 @@
 @model DDtrafic.ViewModels.AlarmiIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Alarmi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Evidencija alarma</h1>
-        <p>Pregled svih isteka dokumenata za vozače, vozila i servise</p>
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">Evidencija alarma</h1>
+    <p style="font-size:16px">Pregled svih isteka dokumenata za vozače, vozila i servise</p>
 </div>
 <hr />
-<div class="row" style="background:#eee;">
+<div class="row" style="margin:0; padding:0; background:#eee;">
     <div class="card">
         <div class="card-body">
-            <div id="toolbar" class="columns columns-left btn-group ">
-
+            <div id="toolbar" class="columns columns-left btn-group table-buttons ">
                 <button id="create" class="btn btn-primary">
                     @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
                 </button>
@@ -28,9 +26,6 @@
                     Briši
                 </button>
             </div>
-
-
-
             <div class="table-responsive" style="min-height:300px;">
                 <table id="table"
                        data-pagination="true"
@@ -43,7 +38,6 @@
                        data-detail-view="true"
                        data-page-list="[10, 25, 50, 100]"
                        data-toolbar="#toolbar">
-
                     <thead>
                         <tr>
                             <th data-checkbox="true"></th>
@@ -59,13 +53,8 @@
                             <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
                         </tr>
                     </thead>
-
                 </table>
-
-
             </div>
-
-
         </div>
     </div>
 </div>

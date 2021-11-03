@@ -2,27 +2,25 @@
 @model IEnumerable<Bex.Models.Novosti>
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Novosti";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Novosti</h1>
-        <p>Pregled svih bitnih informacija i zakona</p>
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">Novosti</h1>
+    <p style="font-size:16px">Pregled svih bitnih informacija i zakona</p>
 </div>
 
-<div class="row" style="background:#eee;">
+<div class="row" style="margin:0; padding:0; background:#eee;">
     <div class="card">
         <div class="card-body">
-            
+
             <div style="min-height:300px;">
                 @foreach (var novosti in Model)
                 {
-                <h4>
-                    @novosti.Datum   @novosti.Naslov
-                </h4>
+                    <h4>
+                        @novosti.Datum   @novosti.Naslov
+                    </h4>
                     <p>
                         @novosti.Tekst
                     </p>
@@ -55,7 +53,7 @@
                     alert('Ajax error!');
                 }
             });
-            };
+        };
 
     </script>
 }

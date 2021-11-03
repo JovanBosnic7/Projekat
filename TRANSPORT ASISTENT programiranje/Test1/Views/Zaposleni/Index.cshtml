@@ -2,107 +2,105 @@
 @model DDtrafic.ViewModels.ZaposleniIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Zaposleni";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Evidencija zaposlenih</h1>
-        <p>Pregled svih zaposlenih u kompaniji i akitivnih i neaktivnih</p>
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">Evidencija zaposlenih</h1>
+    <p style="font-size:16px">Pregled svih zaposlenih u kompaniji i akitivnih i neaktivnih</p>
 </div>
 <hr />
 
-        <div class="row" style="background:#eee;">
-            <div class="card">
-                <div class="card-body">
-                    <div id="toolbar" class="columns columns-left btn-group ">
+<div class="row" style="margin:0; padding:0; background:#eee;">
+    <div class="card">
+        <div class="card-body">
+            <div id="toolbar" class="columns columns-left btn-group table-buttons ">
+                <button id="create" class="btn btn-primary">
+                    @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                </button>
+                <button id="edit" class="btn btn-primary" disabled>
+                    Izmeni
+                </button>
+                <button id="addFiles" class="btn btn-primary" disabled>
+                    Dodaj dokument/sliku
+                </button>
+            </div>
+            <div class="table-responsive" style="min-height:300px;">
+                <table id="table"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       @*data-query-params="queryParams"*@
+                       data-show-columns="true"
+                       data-show-refresh="true"
+                       data-show-export="true"
+                       data-detail-view="true"
+                       data-page-list="[10, 25, 50, 100]"
+                       data-show-footer="true"
+                       data-filter-control="true"
+                       data-toolbar="#toolbar">
+                    <thead>
+                        <tr>
+                            <th data-checkbox="true"></th>
+                            <th data-field="ImeIprezime" data-sortable="true" data-filter-control="input">Zaposleni</th>
+                            <th data-field="Adresa" data-sortable="true" data-filter-control="input">Adresa</th>
+                            <th data-field="Jmbg" data-sortable="true" data-filter-control="input">Jmbg</th>
+                            <th data-field="Pol" data-sortable="true" data-filter-control="input">Pol</th>
+                            <th data-field="Kategorije" data-visible="false" data-filter-control="input" data-sortable="true">Kategorije</th>
+                            <th data-field="BrojLK" data-visible="false" data-filter-control="input" data-sortable="true">Br.LK</th>
+                            <th data-field="DatumZaposlenja" data-formatter="dateFormat" data-filter-control="datepicker" data-sortable="true">D.zaposlenja</th>
+                            <th data-field="Sifra" data-filter-control="input" data-sortable="true">Šifra</th>
+                            <th data-field="Aktivan" data-formatter="formatBooleanYesNo" class="text-center" data-filter-control="select" data-filter-data="var:boolean_DaNe">Aktivan</th>
+                            <th data-field="Telefon" data-visible="false" data-filter-control="input" data-sortable="true">Telefon</th>
+                            <th data-field="TekuciRacun" data-visible="false" data-filter-control="input" data-sortable="true">T.racun</th>
+                            <th data-field="Plata" data-visible="false" data-filter-control="input" data-sortable="true">Plata</th>
+                            <th data-field="Napomena" data-visible="false" data-filter-control="input" data-sortable="true">Napomena</th>
+                        </tr>
+                    </thead>
 
-                        <button id="create" class="btn btn-primary">
-                            @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
-                        </button>
-                        <button id="edit" class="btn btn-primary" disabled>
-                            Izmeni
-                        </button>
-                        <button id="addFiles" class="btn btn-primary" disabled>
-                            Dodaj dokument/sliku
-                        </button>
-                    </div>
-                    <div class="table-responsive" style="min-height:300px;">
-                        <table id="table"
-                               data-pagination="true"
-                               data-side-pagination="server"
-                               @*data-query-params="queryParams"*@
-                               data-show-columns="true"
-                               data-show-refresh="true"
-                               data-show-export="true"
-                               data-detail-view="true"
-                               data-page-list="[10, 25, 50, 100]"
-                               data-show-footer="true"
-                               data-filter-control="true"
-                               data-toolbar="#toolbar">
-                            <thead>
-                                <tr>
-                                    <th data-checkbox="true"></th>
-                                    <th data-field="ImeIprezime" data-sortable="true" data-filter-control="input">Zaposleni</th>
-                                    <th data-field="Adresa" data-sortable="true" data-filter-control="input">Adresa</th>
-                                    <th data-field="Jmbg" data-sortable="true" data-filter-control="input">Jmbg</th>
-                                    <th data-field="Pol" data-sortable="true" data-filter-control="input">Pol</th>
-                                    <th data-field="Kategorije" data-visible="false" data-filter-control="input" data-sortable="true">Kategorije</th>
-                                    <th data-field="BrojLK" data-visible="false" data-filter-control="input" data-sortable="true">Br.LK</th>
-                                    <th data-field="DatumZaposlenja" data-formatter="dateFormat" data-filter-control="datepicker" data-sortable="true">D.zaposlenja</th>
-                                    <th data-field="Sifra" data-filter-control="input" data-sortable="true">Šifra</th>
-                                    <th data-field="Aktivan" data-formatter="formatBooleanYesNo" class="text-center" data-filter-control="select" data-filter-data="var:boolean_DaNe">Aktivan</th>
-                                    <th data-field="Telefon" data-visible="false" data-filter-control="input" data-sortable="true">Telefon</th>
-                                    <th data-field="TekuciRacun" data-visible="false" data-filter-control="input" data-sortable="true">T.racun</th>
-                                    <th data-field="Plata" data-visible="false" data-filter-control="input" data-sortable="true">Plata</th>
-                                    <th data-field="Napomena" data-visible="false" data-filter-control="input" data-sortable="true">Napomena</th>
-                                </tr>
-                            </thead>
-
-                        </table>
-                    </div>
-                </div>
+                </table>
             </div>
         </div>
+    </div>
+</div>
 
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
-            @Scripts.Render("~/bundles/tableConfig")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
 
-            <script type="text/javascript">
-                var $table = $('#table');
+    <script type="text/javascript">
+        var $table = $('#table');
 
-                var $edit = $('#edit'),
-                    $addFiles = $('#addFiles'),
-                    $add = $('#add');
+        var $edit = $('#edit'),
+            $addFiles = $('#addFiles'),
+            $add = $('#add');
 
-                var boolean_DaNe = {
-                    "2": "Ne",
-                    "1": "Da",
-                    "": "Sve"
-                };
-
-                
-                $table.addFilter("Aktivan", 1);
-                $table.configTable('Zaposleni/GetZaposleni');
-
-                $(document).ready(function () {
-
-                    var $checkTableElements = [$edit, $addFiles];
-                    $table.checkOptionsTable($checkTableElements);
+        var boolean_DaNe = {
+            "2": "Ne",
+            "1": "Da",
+            "": "Sve"
+        };
 
 
-                    $table.optionsTable();
-                    $add.clickButtonWithoutParams('Zaposleni/Create');
-                    $edit.clickOptions('Zaposleni/Edit?id=');
+        $table.addFilter("Aktivan", 1);
+        $table.configTable('Zaposleni/GetZaposleni');
 
-                    $addFiles.clickOptions('GalleryAdmin/Create?tipId=2&isProfile=0&id=');
+        $(document).ready(function () {
 
-                    $table.detailsTable('Zaposleni/Details');
+            var $checkTableElements = [$edit, $addFiles];
+            $table.checkOptionsTable($checkTableElements);
 
 
-                });
-            </script>
-        }
+            $table.optionsTable();
+            $add.clickButtonWithoutParams('Zaposleni/Create');
+            $edit.clickOptions('Zaposleni/Edit?id=');
+
+            $addFiles.clickOptions('GalleryAdmin/Create?tipId=2&isProfile=0&id=');
+
+            $table.detailsTable('Zaposleni/Details');
+
+
+        });
+    </script>
+}

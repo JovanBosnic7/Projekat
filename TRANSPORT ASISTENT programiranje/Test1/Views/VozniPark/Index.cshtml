@@ -1,22 +1,21 @@
 ﻿
 @model DDtrafic.ViewModels.VozniParkIndexData1
 
-@{
+@{ 
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Vozni Park";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Evidencija vozila u voznom parku</h1>
-        <p>Pregled svih vozila</p>
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">Evidencija vozila u voznom parku</h1>
+    <p style="font-size:16px">Pregled svih vozila</p>
 </div>
 <hr />
-<div class="row" style="background:#eee;">
-    
+<div class="row" style="margin:0; padding:0; background:#eee;">
+
     <div class="card">
         <div class="card-body">
-            <div id="toolbar" class="columns columns-left btn-group ">
+            <div id="toolbar" class="columns columns-left btn-group table-buttons ">
 
                 <button id="create" class="btn btn-primary">
                     @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
@@ -45,9 +44,7 @@
                        data-detail-view="true"
                        data-page-list="[10, 25, 50, 100]"
                        data-toolbar="#toolbar">
-
                     <thead>
-
                         <tr name="lalal" id="akakak">
                             <th data-checkbox="true"></th>
                             <th data-field="Id" data-sortable="true" data-filter-control="input" class="context-menu-one">Rbr</th>
@@ -80,23 +77,20 @@
                             <th data-field="Status" data-filter-control="select" data-filter-data="url:/VozniPark/GetStatus" data-sortable="true">Status</th>
                             <th data-field="Napomena" data-visible="false" data-filter-control="input" data-sortable="true">Napomena</th>
                             <th data-field="DatumRegistracije" data-formatter="dateFormat" data-visible="false" data-filter-control="datepicker" data-sortable="true">Datum reg.</th>
-
-
-</thead>
-
+                    </thead>
                 </table>
                 @*<ul id="contextMenu"   role="menu" style="display:none">
-                <li><a tabindex="-1" href="#">Action</a></li>
-                <li><a tabindex="-1" href="#">Another action</a></li>
-                <li><a tabindex="-1" href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a tabindex="-1" href="#">Separated link</a></li>
-            </ul>*@
+                        <li><a tabindex="-1" href="#">Action</a></li>
+                        <li><a tabindex="-1" href="#">Another action</a></li>
+                        <li><a tabindex="-1" href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">Separated link</a></li>
+                    </ul>*@
 
                 @*<span class="context-menu-one btn btn-neutral">right click me</span>*@
             </div>
 
-           
+
         </div>
     </div>
 </div>
@@ -158,7 +152,7 @@
 
                     $table.optionsTable();
 
-               
+
 
                     $add.clickButtonWithoutParams('VozniPark/Create');
                     $edit.clickOptions('VozniPark/Edit?id=');

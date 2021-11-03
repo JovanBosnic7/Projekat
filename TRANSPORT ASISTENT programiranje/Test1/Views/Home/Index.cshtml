@@ -1,19 +1,18 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    @Styles.Render("~/Content/new.css")
+
 }
 
-<div class="jumbotron">
-    @*<h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
-    
-        
-   
+<div class="row" style="margin: 0; padding: 0">
+    <div class="col-md-12" style="margin: 0; padding: 0">
+        <img src="/Content/images/voznipark3-1.jpg" style=" border-radius: 3px; margin: 30px 0 15px 0; width:100%; min-height:150px; max-height:300px; object-fit:cover" />
+    </div>
 </div>
 
-<div class="row"  style="margin-left:5px;">
-    <div class="col-md-6" style="background:#eee; width:520px;">
-        <h2>Alarmi za vozila</h2>
+<div class="row" style="margin:0; padding:0;">
+    <div class="col-md-12 our-table">
+        <h2 class="table-title">Alarmi za vozila</h2>
         <div class="table-responsive" style="min-height:300px;">
             <table id="table"
                    data-pagination="true"
@@ -22,7 +21,6 @@
                    data-show-export="true"
                    data-page-list="[10, 25, 50, 100]"
                    data-toolbar="#toolbar">
-
                 <thead>
                     <tr>
                         <th data-field="DatumIsteka" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum isteka</th>
@@ -30,14 +28,13 @@
                         <th data-field="Alarm" data-sortable="true">Alarm</th>
                     </tr>
                 </thead>
-
             </table>
-
-
         </div>
     </div>
-    <div class="col-md-6   col-md-offset-1" style="background:#eee; width:520px;">
-        <h2>Alarmi za vozače</h2>
+</div>
+<div class="row" style="margin:0; padding:0;">
+    <div class="col-md-12 our-table-bottom">
+        <h2 class="table-title">Alarmi za vozače</h2>
         <div class="table-responsive" style="min-height:300px;">
             <table id="tableServisi"
                    data-pagination="true"
@@ -46,7 +43,6 @@
                    data-show-export="true"
                    data-page-list="[10, 25, 50, 100]"
                    data-toolbar="#toolbar">
-
                 <thead>
                     <tr>
                         <th data-field="DatumIsteka" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum isteka</th>
@@ -54,64 +50,44 @@
                         <th data-field="Alarm" data-sortable="true">Alarm</th>
                     </tr>
                 </thead>
-
             </table>
         </div>
     </div>
-
-
-    @*<div class="col-md-4">
+</div>
+@*<div class="col-md-4">
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>*@
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
+    <script type="text/javascript">
+        var $table = $('#table');
+        var $tableServisi = $('#tableServisi');
+        $table.configTable('Alarmi/GetAlarmiOveNedelje');
+        $table.hideColTable();
+        $tableServisi.configTable('Alarmi/GetAlarmiZaposleniOveNedelje');
+        $tableServisi.hideColTable();
 
-        @section Scripts {
+        $(document).ready(function () {
 
-            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
-            @Scripts.Render("~/bundles/tableConfig")
-           
-            <script type="text/javascript">
+            var $checkTableElements = [$edit, $delete];
+            $table.checkOptionsTable($checkTableElements);
+            $table.optionsTable();
+            $add.clickButtonWithoutParams('Alarmi/Create');
+            $edit.clickOptions('Alarmi/Edit?id=');
 
-
-
-
-                var $table = $('#table');
-                var $tableServisi = $('#tableServisi');
-
-
-                $table.configTable('Alarmi/GetAlarmiOveNedelje');
-                $table.hideColTable();
-                $tableServisi.configTable('Alarmi/GetAlarmiZaposleniOveNedelje');
-                $tableServisi.hideColTable();
-
-                $(document).ready(function () {
-
-                    var $checkTableElements = [$edit, $delete];
-                    $table.checkOptionsTable($checkTableElements);
-
-                    $table.optionsTable();
-
-                    $add.clickButtonWithoutParams('Alarmi/Create');
-                    $edit.clickOptions('Alarmi/Edit?id=');
-
-                });
-
-                function DetailsAlarmLink(value, row, index) {
-
-                    return "<a href='Alarmi/Edit?id=" + row.Id + "' target='_blank' class='details_link'>" + value + "</a>";
-                }
-
-                function getIdSelections() {
-                    return $.map($table.bootstrapTable('getSelections'), function (row) {
-                        var paramsSelection = { vozniParkId: row.Id };
-                        alert(paramsSelection);
-                        return paramsSelection
-                    });
-                }
-
-
-
-            </script>
+        });
+        function DetailsAlarmLink(value, row, index) {
+            return "<a href='Alarmi/Edit?id=" + row.Id + "' target='_blank' class='details_link'>" + value + "</a>";
         }
+        function getIdSelections() {
+            return $.map($table.bootstrapTable('getSelections'), function (row) {
+                var paramsSelection = { vozniParkId: row.Id };
+                alert(paramsSelection);
+                return paramsSelection
+            });
+        }
+    </script>
+}
