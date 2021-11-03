@@ -1,0 +1,163 @@
+﻿@model Bex.Models.Posiljka
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Posiljka</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PosiljkaKategorija.NazivKategorije)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosiljkaKategorija.NazivKategorije)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosiljkaSadrzaj.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosiljkaSadrzaj.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosiljkaStatus.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosiljkaStatus.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosiljkaVrsta.NazivVrste)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosiljkaVrsta.NazivVrste)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumEvidentiranja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumEvidentiranja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VremeEvidentiranja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VremeEvidentiranja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KategorijaIznos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategorijaIznos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenaUkupna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CenaUkupna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDodaoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDodaoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NarucilacId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NarucilacId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UkupnoPaketa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UkupnoPaketa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZakljucaoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZakljucaoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UgovorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UgovorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenovnikId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CenovnikId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenaPoPaketu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CenaPoPaketu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StornoZaKlijente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StornoZaKlijente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NacinUnosaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NacinUnosaId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Storno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Storno)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

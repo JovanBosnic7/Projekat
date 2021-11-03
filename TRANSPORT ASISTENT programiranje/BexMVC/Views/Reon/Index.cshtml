@@ -1,0 +1,341 @@
+﻿@model BexMVC.ViewModels.ReonIndexData
+
+
+@{
+    ViewBag.Title = "Reoni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Evidencija reona</h2>
+                    <p class="card-category">Pregled svih aktivinih i neaktivnih reona</p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar">
+
+                        <button id="create" class="btn btn-primary">
+                             @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                             Izmeni
+                        </button>
+                        <button id="remove" class="btn btn-primary" disabled>
+                             Briši
+                        </button>
+
+
+                        
+                        @*<div class="btn-group">
+                <input id="search" class="form-control" type="text" placeholder="Search">
+            </div>*@
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               @*data-detail-view="true"*@
+                               @*data-striped="true"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar"
+                               @*data-show-footer="true">*@
+                               @*data-search="true"*@
+                               @*data-toggle="table"*@
+                               @*data-url="/VozniPark/GetVozniPark"*@>
+
+                            <thead>
+                                <tr>
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                        <input name="search" id="OznakaReona" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="NazivReona" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="NazivRegiona" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="TipReona" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="BarkodReona" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="KmReona" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="KmOptimalna" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    @*<th data-field="Id" data-visible="false">Id</th>*@
+                                    <th data-field="OznakaReona" data-sortable="true">Oznaka</th>
+                                    <th data-field="NazivReona">Naziv</th>
+                                    <th data-field="NazivRegiona">Region</th>
+                                    <th data-field="TipReona">Tip</th>
+                                    <th data-field="BarkodReona">Barkod</th>
+                                    <th data-field="KmReona" class="text-right">KM do</th>
+                                    <th data-field="KmReona" class="text-right">Optim. KM</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+                <script type="text/javascript">
+                    var $table = $('#table');
+                    var $search = $('#table #search');
+                    var $ok = $('#ok');
+                    var pageSize = 10;
+                    var pageNumber = 1;
+                    var sortColumn = "";
+                    var sortOrder = "";
+                    var searchArray = [];
+
+                    $table.bootstrapTable({
+                        url: '/Reon/GetReoni',
+                        formatLoadingMessage: function () {
+                            return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+                        },
+                        classes: 'table-no-bordered table-sm table-hover'
+                    });
+
+                    $('span.caret').css('display', 'none');
+
+                    var $remove = $('#remove');
+                    $edit = $('#edit');
+                    selections = [];
+
+                    $(document).ready(function () {
+
+
+                        $table.on('check.bs.table uncheck.bs.table ' +
+                            'check-all.bs.table uncheck-all.bs.table', function () {
+
+                                //alert("Selekotovan: " + getIdSelections());
+                                // save your data, here just save the current page
+                                selections = getIdSelections();
+
+
+                                if (selections.length == 1) {
+                                    $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                                    $edit.prop('disabled', false);
+
+                                } else {
+                                    $remove.prop('disabled', true);
+                                    $edit.prop('disabled', true);
+                                }
+
+                                // push or splice the selections if you want to save all data selections
+                            });
+
+                        $table.on('page-change.bs.table', function (e, number, size) {
+                            pageNumber = number;
+                            pageSize = size;
+
+                            $table.bootstrapTable('refresh');
+
+
+                        });
+
+                        $table.on('sort.bs.table', function (order, name) {
+
+                            // console.log("Name: " + name);
+                            sortColumn = name;
+
+
+                        });
+
+                        $("#table select").change(function () {
+
+                            addSearchTerms($table);
+
+                        });
+
+                        $("#table input").keypress(function (event) {
+                            if (event.which == 13) {
+
+                                event.preventDefault();
+                                addSearchTerms($table);
+                            }
+
+                        });
+
+                        $('#toolbar').find('select').change(function () {
+                            $('#table').bootstrapTable('destroy').bootstrapTable({
+                                exportDataType: $(this).val()
+                            });
+                        });
+
+
+
+                    });
+
+
+
+                    $remove.click(function () {
+                        var ids = getIdSelections();
+                        $table.bootstrapTable('remove', {
+                            field: 'Id',
+                            values: ids
+                        });
+                        $remove.prop('disabled', true);
+                        location.href = "Reon/Delete?id=" + ids;
+                    });
+
+                    $edit.click(function () {
+                        var ids = getIdSelections();
+                        location.href = "Reon/Edit?id=" + ids;
+
+                    });
+
+
+                    $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                        $detail.html('Loading from ajax request...');
+                        alert(row.Id);
+                        $.ajax({
+                            url: "VozniPark/DetailsTroskovi",
+                            type: 'get',
+
+                            data: {
+                                id: row.Id
+                            },
+                            success: function (data) {
+                                $detail.html(data)
+                            },
+                            error: function () {
+                                alert('Ajax error!');
+                            }
+                        });
+
+                    });
+
+                    function getIdSelections() {
+                        return $.map($table.bootstrapTable('getSelections'), function (row) {
+                            return row.ReonId
+                        });
+                    }
+
+                    function queryParams(p) {
+
+                        var params = {
+                            pageNumber: pageNumber,
+                            pageSize: pageSize,
+                            searchTerms: searchArray.toString(),
+                            sortColumn: sortColumn,
+                            sortOrder: p.order,
+                            offset: 0,
+                            limit: 10
+                        };
+
+                        return params;
+                    }
+
+                    function responseHandler(res) {
+                        return res.rows;
+                    }
+
+                    function addSearchTerms(table) {
+                        var searchText = "";
+                        var searchColumn = "";
+
+                        searchArray = [];
+
+                        pageNumber = 1;
+                        pageSize = 10;
+
+                        $("table#table :input").each(function () {
+
+
+                            var input = $(this);
+
+
+                            searchText = input.val();
+                            searchColumn = input.attr('id');
+                            if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                            {
+                                //alert(input.val() + " ---- " + input.attr('id'));
+
+                                if (input.val() == "on") {
+                                    searchText = input.is(":checked");
+                                }
+
+                                //searchConcatenate += searchColumn + ":" + searchText + ",";
+                                searchArray.push(searchColumn + ":" + searchText);
+                                //searchT[searchColumn] = searchText;
+                            }
+                        });
+
+                        table.bootstrapTable('refresh');
+                    }
+
+                    function formatYesNo(value, row, index) {
+                        return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                    }
+
+                    function totalTextFormatter(data) {
+                        return '&Sigma;';
+                    }
+
+                    function totalFormatter(data) {
+                        return data.length;
+                    }
+
+                    function totalNameFormatter(data) {
+                        return data.length;
+                    }
+
+                    function sumFormatter(data) {
+                        field = this.field;
+                        return data.reduce(function (sum, row) {
+                            return sum + (+row[field]);
+                        }, 0);
+                    }
+
+                    function avgFormatter(data) {
+                        return sumFormatter.call(this, data) / data.length;
+                    }
+
+                    function ToJavaScriptDate(value) {
+                        var pattern = /Date\(([^)]+)\)/;
+                        var results = pattern.exec(value);
+                        var dt = new Date(parseFloat(results[1]));
+                        return dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
+
+                    }
+
+                    function dateFormat(value, row, index) {
+
+                        return ToJavaScriptDate(value);
+
+                    }
+
+
+                    $(window).resize(function () {
+                        $('#table').bootstrapTable('resetView');
+                    });
+
+
+                </script>
+            }
+        </div>
+</div>

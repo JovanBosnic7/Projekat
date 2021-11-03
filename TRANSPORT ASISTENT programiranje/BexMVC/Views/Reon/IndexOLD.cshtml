@@ -1,0 +1,146 @@
+﻿@model BexMVC.ViewModels.ReonIndexData
+@*@model List <Bex.Models.Reon>*@
+@using PagedList;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+
+@{
+    ViewBag.Title = "Reoni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Evidencija reona</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                &nbsp;
+                <div class="pull-left">
+                    @*@using (Html.BeginForm("", "User", FormMethod.Get))
+                        {
+                            <p>
+                                Pretraga po imenu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                                <input type="submit" value="Trazi" />
+                            </p>
+                        }*@
+
+                </div>
+
+
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Opcije
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                @Html.ActionLink("Dodaj novi reon", "Create")
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <table class="table">
+                @using (Html.BeginForm("", "Reon", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+                {
+                    <tr style="background-color:#dff0d8;">
+                        <th></th>
+                        <th>
+                            @Html.TextBox("searchReon", ViewBag.CurrentReonFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchReonNaziv", ViewBag.CurrentReonNazivFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchRegion", ViewBag.CurrentRegionFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchTip", ViewBag.CurrentTipFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchBarKod", ViewBag.CurrentBarKodFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchKilometraza", ViewBag.CurrentKilometrazaFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchOptimalna", ViewBag.CurrentOptimalnaFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchStorniran", ViewBag.CurrentStorniranFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                            <input type="submit" value="Trazi" class="btn-sm btn-primary" style="display:none;" />
+                        </th>
+                    </tr>
+                }
+                <tr>
+                    <th></th>
+                    <th>Oznaka</th>
+                    <th>Reon</th>
+                    <th>Region</th>
+                    <th>Tip</th>
+                    <th>Bar kod</th>
+                    <th>Km do reona</th>
+                    <th>Optimala KM</th>
+                    <th>Storniran</th>
+                </tr>
+                @foreach (var item in Model.Reon)
+                {
+                    string selectedRow = "";
+                    //if (item.Id == ViewBag.Id)
+                    //{
+                    //    selectedRow = "success";
+                    //}
+                    <tr class="@selectedRow" valign="top">
+                        <td>
+                            @Html.ActionLink(" ", "Index", new { id = item.Id }, new { @class = "fa fa-sitemap" }) |
+                            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "fa fa-eye" }) |
+                            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" }) |
+                            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-remove", @disabled = "disabled" })
+                        </td>
+                        <td>
+                            @item.OznReona
+                        </td>
+                        <td>
+                            @item.NazivReona
+                        </td>
+                        <td>
+                            @item.Region.NazivSkraceni
+                        </td>
+                        <td>
+                            @item.ReonTip.Opis
+                        </td>
+                        <td>
+                            @item.BarKodReona
+                        </td>
+                        <td>
+                            @item.KmDoReona
+                        </td>
+                        <td>
+                            @item.OptimalnaKilometraza
+                        </td>
+                        <td>
+                            @item.Storno
+                        </td>                        
+                    </tr>
+                }
+            </table>
+        </div>
+        <br />
+        <div id='Paging' style="text-align:center">
+            @Html.PagedListPager((IPagedList)ViewBag.OnePageKontakt, page => Url.Action("Index", new { page }))
+            Strana @ViewBag.PageNumber od @ViewBag.TotalPages
+        </div>
+    </div>
+</div>

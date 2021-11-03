@@ -1,0 +1,202 @@
+﻿@model Bex.Models.VozniPark
+
+
+@{
+    Layout = null;
+}
+
+
+
+@using (Ajax.BeginForm("CreateZaduzenjeVozilaPartial", "VozniPark", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "createZaduzenjeVozila" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id, new { Value = @ViewBag.VoziloId })
+    @Html.HiddenFor(model => model.SubOdgovornoLiceId, new { id = "SubOdgovornoLiceId" })
+    @Html.HiddenFor(model => model.SubVozacId, new { id = "SubVozacId" })
+    <input type="hidden" id="Odjavljeno" name="Odjavljeno">
+    <div class="panel panel-default  " id="div_licni_podaci">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#tabZaduzenjeVozila">Podaci o zaduženju</a>
+                @if (@ViewBag.AddZaduzenjeVozila)
+                {
+                    <span style="color:green;"> - Uspešno ste dodali podatke...</span>
+                }
+
+            </h4>
+        </div>
+        <div id="tabZaduzenjeVozila" class="panel-collapse collapse ">
+            <div class="panel-body">
+                <div class="container">
+                    <div class="container-fluid" style="margin-bottom:10px;">
+
+                        <!-- Breadcrumbs-->
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="../VozniPark">Vozni park</a>
+                            </li>
+                            <li class="breadcrumb-item active">Dodaj</li>
+                        </ol>
+
+                        <!-- Page Content -->
+                        <h3>Unos zaduzenja za vozilo</h3>
+                        <hr>
+                        <p>Unesite status vozila, odgovorno lice...</p>
+
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2" for="Tip">Tip</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("TipId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TipId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2" for="Status">Status</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("StatusVozilaId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.StatusVozilaId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div id="divOdjavljeno" style="display:none;">
+                        <label class="control-label col-sm-2" for="Odjavljeno">Odjavljeno</label>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <label class="form-check-label control-label">
+                                    <input class="form-check-input" type="checkbox" @(Convert.ToBoolean(Model.Odjavljeno) == true ? "checked='checked'" : string.Empty) value="" id="OdjavljenoCheck">
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div id="lblIzmenaRegiona" style="display:none;">
+                        <label class="control-label col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <p class="text-danger">Da li se menja region vozila?</p>
+
+                        </div>
+                    </div>
+
+                    <div id="divDatumFakturisanja" style="display:none;">
+                        <label class="control-label col-sm-2">Datum fakturisanja</label>
+                        <div class="col-sm-10">
+                            <div class='input-group'>
+                                @Html.TextBoxFor(model => model.DatumFakturisanja, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-reg" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2" for="Region">Region</label>
+                        <div class="col-sm-10">
+
+                            @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2" for="Sektor">Sektor</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("SektorId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Sektor, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="ui-widget">
+                        <label class="control-label col-sm-2" for="OdgovornoLice">Odgovorno lice</label>
+                        <div class="col-sm-10">
+                            <div class='input-group'>
+                                <input id="odgovornoLice" class="form-control" value="@ViewBag.OdgovornoLice">
+
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-widget">
+                        <label class="control-label col-sm-2" for="Vozac">Vozač</label>
+                        <div class="col-sm-10">
+                            <div class='input-group'>
+                                <input id="vozac" class="form-control" value="@ViewBag.Vozac">
+
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2">Datum zaduženja</label>
+                        <div class="col-sm-10">
+                            <div class='input-group'>
+                                @Html.TextBoxFor(model => model.DatumZaduzenja, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-reg" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2">Opis</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2">Napomena</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2" for="Firma">Firma</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("FirmaOsId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FirmaOSid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2">Potrošnja</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.PropisanaPotrosnja, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PropisanaPotrosnja, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <div class="btn-group pull-right ">
+                                <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+}

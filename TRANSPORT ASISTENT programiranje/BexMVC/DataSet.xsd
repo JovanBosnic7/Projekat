@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet" targetNamespace="http://tempuri.org/DataSet.xsd" xmlns:mstns="http://tempuri.org/DataSet.xsd" xmlns="http://tempuri.org/DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="BexMainDbContext" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BexMainDbContext (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.BexMainDbContext.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptSpecifikacijaCekovaTableAdapter" GeneratorDataComponentClassName="vRptSpecifikacijaCekovaTableAdapter" Name="vRptSpecifikacijaCekova" UserDataComponentName="vRptSpecifikacijaCekovaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptSpecifikacijaCekova" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, BrojCeka, BrojSpecifikacije, DatumDospeca, NazivBanke, BrojRacuna, IznosCeka, bankaId, DatumRealizacije FROM dbo.vRptSpecifikacijaCekova</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="BrojCeka" DataSetColumn="BrojCeka" />
+              <Mapping SourceColumn="BrojSpecifikacije" DataSetColumn="BrojSpecifikacije" />
+              <Mapping SourceColumn="DatumDospeca" DataSetColumn="DatumDospeca" />
+              <Mapping SourceColumn="NazivBanke" DataSetColumn="NazivBanke" />
+              <Mapping SourceColumn="BrojRacuna" DataSetColumn="BrojRacuna" />
+              <Mapping SourceColumn="IznosCeka" DataSetColumn="IznosCeka" />
+              <Mapping SourceColumn="bankaId" DataSetColumn="bankaId" />
+              <Mapping SourceColumn="DatumRealizacije" DataSetColumn="DatumRealizacije" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DataSet" msprop:Generator_UserDSName="DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vRptSpecifikacijaCekova" msprop:Generator_TableClassName="vRptSpecifikacijaCekovaDataTable" msprop:Generator_TableVarName="tablevRptSpecifikacijaCekova" msprop:Generator_TablePropName="vRptSpecifikacijaCekova" msprop:Generator_RowDeletingName="vRptSpecifikacijaCekovaRowDeleting" msprop:Generator_RowChangingName="vRptSpecifikacijaCekovaRowChanging" msprop:Generator_RowEvHandlerName="vRptSpecifikacijaCekovaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptSpecifikacijaCekovaRowDeleted" msprop:Generator_UserTableName="vRptSpecifikacijaCekova" msprop:Generator_RowChangedName="vRptSpecifikacijaCekovaRowChanged" msprop:Generator_RowEvArgName="vRptSpecifikacijaCekovaRowChangeEvent" msprop:Generator_RowClassName="vRptSpecifikacijaCekovaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="BrojCeka" msprop:Generator_ColumnVarNameInTable="columnBrojCeka" msprop:Generator_ColumnPropNameInRow="BrojCeka" msprop:Generator_ColumnPropNameInTable="BrojCekaColumn" msprop:Generator_UserColumnName="BrojCeka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojSpecifikacije" msprop:Generator_ColumnVarNameInTable="columnBrojSpecifikacije" msprop:Generator_ColumnPropNameInRow="BrojSpecifikacije" msprop:Generator_ColumnPropNameInTable="BrojSpecifikacijeColumn" msprop:Generator_UserColumnName="BrojSpecifikacije" type="xs:int" minOccurs="0" />
+              <xs:element name="DatumDospeca" msprop:Generator_ColumnVarNameInTable="columnDatumDospeca" msprop:Generator_ColumnPropNameInRow="DatumDospeca" msprop:Generator_ColumnPropNameInTable="DatumDospecaColumn" msprop:Generator_UserColumnName="DatumDospeca" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NazivBanke" msprop:Generator_ColumnVarNameInTable="columnNazivBanke" msprop:Generator_ColumnPropNameInRow="NazivBanke" msprop:Generator_ColumnPropNameInTable="NazivBankeColumn" msprop:Generator_UserColumnName="NazivBanke" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojRacuna" msprop:Generator_ColumnVarNameInTable="columnBrojRacuna" msprop:Generator_ColumnPropNameInRow="BrojRacuna" msprop:Generator_ColumnPropNameInTable="BrojRacunaColumn" msprop:Generator_UserColumnName="BrojRacuna" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IznosCeka" msprop:Generator_ColumnVarNameInTable="columnIznosCeka" msprop:Generator_ColumnPropNameInRow="IznosCeka" msprop:Generator_ColumnPropNameInTable="IznosCekaColumn" msprop:Generator_UserColumnName="IznosCeka" type="xs:int" minOccurs="0" />
+              <xs:element name="bankaId" msprop:Generator_ColumnVarNameInTable="columnbankaId" msprop:Generator_ColumnPropNameInRow="bankaId" msprop:Generator_ColumnPropNameInTable="bankaIdColumn" msprop:Generator_UserColumnName="bankaId" type="xs:int" minOccurs="0" />
+              <xs:element name="DatumRealizacije" msprop:Generator_ColumnVarNameInTable="columnDatumRealizacije" msprop:Generator_ColumnPropNameInRow="DatumRealizacije" msprop:Generator_ColumnPropNameInTable="DatumRealizacijeColumn" msprop:Generator_UserColumnName="DatumRealizacije" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:vRptSpecifikacijaCekova" />
+      <xs:field xpath="mstns:Id" />
+      <xs:field xpath="mstns:bankaId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

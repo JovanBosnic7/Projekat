@@ -1,0 +1,303 @@
+﻿@model Bex.Models.TPtermini
+
+@{
+    ViewBag.Title = "Tehnički pregled: Termini - Dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Tehnički pregled: Termini</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../TehnickiPregled">Tehnički pregled</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Dodavanje termina za tehnički pregled</h3>
+                            <hr>
+                            <p></p>
+
+                        </div>
+                        @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @*@Html.HiddenFor(model => model.IdTermina, new { id = "IdTermina" })*@
+                            //@Html.HiddenFor(model => model.Id, new { id = "Id" })
+                            @*@Html.HiddenFor(model => model.VozacId, new { id = "VozacId" })
+            @Html.HiddenFor(model => model.RadnoMestoId, new { id = "RadnoMestoId" })*@
+                            @*@Html.HiddenFor(model => model.LokacijaId, new { id = "LokacijaId" })
+            @Html.HiddenFor(model => model.DatumTermina, new { id = "DatumTermina" })*@
+
+                            @Html.HiddenFor(model => model.ModelId, new { id = "ModelId" })
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Lokacija">Lokacija</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("LokacijaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LokacijaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Datum termina</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.DatumTermina, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-start" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Termin od</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.TerminStart, new { @class = " form-control timepicker-start" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Termin do</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.TerminEnd, new { @class = " form-control timepicker-start" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Status">Status</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("StatusTerminaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StatusTerminaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="ImeKlijenta">Ime</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.ImeKlijenta, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ImeKlijenta, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="PrezimeKlijenta">Prezime</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.PrezimeKlijenta, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PrezimeKlijenta, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="TelefonKlijenta">Telefon</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.TelefonKlijenta, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TelefonKlijenta, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="RegOznaka">Registracija</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.RegOznaka, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.RegOznaka, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Kategorija">Kategorija</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("KategorijaVozilaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.KategorijaVozilaId, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="ui-widget">
+                                <label class="control-label col-sm-2" for="model">Model </label>
+                                <div class="col-sm-10">
+
+                                    <div class='input-group'>
+                                        <input id="model" class="form-control">
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Napomena">Napomena</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <link rel="stylesheet" href="~/Content/jquery.ui.timepicker.css">
+            @*<link rel="stylesheet" href="~/Content/multi-select.css">*@
+            <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="~/Content/bootstrap/js/jquery.ui.timepicker.js"></script>
+            @*<script src="~/Content/bootstrap/js/jquery.multi-select.js"></script>*@
+            <script type="text/javascript">
+
+
+                $(document).ready(function () {
+
+                    $('.datepicker-dat-start').datepicker({ dateFormat: 'dd-mm-yy' });
+                    $('.datepicker-dat-start').attr("autocomplete", "off");
+
+                    $('.timepicker-start, .timepicker-stop').timepicker({
+                        showAnim: 'blind',
+                        hourText: 'Sati',
+                        minuteText: 'Minuti',
+                        nowButtonText: 'Trenutno',
+                        showNowButton: true
+                    });
+
+                    $("#model").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "/VozniPark/GetModel?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#ModelId').val(ui.item.id);
+                            console.log("Model ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+                        }
+                    });
+
+                    //$('.datepicker-dat-start, .datepicker-dat-stop').datepicker({ dateFormat: 'dd-mm-yy' });
+                    //$('.datepicker-dat-start, .datepicker-dat-stop').attr("autocomplete", "off");
+
+                    //$('.timepicker-start, .timepicker-stop').timepicker({
+                    //    showAnim: 'blind',
+                    //    hourText: 'Sati',
+                    //    minuteText: 'Minuti',
+                    //    nowButtonText: 'Trenutno',
+                    //    showNowButton: true
+                    //});
+
+                    //$('#relacija1').change(function () {
+                    //    var option = $("#relacija1 option:selected").val();
+                    //    var relacijaTxt = $('#Relacija').val();
+                    //    if (relacijaTxt != "")
+                    //        $('#Relacija').val(relacijaTxt + " - " + option);
+                    //    else
+                    //        $('#Relacija').val(option);
+
+                    //});
+
+                    ////$('#relacija').multiSelect({
+
+                    ////    afterSelect: function (values) {
+                    ////        //alert("Select value: " + values);
+                    ////        $("#"+values+"-selectable").css("display", "block");
+                    ////        //$("#1697-selectable").html("aaaa");
+                    ////    }
+                    ////    //,
+                    ////    //afterDeselect: function (values) {
+                    ////    //    //alert("Deselect value: " + values);
+                    ////    //}
+                    ////});
+
+                    //addMestaRelacija();
+
+
+                    //$("#vozac").autocomplete({
+                    //    source: function (request, response) {
+
+                    //        $.ajax({
+                    //            url: "/Zaposleni/GetZaposleniAutoComplete?query=" + request.term,
+                    //            dataType: "json",
+                    //            success: function (data) {
+                    //                response($.map(data, function (v, i) {
+                    //                    return {
+                    //                        value: v.Name,
+                    //                        id: v.Id,
+                    //                        pomId: v.PomocniId
+                    //                    };
+                    //                }));
+                    //            }
+                    //        });
+                    //    },
+                    //    minLength: 2,
+                    //    select: function (event, ui) {
+                    //        $('#VozacId').val(ui.item.id);
+                    //        $('#RadnoMestoId').val(ui.item.pomId);
+                    //        console.log("Kontakt ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+
+                    //    }
+                    //});
+
+
+
+                });
+                @*function addMestaRelacija() {
+                    $.getJSON('@Url.Action("../Place/GetMestaRelacija")',  function (data) {
+                        //console.log(data);
+                        if (data != null && !jQuery.isEmptyObject(data)) {
+                            $.each(data, function (index, mesta) {
+                                //$('#relacija1').multiSelect('addOption',
+                                //    {
+                                //        value: mesta.idMesta,
+                                //        text: mesta.nazivMesta,
+                                //        index: 0,
+                                //        nested: 'optgroup_label'
+                                //    });
+
+                                $('#relacija1').append($('<option/>', {
+                                    value: mesta.idMesta,
+                                    text: mesta.nazivMesta
+                                }));
+                            });
+                        };
+                    });
+                }*@
+
+
+            </script>
+
+
+
+        }
+    </div>
+</div>

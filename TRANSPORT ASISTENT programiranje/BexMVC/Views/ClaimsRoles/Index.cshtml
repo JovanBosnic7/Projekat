@@ -1,0 +1,140 @@
+﻿@model Bex.Models.KorisniciProgramaClaimsRoles
+
+@{
+    ViewBag.Title = "Uloge i prava korisnika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Evidencija uloga i prava korisnika programa</h2>
+                    <p class="card-category">Pregled svih prava i povezivanje sa ulogama </p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="roles">
+                                Dodaj prava u ulogu
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.Roles)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="rolesForClaims"> @item.Name</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        @*<div class="btn-group ">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="rolesFilter">
+                                Uloge
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                <li>
+                                    <a href="#" id="0" class="allRoles">Sve uloge</a>
+                                </li>
+                                @foreach (var item in ViewBag.Roles)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="allRoles"> @item.Name</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>*@
+                        @*<div class="btn-group " id="selectedRoleName" style="display:none;">
+                            <h3>Magacin</h3>
+                        </div>*@
+                    </div>
+
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               @*data-query-params="queryParams"*@
+                               data-detail-view="true"                               
+                               data-show-refresh="true"
+                               data-show-export="true"
+                               data-show-columns="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-show-footer="true"
+                               data-filter-control="true" 
+                               data-toolbar="#toolbar">
+                            <thead>
+                                @*<tr>
+
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+
+                                    <th>
+                                        <input name="search" id="Filter" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Name" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Value" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Description" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Role", (SelectList)ViewBag.Role, "Sve uloge", new { @class = "form-control input-sm" })
+                                    </th>
+
+                                </tr>*@
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="Filter" data-sortable="true" data-filter-control="input">Filter</th>
+                                    <th data-field="Name" data-sortable="true" data-filter-control="input">Naziv</th>
+                                    <th data-field="Value" data-sortable="true" data-filter-control="input">Vrednost</th>
+                                    <th data-field="Description" data-sortable="true" data-filter-control="input">Opis</th>
+                                    <th data-field="Role" data-visible="false" data-sortable="true" data-filter-control="input">Role</th>
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $rolesForClaim = $('.rolesForClaims');
+
+                $table.configTable('/ClaimsRoles/GetClaimsRolesData');
+
+                $(document).ready(function () {
+
+                    $table.optionsTable();
+
+                    $table.detailsTable('ClaimsRoles/DetailsRoles');
+
+                    $rolesForClaim.click(function () {
+                        var izabraniId = $(this).attr('id');
+                        $rolesForClaim.dropDownChoiceWithId(izabraniId, 'ClaimsRoles/AddClaimsToRole', "Uspešno ste povezali prava sa ulogom!");
+                    });
+                   
+                    
+
+                });
+
+            </script>
+        }
+    </div>
+</div>

@@ -1,0 +1,485 @@
+﻿
+@model BexMVC.ViewModels.BankaIndexData
+
+
+
+@{
+    ViewBag.Title = "Banka";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Banka</h2>
+                    <p class="card-category">Uplate pazara, uplate i podizanje novca za otkupnine u banci</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               @*data-export-data-type="selected"
+               data-export-types="['xml', 'csv', 'excel', 'pdf']"*@
+                               data-detail-view="true"
+                               @*data-detail-formatter="detailFormatter"*@
+                               @*data-striped="true"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+                                <tr>
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                        <input type='text' id="Datum" placeholder="" class="form-control input-sm datepicker-datum" />
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Region", (SelectList)ViewBag.Regioni, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PazarZaUplatu" class="form-control input-sm" type="text" placeholder="" disabled>
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PazarUplacen" class="form-control input-sm" type="text" placeholder="" disabled>
+                                    </th>
+                                    <th>
+                                        <input name="search" id="OtkupZaUplatu" class="form-control input-sm" type="text" placeholder="" disabled>
+                                    </th>
+                                    <th>
+                                        <input name="search" id="OtkupUplacen" class="form-control input-sm" type="text" placeholder="" disabled>
+                                    </th>
+                                    <th>
+                                        <input name="search" id="OtkupZaIsplatu" class="form-control input-sm" type="text" placeholder="" disabled>
+                                    </th>
+                                    <th>
+                                        <input name="search" id="OtkupIsplacen" class="form-control input-sm" type="text" placeholder="" disabled>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    @*<th data-field="Id" data-visible="false">Id</th>*@
+                                    <th data-field="Datum" data-sortable="true" data-formatter="dateFormat">Datum</th>
+                                    <th data-field="RegionNaziv">Region</th>
+                                    <th data-field="PazarZaUplatu">Pazar za uplatu</th>
+                                    <th data-field="PazarUplacen">Pazar uplacen</th>
+                                    <th data-field="OtkupZaUplatu">Otkup za uplatu</th>
+                                    <th data-field="OtkupUplacen">Otkup uplacen</th>
+                                    <th data-field="OtkupZaIsplatu">Otkup za isplatu</th>
+                                    <th data-field="OtkupIsplacen">Otkup isplacen</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $search = $('#table #search');
+                var $ok = $('#ok');
+                var pageSize = 10;
+                var pageNumber = 1;
+                //var searchText = "";
+                //var searchColumn = "";
+                var sortColumn = "";
+                var sortOrder = "";
+                var searchArray = [];
+
+                //var searchTerms = "";
+                //var searchConcatenate = "";
+
+                $table.bootstrapTable({
+                    url: '/Banka/GetBanka',
+                    classes: 'table-no-bordered table-sm table-hover'
+                });
+
+                var $remove = $('#remove');
+                $edit = $('#edit');
+                $zona = $('#zona');
+                $alarm = $('#alarm');
+                selections = [];
+
+                $('.datepicker-datum').datepicker();
+                $(".datepicker-datum").attr("autocomplete", "off");
+
+                $(document).ready(function () {
+
+                    $('.datepicker-datum').on("change", function () {
+
+                        $('.datepicker-datum').datepicker('setDate', this.value);
+
+                        addSearchTerms($table);
+
+                    })
+
+                    $table.on('check.bs.table uncheck.bs.table ' +
+                        'check-all.bs.table uncheck-all.bs.table', function () {
+
+                            //alert("Selekotovan: " + getIdSelections());
+                            // save your data, here just save the current page
+                            selections = getIdSelections();
+
+
+                            if (selections.length == 1) {
+                                $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                                $edit.prop('disabled', false);
+
+                            } else {
+                                $remove.prop('disabled', true);
+                                $edit.prop('disabled', true);
+                            }
+
+                            // push or splice the selections if you want to save all data selections
+                        });
+
+                    //$("td.of_number_to_be_evaluated:contains('-')").addClass('red');
+                    //$("td.of_number_to_be_evaluated:contains('+')").addClass('green');
+
+                    $table.on('page-change.bs.table', function (e, number, size) {
+                        pageNumber = number;
+                        pageSize = size;
+
+                        $table.bootstrapTable('refresh');
+                        //$table.bootstrapTable('destroy').bootstrapTable({
+                        //    url: "/Posiljka/GetPosiljkaData",
+                        //    pageNumber: number
+                        //});
+
+                    });
+
+                    $table.on('sort.bs.table', function (order, name) {
+                        //alert(name + " ---- " + order);
+                        console.log("Name: " + name);
+                        //alert("dadsdasd");
+                        sortColumn = name;
+                        //sortOrder = order;
+
+                        //$table.bootstrapTable('refresh');
+                        //$table.bootstrapTable('destroy').bootstrapTable({
+                        //    url: "/Posiljka/GetPosiljkaData",
+                        //    pageNumber: number
+                        //});
+
+                    });
+
+                    $("#table select").change(function () {
+
+                        addSearchTerms($table);
+
+                    });
+
+                    $("#table input").keypress(function (event) {
+                        if (event.which == 13) {
+
+                            event.preventDefault();
+                            addSearchTerms($table);
+                        }
+
+                    });
+
+                    $('#toolbar').find('select').change(function () {
+                        $('#table').bootstrapTable('destroy').bootstrapTable({
+                            exportDataType: $(this).val()
+                        });
+                    });
+
+
+
+
+                });
+
+                $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                    $detail.html('Loading from ajax request...');
+                    alert(row.Id);
+                    $.ajax({
+                        url: "Banka/DetailsOtkupZaUplatu",
+                        type: 'get',
+
+                        data: {
+                            id: row.Id
+                        },
+                        success: function (data) {
+                            $detail.html(data)
+                        },
+                        error: function () {
+                            alert('Ajax error!');
+                        }
+                    });
+                    //$.get('Details?id=2', function (res) {
+                    //    $detail.html(res.replace(/\n/g, '<br>'));
+                    //});
+                });
+
+                //$.ajax({
+                //    url: "Banka/GetBankaData",
+                //    type: 'get',
+                //    success: function (data) {
+                //        $('#pazarZaUplatu').append(data.pazar);
+                //        $('#otkupZaUplatu').append(data.otkupUplatni);
+                //        $('#otkupZaIsplatu').append(data.otkupIsplatni);
+
+                //    },
+                //    error: function () {
+                //        $('#banka_data').hide();
+                //        //alert('Ajax error!');
+                //    }
+                //});
+
+                //$.ajax({
+                //    url: "Magacin/GetStatData",
+                //    type: 'get',
+                //    success: function (data) {
+                //        $('#aktuelnoPreuzimanja').append(data.aktuelnoP);
+                //        $('#obavljenoPreuzimanja').append(data.obavljenoP);
+                //        $('#aktuelnoDostava').append(data.aktuelnoD);
+                //        $('#obavljenoDostava').append(data.obavljenoD);
+                //        $('#aktuelnoOtkupa').append(data.aktuelnoN);
+                //        $('#obavljenoOtkupa').append(data.obavljenoN);
+                //        $('#aktuelnoOtpremnica').append(data.aktuelnoT);
+                //        $('#obavljenoOtpremnica').append(data.obavljenoT);
+                //        $('#aktuelnoCekova').append(data.aktuelnoC);
+                //        $('#obavljenoCekova').append(data.obavljenoC);
+
+                //    },
+                //    error: function () {
+                //        alert('Ajax error!');
+                //    }
+                //});
+
+                //$('#printSpisakZaRazduzenje').click(function () {
+                //        //var ids = getIdSelections();
+                //        //alert(ids);
+                //    makeCorsRequest();
+
+                //});
+
+
+
+                //$table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                //    window.open('Magacin/Razduzenje?reonId=' + row.Id + '&kurirId=' + row.KurirId + '&zonaId=' + row.ZonaId, '_blank');
+                //    // $detail.html('Loading from ajax request...');
+                //    // //alert(row.Id);
+                //    //$.ajax({
+                //    //    url: "Magacin/DetailsZaduzenje",
+                //    //     type: 'get',
+
+                //    //    data: {
+                //    //        reonId: row.Id,
+                //    //        kurirId: row.KurirId
+                //    //     },
+                //    //     success: function (data) {
+                //    //         $detail.html(data)
+                //    //     },
+                //    //     error: function () {
+                //    //         alert('Ajax error!');
+                //    //     }
+                //    // });
+
+                //});
+
+                // Helper method to parse the title tag from the response.
+                //function getTitle(text) {
+                //    return text.match('<title>(.*)?</title>')[1];
+                //}
+
+                //function makeCorsRequest() {
+                //    // This is a sample server that supports CORS.
+                //    var url = 'http://api.bex.rs:62502/ShipDNF/Ship/getLabelWithProperties?pageSize=4&pagePosition=0&shipmentId=190083667&parcelNo=0';
+
+                //    var xhr = createCORSRequest('GET', url);
+                //    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                //    xhr.setRequestHeader('X-Auth-Token', 'f45010c4-23f4-3b8d-a37b-iv3098355d38');
+                //    if (!xhr) {
+                //        alert('CORS not supported');
+                //        return;
+                //    }
+                //    else {
+                //        alert("CORS OK");
+                //    }
+
+                //    // Response handlers.
+                //    xhr.onload = function () {
+                //        var text = xhr.responseText;
+                //        var title = getTitle(text);
+                //        alert('Response from CORS request to ' + url + ': ' + title);
+                //    };
+
+                //    xhr.onerror = function () {
+                //        alert('Woops, there was an error making the request.');
+                //    };
+
+                //    xhr.send();
+                //}
+
+                //function createCORSRequest(method, url) {
+                //    var xhr = new XMLHttpRequest();
+                //    if ("withCredentials" in xhr) {
+
+                //        // Check if the XMLHttpRequest object has a "withCredentials" property.
+                //        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+                //        xhr.open(method, url, true);
+
+                //    } else if (typeof XDomainRequest != "undefined") {
+
+                //        // Otherwise, check if XDomainRequest.
+                //        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+                //        xhr = new XDomainRequest();
+                //        xhr.open(method, url);
+
+                //    } else {
+
+                //        // Otherwise, CORS is not supported by the browser.
+                //        xhr = null;
+
+                //    }
+                //    return xhr;
+                //}
+
+
+
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        return row.Id
+                    });
+                }
+
+                function queryParams(p) {
+                    //var params = {};
+
+                    //$('#toolbar').find('input[name]').each(function () {
+                    //    params[$(this).attr('name')] = $(this).val();
+                    //});
+                    var params = {
+                        pageNumber: pageNumber,
+                        pageSize: pageSize,
+                        searchTerms: searchArray.toString(),
+                        sortColumn: sortColumn,
+                        sortOrder: p.order,
+                        offset: 0,
+                        limit: 10
+                    };
+
+                    //searchConcatenate = "";
+                    //searchTerms = "";
+                    //console.log("ARRAY: ", searchArray.toString());
+                    //alert("PARAMS: " + pageNumber);
+
+
+                    return params;
+                }
+
+                function responseHandler(res) {
+                    return res.rows;
+                }
+                //$("#table").colResizable();
+                //$('#tableVP').dragtable();
+
+                //$('#toolbar').find('select').change(function () {
+                //    $('#table').bootstrapTable('destroy').bootstrapTable({
+                //        exportDataType: $(this).val()
+                //    });
+                //});
+
+                //});
+                function addSearchTerms(table) {
+                    var searchText = "";
+                    var searchColumn = "";
+
+                    searchArray = [];
+
+                    pageNumber = 1;
+                    pageSize = 10;
+
+                    $("table#table :input").each(function () {
+
+
+                        var input = $(this);
+
+
+                        searchText = input.val();
+                        searchColumn = input.attr('id');
+                        if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                        {
+                            //alert(input.val() + " ---- " + input.attr('id'));
+
+                            if (input.val() == "on") {
+                                searchText = input.is(":checked");
+                            }
+
+                            //searchConcatenate += searchColumn + ":" + searchText + ",";
+                            searchArray.push(searchColumn + ":" + searchText);
+                            //searchT[searchColumn] = searchText;
+                        }
+                    });
+
+                    table.bootstrapTable('refresh');
+                }
+
+                function formatYesNo(value, row, index) {
+                    return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                }
+
+                function totalTextFormatter(data) {
+                    return '&Sigma;';
+                }
+
+                function totalFormatter(data) {
+                    return data.length;
+                }
+
+                function totalNameFormatter(data) {
+                    return data.length;
+                }
+
+                function sumFormatter(data) {
+                    field = this.field;
+                    return data.reduce(function (sum, row) {
+                        return sum + (+row[field]);
+                    }, 0);
+                }
+
+                function avgFormatter(data) {
+                    return sumFormatter.call(this, data) / data.length;
+                }
+
+                //function ToJavaScriptDate(value) {
+                //    var pattern = /Date\(([^)]+)\)/;
+                //    var results = pattern.exec(value);
+                //    var dt = new Date(parseFloat(results[1]));
+                //    return dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
+
+                //}
+                function dateFormat(value, row, index) {
+
+                    if (value == null) return '';
+                    return moment(value).format('DD/MM/YYYY');
+                }
+
+                function timeFormat(value, row, index) {
+                    if (value == null) return '';
+                    return moment(value).format('HH:MM:SS');
+                }
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+            </script>
+        }
+    </div>
+</div>

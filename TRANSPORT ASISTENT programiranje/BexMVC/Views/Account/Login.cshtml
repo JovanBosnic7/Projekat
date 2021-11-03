@@ -1,0 +1,92 @@
+﻿@model BexMVC.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+
+}
+
+<div class="row" style="margin-top:250px;">
+    <div class="col-lg-4 col-md-6 col-sm-6"></div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-login">
+                <div class="card-header card-header-primary ">
+                    <img src="~/Content/images/bexLogoMali.png" />
+                    @*<h3 class="panel-title">Please Sign In</h3>*@
+                </div>
+                <div class="card-body">
+                    @*<section id="loginForm">*@
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @*<fieldset>*@
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+
+                                <span class="input-group-text">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </div>
+                            @*@Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })*@
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Korisnicko ime" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            @*<input class="form-control" placeholder="First Name..." type="text">*@
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+
+                                <span class="input-group-text">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                            @*@Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })*@
+
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Lozinka" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+
+                            @*<input class="form-control" placeholder="Password" name="password" type="password" value="">*@
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+
+                                <span class="input-group-text">
+
+                                </span>
+                            </div>
+                            <div class="checkbox">
+
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                                @*<input name="remember" type="checkbox" value="Remember Me">Remember Me*@
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="OK" class="btn btn-lg btn-danger btn-block" />
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <p>
+                                @Html.ActionLink("Registracija novog korisnika?", "Register")
+                            </p>
+                            </div>
+                        <div class="col-md-6" >
+                            <p class="pull-right">
+                                @Html.ActionLink("Zaboravili ste lozinku?", "ForgotPassword")
+                            </p>
+                        </div>
+                       
+                    }
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+

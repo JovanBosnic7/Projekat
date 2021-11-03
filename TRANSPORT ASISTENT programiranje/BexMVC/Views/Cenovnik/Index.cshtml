@@ -1,0 +1,463 @@
+﻿
+@model BexMVC.ViewModels.CenovnikIndexData
+@*@using PagedList;
+    @using PagedList.Mvc;
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+
+
+
+@{
+    ViewBag.Title = "Cenovnici";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Evidencija cenovnika </h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div id="toolbar">
+
+            <button id="create" class="btn btn-primary">
+                <i class="glyphicon glyphicon-apple"></i> @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+            </button>
+            <button id="edit" class="btn btn-primary" disabled>
+                <i class="glyphicon glyphicon-edit"></i> Izmeni
+            </button>
+            <button id="remove" class="btn btn-primary" disabled>
+                <i class="glyphicon glyphicon-remove"></i> Brisi
+            </button>
+
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-print"></i> Print
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        @Html.ActionLink("Dodaj cenovnik", "Create")
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Stampaj</a>
+                    </li>
+                </ul>
+            </div>
+            @*<div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Opcije
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li id="zona">
+                            @Html.ActionLink("Ubaci u zonu", "")
+                        </li>
+                        <li id="alarm">
+                            <a href="#">Alarm</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">Stampaj</a>
+                        </li>
+                    </ul>
+                </div>*@
+            @*<div class="btn-group">
+                    <input id="search" class="form-control" type="text" placeholder="Search">
+                </div>*@
+        </div>
+        <table id="tableCenovnik"
+               data-pagination="true"
+               data-side-pagination="server"
+               data-query-params="queryParams"
+               data-show-columns="true"
+               data-show-export="true"
+               data-detail-view="true"
+               data-striped="true"
+               data-page-list="[10, 25, 50, 100]"
+               data-toolbar="#toolbar"
+               @*data-show-footer="true">*@
+               @*data-search="true"*@
+               @*data-toggle="table"*@
+               @*data-url="/VozniPark/GetVozniPark"*@>
+
+            <thead>
+                <tr>
+                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                    <th>
+                        <input name="search" id="BrojCenovnika" class="form-control input-sm" type="text" placeholder="Pretrazi">
+                    </th>
+                    <th>
+                        <input type='text' id="DatumCenovnika" placeholder="Izaberite datum" class="form-control input-sm datepicker-dat-cenovnika" />
+                    </th>
+                    <th>
+                        <input name="search" id="KorisnikCenovnika" class="form-control input-sm" type="text" placeholder="Pretrazi">
+                    </th>
+                    <th>
+                        <input name="search" id="OpisCenovnika" class="form-control input-sm" type="text" placeholder="Pretrazi">
+                    </th>
+                </tr>
+                <tr>
+                    @*<th data-field="Id" data-visible="false">Id</th>*@
+                    <th data-field="BrojCenovnika" data-sortable="true">Broj cenovnika</th>
+                    <th data-field="DatumCenovnika" data-sortable="true" data-formatter="dateFormat" class="text-center">Datum cenovnika</th>
+                    <th data-field="KorisnikCenovnika" data-sortable="true">Korisnik cenovnika</th>
+                    <th data-field="OpisCenovnika" data-sortable="true">Opis cenovnika</th>
+                </tr>
+            </thead>
+
+        </table>
+
+        <br />
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+            <script type="text/javascript">
+                var $table = $('#tableCenovnik');
+                var $search = $('#tableCenovnik #search');
+                var $ok = $('#ok');
+                var pageSize = 10;
+                var pageNumber = 1;
+                var sortColumn = "";
+                var sortOrder = "";
+                var searchArray = [];
+
+                $table.bootstrapTable({
+                    url: '/Cenovnik/GetCenovnik',
+                    formatLoadingMessage: function () {
+                        return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+                    }
+                });
+
+                var $remove = $('#remove');
+                $edit = $('#edit');
+                //$zona = $('#zona');
+                //$alarm = $('#alarm');
+                selections = [];
+
+                $('.datepicker-dat-cenovnika').datepicker();
+                //$('.datepicker-dat-verzije').datepicker();
+                //$('.datepicker-dat-obnove').datepicker();
+
+                $(document).ready(function () {
+
+                    $('.datepicker-dat-cenovnika').on("change", function () {
+
+                        $('.datepicker-dat-cenovnika').datepicker('setDate', this.value);
+
+                        addSearchTerms($table);
+
+                    })
+
+                    $table.on('check.bs.table uncheck.bs.table ' +
+                        'check-all.bs.table uncheck-all.bs.table', function () {
+
+                            //alert("Selekotovan: " + getIdSelections());
+                            // save your data, here just save the current page
+                            selections = getIdSelections();
+
+
+                            if (selections.length == 1) {
+                                $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                                $edit.prop('disabled', false);
+
+                            } else {
+                                $remove.prop('disabled', true);
+                                $edit.prop('disabled', true);
+                            }
+
+                            // push or splice the selections if you want to save all data selections
+                        });
+
+                    $table.on('page-change.bs.table', function (e, number, size) {
+                        pageNumber = number;
+                        pageSize = size;
+
+                        $table.bootstrapTable('refresh');
+                        //$table.bootstrapTable('destroy').bootstrapTable({
+                        //    url: "/Posiljka/GetPosiljkaData",
+                        //    pageNumber: number
+                        //});
+
+                    });
+
+                    $table.on('sort.bs.table', function (order, name) {
+                        console.log("Name: " + name);
+                        sortColumn = name;
+
+                    });
+
+                    $("#tableCenovnik select").change(function () {
+
+                        addSearchTerms($table);
+
+                    });
+
+                    $("#tableCenovnik input").keypress(function (event) {
+                        if (event.which == 13) {
+
+                            event.preventDefault();
+                            addSearchTerms($table);
+                        }
+
+                    });
+
+                    $('#toolbar').find('select').change(function () {
+                        $('#tableCenovnik').bootstrapTable('destroy').bootstrapTable({
+                            exportDataType: $(this).val()
+                        });
+                    });
+
+                    //$table.on('page-change.bs.table', function (e, number, size) {
+                    //    pageNumber = number;
+                    //    pageSize = size;
+
+                    //});
+
+                    //$table.on('column-search.bs.table', function (field, value, text) {
+                    //    alert("SEARCH: " + value + " TXT: " + text);
+                    //    //value je naziv polja a text vrednost search
+                    //    searchColumn = value;
+                    //    searchText = text;
+                    //    $table.bootstrapTable('refresh');
+                    //});
+
+                    //$('#tableVP input[name=search]').keypress(function () {
+
+                    //    if (event.which == 13) {
+
+                    //        $("table#tableVP :input").each(function () {
+
+                    //            var input = $(this);
+
+                    //            searchText = input.val();
+                    //            searchColumn = input.attr('id');
+                    //            if (typeof searchColumn !== 'undefined') {
+                    //                if (input.val() == "on") {
+                    //                    searchText = input.is(":checked");
+                    //                }
+                    //                searchConcatenate += searchColumn + ":" + searchText + ",";
+                    //            }
+                    //        });
+
+                    //        searchTerms = searchConcatenate.substring(0, searchConcatenate.length - 1);
+                    //        pageNumber = 1;
+                    //        pageSize = 10;
+                    //        //$table.bootstrapTable('refresh');
+                    //    }
+
+
+
+                });
+
+                //$('#accordion').on('click', function () {
+                //    // do something…
+                //    alert("AAAAA");
+                //})
+
+                $remove.click(function () {
+                    var ids = getIdSelections();
+                    $table.bootstrapTable('remove', {
+                        field: 'Id',
+                        values: ids
+                    });
+                    $remove.prop('disabled', true);
+                    location.href = "Cenovnik/Delete?id=" + ids;
+                });
+
+                $edit.click(function () {
+                    var ids = getIdSelections();
+                    location.href = "Cenovnik/Edit?id=" + ids;
+
+                });
+
+                //$zona.click(function () {
+                //    var ids = getIdSelections();
+                //    location.href = "Ugovor/DodajZonu?id=" + ids;
+
+                //});
+
+                //$alarm.click(function () {
+                //    var ids = getIdSelections();
+                //    location.href = "Ugovor/CreateAlarm?vozniParkId=" + ids;
+
+                //});
+
+                //$table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                //    $detail.html('Loading from ajax request...');
+                //    alert(row.Id);
+                //   $.ajax({
+                //       url: "Ugovor/DetailsTroskovi",
+                //        type: 'get',
+
+                //       data: {
+                //           id: row.Id
+                //        },
+                //        success: function (data) {
+                //            $detail.html(data)
+                //        },
+                //        error: function () {
+                //            alert('Ajax error!');
+                //        }
+                //    });
+                ////$.get('Details?id=2', function (res) {
+                ////    $detail.html(res.replace(/\n/g, '<br>'));
+                ////});
+                //});
+
+                //$('#toolbar').find('select').change(function () {
+                //    $('#tableVP').bootstrapTable('destroy').bootstrapTable({
+                //        exportDataType: $(this).val()
+                //    });
+                //});
+
+
+                //function detailFormatter(index, row) {
+                //    var html = [];
+                //    $.each(row, function (key, value) {
+                //        html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+                //    });
+                //    return html.join('');
+                //}
+
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        return row.Id
+                    });
+                }
+
+                function queryParams(p) {
+                    //var params = {};
+
+                    //$('#toolbar').find('input[name]').each(function () {
+                    //    params[$(this).attr('name')] = $(this).val();
+                    //});
+                    var params = {
+                        pageNumber: pageNumber,
+                        pageSize: pageSize,
+                        searchTerms: searchArray.toString(),
+                        sortColumn: sortColumn,
+                        sortOrder: p.order,
+                        offset: 0,
+                        limit: 10
+                    };
+
+                    //searchConcatenate = "";
+                    //searchTerms = "";
+                    //console.log("ARRAY: ", searchArray.toString());
+                    //alert("PARAMS: " + pageNumber);
+
+
+                    return params;
+                }
+
+                function responseHandler(res) {
+                    return res.rows;
+                }
+                //$("#table").colResizable();
+                //$('#tableVP').dragtable();
+
+                //$('#toolbar').find('select').change(function () {
+                //    $('#table').bootstrapTable('destroy').bootstrapTable({
+                //        exportDataType: $(this).val()
+                //    });
+                //});
+
+                //});
+                function addSearchTerms(table) {
+                    var searchText = "";
+                    var searchColumn = "";
+
+                    searchArray = [];
+
+                    pageNumber = 1;
+                    pageSize = 10;
+
+                    $("table#tableCenovnik :input").each(function () {
+
+
+                        var input = $(this);
+
+
+                        searchText = input.val();
+                        searchColumn = input.attr('id');
+                        if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                        {
+                            //alert(input.val() + " ---- " + input.attr('id'));
+
+                            if (input.val() == "on") {
+                                searchText = input.is(":checked");
+                            }
+
+                            //searchConcatenate += searchColumn + ":" + searchText + ",";
+                            searchArray.push(searchColumn + ":" + searchText);
+                            //searchT[searchColumn] = searchText;
+                        }
+                    });
+
+                    table.bootstrapTable('refresh');
+                }
+
+                function formatYesNo(value, row, index) {
+                    return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                }
+
+                function totalTextFormatter(data) {
+                    return '&Sigma;';
+                }
+
+                function totalFormatter(data) {
+                    return data.length;
+                }
+
+                function totalNameFormatter(data) {
+                    return data.length;
+                }
+
+                function sumFormatter(data) {
+                    field = this.field;
+                    return data.reduce(function (sum, row) {
+                        return sum + (+row[field]);
+                    }, 0);
+                }
+
+                function avgFormatter(data) {
+                    return sumFormatter.call(this, data) / data.length;
+                }
+
+                //function ToJavaScriptDate(value) {
+                //    var pattern = /Date\(([^)]+)\)/;
+                //    var results = pattern.exec(value);
+                //    var dt = new Date(parseFloat(results[1]));
+                //    return dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
+
+                //}
+
+                function dateFormat(value, row, index) {
+
+                    if (moment(value).isValid() == true) {
+                        return moment(value).format('DD/MM/YYYY');
+                    }
+                    else {
+                        return "-";
+                    }
+                }
+
+
+                $(window).resize(function () {
+                    $('#tableCenovnik').bootstrapTable('resetView');
+                });
+
+
+            </script>
+        }
+    </div>
+</div>

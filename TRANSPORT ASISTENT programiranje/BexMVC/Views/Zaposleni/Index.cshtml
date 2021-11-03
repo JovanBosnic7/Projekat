@@ -1,0 +1,221 @@
+﻿
+@model BexMVC.ViewModels.ZaposleniIndexData
+
+@{
+    ViewBag.Title = "Zaposleni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    @*<h1 class="page-header">Evidencija kontakti</h1>*@
+                    <h2 class="card-title" style="color:#666;">Evidencija zaposleni</h2>
+                    <p class="card-category">Pregled svih zaposlenih u kompaniji i akitivnih i neaktivnih</p>
+                </div>
+                <!-- /.col-lg-12 -->
+                @*</div>*@
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+
+                        <button id="create" class="btn btn-primary">
+                            @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="opcije" disabled>
+                                Opcije
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li id="evidencija">
+                                    <a href="#">Zaposleni/Evidencija</a>
+                                </li>                                
+                            </ul>
+                        </div>
+
+                        <button id="addFiles" class="btn btn-primary" disabled>
+                            Dodaj dokument/sliku
+                        </button>
+
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               @*data-query-params="queryParams"*@
+                               data-show-columns="true"
+                               data-show-refresh="true"
+                               data-show-export="true"
+                               data-detail-view="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-show-footer="true"
+                               data-filter-control="true" 
+                               data-toolbar="#toolbar">
+                            <thead>
+                                @*<tr>
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                        <input name="search" id="KontaktNaziv" class="form-control input-sm" type="text" placeholder="" />
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Region", (SelectList)ViewBag.Regioni, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Sektor", (SelectList)ViewBag.Sektori, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Firma", (SelectList)ViewBag.Firme, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        <input type='text' id="DatumZaposlenja" placeholder="" class="form-control input-sm datepicker-dat-zaposlenja" />
+                                    </th>
+                                    <th class="text-center">
+                                        <select name="search" id="Aktivan" class="form-control input-sm">
+                                            <option value="">Sve</option>
+                                            <option value="1">Da</option>
+                                            <option value="2">Ne</option>
+                                        </select>
+                                    </th>
+                                </tr>*@
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="KontaktNaziv" data-sortable="true" data-filter-control="input">Zaposleni</th>
+                                    <th data-field="RegionNazivSkraceni" data-sortable="true" data-filter-control="input">Region</th>
+                                    <th data-field="SektorNaziv" data-sortable="true" data-filter-control="input">Sektor</th>
+                                    <th data-field="FirmaNaziv" data-sortable="true" data-filter-control="input">F. radi</th>
+                                    <th data-field="Aktivan" data-formatter="formatBooleanYesNo" class="text-center" data-filter-control="select" data-filter-data="var:boolean_DaNe">Aktivan</th>
+                                    <th data-field="Jmbg" data-visible="false" data-filter-control="input" data-sortable="true">Jmbg</th>
+                                    <th data-field="Zanimanje" data-visible="false" data-filter-control="input" data-sortable="true">Zanimanje</th>
+                                    <th data-field="SS" data-visible="false" data-filter-control="input" data-sortable="true">SS</th>
+                                    <th data-field="RadniStaz" data-visible="false" data-filter-control="input" data-sortable="true">Radni staž</th>
+                                    <th data-field="RadnoMesto" data-visible="false" data-filter-control="input" data-sortable="true">R.mesto</th>
+                                    <th data-field="Sistematizacija" data-visible="false" data-filter-control="input" data-sortable="true">Sistematizacija</th>
+                                    <th data-field="Status" data-visible="false" data-filter-control="input" data-sortable="true">Status</th>
+                                    <th data-field="Telefon" data-visible="false" data-filter-control="input" data-sortable="true">Telefon</th>
+                                    <th data-field="Kategorija" data-visible="false" data-filter-control="input" data-sortable="true">Kategorija</th>
+                                    <th data-field="Grupa" data-visible="false" data-filter-control="input" data-sortable="true">Grupa</th>
+                                    <th data-field="Slava" data-visible="false" data-filter-control="input" data-sortable="true">Slava</th>
+                                    <th data-field="TekuciRacun" data-visible="false" data-filter-control="input" data-sortable="true">T.racun</th>
+                                    <th data-field="Adresa" data-visible="false" data-filter-control="input" data-sortable="true">Adresa</th>
+                                    <th data-field="BrojLK" data-visible="false" data-filter-control="input" data-sortable="true">Br.LK</th>
+                                    <th data-field="OpstinaLK" data-visible="false" data-filter-control="input" data-sortable="true">Opština</th>
+                                    <th data-field="Napomena" data-visible="false" data-filter-control="input" data-sortable="true">Napomena</th>
+                                    <th data-field="Program" data-visible="false" data-filter-control="input" data-sortable="true">Program</th>
+                                    <th data-field="Invalidno" data-visible="false" data-formatter="formatBooleanYesNo" class="text-center" data-filter-control="select" data-filter-data="var:boolean_DaNe">Invalidno</th>
+                                    <th data-field="BankaOvlascenje" data-visible="false" data-filter-control="input" data-sortable="true">Banka ovlašćenje</th>
+                                    <th data-field="RazlogOtkaza" data-visible="false" data-filter-control="input" data-sortable="true">Razlog otkaza</th>
+                                    <th data-field="Pol" data-visible="false" data-filter-control="input" data-sortable="true">Pol</th>
+                                    <th data-field="DatumPrijave" data-formatter="dateFormat" data-filter-control="datepicker" data-visible="false" data-sortable="true">D.prijave</th>
+                                    <th data-field="ProbniRad" data-visible="false" class="text-center" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Probni rad</th>
+                                    <th data-field="DatumOdjave" data-visible="false" class="text-center" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">D.odjave</th>
+                                    <th data-field="DatumLekarskog" data-visible="false" class="text-center" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">D.lekarski</th>
+                                    <th data-field="DatumLicnaKarta" data-visible="false" class="text-center" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">D.LK</th>
+                                    <th data-field="DatumVozacka" data-visible="false" class="text-center" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">D.vozacka</th>
+                                    <th data-field="NaOdredjenoDo" data-visible="false" class="text-center" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">D.na određeno</th>
+                                    <th data-field="DatumZaposlenja" class="text-center" data-formatter="dateFormat" data-sortable="true" data-visible="false" data-filter-control="datepicker">Dat. zaposlenja</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+
+                var $edit = $('#edit'),
+                    $evidencija = $('#evidencija'),
+                    $opcije = $('#opcije'),
+                    $addFiles = $('#addFiles');
+
+                var boolean_DaNe = {
+                    "2": "Ne",
+                    "1": "Da",
+                    "": "Sve"
+                };
+
+                $table.addFilter("Aktivan", 1);
+                $table.configTable('/Zaposleni/GetZaposleni');
+
+
+
+                //$('.datepicker-dat-zaposlenja').datepicker();
+                //$(".datepicker-dat-zaposlenja").attr("autocomplete", "off");
+
+
+                $(document).ready(function () {
+
+                    //$('.datepicker-dat-zaposlenja').on("change", function () {
+
+                    //    $('.datepicker-dat-zaposlenja').datepicker('setDate', this.value);
+
+                    //    addSearchTerms($table);
+
+                    //})
+
+                    var $checkTableElements = [$edit, $addFiles];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    var $checkMoreTableElements = [$opcije,$evidencija];
+                    $table.checkMoreOptionsTable($checkMoreTableElements);
+
+                    $table.optionsTable();
+                    $edit.clickOptions('Zaposleni/Edit?id=');
+                    $evidencija.clickOptions('Zaposleni/Evidencija?id=',true,true);
+                    
+                    $addFiles.clickOptions('../GalleryAdmin/Create?tipId=4&isProfile=0&id=');
+
+                    $table.detailsTable('Zaposleni/Details');
+
+                    
+
+                    
+
+                    //$addFiles.click(function () {
+                    //    var ids = getIdSelections();
+                    //    location.href = "../GalleryAdmin/Create?tipId=4&isProfile=0&id=" + ids;
+
+                    //});
+
+                });
+
+                
+
+                //$table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                //    $detail.html('Ucitavanje detalja o zaposlenom');
+
+                //    $.ajax({
+                //        url: "Zaposleni/Details",
+                //        type: 'get',
+
+                //        data: {
+                //            tipId: 4,
+                //            id: row.Id
+                //        },
+                //        success: function (data) {
+
+                //            $detail.html(data)
+                //        },
+                //        error: function () {
+                //            alert('Ajax error!');
+                //        }
+                //    });
+
+                //});
+
+            </script>
+        }
+
+    </div>
+</div>

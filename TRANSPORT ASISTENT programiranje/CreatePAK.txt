@@ -1,0 +1,83 @@
+
+@{
+    ViewBag.Title = "Dodavanje nove adrese";
+    
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Dodavanje adrese</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+       
+
+        <div id="EditAddressPartial">
+            @Html.Action("EditAddressPartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+        </div>
+        @*<div id="CreateStreetPartial">
+            @Html.Action("CreateStreetPartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+        </div>*@
+        @*<div id="SelectAddressTypePartial">
+                @Html.Action("AddressTypePartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+            </div>*@
+        <div id="CreateAddress"></div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <hr />
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+           
+            <script type="text/javascript">
+                $(document).ready(function () {
+
+                    var selectedMesto = $("#Mesta").val();
+                    var selectedUlica = $("#Ulice").val();
+                    var ulicaSelect = $('#Ulice');
+
+                    addUlice(selectedMesto, ulicaSelect);
+
+                    if (selectedUlica != null && selectedUlica != '') {
+                        ulicaSelect.val = selectedUlica;
+                    };
+                });
+
+                $("#Mesta").change(function () {
+                    var selectedMesto = $("#Mesta").val();
+                    var ulicaSelect = $('#Ulice');
+                    ulicaSelect.empty();
+
+                    if (selectedMesto != null && selectedMesto != '') {
+                        addUlice(selectedMesto, ulicaSelect);
+                    }
+                });
+
+                function addUlice(selectedMesto, ulicaSelect) {
+
+                        $.getJSON('@Url.Action("GetUlice")', { mestoId: selectedMesto }, function (ulice) {
+                            if (ulice != null && !jQuery.isEmptyObject(ulice)) {
+                                ulicaSelect.append($('<option/>', {
+                                    value: null,
+                                    text: ""
+                            }));
+                                $.each(ulice, function (index, ulica) {
+                                    ulicaSelect.append($('<option/>', {
+                                        value: ulica.Value,
+                                        text: ulica.Text
+                                    }));
+                            });
+                        };
+                    });
+                }
+            </script>
+        }
+        </div>
+    </div>

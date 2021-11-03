@@ -1,0 +1,134 @@
+﻿@model Bex.Models.SkenRead
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<div>
+
+    <script type="text/javascript">
+
+        var bc = $('#barkod_'+@ViewBag.PosiljkaId).val();
+        //alert(bc);
+
+
+        if (bc != "") {
+            
+            $('#tabZbirni_'+@ViewBag.PosiljkaId).show();
+            $('#tabSkenovi_' +@ViewBag.PosiljkaId).hide();
+
+            var $table1 = $('#tableZbirni_'+bc);
+            $table1.bootstrapTable({
+                url: '/Magacin/GetZbirnaSpecifikacijaData?barKod=' + bc,
+                formatLoadingMessage: function () {
+                    return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+                },
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+
+        } else {
+            $('#tabZbirni_'+@ViewBag.PosiljkaId).hide();
+            $('#tabSkenovi_' +@ViewBag.PosiljkaId).show();
+
+            var $table = $('#tableSkenovi_'+@ViewBag.PosiljkaId);
+            $table.bootstrapTable({
+                url: '/Magacin/GetSkenoviData?id=' +@ViewBag.PosiljkaId,
+                formatLoadingMessage: function () {
+                    return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+                },
+                
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+        }
+
+
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+        function dateTimeFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY HH:MM:SS');
+        }
+
+       
+    </script>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-success" id="tabSkenovi_@ViewBag.PosiljkaId">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabSkenovi_@ViewBag.PosiljkaId">Skenovi</a>
+                </h4>
+            </div>
+            <div  class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table id="tableSkenovi_@ViewBag.PosiljkaId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="SkenId" data-visible="false">Id</th>
+                                <th data-field="PosiljkaId">Posiljka</th>
+                                <th data-field="BarKod">Bar kod</th>
+                                <th data-field="RbPaketa">Paket rb.</th>
+                                <th data-field="TipPaketa">Tip</th>
+                                <th data-field="NazivSkena">Sken</th>
+                                <th data-field="DatumSkena" data-formatter="dateFormat">Datum</th>
+                                <th data-field="VremeSkena" data-formatter="timeFormat">Vreme</th>
+                                <th data-field="ReonSken">Reon</th>
+                                <th data-field="RegionSken">Region</th>
+                                <th data-field="ZonaSkena">Zona</th>
+                                <th data-field="Skenirao">Skenirao</th>
+                                <th data-field="VremePDA" data-formatter="dateTimeFormat">Vreme PDA</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+            <div class="panel panel-success" id="tabZbirni_@ViewBag.PosiljkaId">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#tabZbirni_@ViewBag.BarKod">Specifikacija zbirnih otkupa @ViewBag.BarKod</a>
+                    </h4>
+                </div>
+                <div  class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <table id="tableZbirni_@ViewBag.BarKod">
+                            <input type="hidden" value="@ViewBag.BarKod" id="barkod_@ViewBag.PosiljkaId" />
+                            <thead>
+
+                                <tr>
+                                    <th data-field="BarKod" data-visible="false">Id</th>
+                                    <th data-field="PosiljkaId">Posiljka</th>
+                                    <th data-field="NazivKlijenta">Klijent</th>
+                                    <th data-field="Adresa">Adresa</th>
+                                    <th data-field="Otkup">Otkup</th>
+                                </tr>
+
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
+    </div>
+</div>
+
+

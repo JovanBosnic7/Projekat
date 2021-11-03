@@ -1,0 +1,118 @@
+﻿@model Bex.Models.KontaktFizickoLice
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kontakt.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumRodjenja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MestoRodjenja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Drzavljanstvo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrojLicneKarte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumIstekaLicneKarte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MestoIzdavanjaLicneKarte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrojVozackeDozvole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumIstekaVozackeDozvole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KategorijaVozackeDozvole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MestoIzdavanjaVozackeDozvole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrojPasosa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumIstekaPasosa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MestoIzdavanjaPasosa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pol)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kontakt.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumRodjenja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MestoRodjenja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Drzavljanstvo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojLicneKarte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumIstekaLicneKarte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MestoIzdavanjaLicneKarte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojVozackeDozvole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumIstekaVozackeDozvole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategorijaVozackeDozvole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MestoIzdavanjaVozackeDozvole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojPasosa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumIstekaPasosa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MestoIzdavanjaPasosa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pol)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>*@
+    </tr>
+}
+
+</table>

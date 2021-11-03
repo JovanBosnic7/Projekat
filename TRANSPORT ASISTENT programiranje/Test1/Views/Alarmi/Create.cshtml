@@ -1,0 +1,341 @@
+﻿@model DDtrafic.ViewModels.AlarmiIndexData
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Unos alarma za vozilo  <small>Evidencija registracija i drugih alarma</small></h1>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="../Alarmi">Alarmi</a>
+            </li>
+            <li class="breadcrumb-item active">Dodaj</li>
+        </ol>
+
+    </div>
+</div>
+<hr />
+
+<div class="row" style="background:#eee;padding:20px;">
+
+    @*@using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
+    @using (Html.BeginForm("Create", "Alarmi", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.VpId, new { Value = ViewBag.VpId })
+        @Html.HiddenFor(model => model.ZaposleniId, new { Value = ViewBag.ZaposleniId })
+
+
+
+        <div>
+            <label class="control-label col-sm-2">Alarm grupa</label>
+            <div class="col-sm-10">
+                @Html.DropDownList("VpAlarmGrupaId", null, "", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VpAlarmGrupaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="voziloDiv">
+            <label class="control-label col-sm-2" for="vozilo">Vozilo </label>
+            <div class="col-sm-10">
+                <input id="vozilo" class="form-control">
+            </div>
+        </div>
+        <div class="zaposleniDiv">
+            <label class="control-label col-sm-2" for="zaposleni">Zaposleni </label>
+            <div class="col-sm-10">
+                <input id="zaposleni" class="form-control">
+            </div>
+        </div>
+        @*<div>
+                <label class="control-label col-sm-2">Alarm tip</label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("VpAlarmTip", null, htmlAttributes: new { @class = "form-control", @onchange = "NapuniTip()" })
+                    @Html.ValidationMessageFor(model => model.VpAlarmTip, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div>
+            <label class="control-label col-sm-2">Alarm tip</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.VpAlarmTip, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "NazivAlarma"), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VpAlarmTip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Datum urađeno</label>
+            <div class="col-sm-10">
+                <div class="'input-group'" type="text">
+                    @Html.TextBoxFor(model => model.Datum, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-kreiranja" })
+                </div>
+            </div>
+        </div>
+        <div class="odrzavanje">
+            <label class="control-label col-sm-2">Kilometraža</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Km, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Km, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="alarm">
+            <label class="control-label col-sm-2">Datum isteka</label>
+            <div class="col-sm-10">
+                <div class="'input-group'" type="text">
+                    @Html.TextBoxFor(model => model.DatumIsteka, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker-dat-isteka" })
+                </div>
+            </div>
+        </div>
+
+        <div class="odrzavanje">
+            <label class="control-label col-sm-2">Km isteka</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.KmIsteka, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KmIsteka, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="alarm">
+            <label class="control-label col-sm-2">Datum alarma</label>
+            <div class="col-sm-10">
+                <div class="'input-group'">
+                    @Html.TextBoxFor(model => model.DatumAlarma, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker-dat-alarma" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="odrzavanje">
+            <label class="control-label col-sm-2">Km alarma</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.KmAlarma, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KmAlarma, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <label class="control-label col-sm-2">Napomena</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Plaćeno din.</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.IznosDin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IznosDin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <label class="control-label col-sm-2">Plaćeno eur.</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.IznosEur, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IznosEur, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div>
+            <label class="control-label col-sm-2"></label>
+            <div class="col-sm-10">
+                <div class="col-sm-4">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary pull-right " />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <script type="text/javascript">
+
+                $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').datepicker({ dateFormat: 'dd-mm-yy' });
+                $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').attr("autocomplete", "off");
+
+                $(document).ready(function () {
+
+
+                    var selectedTipAlarma = $("#VpAlarmTip").val();
+                    var datepickerEl = $(".datepicker-dat-kreiranja").val();
+
+                    $("#VpAlarmGrupaId").change(function () {
+                        var grupaId = $('#VpAlarmGrupaId').val();
+                        showHideKm(grupaId);
+                        $.ajax({
+                            url: '../Alarmi/NapuniTip?grupaId=' + grupaId,
+                            type: "GET",
+                            dataType: "JSON",
+                            data: { Grupa: grupaId },
+                            success: function (tipovi) {
+                                $("#VpAlarmTip").html(""); // clear before appending new list
+                                $.each(tipovi, function (i, tip) {
+                                    $("#VpAlarmTip").append(
+                                        $('<option></option>').val(tip.Id).html(tip.NazivAlarma));
+                                });
+                            }
+                        });
+                    });
+
+
+
+                    $("#VpAlarmTip").change(function () {
+                        selectedTipAlarma = $("#VpAlarmTip").val();
+                    });
+
+                    $("#Km").change(function () {
+                        addVrednostiServisa(selectedTipAlarma, $("#Km").val());
+                    });
+
+
+
+                    $(".datepicker-dat-kreiranja").datepicker({
+                        onSelect: function (dateText) {
+                            alert("Selected date: " + dateText + ", Current Selected Value= " + this.value);
+                            $(this).change();
+                        }
+                    }).on("change", function () {
+                        addVrednostiAlarma($("#VpAlarmTip").val(), datepickerEl);
+                    });
+
+
+                    $('#showProgress').click(function () {
+                        $('#showProgress').hide();
+                        $('#progress').show();
+                    });
+
+                    $("#vozilo").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "../Alarmi/GetVozila?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#VpId').val(ui.item.id);
+                        }
+                    });
+
+
+                    $("#zaposleni").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "../Alarmi/GetZaposleni?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#ZaposleniId').val(ui.item.id);
+                        }
+                    });
+
+                });
+
+
+                $.validator.methods.date = function (value, element) {
+                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+                }
+
+
+                function OnFailure(response) {
+                    alert(response);
+                }
+
+                $("form").bind("keydown", function (e) {
+                    if (e.keyCode === 13) return false;
+                });
+
+                function showHideKm(grupaId) {
+                    if (grupaId == 2) {
+                        $(".odrzavanje").show();
+                        $(".alarm").hide();
+                    }
+                    else {
+                        $(".odrzavanje").hide();
+                        $(".alarm").show();
+                    }
+                    if (grupaId == 3) {
+                        $(".voziloDiv").hide();
+                        $(".zaposleniDiv").show();
+                    }
+                    else {
+                        $(".zaposleniDiv").hide();
+                        $(".voziloDiv").show();
+                    }
+                }
+                $(function () {
+                    $.validator.methods.date = function (value, element) {
+                        if ($.browser.webkit) {
+                            //ES - Chrome does not use the locale when new Date objects instantiated:
+                            var d = new Date();
+
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                        }
+                        else {
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                        }
+                    };
+                });
+
+                function addVrednostiAlarma(selectedTipAlarma, datepickerEl) {
+                    if (selectedTipAlarma == null || selectedTipAlarma == '')
+                        {
+                        alert("Nije izabran tip alarma. ");
+                        $(".datepicker-dat-kreiranja").datepicker("setDate", null);
+                            return;
+                        }
+                    $.getJSON('@Url.Action("GetVrednostiAlarma")', { tipId: selectedTipAlarma, datumUradjeno: $(".datepicker-dat-kreiranja").val() }, function (data) {
+                        //console.log(selectedTipAlarma);
+                        if (data != null && !jQuery.isEmptyObject(data)) {
+                            $(".datepicker-dat-isteka").datepicker("setDate", data.datumIsteka);
+                            $(".datepicker-dat-alarma").datepicker("setDate", data.datumAlarma);
+                        };
+                    });
+                }
+
+                function addVrednostiServisa(selectedTipAlarma, km) {
+                    //alert(km);
+                    if (selectedTipAlarma == null || selectedTipAlarma == '')
+                        {
+                        alert("Nije izabran tip alarma. ");
+                        return;
+                        }
+                    $.getJSON('@Url.Action("GetVrednostiServisa")', { tipId: selectedTipAlarma, km: km }, function (data) {
+                        if (data != null && !jQuery.isEmptyObject(data)) {
+                            $("#KmIsteka").val(data.kmIsteka);
+                            $("#KmAlarma").val(data.kmAlarma);
+                        };
+                    });
+                }
+
+    </script>
+}
+

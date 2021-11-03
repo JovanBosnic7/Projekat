@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DDtrafic.ViewModels.ImageList>
+
+<ul style="list-style:none;" class="row">
+    @foreach (var item in Model)
+    {
+    <li class="col-md-2">
+        <br />
+        
+        @if (item.IsFromSrv)
+        {
+            <a data-fancybox="gallery" data-caption="@item.Title" href="@item.PathImage">
+                <img class="img" src="@item.PathImage" style="width:50%;height:60px;" />
+            </a>
+        }
+        else
+        {
+            <a data-fancybox="gallery" data-caption="@item.Title" href="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= item.WebImageId })">
+                <img class="img" src="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= item.WebImageId, t =2 })" style="width:50%;height:60px;" />
+            </a>
+        }
+
+        <br />
+        <br />
+        <label>
+            <h4>
+                <b>@item.Title</b><br />
+                @item.UpdateDate <br />
+                @item.UserUneo
+            </h4>
+        </label>
+        <br />
+        <br />
+    </li>
+    }
+</ul>

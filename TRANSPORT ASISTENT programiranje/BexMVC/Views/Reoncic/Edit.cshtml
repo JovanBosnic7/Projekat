@@ -1,0 +1,104 @@
+﻿@model Bex.Models.Reoncic
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Izmena reončića</h2>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Reon</label>
+                                            @Html.DropDownList("ReonId", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.ReonId, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Reončić</label>
+                                            @Html.EditorFor(model => model.NazivReoncica, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NazivReoncica, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Preuzimanje do</label>
+                                            @Html.EditorFor(model => model.PreuzimanjeDoDefault, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PreuzimanjeDoDefault, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="" id="OdjavljujeSe"> Odjavljuje se
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+                                            <label>Dat. odjave</label>
+                                            @Html.EditorFor(model => model.DatumPoslednjeOdjave, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DatumPoslednjeOdjave, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Vreme odjave</label>
+                                            @Html.EditorFor(model => model.VremePoslednjeOdjave, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.VremePoslednjeOdjave, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Sort</label>
+                                            @Html.EditorFor(model => model.Sort, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Sort, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="" id="DeoMesta"> Deo mesta
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+                                            <label>Napomena</label>
+                                            @Html.EditorFor(model => model.NapomenaOdjave, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NapomenaOdjave, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Back to List", "../Reoncic")
+            </div>
+        </div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+    </div>
+</div>
+

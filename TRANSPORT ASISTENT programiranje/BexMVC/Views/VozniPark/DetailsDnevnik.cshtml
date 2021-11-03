@@ -1,0 +1,288 @@
+﻿@model Bex.Models.VozniParkDnevnik
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    
+}
+
+<div>
+
+    <script type="text/javascript">
+       
+        var $tableTroskovi = $('#tableTroskovi_'+@ViewBag.VoziloId);
+        $tableTroskovi.bootstrapTable({
+                url: '/VozniPark/GetDnevnikDetailsData?grupaId=31&id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableOprema = $('#tableOprema_'+@ViewBag.VoziloId);
+        $tableOprema.bootstrapTable({
+                url: '/VozniParkOprema/GetOpremaDetailsData?id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+        var $tableStete = $('#tableStete_'+@ViewBag.VoziloId);
+        $tableStete.bootstrapTable({
+                url: '/Stete/GetSteteDetailsData?id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableZaduzenje = $('#tableZaduzenje_'+@ViewBag.VoziloId);
+        $tableZaduzenje.bootstrapTable({
+            url: '/VozniPark/GetZaduzenjeData?id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableKarakteristike = $('#tableKarakteristike_'+@ViewBag.VoziloId);
+        $tableKarakteristike.bootstrapTable({
+                url: '/VozniPark/GetKarakteristikeData?id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        function formatRemoveOprema(value, row, index) {
+            return '<a href="VozniParkOprema/RemoveOprema?id=' + row.Id +  '" ><i class="glyphicon glyphicon-remove"></i></a>';
+        }
+
+        function formatEditTrosak(value, row, index) {
+            return '<a href="VozniPark/EditAlarm?alarmId=' + row.Id + '&oznaka=@ViewBag.Oznaka" target="_blank"><i class="glyphicon glyphicon-edit"></i></a>';
+        }
+        function formatEditSteta(value, row, index) {
+            return '<a href="Stete/Edit?id=' + row.Id + '" target="_blank"><i class="glyphicon glyphicon-edit"></i></a>';
+        }
+
+        var $tableServis = $('#tableServis_'+@ViewBag.VoziloId);
+        $tableServis.bootstrapTable({
+                url: '/VozniPark/GetDnevnikDetailsData?grupaId=11&id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+
+        //function LinkFormatter(value, row, index) {
+          
+        //    console.log("row: ", row);
+        //    return "<a href='../Street?searchUlica=" + row.DnevnikId + "' target='_blank'>" + value + "</a>";
+        //}
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+       
+    </script>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabKarakteristike_@ViewBag.VoziloId">Karakteristike</a>
+                </h4>
+            </div>
+            <div id="tabKarakteristike_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableKarakteristike_@ViewBag.VoziloId">
+                        <thead>
+                            <tr>
+                                <th data-field="Motor">Motor</th>
+                                <th data-field="Proizvedeno">Proizvedeno</th>
+                                <th data-field="Nosivost">Nosivost</th>
+                                <th data-field="Opis">Opis</th>
+                                <th data-field="Masa">Masa</th>
+                                <th data-field="BrojVrata">Br.vrata</th>
+                                <th data-field="Snaga">Snaga</th>
+                                <th data-field="Zapremina">Zapremina</th>
+                                <th data-field="BrojTockova">Br.točkova</th>
+                                <th data-field="Gorivo">Gorivo</th>
+                                <th data-field="Menjac">Menjač</th>
+                                <th data-field="Karoserija">Karoserija</th>
+                                <th data-field="Rezervoar">Rezervoar</th>
+                                <th data-field="Kljuceva">Ključeva</th>
+                                <th data-field="Oprema">Oprema</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabZaduzenje_@ViewBag.VoziloId">Zaduženje</a>
+                </h4>
+            </div>
+            <div id="tabZaduzenje_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableZaduzenje_@ViewBag.VoziloId">
+                        <thead>
+                            <tr>
+                                <th data-field="Tip">Tip</th>
+                                <th data-field="Sektor">Sektor</th>
+                                <th data-field="OdgovornoLice">Odg.lice</th>
+                                <th data-field="Vozac">Vozač</th>
+                                <th data-field="DatumZaduzenja" data-formatter="dateFormat" data-sortable="true">D.zaduženja</th>
+                                <th data-field="Opis">Opis</th>
+                                <th data-field="Napomena">Napomena</th>
+                                <th data-field="Firma">Firma</th>
+                                <th data-field="Potrosnja">Potrošnja</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabTroskovi_@ViewBag.VoziloId">Troškovi</a>
+                </h4>
+            </div>
+            <div id="tabTroskovi_@ViewBag.VoziloId" class="panel-collapse collapse">
+                @*collapse in - otvara odmah pri kliku na detalje*@
+                <div class="panel-body">
+                    <table id="tableTroskovi_@ViewBag.VoziloId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="Id" data-formatter="formatEditTrosak"></th>
+                                <th data-field="DnevnikDatum" data-formatter="dateFormat" data-sortable="true">Datum</th>
+                                <th data-field="DnevnikTip">Tip troska</th>
+                                <th data-field="DnevnikRegion">Region</th>
+                                <th data-field="DnevnikKm">Kilometraza</th>
+                                <th data-field="DnevnikKolicina">Kolicina</th>
+                                <th data-field="DnevnikCena">Cena</th>
+                                <th data-field="DnevnikOpis">Opis</th>
+                                <th data-field="DnevnikNapomena">Br.rač. / Napomena</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabOprema_@ViewBag.VoziloId">Oprema</a>
+                </h4>
+            </div>
+            <div id="tabOprema_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableOprema_@ViewBag.VoziloId">
+                        @*<input type="hidden" id="VpId" value="@ViewBag.VoziloId" />*@
+                        <thead>
+                            <tr>
+                                <th data-field="DatumUnosa" data-formatter="dateFormat">Datum</th>
+                                <th data-field="PodtipNaziv">Naziv</th>
+                                <th data-field="TipNaziv">Tip</th>
+                                <th data-field="GrupaNaziv">Grupa</th>
+                                <th data-field="UserUneoNaziv">Uneo</th>
+                                <th data-field="Id" data-formatter="formatRemoveOprema">Izbaci</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabServis_@ViewBag.VoziloId">Servisi</a>
+                </h4>
+            </div>
+            <div id="tabServis_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableServis_@ViewBag.VoziloId">
+                        <thead>
+                            <tr>
+                                <th data-field="DnevnikDatum" data-formatter="dateFormat">Datum</th>
+                                <th data-field="DnevnikTip">Tip troska</th>
+                                <th data-field="DnevnikRegion">Region</th>
+                                <th data-field="DnevnikKm">Kilometraza</th>
+                                <th data-field="DnevnikKolicina">Kolicina</th>
+                                <th data-field="DnevnikCena">Cena</th>
+                                @*<th data-field="DnevnikIznosDin">Iznos din.</th>
+                                <th data-field="DnevnikIznosEur">Iznos eur.</th>*@
+                                <th data-field="DnevnikOpis">Opis</th>
+                                <th data-field="DnevnikNapomena">Napomena</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabStete_@ViewBag.VoziloId">Štete</a>
+                </h4>
+            </div>
+            <div id="tabStete_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableStete_@ViewBag.VoziloId">
+                        <thead>
+                            <tr>
+                                <th data-field="Id" data-formatter="formatEditSteta"></th>
+                                <th data-field="DatumUnosa" data-formatter="dateFormat" data-sortable="true">Uneto</th>
+                                <th data-field="FirmaStete" data-sortable="true">Firma</th>
+                                <th data-field="NalogSektor" data-sortable="true">Sektor</th>
+                                <th data-field="NalogIzdao" data-sortable="true">Nalog izdao</th>
+                                <th data-field="StetocinaZaposleni" data-sortable="true">Šteta Zaposleni</th>
+                                <th data-field="StetocinaCentar" data-sortable="true">Šteta Centar</th>
+                                <th data-field="Vozilo" data-sortable="true">Vozilo</th>
+                                <th data-field="StetaTip" data-sortable="true">Tip</th>
+                                <th data-field="Opis" data-sortable="true">Opis</th>
+                                <th data-field="Napomena" data-sortable="true">Napomena</th>
+                                <th data-field="IznosRsd" data-sortable="true">Iznos štete</th>
+                                <th data-field="IznosZaNaplatu" data-sortable="true">Naplaćeno</th>
+                                <th data-field="DatumPredajePravnojSluzbi" data-formatter="dateFormat" data-sortable="true">Datum Pravnoj</th>
+                                <th data-field="DatumOdluke" data-formatter="dateFormat" data-sortable="true">Datum Odluke</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabGallery_@ViewBag.VoziloId">Galerija</a>
+                </h4>
+            </div>
+            <div id="tabGallery_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="ListPanel" data-url="@Url.Action("_List","GalleryAdmin")">
+                        @Html.Action("_List", "GalleryAdmin", new { tipId = 2, id = ViewBag.VoziloId })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

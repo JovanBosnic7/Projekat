@@ -1,0 +1,198 @@
+﻿
+@model BexMVC.ViewModels.CenovnikIndexData
+
+@{
+    ViewBag.Title = "Čekovi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Kasa čekova</h2>
+                    <p class="card-category">Pregled čekova po datumu dospeća i banci. Ukupno nerealizovano:  @ViewBag.NerealizovaniCekoviSuma</p>
+                    @*<p class="card-category">Ove nedelje dospeva na realizaciju ukupno:  @ViewBag.OveNedeljeDospeva</p>*@
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="print" disabled>
+                                Štampa
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                <li>
+                                    <a href="#" id="btnSpec">Specifikacija</a>
+                                    <input id="reportSpec" value="SpecifikacijaCekovaReport" type="hidden" />
+                                    <input type="hidden" id="DatumDospecaSpec" value="@ViewBag.DatumDospecaSpec">
+                                    <input type="hidden" id="BankaIdSpec" value="@ViewBag.BankaIdSpec">
+                                </li>
+                            </ul>
+                        </div>
+                        <button id="specifikacija" class="btn btn-primary" disabled>
+                            Specifikacija
+                        </button>
+                        <button id="realizacija" class="btn btn-primary" disabled>
+                            Realizuj
+                        </button>
+                    </div>
+                    <div class="form-group" id="reportDiv">
+
+                        <button type="button" class="close" id="btnCloseReportDiv">zatvori ×</button>
+                        <div id="divReport">
+
+                        </div>
+
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               @*data-query-params="queryParams"*@
+                               data-show-refresh="true"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               data-filter-control="true"
+                               data-detail-view="true"
+                               data-page-list="[10, 25, 50, 100, Sve]"
+                               data-show-footer="true"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="DatumDospeca" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. dospeća</th>
+                                    <th data-field="BankaNaziv" data-sortable="true" data-filter-control="input">Banka</th>
+                                    <th data-field="Iznos" data-formatter="intFormat" data-sortable="true" data-footer-formatter="sumFormatter" data-filter-control="input">Iznos</th>
+                                    <th data-field="BrojCekova" data-formatter="intFormat" data-sortable="true" data-filter-control="input">Uk. čekova</th>
+                                    <th data-field="DatumRealizacije" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. realizacije</th>
+                                    <th data-field="Realizovano" data-footer-formatter="sumFormatter" data-filter-control="input">Realizovano</th>
+                                    <th data-field="BankaId" data-visible="false" data-filter-control="input">BankaId</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $specifikacija = $('#specifikacija'),
+                    $realizacija = $('#realizacija'),
+                    $print = $('#print');
+                $("#reportDiv").hide();
+
+                $table.configTable('/CekoviKasa/GetKasaCekovi');
+                $table.hideColTable();
+
+                
+
+                $(document).ready(function () {
+               
+                    //$('.datepicker-dat-dospeca').on("change", function () {
+                    //    $('.datepicker-dat-dospeca').datepicker('setDate', this.value);
+                    //    addSearchTerms($table);
+                    //});
+                    //$('#DatumDospeca').dateRangePicker({
+                    //    autoClose: true
+                    //}).bind('datepicker-closed', function () {
+                    //    var izabranDatum = $('#DatumDospeca').val();
+                    //    if (izabranDatum !== "") {
+                    //        $table.addFilter("DatumDospeca", izabranDatum);
+                    //        $table.refreshTable();
+                    //    }
+                    //    });
+
+                    //$('#DatumRealizacije').dateRangePicker({
+                    //    autoClose: true
+                    //}).bind('datepicker-closed', function () {
+                    //    var izabranDatum = $('#DatumRealizacije').val();
+                    //    if (izabranDatum !== "") {
+                    //        $table.addFilter("DatumRealizacije", izabranDatum);
+                    //        $table.refreshTable();
+                    //    }
+                    //});
+
+                    var $checkTableElements = [$print, $realizacija];
+                    $table.checkOptionsTable($checkTableElements);
+                    $table.checkOptionsTable($checkTableElements);
+
+                    var $checkMoreTableElements = [$specifikacija];
+                    $table.checkMoreOptionsTable($checkMoreTableElements);
+
+                    $table.optionsTable();
+
+                    $specifikacija.dropDownChoice('CekoviKasa/KreirajSpecifikacije', "Uspešno ste kreirali specifikacije!");
+                    $realizacija.dropDownChoice('Cekovi/RealizujPoSpecifikaciji', "Uspešno ste upisali da su čekovi realizovani!");
+
+                    $('#btnSpec').click(function () {
+                        $("#reportDiv").show();
+                        var reportName = $("#reportSpec").val();
+                        var ids = getIdSelections();
+                        
+                        var src = '../../Reports/BaseReport.aspx?';
+                        src = src + "reportName=" + reportName
+                        src = src + "&datumRealizacije=" + moment(ids[0].datumDospeca).format('DD-MM-YYYY')
+                        src = src + "&banka=" + ids[0].bankaId;
+
+
+                        var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                        $("#divReport").html(iframe);
+                    });
+
+                    $('#btnCloseReportDiv').click(function () {
+                        $("#reportDiv").hide();
+                    });
+
+                    $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                        //$detail.html('Loading from ajax request...'); 
+                        var datum = moment(row.DatumDospeca).format('DD/MM/YYYY');
+
+                        var bankaId = row.BankaId;
+                        $.ajax({
+                            
+                            url: "./CekoviKasa/DetailsCekovi",
+                            type: 'get',
+
+                            data: {
+                                bankaId: bankaId,
+                                datumDospeca: String(datum)
+                            },
+                            success: function (data) {
+                                $detail.html(data)
+                            },
+                            error: function () {
+                                alert('Ajax error!');
+                            }
+                        });
+                    });
+
+                    
+                });                
+
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        var paramsSelection = { datumDospeca: row.DatumDospeca, bankaId: row.BankaId };
+                        return paramsSelection
+                    });
+                }
+
+
+
+            </script>
+        }
+    </div>
+</div>

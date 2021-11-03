@@ -1,0 +1,45 @@
+﻿@model Bex.Models.VozniParkDnevnik
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    
+}
+
+<div>
+
+    <script type="text/javascript"> 
+
+
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+       
+    </script>
+
+    <div class="panel-group" id="accordion">       
+
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabGallery_@ViewBag.VoziloId">Galerija</a>
+                </h4>
+            </div>
+            <div id="tabGallery_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="ListPanel" data-url="@Url.Action("_List","GalleryAdmin")">
+                        @Html.Action("_List", "GalleryAdmin", new { tipId = 1, id = ViewBag.VoziloId })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

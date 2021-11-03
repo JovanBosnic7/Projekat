@@ -1,0 +1,196 @@
+﻿@model Bex.Models.PrijavaReklamacijaZalba
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Prijava reklamacije</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../Prijava">Reklamacije&žalbe</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h2>Unos</h2>
+                            <hr>
+                            <p>Izaberite tip i podtip reklamacije i bla bla truć truć...</p>
+
+                        </div>
+
+
+                        @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.DatumPrijave) 
+                            @Html.HiddenFor(model => model.PrijavioUserId)
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="TipPrijaveId">Tip:</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("TipPrijaveId", null, htmlAttributes: new { @class = "form-control", @id = "TipPrijave" })
+                                    @Html.ValidationMessageFor(model => model.TipPrijaveId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="PodTipPrijaveId">Pod tip:</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("PodTipPrijaveId", null, htmlAttributes: new { @class = "form-control", @id = "PodTipPrijave" })
+                                    @Html.ValidationMessageFor(model => model.PodTipPrijaveId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="NacinPrijaveId">Način prijave</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("NacinPrijaveId", null, htmlAttributes: new { @class = "form-control", @id = "NacinPrijave" })
+                                    @Html.ValidationMessageFor(model => model.NacinPrijaveId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="PosiljkaId">Pošiljka</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.PosiljkaId, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PosiljkaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="PrijavioIme">Ime</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.PrijavioIme, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PrijavioIme, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="PrijavioPrezime">Prezime</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.PrijavioPrezime, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PrijavioPrezime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="PrijavioEmail">Email</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.PrijavioEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PrijavioEmail, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="PrijavioTelefon">Telefon</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.PrijavioTelefon, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PrijavioTelefon, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Opis">Opis</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="StatusPrijaveId">Status</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("StatusPrijaveId", null, htmlAttributes: new { @class = "form-control", @id = "StatusPrijave" })
+                                    @Html.ValidationMessageFor(model => model.StatusPrijaveId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="btn-group pull-right ">
+                                    <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval");
+        <script type="text/javascript">
+                $(document).ready(function () {
+
+                    var selectedTipPrijave = $("#TipPrijave").val();
+                    var podTipPrijaveSelect = $('#PodTipPrijave');
+                    var statusPrijaveSelect = $('#StatusPrijave');
+                    //alert(selectedTipPrijave + " --- " + selectedPodTipPrijave + " --- " + selectedNacinPrijave );
+
+                    addPodTipPrijave(selectedTipPrijave, podTipPrijaveSelect);
+                    addStatusPrijave(selectedTipPrijave, statusPrijaveSelect);
+                });
+
+                 $("#TipPrijave").change(function () {
+                     var selectedTipPrijave = $("#TipPrijave").val();
+                     var podTipPrijaveSelect = $('#PodTipPrijave');
+                     var statusPrijaveSelect = $('#StatusPrijave');
+
+                     if (selectedTipPrijave != null && selectedTipPrijave != '') {
+                         addPodTipPrijave(selectedTipPrijave, podTipPrijaveSelect);
+                         addStatusPrijave(selectedTipPrijave, statusPrijaveSelect);
+                    }
+                });
+
+            function addPodTipPrijave(selectedTipPrijave, podTipPrijaveSelect) {
+                podTipPrijaveSelect.empty();
+                $.getJSON('@Url.Action("GetPodTipPrijave")', { tipPrijaveId: selectedTipPrijave }, function (data) {
+                    //console.log(data);
+                    if (data != null && !jQuery.isEmptyObject(data)) {
+                        $.each(data, function (index, podTip) {
+                            podTipPrijaveSelect.append($('<option/>', {
+                                value: podTip.Value,
+                                text: podTip.Text
+                            }));
+                        });
+                    };
+                });
+            }
+
+            function addStatusPrijave(selectedTipPrijave, statusPrijaveSelect) {
+                statusPrijaveSelect.empty();
+                $.getJSON('@Url.Action("GetStatusPrijave")', { tipPrijaveId: selectedTipPrijave }, function (data) {
+                    //console.log(data);
+                    if (data != null && !jQuery.isEmptyObject(data)) {
+                        $.each(data, function (index, status) {
+                            statusPrijaveSelect.append($('<option/>', {
+                                value: status.Value,
+                                text: status.Text
+                            }));
+                        });
+                    };
+                });
+            }
+        </script>
+    }
+</div>
+

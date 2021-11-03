@@ -1,0 +1,15 @@
+﻿@model BexMVC.ViewModels.ImageList
+@if (Model != null)
+{
+    <a data-fancybox="gallery" data-caption="@Model.Title" href="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= Model.WebImageId })">
+        <img class="img" src="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= Model.WebImageId, t =2 })" width="200" height="200" style="border:1px solid #e4d8d8; margin-left:15px;" />
+    </a>
+}
+else
+{
+    <a href="../GalleryAdmin/Create?tipId=4&id=@ViewBag.ZaposleniId&isProfile=1">
+            <img src="~/Content/images/add_user1.png" width="200" height="200" style="border:1px solid #e4d8d8; margin-left:15px;" />
+        </a>
+}
+
+

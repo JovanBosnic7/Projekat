@@ -1,0 +1,125 @@
+﻿@model Bex.Models.PrijavaNapomena
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    
+}
+
+<div>
+    <script type="text/javascript">
+
+            var $table0 = $('#tablePrijavaNapomena_'+@ViewBag.PrijavaId);
+            $table0.bootstrapTable({
+                url: '/Prijava/GetPrijavaNapomeneData?id=' +@ViewBag.PrijavaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+            var $table1 = $('#tablePrijavaLog_'+@ViewBag.PrijavaId);
+            $table1.bootstrapTable({
+                url: '/Prijava/GetPrijavaLogData?id=' +@ViewBag.PrijavaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+            
+        $('#prijavaNapomene_' +@ViewBag.PrijavaId).click(function () {
+           
+            $table0.bootstrapTable('refresh');
+        });
+
+        function responseHandler(res) {
+            var flatArray = [];
+            console.log(res);
+            $.each(res, function (i, element) {
+                flatArray.push(JSON.flatten(element));
+                console.log(element);
+            });
+            return flatArray;
+        }
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+        function dateTimeFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY HH:MM:SS');
+        }
+
+        function formatYesNo(value, row, index) {
+            return value == false ? 'ne' : 'da';
+
+        }
+    </script>
+
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabPrijavaNapomene_@ViewBag.PrijavaId" id="prijavaNapomene_@ViewBag.PrijavaId">Napomene</a>
+
+                </h4>
+                <div id="createNapomena_@ViewBag.PrijavaId">
+                    @Html.Action("CreateNapomenaPartial", new { prijavaId = @ViewBag.PrijavaId })
+                </div>
+            </div>
+            <div id="tabPrijavaNapomene_@ViewBag.PrijavaId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tablePrijavaNapomena_@ViewBag.PrijavaId" >
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="DatumUnosa" data-formatter="dateFormat">Datum unosa</th>
+                                <th data-field="UserUnosa">Uneo korisnik</th>
+                                <th data-field="Napomena">Napomena</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabPrijavaLog_@ViewBag.PrijavaId">Log</a>
+                </h4>
+            </div>
+            <div id="tabPrijavaLog_@ViewBag.PrijavaId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tablePrijavaLog_@ViewBag.PrijavaId">
+                        <thead>
+                            <tr>
+                                <th data-field="TipPrijaveNaziv" data-sortable="true">Tip</th>
+                                <th data-field="PodTipPrijaveNaziv" data-sortable="true">Razlog</th>
+                                <th data-field="NacinPrijaveNaziv" data-sortable="true">Način prijave</th>
+                                <th data-field="DatumPrijave" data-sortable="true" data-formatter="dateFormat">Datum</th>
+                                <th data-field="PosiljkaId" data-sortable="true">Pošiljka</th>
+                                <th data-field="PrijavioUserNaziv" data-sortable="true">Prijavio zaposleni</th>
+                                <th data-field="PrijavioNaziv" data-sortable="true">Prijavio naziv</th>
+                                <th data-field="PrijavioEmail" data-sortable="true">Email</th>
+                                <th data-field="PrijavioTelefon" data-sortable="true">Telefon</th>
+                                <th data-field="Opis" data-sortable="true">Opis</th>
+                                <th data-field="StatusPrijaveNaziv" data-sortable="true">Status</th>
+                                <th data-field="UserIzmene" data-sortable="true">Izmenio</th>
+                                <th data-field="DatumPoslednjeIzmene" data-sortable="true" data-formatter="dateFormat">Datum izmene</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+

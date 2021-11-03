@@ -1,0 +1,115 @@
+﻿
+@model BexMVC.ViewModels.GorivoKarticaIndexData
+
+@{
+    ViewBag.Title = "Kartice goriva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Evidencija kartica goriva</h2>
+                    <p class="card-category">Pregled svih kartica goriva </p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+                        <button id="add" class="btn btn-primary">
+                            Dodaj
+                        </button>
+
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        <button id="delete" class="btn btn-primary" disabled>
+                            Briši
+                        </button>
+
+
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-refresh="true"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               @*data-detail-view="true"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-filter-control="true"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+                               
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="DatumProizvodnje" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum proizvodnje</th>
+                                    <th data-field="DatumIsteka" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum isteka</th>
+                                    <th data-field="NazivKartice" data-sortable="true" data-filter-control="input">Naziv</th>
+                                    <th data-field="BrojKartice" data-sortable="true" data-filter-control="input">Broj kartice</th>
+                                    <th data-field="Pincode" data-sortable="true" data-filter-control="input">Pin</th>
+                                    <th data-field="Pumpa" data-sortable="true" data-filter-control="input">Pumpa</th>
+                                    <th data-field="Vozilo" data-sortable="true" data-filter-control="input">Vozilo</th>
+
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $edit = $('#edit'),
+                    $add = $('#add'),
+                    $delete = $('#delete');
+                   
+
+               
+                $table.configTable('/GorivoKartica/GetGorivoKartice');
+
+                $(document).ready(function () {
+
+
+
+                    var $checkTableElements = [$edit, $delete];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+
+                    $edit.clickOptions('GorivoKartica/Edit?id=');
+                    $delete.clickOptions('GorivoKartica/Delete?id=', false);
+                    $add.clickButtonWithoutParams('GorivoKartica/Create');
+
+                    
+
+                });
+
+
+
+
+                
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+            </script>
+        }
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@model Bex.Models.UgovorNapomena
+@using BexMVC.Helpers
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("SaveNapomenePartial", "Ugovor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id, new { Value = @Url.RequestContext.RouteData.Values["id"] })
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.AdresaTxt, "Adresa", htmlAttributes: new { @class = "control-label col-md-2 small" })
+            <div class="col-md-10">
+                @Html.AutocompleteFor(model => model.AdresaTxt, model => model.PakId, "GetAdrese", "Kontakt", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Kucajte podatke o adresi..." } })
+                @Html.ValidationMessageFor(model => model.AdresaTxt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrojTxt, "Broj", htmlAttributes: new { @class = "control-label col-md-2 small" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BrojTxt, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.BrojTxt, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Napomena, "Napomena aneks", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Napomena, "Opšta napomena", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Napomena, "Napomena za fak.", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Napomena, "Napomena za adr.", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Napomena, "Napomena za promet", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Sacuvaj" class="btn btn-primary pull-right" />
+        </div>
+    </div>
+
+}

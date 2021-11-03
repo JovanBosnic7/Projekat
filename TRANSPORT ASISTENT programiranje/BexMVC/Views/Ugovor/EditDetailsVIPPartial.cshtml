@@ -1,0 +1,72 @@
+﻿@model Bex.Models.UgovorVip
+@using BexMVC.Helpers
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("SaveAdresePartial", "Kontakt", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id, new { Value = @Url.RequestContext.RouteData.Values["id"] })
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.AdresaTxt, "Adresa", htmlAttributes: new { @class = "control-label col-md-2 small" })
+            <div class="col-md-10">
+                @Html.AutocompleteFor(model => model.AdresaTxt, model => model.PakId, "GetAdrese", "Kontakt", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Kucajte podatke o adresi..." } })
+                @Html.ValidationMessageFor(model => model.AdresaTxt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrojTxt, "Broj", htmlAttributes: new { @class = "control-label col-md-2 small" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BrojTxt, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.BrojTxt, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VipD, "VIP D", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.VipD, new { htmlAttributes = new { @class = "form-control " } })
+            @Html.ValidationMessageFor(model => model.VipD, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.VipDvremeDo, "Dostava do", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VipDvremeDo, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.VipDvremeDo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group ">
+        @Html.LabelFor(model => model.VipDdatumDo, "VIP D do", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @*@Html.TextBoxFor(model => model.DatumRegistracije, "{0:yyyy-MM-dd}", new { @class = "form-control input-sm", type = "date" })*@
+            @Html.TextBoxFor(model => model.VipDdatumDo, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker-dat-vipd" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.VipT, "VIP T", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.VipT, new { htmlAttributes = new { @class = "form-control " } })
+            @Html.ValidationMessageFor(model => model.VipT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.VipN, "VIP N", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.VipN, new { htmlAttributes = new { @class = "form-control " } })
+            @Html.ValidationMessageFor(model => model.VipN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Sacuvaj" class="btn btn-primary pull-right" />
+        </div>
+    </div>
+
+}

@@ -1,0 +1,136 @@
+﻿
+@model BexMVC.ViewModels.MagacinUIartIndexData
+
+@{
+    ViewBag.Title = "Artikli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Magacin U/I</h2>
+                    <p class="card-category">Pregled ulaza i izlaza artikala iz magacina po stavkama</p>
+                </div>
+                    <div class="card-body">
+                        <div id="toolbar">
+                            <button id="posaljiUnav" class="btn btn-primary" disabled>
+                                Pošalji u NAV
+                            </button>
+                        </div>
+
+                        <div class="table-responsive" style="min-height:300px;">
+                            <table id="table"
+                                   data-pagination="true"
+                                   data-side-pagination="server"
+                                   @*data-query-params="queryParams"*@
+                                   data-show-columns="true"
+                                   data-show-export="true"
+                                   data-detail-view="true"
+                                   data-page-list="[10, 25, 50, 100, Sve]"
+                                   data-show-footer="true"
+                                   data-toolbar="#toolbar">
+
+                                <thead>
+                                    <tr>
+                                        <th data-checkbox="true" rowspan="2" data-footer-formatter="Σ"></th>
+                                        <th>
+                                            <input id="Id" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="TipPromene" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Magacin" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Sifra" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Grupa" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Opis" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Kolicina" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input name="search" id="Datum" class="form-control input-sm datepicker-dat-unosa" type="text" placeholder="Search" data-visible="false">
+                                        </th>
+                                        <th class="text-center">
+                                            <select name="search" id="Nav" class="form-control input-sm">
+                                                <option value="">Sve</option>
+                                                <option value="1">Da</option>
+                                                <option value="2">Ne</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th data-field="Id" data-sortable="true">Rb</th>
+                                        <th data-field="TipPromene" data-sortable="true">Promena</th>
+                                        <th data-field="Magacin" data-sortable="true">Magacin</th>
+                                        <th data-field="Sifra" data-sortable="true">Šifra</th>
+                                        <th data-field="Grupa" data-sortable="true">Grupa</th>
+                                        <th data-field="Opis" data-sortable="true">Opis</th>
+                                        <th data-field="Kolicina" data-sortable="true" data-footer-formatter="sumFormatter">Količina</th>
+                                        <th data-field="Datum" data-formatter="dateFormat" data-visible="false">Datum</th>
+                                        <th data-field="Nav" data-formatter="formatBooleanYesNo" class="text-center">Nav</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $posaljiUnav = $('#posaljiUnav');
+
+
+                $table.configTable('/MagacinUIart/GetMagacinUIart');
+                $table.hideColTable();
+
+                $('.datepicker-dat-unosa').datepicker();
+                $('.datepicker-dat-unosa').attr("autocomplete", "off");
+
+
+                $(document).ready(function () {
+                    
+
+                    var $checkTableElements = [];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    var $checkMoreTableElements = [$posaljiUnav];
+                    $table.checkMoreOptionsTable($checkMoreTableElements);
+
+                    $table.optionsTable();
+
+                    $('.datepicker-dat-unosa').on("change", function () {
+
+                        $('.datepicker-dat-unosa').datepicker('setDate', this.value);
+
+                        addSearchTerms($table);
+
+                    })
+
+                    $posaljiUnav.dropDownChoice('MagacinUIart/PosaljiUnav', "Uspešno ste poslali podatke u NAV!");
+                    
+                });               
+
+
+            </script>
+        }
+    </div>
+</div>

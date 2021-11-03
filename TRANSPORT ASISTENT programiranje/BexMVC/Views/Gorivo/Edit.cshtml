@@ -1,0 +1,245 @@
+﻿@model Bex.Models.GorivoTocenje
+
+@{
+    ViewBag.Title = "Gorivo tocenje - Izmena";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Gorivo točenje @ViewBag.Vozilo</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../Gorivo">Gorivo</a>
+                                </li>
+                                <li class="breadcrumb-item active">Izmena točenja goriva</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Izmena točenja goriva</h3>
+                            <hr>
+                            <p>Propisana potrosnja za ovo vozilo je @ViewBag.PropisanaPotrosnja litara</p>
+
+                        </div>
+                        @using (Ajax.BeginForm("Edit", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.Id, new { id = "Id" })
+                            @Html.HiddenFor(model => model.PutniNalogId, new { id = "PutniNalogId" })
+                            @Html.HiddenFor(model => model.Datum, new { id = "Datum" })
+                            @Html.HiddenFor(model => model.Storno, new { id = "Storno" })
+
+                            @*<input type="hidden" id="Storno" name="Storno">*@
+                            <input type="hidden" id="kmRazlika" />
+
+                            <div>
+                                <label class="control-label col-sm-2">Vreme</label>
+                                <div class="col-sm-10">
+                                    @*@Html.TextBoxFor(model => model.Datum, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-tocenja" })*@
+                                    @Html.TextBoxFor(model => model.Vreme, new { @class = " form-control timepicker-tocenja" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2" for="Kartica">Kartica</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("KarticaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.KarticaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Km pri točenju</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Km, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Km, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Km pre. točenja</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.KmPrethodno, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.KmPrethodno, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Količina litara</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Litara, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Litara, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Potrošnja</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.ProsekOdPrethodnog, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.ProsekOdPrethodnog, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Cena</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Cena, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cena, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Iznos</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Iznos, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Iznos, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Napomena</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2" for="Storno">Storno</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="StornoCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryDatePickerForm")
+            @Scripts.Render("~/bundles/jqueryval")
+            @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <link rel="stylesheet" href="~/Content/jquery.ui.timepicker.css">*@
+            @*<link rel="stylesheet" href="~/Content/multi-select.css">*@
+            @*<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="~/Content/bootstrap/js/jquery.ui.timepicker.js"></script>*@
+            @*<script src="~/Content/bootstrap/js/jquery.multi-select.js"></script>*@
+            <script type="text/javascript">
+
+
+                $(document).ready(function () {
+
+
+                    //$('.datepicker-dat-tocenja').datepicker({ dateFormat: 'dd-mm-yy' });
+                    //$('.datepicker-dat-tocenja').attr("autocomplete", "off");
+
+
+
+                    $('.timepicker-tocenja').timepicker({
+                        showAnim: 'blind',
+                        hourText: 'Sati',
+                        minuteText: 'Minuti',
+                        nowButtonText: 'Trenutno',
+                        showNowButton: true
+                    });
+
+                    $("#Km").change(function () {
+                        var kmRazlika = $("#Km").val() - $("#KmPrethodno").val();
+                        $("#kmRazlika").val(kmRazlika);
+                        changeProsek();
+                    });
+
+                    $("#KmPrethodno").change(function () {
+                        var kmRazlika = $("#Km").val() - $("#KmPrethodno").val();
+                        $("#kmRazlika").val(kmRazlika);
+                        changeProsek();
+                    });
+
+                    $("#Litara").change(function () {
+                        changeProsek();
+                        changeIznos();
+                    });
+
+                    $("#Cena").change(function () {
+                        changeIznos();
+
+                    });
+
+                    $('#StornoCheck').change(function () {
+
+                        $('#Storno').val($(this).is(':checked'))
+
+                    });
+
+
+                });
+                function OnSuccess(response) {
+                    alert(response);
+                    window.close();
+                }
+
+                function OnFailure(response) {
+                    alert("Doslo je do greske: " + response);
+                }
+
+                function changeProsek() {
+                    var prosekOdPre = ($("#Litara").val() * 100) / ($("#Km").val() - $("#KmPrethodno").val());
+                    $("#ProsekOdPrethodnog").val(prosekOdPre.toFixed(2));
+                    //alert("Prosek: " + $("#kmRazlika").val());
+                }
+
+                function changeIznos() {
+                    var iznos = $("#Cena").val() * $("#Litara").val();
+                    $("#Iznos").val(iznos.toFixed(2));
+                }
+
+
+            </script>
+
+
+
+        }
+    </div>
+</div>

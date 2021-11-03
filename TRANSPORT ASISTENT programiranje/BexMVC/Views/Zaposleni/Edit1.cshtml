@@ -1,0 +1,255 @@
+﻿@model Bex.Models.Zaposleni
+
+@using BexMVC.Helpers
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Izmena podataka o zaposlenom: @ViewBag.KontaktNaziv</h2>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.KontaktId)
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>D. zaposlenja</label>
+                                            @*@Html.TextBox("RateListStartDate", new { @class = "getdate" })*@
+                                            @Html.TextBoxFor(model => model.DatumZaposlenja, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker" })
+                                            @*@Html.TextBoxFor(model => model.DatumZaposlenja, new { type = "date" })*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Probni rad do</label>
+                                            @Html.TextBoxFor(model => model.DatumProbniRadDo, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Datum prijave</label>
+                                            @Html.TextBoxFor(model => model.DatumPrijave, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Na određeno do</label>
+                                            @Html.TextBoxFor(model => model.DatumNaOdredjenoDo, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>D. prestanka</label>
+                                            @Html.TextBoxFor(model => model.DatumPrestankaRada, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Otkaz</label>
+                                            @*@Html.DropDownListFor(x => x.RazlogOtkazaId, new SelectList(Model.ZaposleniRazlogOtkaza, "ProjectID", "ProjectName"), " ")*@
+                                            @Html.DropDownList("RazlogOtkazaId", (SelectList)ViewBag.RazlogOtkazaId, " ", new { @class = "form-control" })
+                                            @*@Html.DropDownList("RazlogOtkazaId", null, htmlAttributes: new { @class = "form-control input-sm" })*@
+                                            @*@Html.EditorFor(model => model.RazlogOtkazaId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            @Html.ValidationMessageFor(model => model.RazlogOtkazaId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>RS godina</label>
+                                            @Html.EditorFor(model => model.PrethodniRSgodina, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PrethodniRSgodina, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>RS meseci</label>
+                                            @Html.EditorFor(model => model.PrethodniRSmesec, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PrethodniRSmesec, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>RS dana</label>
+                                            @Html.EditorFor(model => model.PrethodniRSdana, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PrethodniRSdana, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            @Html.DropDownList("StatusRadnika", null, htmlAttributes: new { @class = "form-control" })
+                                            @*@Html.EditorFor(model => model.StatusRadnika, new { htmlAttributes = new { @class = "form-control input-sm" } })*@
+                                            @Html.ValidationMessageFor(model => model.StatusRadnika, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Osiguranje</label>
+                                            @Html.DropDownList("OsiguranjeId", null, htmlAttributes: new { @class = "form-control" })
+                                            @* @Html.EditorFor(model => model.OsiguranjeId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            @Html.ValidationMessageFor(model => model.OsiguranjeId, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Banka ovlašćenje</label>
+                                            @Html.EditorFor(model => model.OvlascenZaBanke, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.OvlascenZaBanke, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Prog. zaposlenja</label>
+                                            @Html.DropDownList("ProgramZaposlenjaId", null, htmlAttributes: new { @class = "form-control" })
+                                            @* @Html.EditorFor(model => model.ProgramZaposlenjaId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            @Html.ValidationMessageFor(model => model.ProgramZaposlenjaId, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Napomena</label>
+                                            @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="" id="Aktivan"> Aktivan
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" class="collapsed">Lični podaci</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div class="card-body">
+                                                    <br />
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" value="" id="InvalidnoLice"> Inv. lice
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <br />
+                                                    <div class="form-group">
+                                                        <label>Ime roditelja</label>
+                                                        @Html.EditorFor(model => model.ImeRoditelja, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.ImeRoditelja, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>D. lekarskog</label>
+                                                        @Html.TextBoxFor(model => model.DatumLekarskog, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>D. zdr. knjižice</label>
+                                                        @Html.TextBoxFor(model => model.DatumIstekaZdrastveneKnjizice, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Slava</label>
+                                                        @Html.DropDownList("SlavaId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @*@Html.EditorFor(model => model.SlavaId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                        @Html.ValidationMessageFor(model => model.SlavaId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" class="collapsed">Obrazovanje</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label>SS</label>
+                                                        @Html.DropDownList("StrucnaSpremaId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @*@Html.EditorFor(model => model.StrucnaSpremaId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                        @Html.ValidationMessageFor(model => model.StrucnaSpremaId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Zanimanje</label>
+                                                        @Html.DropDownList("ZanimanjeId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.ZanimanjeId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" class="collapsed">Zaposlenje</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label>Region</label>
+                                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Sektor</label>
+                                                        @Html.DropDownList("SektorId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.SektorId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Firma prijave</label>
+                                                        @Html.DropDownList("FirmaPrijaveId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @*@Html.EditorFor(model => model.FirmaPrijaveId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                        @Html.ValidationMessageFor(model => model.FirmaPrijaveId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Firma radi</label>
+                                                        @Html.DropDownList("FirmaUkojojRadiId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @*@Html.EditorFor(model => model.FirmaUkojojRadiId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                        @Html.ValidationMessageFor(model => model.FirmaUkojojRadiId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Radno mesto</label>
+                                                        @Html.DropDownList("RadnoMestoId", null, htmlAttributes: new { @class = "form-control" })
+                                                        @*@Html.EditorFor(model => model.RadnoMestoId, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                        @Html.ValidationMessageFor(model => model.RadnoMestoId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Šef</label>
+                                                        <br />
+                                                        @Html.AutocompleteFor(model => model.NazivSefa, model => model.KontaktSefId, "GetKontakt", "Zaposleni", false, new { htmlAttributes = new { @class = "form-control", placeholder = "Kucajte podatke o kontaktu..." } })
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+            </div>
+            <div>
+                @Html.ActionLink("Back to List", "../Zaposleni")
+            </div>
+        <div>
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                <link rel="stylesheet" href="/resources/demos/style.css">
+                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+                    <script>
+                        $(document).ready(function () {
+                            $('.datepicker').datepicker();
+                        });
+                    </script>
+                }
+    </div>
+</div>

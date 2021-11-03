@@ -1,0 +1,133 @@
+﻿@model DDtrafic.ViewModels.ImageEditorViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<div>
+    <script type="text/javascript">
+
+        var $tableTroskovi = $('#tableTroskovi_'+@ViewBag.VoziloId);
+        $tableTroskovi.bootstrapTable({
+            url: 'VozniPark/GetTroskoviDetailsData?id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableServis = $('#tableServis_'+@ViewBag.VoziloId);
+        $tableServis.bootstrapTable({
+            url: 'VozniPark/GetDetailsAlarmIservis?grupaId=2&id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+        var $tableAlarmi = $('#tableAlarmi_'+@ViewBag.VoziloId);
+        $tableAlarmi.bootstrapTable({
+            url: 'VozniPark/GetDetailsAlarmIservis?grupaId=1&id=' +@ViewBag.VoziloId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+    </script>
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabTroskovi_@ViewBag.VoziloId">Troškovi</a>
+                </h4>
+            </div>
+            <div id="tabTroskovi_@ViewBag.VoziloId" class="panel-collapse collapse">
+                @*collapse in - otvara odmah pri kliku na detalje*@
+                <div class="panel-body">
+                    <table id="tableTroskovi_@ViewBag.VoziloId">
+
+                        <thead>
+
+                            <tr>
+                                @*<th data-field="Id" data-formatter="formatEditTrosak"></th>*@
+                                <th data-field="Datum" data-formatter="dateFormat" data-sortable="true">Datum</th>
+                                <th data-field="Tip">Tip troska</th>
+                                <th data-field="CenaDin">Cena din.</th>
+                                <th data-field="CenaEur">Cena eura</th>
+                                <th data-field="Napomena">Napomena</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabAlarmi_@ViewBag.VoziloId">Alarmi</a>
+                </h4>
+            </div>
+            <div id="tabAlarmi_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableAlarmi_@ViewBag.VoziloId">
+                        <thead>
+                            <tr>
+                                <th data-field="Tip">Tip alarma</th>
+                                <th data-field="Datum" data-formatter="dateFormat">D. urađeno</th>
+                                <th data-field="DatumIsteka" data-formatter="dateFormat">D. isteka</th>
+                                <th data-field="DatumAlarma" data-formatter="dateFormat">D. alarma</th>
+                                <th data-field="Napomena">Napomena</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabServis_@ViewBag.VoziloId">Servisi</a>
+                </h4>
+            </div>
+            <div id="tabServis_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableServis_@ViewBag.VoziloId">
+                        <thead>
+                            <tr>
+                                <th data-field="Tip">Tip servisa</th>
+                                <th data-field="Datum" data-formatter="dateFormat">D. urađeno</th>
+                                <th data-field="Km">Kilometraža</th>
+                                <th data-field="KmIsteka">Km isteka</th>
+                                <th data-field="KmAlarma">Km alarma</th>
+                                <th data-field="Napomena">Napomena</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabGallery_@ViewBag.VoziloId">Galerija</a>
+                </h4>
+            </div>
+            <div id="tabGallery_@ViewBag.VoziloId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="ListPanel" data-url="@Url.Action("_List","GalleryAdmin")">
+                        @Html.Action("_List", "GalleryAdmin", new { tipId = 1, id = ViewBag.VoziloId })
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

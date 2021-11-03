@@ -1,0 +1,42 @@
+﻿@model Bex.Models.KontaktTelefon
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Evidencija kontakt telefona</h1>
+            </div>
+        </div>
+        <div>
+            <h4>Kontakt</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Kontakt osoba
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KontaktOsoba)
+                </dd>
+
+                <dt>
+                    Telefon
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Telefon)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "../Kontakt")
+        </p>
+    </div>
+</div>

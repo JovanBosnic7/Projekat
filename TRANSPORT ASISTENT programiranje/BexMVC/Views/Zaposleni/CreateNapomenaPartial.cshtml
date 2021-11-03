@@ -1,0 +1,25 @@
+﻿@model Bex.Models.ZaposleniNapomena
+
+
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+$('#tableZaposleniNapomena_'+@Model.ZaposleniId).bootstrapTable('refresh');
+</script>
+
+@using (Ajax.BeginForm("CreateNapomenaPartial", "Zaposleni", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "createNapomena_" + Model.ZaposleniId }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ZaposleniId, new { Value = Model.ZaposleniId })
+    <div class="row" style="margin-top:5px;">
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="napomena" placeholder="Unesi napomenu" name="napomena">
+        </div>
+
+        <div class="col-lg-2">
+            <button type="submit" class="btn-sm btn-default ">Potvrdi unos </button>
+        </div>
+    </div>
+
+}

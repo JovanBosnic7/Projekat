@@ -1,0 +1,254 @@
+﻿@model Bex.Models.PosiljkaZadatak
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    
+}
+
+<div>
+
+    <script type="text/javascript">
+
+            var $table0 = $('#tableZadaci_'+@ViewBag.PosiljkaId);
+            $table0.bootstrapTable({
+                url: '/Posiljka/GetZadaciData?id=' +@ViewBag.PosiljkaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+            var $table1 = $('#tablePaketi_'+@ViewBag.PosiljkaId);
+            $table1.bootstrapTable({
+                url: '/Posiljka/GetPaketiData?id=' +@ViewBag.PosiljkaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+            var $table2 = $('#tableUsluge_'+@ViewBag.PosiljkaId);
+            $table2.bootstrapTable({
+                url: '/Posiljka/GetUslugeData?id=' +@ViewBag.PosiljkaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+            var $table3 = $('#tablePlacanje_'+@ViewBag.PosiljkaId);
+            $table3.bootstrapTable({
+                url: '/Posiljka/GetPlacanjeData?id=' +@ViewBag.PosiljkaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+            var $table4 = $('#tableNapomene_'+@ViewBag.PosiljkaId);
+            $table4.bootstrapTable({
+                url: '/Posiljka/GetNapomeneData?id=' +@ViewBag.PosiljkaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+            var $table5 = $('#tableNalozi_'+@ViewBag.PosiljkaId);
+            $table5.bootstrapTable({
+                url: '/Posiljka/GetNaloziData?id=' +@ViewBag.PosiljkaId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        function responseHandler(res) {
+            var flatArray = [];
+            console.log(res);
+            $.each(res, function (i, element) {
+                flatArray.push(JSON.flatten(element));
+                console.log(element);
+            });
+            return flatArray;
+        }
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+        function dateTimeFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY HH:MM:SS');
+        }
+
+        function formatYesNo(value, row, index) {
+            return value == false ? 'ne' : 'da';
+
+        }
+    </script>
+
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabZadaci_@ViewBag.PosiljkaId">Zadaci</a>
+                </h4>
+            </div>
+            <div id="tabZadaci_@ViewBag.PosiljkaId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableZadaci_@ViewBag.PosiljkaId" >
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="BrojPosiljke" data-visible="false">Id</th>
+                                <th data-field="TipZadatka">Tip</th>
+                                <th data-field="MinimalniDatum" data-formatter="dateFormat">Datum min.</th>
+                                <th data-field="MaksimalniDatum" data-formatter="dateFormat">Datum max.</th>
+                                <th data-field="Najava">Najava</th>
+                                <th data-field="KontaktOsoba">Kontakt</th>
+                                <th data-field="KontaktTel">Telefon 1</th>
+                                <th data-field="KontaktTel2">Telefon 2</th>
+                                <th data-field="NapomenaZadatak">Napomena</th>
+                                <th data-field="StatusZadatka">Status</th>
+                                <th data-field="Reon">Reon</th>
+                                <th data-field="DatumObavljanja" data-formatter="dateFormat">Dat. izvr.</th>
+                                <th data-field="VremeObavljanja" data-formatter="timeFormat">Vr. izvr.</th>
+                                <th data-field="Izvrsio">Izvrsio</th>
+                                <th data-field="ObavitiUmagacinu" data-formatter="formatYesNo">U magacinu</th>
+                                <th data-field="Aktuelan" data-formatter="dateFormat">Aktuelan od</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabPaketi_@ViewBag.PosiljkaId">Paketi</a>
+                </h4>
+            </div>
+            <div id="tabPaketi_@ViewBag.PosiljkaId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tablePaketi_@ViewBag.PosiljkaId">
+                        <thead>
+                            <tr>
+                                <th data-field="BrojPosiljke" data-visible="false">Id</th>
+                                <th data-field="BarKodPaketa">Bar kod</th>
+                                <th data-field="PaketRb">Rb. paketa</th>
+                                <th data-field="TipPaketa">Tip</th>
+                                <th data-field="Masa">Masa</th>
+                                <th data-field="Zona">Lokacija</th>                                
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default ">
+            <!--small ako se doda onda je manji font panela-->
+
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabUsluge_@ViewBag.PosiljkaId">Usluge</a>
+                </h4>
+            </div>
+            <div id="tabUsluge_@ViewBag.PosiljkaId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableUsluge_@ViewBag.PosiljkaId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="BrojPosiljke" data-visible="false">Id</th>
+                                <th data-field="TipUsluge">Tip</th>
+                                <th data-field="Komada">Kom.</th>
+                                <th data-field="CenaUsluge">Cena</th>
+                                <th data-field="Napomena">Napomena</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabPlacanje_@ViewBag.PosiljkaId">Placanje</a>
+                </h4>
+            </div>
+            <div id="tabPlacanje_@ViewBag.PosiljkaId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tablePlacanje_@ViewBag.PosiljkaId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="BrojPosiljke" data-visible="false">Id</th>
+                                <th data-field="TipPlacanja">Tip</th>
+                                <th data-field="Iznos">Iznos</th>                               
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabNapomene_@ViewBag.PosiljkaId">Napomene</a>
+                </h4>
+            </div>
+            <div id="tabNapomene_@ViewBag.PosiljkaId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableNapomene_@ViewBag.PosiljkaId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="BrojPosiljke" data-visible="false">Id</th>
+                                <th data-field="TipNapomene">Tip</th>
+                                <th data-field="Napomena">Napomena</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabNalozi_@ViewBag.PosiljkaId">Nalozi</a>
+                </h4>
+            </div>
+            <div id="tabNalozi_@ViewBag.PosiljkaId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableNalozi_@ViewBag.PosiljkaId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="BrojPosiljke" data-visible="false">Id</th>
+                                <th data-field="Paket">Paket</th>
+                                <th data-field="Tip">Tip</th>
+                                <th data-field="Zona">Zona</th>
+                                <th data-field="DatumIzvrsenja" data-formatter="dateFormat">Dat. izvrsenja</th>
+                                <th data-field="VremeIzvrsenja" data-formatter="timeFormat">Vr. izvrsenja</th>
+                                <th data-field="Obavio">Izvrsio</th>                               
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

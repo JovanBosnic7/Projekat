@@ -1,0 +1,238 @@
+﻿@model BexMVC.ViewModels.AlarmIndexData
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Unos alarma za vozilo</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../VozniPark">Vozni park</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj alarm</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Unos alarma za vozilo: @ViewBag.RegOznaka</h3>
+                            <hr>
+                            <p>Izaberite...</p>
+
+                        </div>
+                        @using (Ajax.BeginForm("CreateAlarm", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.VpId, new { Value = ViewBag.VpId })
+                            <div>
+                                <label class="control-label col-sm-2">Alarm tip</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("VpAlarmTip", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.VpAlarmTip, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Datum</label>
+                                <div class="col-sm-10">
+                                    
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.Datum, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-kreiranja" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Kilometraža</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Km, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Km, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="dodatno">
+                                <label class="control-label col-sm-2">Datum isteka</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumIsteka, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker-dat-isteka" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dodatno">
+                                <label class="control-label col-sm-2">Km isteka</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.KmIsteka, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.KmIsteka, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="dodatno">
+                                <label class="control-label col-sm-2">Datum alarma</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumAlarma, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker-dat-alarma" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Br.rač. / Napomena</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Količina</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Kolicina, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Cena</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Cena, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cena, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Dinara</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.IznosDin, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IznosDin, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Eura</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.IznosEur, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IznosEur, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Opis</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" id="showProgress" />
+                                        <div id="progress" style="display:none;">
+                                            <button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif" /> Sacekajte...</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryDatePickerForm")
+            @Scripts.Render("~/bundles/jqueryval")
+            @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+            <script type="text/javascript">
+
+                $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').datepicker({ dateFormat: 'dd-mm-yy' });
+                $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').attr("autocomplete", "off");
+
+                $(document).ready(function () {
+
+                    var selectedTipAlarma = $("#VpAlarmTip").val();
+                    var datepickerEl = $(".datepicker-dat-isteka");
+                    addVrednostiAlarma(selectedTipAlarma, datepickerEl);
+
+                    $("#VpAlarmTip").change(function () {
+                        var selectedTipAlarma = $("#VpAlarmTip").val();
+
+                        if (selectedTipAlarma != null && selectedTipAlarma != '') {
+                            addVrednostiAlarma(selectedTipAlarma, datepickerEl);
+
+                        }
+                        //if (selectedTipAlarma == 'Zamena dela' || selectedTipAlarma == 'Popravka') {
+                        //    alert("ne treba alarm!");
+
+                        //}
+                    });
+
+                    $('#showProgress').click(function () {
+                        $('#showProgress').hide();
+                        $('#progress').show();
+                    });
+
+                });
+
+                function OnSuccess(response) {
+                    alert(response);
+                    window.close();
+                }
+
+                function OnFailure(response) {
+                    alert(response);
+                }
+
+                function addVrednostiAlarma(selectedTipAlarma, datepickerEl) {
+
+                    $.getJSON('@Url.Action("GetVrednostiAlarma")', { tipId: selectedTipAlarma }, function (data) {
+                        //console.log(selectedTipAlarma);
+                        if (data != null && !jQuery.isEmptyObject(data)) {
+
+                            $(".datepicker-dat-isteka").datepicker("setDate", data.datumIsteka);
+                            $("#KmIsteka").val(data.kmIsteka);
+                            if (selectedTipAlarma == 34 || selectedTipAlarma == 37) { //za zamenu dela i popravku  ne trebaju alarmi
+                                //$("#KmIsteka").hide();
+                                //$(".datepicker-dat-isteka").hide();
+                                //$(".datepicker-dat-alarma").hide();
+                                $(".dodatno").hide();
+                            }
+                            else {
+                                //$("#KmIsteka").show();
+                                //$(".datepicker-dat-isteka").show();
+                                //$(".datepicker-dat-alarma").show();
+                                $(".dodatno").show();
+                            }
+                        };
+                    });
+                }
+
+            </script>
+        }
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model BexMVC.ViewModels.AddressEditViewModel
+
+
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("EditAddressPartial", "PAK", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Pak</label>
+            @Html.EditorFor(model => model.PakBroj, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+
+    <div class="form-group">
+        <label>Mesta</label>
+        @Html.DropDownListFor(model => model.SelectedMesto, new SelectList(Model.Mesta, "Value", "Text"), htmlAttributes: new { @class = "form-control", @id = "Mesta" })
+        @Html.ValidationMessageFor(model => model.SelectedMesto, "", new { @class = "text-danger" })
+        </div>
+    <div class="form-group">
+        <label>Adrese</label>
+        @Html.DropDownListFor(model => model.SelectedUlica, new SelectList(Model.Ulice, "Value", "Text"), htmlAttributes: new { @class = "form-control", @id = "Ulice" })
+        @Html.ValidationMessageFor(model => model.SelectedUlica, "", new { @class = "text-danger" })
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}

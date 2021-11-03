@@ -1,0 +1,420 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bexexpress</title>
+    @*<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+    @Styles.Render("~/Content/appStyle")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+    @if (!Request.IsAuthenticated)
+    {
+        @RenderBody()
+        @*@Html.Partial("Login")*@
+    }
+    else
+    {
+        string controllerAction = ViewContext.RouteData.Values["Controller"].ToString();
+        Func<string, string> IsSelected = x => x == controllerAction ? "active" : "";
+        Func<string, string> IsCollapseAdrese = x => (controllerAction == "Pak" || controllerAction == "Place" || controllerAction == "Street" || controllerAction == "Reon" || controllerAction == "Reoncic") ? "in" : "";
+        Func<string, string> IsCollapseKorisniciPrograma = x => (controllerAction == "Kontakt" || controllerAction == "User" || controllerAction == "KorisniciPrograma" || controllerAction == "ClaimsRoles") ? "in" : "";
+        Func<string, string> IsCollapseHR = x => (controllerAction == "Zaposleni" || controllerAction == "Stete") ? "in" : "";
+        Func<string, string> IsCollapsePosiljke = x => (controllerAction == "Posiljka" || controllerAction == "Magacin") ? "in" : "";
+        Func<string, string> IsCollapseVP = x => (controllerAction == "VozniPark" || controllerAction == "PutniNalog" || controllerAction == "Gorivo" || controllerAction == "GorivoKartica") ? "in" : "";
+        Func<string, string> IsCollapseFin = x => (controllerAction == "Cekovi" || controllerAction == "Banka" || controllerAction == "CekoviKasa") ? "in" : "";
+        Func<string, string> IsCollapseArtikli = x => (controllerAction == "Trebovanje" || controllerAction == "Atikli" || controllerAction == "MagacinUIart") ? "in" : "";
+        Func<string, string> IsCollapseTehnickiPregled = x => (controllerAction == "TPtermini" || controllerAction == "TPocitavanja") ? "in" : "";
+     
+    <div class="wrapper ">
+
+        
+        <div class="sidebar" data-color="danger" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
+
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+            <div class="logo">
+                <a href="/" class="simple-text logo-mini">
+                    <img src="~/Content/images/bexLogoMali.png" />
+                </a>
+                @if (Request.IsAuthenticated)
+                {
+
+                <a href="/Manage" class="simple-text logo-mini">
+
+                    @User.Identity.GetUserName()
+                    <i class="fa fa-pencil"></i>
+                </a>
+                }
+            </div>
+            
+            <div class="sidebar-wrapper">
+                    <ul class="nav">
+                        <li class="@IsSelected("Home")">
+                            @*nav-item active*@
+                            <a class="list-item" href="/">
+                                <i class="fa fa-dashboard fa-xs"></i>
+                                <p>Početna</p>
+                            </a>
+                        </li>
+                        <li class="@IsSelected("KalendarPlaner")">
+                            <a class="nav-link" href="../KalendarPlaner">
+                                <i class="fa fa-calendar"></i>
+                                <p>Kalendar</p>
+                            </a>
+                        </li>
+                        <li class="@IsSelected("Zahtevi")">
+                            <a class="nav-link" href="./Zahtevi">
+                                <i class="fa fa-comment"></i>
+                                <p>Poruke & Zahtevi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link collapsed" href="#finansije" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-money"></i>
+                                <p>Finansije <b class="caret"></b></p>
+                            </a>
+                            <div class="collapse @IsCollapseFin("")" id="finansije">
+                                <ul class="nav">
+                                    <li class="@IsSelected("Cekovi")">
+                                        <a class="nav-link" href="/Cekovi?izmena=0">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Čekovi</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("CekoviKasa")">
+                                        <a class="nav-link" href="./CekoviKasa">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Čekovi kasa</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="@IsSelected("Banka")">
+                                        <a class="nav-link" href="./Banka">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">PIO Banka</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#adrese" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-map-marker"></i>
+                                <p>Adrese<b class="caret"></b></p>
+
+                            </a>
+                            <div class="collapse @IsCollapseAdrese("")" id="adrese">
+                                <ul class="nav">
+                                    <!---->
+                                    <li class="@IsSelected("Pak")">
+                                        <a class="nav-link" href="/Pak">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Pak</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("Place")">
+                                        <a class="nav-link" href="/Place">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Mesta</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("Street")">
+                                        <a class="nav-link" href="/Street">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Ulice</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("Reon")">
+                                        <a class="nav-link" href="/Reon">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Reon</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("Reoncic")">
+                                        <a class="nav-link" href="/Reoncic">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Reončić</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link collapsed" href="#zaposleni" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-user"></i>
+                                <p>H.R. <b class="caret"></b></p>
+                            </a>
+                            <div class="collapse @IsCollapseHR("")" id="zaposleni">
+                                <ul class="nav">
+                                    <li class="@IsSelected("Zaposleni")">
+                                        <a class="nav-link" href="/Zaposleni">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Zaposleni</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("Stete")">
+                                        <a class="nav-link" href="/Stete">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Štete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link collapsed" href="#users" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-user"></i>
+                                <p>Kontakti <b class="caret"></b></p>
+                            </a>
+                            <div class="collapse @IsCollapseKorisniciPrograma("")" id="users">
+                                <ul class="nav">
+                                    <li class="@IsSelected("Kontakt")">
+                                        <a class="nav-link" href="/Kontakt">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Kontakti</span>
+                                        </a>
+                                    </li>
+                                    <!---->
+                                    <li class="@IsSelected("User")">
+                                        <a class="nav-link" href="/User">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Registrovani korisnici</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("KorisniciPrograma")">
+                                        <a class="nav-link" href="/KorisniciPrograma">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Bex korisnici</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("ClaimsRoles")">
+                                        <a class="nav-link" href="/ClaimsRoles">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Uloge i prava korisnika</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link collapsed" href="#posiljke" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-barcode"></i>
+                                <p>Pošiljke <b class="caret"></b></p>
+                            </a>
+                            <div class="collapse @IsCollapsePosiljke("")" id="posiljke">
+                                <ul class="nav">
+                                    <li class="@IsSelected("Posiljka")">
+                                        <a class="nav-link" href="/Posiljka">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Pošiljke</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="@IsSelected("Magacin")">
+                                        <a class="nav-link" href="./Magacin">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Magacin</span>
+                                        </a>
+                                    </li>
+
+
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link collapsed" href="#vp" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-car"></i>
+                                <p>Vozni park <b class="caret"></b></p>
+                            </a>
+                            <div class="collapse @IsCollapseVP("")" id="vp">
+                                <ul class="nav">
+                                    <li class="@IsSelected("VozniPark")">
+                                        <a class="nav-link" href="/VozniPark">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Vozila</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="@IsSelected("PutniNalog")">
+                                        <a class="nav-link" href="/PutniNalog?izmena=0">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Putni nalozi</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("Gorivo")">
+                                        <a class="nav-link" href="/Gorivo">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Gorivo</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("GorivoKartica")">
+                                        <a class="nav-link" href="/GorivoKartica">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Kartice</span>
+                                        </a>
+                                    </li>
+
+
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        @*<li class="@IsSelected("VozniPark")">
+                <a class="nav-link" href="/VozniPark">
+                    <i class="fa fa-car"></i>
+                    <p>Vozni park</p>
+                </a>
+            </li>*@
+
+                        <li class="@IsSelected("Prijava")">
+                            <a class="nav-link" href="/Prijava">
+                                <i class="fa fa-phone"></i>
+                                <p>Prijave reklamacija i žalbi</p>
+                            </a>
+                        </li>
+
+                        <li cclass="@IsSelected("Ugovor")">
+                            <a class="nav-link" href="/Ugovor">
+                                <i class="fa fa-sticky-note fa-fw"></i>
+                                <p>Ugovori</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link collapsed" href="#artikli" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-sticky-note fa-fw"></i>
+                                <p>Artikli <b class="caret"></b></p>
+                            </a>
+                            <div class="collapse @IsCollapseArtikli("")" id="artikli">
+                                <ul class="nav">
+                                    <li class="@IsSelected("Artikli")">
+                                        <a class="nav-link" href="/Artikli">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Artikli</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("MagacinUIart")">
+                                        <a class="nav-link" href="/MagacinUIart">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Magacin U/I</span>
+                                        </a>
+                                    </li>
+                                    <li class="@IsSelected("Trebovanje")">
+                                        <a class="nav-link" href="/Trebovanje">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Trebovanje</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link collapsed" href="#tehnickipregled" aria-expanded="false" data-toggle="collapse">
+                                <i class="fa fa-clipboard fa-fw"></i>
+                                <p>Tehnički pregled <b class="caret"></b></p>
+                            </a>
+                            <div class="collapse @IsCollapseTehnickiPregled("")" id="tehnickipregled">
+                                <ul class="nav">
+                                    <li class="@IsSelected("TPtermini")">
+                                        <a class="nav-link" href="/TPtermini">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Termini</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav">
+                                    <li class="@IsSelected("TPocitavanja")">
+                                        <a class="nav-link" href="/TPocitavanja">
+                                            <span class="sidebar-mini">-</span>
+                                            <span class="sidebar-normal">Očitavanja</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Account/LogOff">
+                                <i class="fa fa-power-off"></i>
+                                <p>Izlogujte se</p>
+                            </a>
+                        </li>
+                    </ul>
+</div>
+            <div class="sidebar-background" style="background-image: url(../Content/material-dashboard/img/sidebar-1.jpg) "></div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="#pablo"></a>
+
+
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    @*<marquee behavior="scroll" direction="right"> <i class="material-icons">directions_run</i> <i class="material-icons">local_shipping</i></marquee>*@
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content" style="margin-top:-10px;">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="float-left">
+                        <ul>
+                            <li>
+                                <a href="https://www.bex.rs">
+                                    Bexexpress doo
+                                </a>
+                            </li>
+                            /
+                            <li>
+                                <a href="#">
+                                    Verzija: 0.132 <!-- 09/10/2019 -->
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright float-right">
+                        &copy;
+                        <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart"></i> by
+                        <a href="https://www.bex.rs" target="_blank">Bex IT</a>
+                    </div>
+                    <!-- your footer here -->
+                </div>
+            </footer>
+
+        </div>
+    </div>
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/Content/appJS")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

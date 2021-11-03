@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E83C5C5-C953-4304-987D-F4A0D2E2618B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bex.Models</RootNamespace>
+    <AssemblyName>Bex.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain.ViewModels\AddressViewModel.cs" />
+    <Compile Include="Domain\Adrese\Adresa.cs" />
+    <Compile Include="Domain\Adrese\Annotations\DimenzijeNavAnnotations.cs" />
+    <Compile Include="Domain\Adrese\DimenzijeNav.cs" />
+    <Compile Include="Domain\Novosti\Annotations\NovostiAnnotations.cs" />
+    <Compile Include="Domain\Novosti\Novosti.cs" />
+    <Compile Include="Domain\Pravnici\Annotations\PPvrstaAnnotations.cs" />
+    <Compile Include="Domain\Pravnici\Annotations\PPoblastAnnotations.cs" />
+    <Compile Include="Domain\Pravnici\Annotations\PravniPostupakAnnotations.cs" />
+    <Compile Include="Domain\Pravnici\PPoblast.cs" />
+    <Compile Include="Domain\Pravnici\PPvrsta.cs" />
+    <Compile Include="Domain\Pravnici\PravniPostupak.cs" />
+    <Compile Include="Domain\TehnickiPregled\Annotations\TPlokacijeAnnotations.cs" />
+    <Compile Include="Domain\TehnickiPregled\Annotations\TPocitavanjaAnnotations.cs" />
+    <Compile Include="Domain\TehnickiPregled\Annotations\TPterminiAnnotations.cs" />
+    <Compile Include="Domain\TehnickiPregled\TPlokacije.cs" />
+    <Compile Include="Domain\TehnickiPregled\TPstatusTermina.cs" />
+    <Compile Include="Domain\TehnickiPregled\TPocitavanja.cs" />
+    <Compile Include="Domain\TehnickiPregled\TPtermini.cs" />
+    <Compile Include="Domain\Artikli\Annotations\ArtikliVrstaAnnotations.cs" />
+    <Compile Include="Domain\Artikli\Annotations\ArtikliGrupaAnnotations.cs" />
+    <Compile Include="Domain\Artikli\Annotations\LagerAnnotations.cs" />
+    <Compile Include="Domain\Artikli\Annotations\MagacinSpisakAnnotations.cs" />
+    <Compile Include="Domain\Artikli\Annotations\ArtikliAnnotations.cs" />
+    <Compile Include="Domain\Artikli\Annotations\TrebovanjeStavkeAnnotations.cs" />
+    <Compile Include="Domain\Artikli\ArtikliVrsta.cs" />
+    <Compile Include="Domain\Artikli\ArtikliGrupa.cs" />
+    <Compile Include="Domain\Artikli\Lager.cs" />
+    <Compile Include="Domain\Artikli\MagacinSpisak.cs" />
+    <Compile Include="Domain\Artikli\Artikli.cs" />
+    <Compile Include="Domain\Artikli\TrebovanjeStavke.cs" />
+    <Compile Include="Domain\Finansije\Annotations\CekoviProvizijaAnnotations.cs" />
+    <Compile Include="Domain\Finansije\Annotations\CekoviAnnotations.cs" />
+    <Compile Include="Domain\Finansije\Annotations\BankeAnnotations.cs" />
+    <Compile Include="Domain\Finansije\CekoviProvizija.cs" />
+    <Compile Include="Domain\Finansije\Banke.cs" />
+    <Compile Include="Domain\Finansije\Cekovi.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktUlogaTipAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktUlogaAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\KontaktUlogaTip.cs" />
+    <Compile Include="Domain\Kontakt\KontaktUloga.cs" />
+    <Compile Include="Domain\Artikli\Annotations\TrebovanjeAnnotations.cs" />
+    <Compile Include="Domain\Artikli\Trebovanje.cs" />
+    <Compile Include="Domain\Ticket\Annotations\TicketPostAnnotations.cs" />
+    <Compile Include="Domain\Ticket\Annotations\TicketKategorijaAnnotations.cs" />
+    <Compile Include="Domain\Ticket\Annotations\TicketAnnotations.cs" />
+    <Compile Include="Domain\Ticket\Annotations\TicketPrimalacAnnotations.cs" />
+    <Compile Include="Domain\Ticket\Annotations\TicketStatusAnnotations.cs" />
+    <Compile Include="Domain\Ticket\Annotations\TicketPrimalacTipAnnotations.cs" />
+    <Compile Include="Domain\Ticket\Ticket.cs" />
+    <Compile Include="Domain\Ticket\TicketKategorija.cs" />
+    <Compile Include="Domain\Ticket\TicketPost.cs" />
+    <Compile Include="Domain\Ticket\TicketPrimalac.cs" />
+    <Compile Include="Domain\Ticket\TicketStatus.cs" />
+    <Compile Include="Domain\Ticket\TicketPrimalacTip.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\CeneAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\CenovnikAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpPopravkeTipAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpPopravkeAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkPodKaroserijaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpTrosakAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\GorivoKarticaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\GorivoPumpaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\GorivoTocenjeAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\PutniNalogAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\PutniNalogTipAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\FirmaVPAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\StetaKategorijaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\StetaTipAnnotations.cs" />
+    <Compile Include="Domain\TehnickiPregled\Annotations\TPstatusTerminaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkStetaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkMarkaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkKategorijaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpOpremaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpAlarmGrupaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpOpremaPodTipAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpAlarmTipAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpOpremaTipAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VpOpremaGrupaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\VpPopravkeTip.cs" />
+    <Compile Include="Domain\VozniPark\VpPopravke.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkPodKaroserija.cs" />
+    <Compile Include="Domain\VozniPark\VpTrosak.cs" />
+    <Compile Include="Domain\VozniPark\GorivoKartica.cs" />
+    <Compile Include="Domain\VozniPark\GorivoPumpa.cs" />
+    <Compile Include="Domain\VozniPark\GorivoTocenje.cs" />
+    <Compile Include="Domain\VozniPark\PutniNalogTip.cs" />
+    <Compile Include="Domain\VozniPark\PutniNalog.cs" />
+    <Compile Include="Domain\VozniPark\FirmaVP.cs" />
+    <Compile Include="Domain\VozniPark\StetaKategorija.cs" />
+    <Compile Include="Domain\VozniPark\StetaTip.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkSteta.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkMarka.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkKategorija.cs" />
+    <Compile Include="Domain\VozniPark\VpOprema.cs" />
+    <Compile Include="Domain\VozniPark\VpAlarmGrupa.cs" />
+    <Compile Include="Domain\VozniPark\VpOpremaPodTip.cs" />
+    <Compile Include="Domain\VozniPark\VpAlarmTip.cs" />
+    <Compile Include="Domain\VozniPark\VpOpremaTip.cs" />
+    <Compile Include="Domain\VozniPark\VpOpremaGrupa.cs" />
+    <Compile Include="Domain\WebFile\Annotations\WebFilesTipAnnotations.cs" />
+    <Compile Include="Domain\WebFile\Annotations\WebFilesAnnotations.cs" />
+    <Compile Include="Domain\WebFile\Annotations\GalleryAnnotations.cs" />
+    <Compile Include="Domain\Opste\Annotations\KalendarPlanerAnnotations.cs" />
+    <Compile Include="Domain\KorisniciPrograma\Annotations\KorisniciProgramaClaimsRolesAnnotations.cs" />
+    <Compile Include="Domain\KorisniciPrograma\Annotations\KorisniciProgramaClaimsAnnotations.cs" />
+    <Compile Include="Domain\Prijava\Annotations\PrijavaNapomenaAnnotations.cs" />
+    <Compile Include="Domain\Prijava\Annotations\PrijavaNacinAnnotations.cs" />
+    <Compile Include="Domain\Prijava\Annotations\PrijavaStatusAnnotations.cs" />
+    <Compile Include="Domain\Prijava\Annotations\PrijavaPodTipAnnotations.cs" />
+    <Compile Include="Domain\Prijava\Annotations\PrijavaTipAnnotations.cs" />
+    <Compile Include="Domain\Prijava\Annotations\PrijavaReklamacijaZalbaLogAnnotations.cs" />
+    <Compile Include="Domain\Statistika\Annotations\StatistikaPorekloPosiljkeAnnotations.cs" />
+    <Compile Include="Domain\Statistika\Annotations\StatistikaRazlogBrisanjaPosiljkeAnnotations.cs" />
+    <Compile Include="Domain\Statistika\Annotations\StatistikaSatAnnotations.cs" />
+    <Compile Include="Domain\Statistika\Annotations\StatistikaDanAnnotations.cs" />
+    <Compile Include="Domain\Finansije\Annotations\BankaPazaraAnnotations.cs" />
+    <Compile Include="Domain\KorisniciPrograma\Annotations\KorisniciProgramaAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\SpisakOtkupninaAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\SpisakDostavaAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\KurirskaListaDostavaAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\KovertaZaDokumentAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\KovertaZaOtkupninuAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\KurirRazduzenjeSpecifikacijaAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\KurirRazduzenjeAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\NapomenaPosiljkaAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\NapomenaPosiljkaPodTipAnnotations.cs" />
+    <Compile Include="Domain\Finansije\Annotations\BankaPazaraSpecifikacijaAnnotations.cs" />
+    <Compile Include="Domain\Prijava\Annotations\PrijavaReklamacijaZalbaAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorRptCenovnik2Annotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorRptCenovnik1Annotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorRptAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorVipAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorPovlascenaCenaTipAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorObracunCenaAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorNapmenaTipAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorNapmenaAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorNacinNaplateAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorKontaktBexAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorFakturisanjeAnnotations.cs" />
+    <Compile Include="Domain\Ugovor\Annotations\UgovorAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaOtkupZbirniStavkaAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaOtkupZbirniAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaObrisanaAnnotations.cs" />
+    <Compile Include="Domain\Sken\Annotations\SkenAnnotations.cs" />
+    <Compile Include="Domain\Sken\Annotations\SkenPracenjeAnnotations.cs" />
+    <Compile Include="Domain\Sken\Annotations\SkenReadAnnotations.cs" />
+    <Compile Include="Domain\Sken\Annotations\SkenStartAnnotations.cs" />
+    <Compile Include="Domain\Sken\Annotations\SkenTipAnnotations.cs" />
+    <Compile Include="Domain\Statistika\Annotations\StatKasnjenjaAnnotations.cs" />
+    <Compile Include="Domain\Paket\Annotations\PaketTipAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\EvidencijaVozacaAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniDanAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniDanStatusAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniNapomenaAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniStatusAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\ZonaPodTipAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\ZonaTipAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\ZonaAnnotations.cs" />
+    <Compile Include="Domain\Paket\Annotations\PaketZadatakAnnotation.cs" />
+    <Compile Include="Domain\Paket\Annotations\PaketAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaNapomenaTipAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaNapomenaAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaPlacanjeTipAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaPlacanjeAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaUslugaTipAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaUslugaAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaSadrzajAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaKategorijaAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaVrstaAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaStatusAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\OpstinaAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\ReonTipAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaAnnotations.cs" />
+    <Compile Include="Domain\Posiljka\Annotations\PosiljkaZadatakAnnotations.cs" />
+    <Compile Include="Domain\Kurir\Annotations\KurirZaduzenjeAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkDnevnikAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkDnevnikTipAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkAlarmAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkModelAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkKarakteristikeAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\GorivoAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkBojaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkKaroserijaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkStatusAnnotations.cs" />
+    <Compile Include="Domain\Opste\Annotations\FilterSpisakKolonaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkTipAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniPlataAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\SektorAnnotations.cs" />
+    <Compile Include="Domain\Opste\Annotations\FirmaAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniRadnoMestoAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniStrucnaSpremaAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniRazlogOtkazaAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniOsnovOsiguranjaAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniProgramZaposlenjaAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniSlavaAnnotations.cs" />
+    <Compile Include="Domain\VozniPark\Annotations\VozniParkMenjacAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniZanimanjeAnnotations.cs" />
+    <Compile Include="Domain\Finansije\BankaPazara.cs" />
+    <Compile Include="Domain\Ugovor\Cenovnik.cs" />
+    <Compile Include="Domain\Ugovor\Cene.cs" />
+    <Compile Include="Domain\Opste\KalendarPlaner.cs" />
+    <Compile Include="Domain\KorisniciPrograma\KorisniciProgramaClaimsRoles.cs" />
+    <Compile Include="Domain\KorisniciPrograma\KorisniciProgramaClaims.cs" />
+    <Compile Include="Domain\KorisniciPrograma\KorisniciPrograma.cs" />
+    <Compile Include="Domain\Prijava\PrijavaNapomena.cs" />
+    <Compile Include="Domain\Prijava\PrijavaStatus.cs" />
+    <Compile Include="Domain\Prijava\PrijavaPodTip.cs" />
+    <Compile Include="Domain\Prijava\PrijavaNacin.cs" />
+    <Compile Include="Domain\Prijava\PrijavaTip.cs" />
+    <Compile Include="Domain\Prijava\PrijavaReklamacijaZalbaLog.cs" />
+    <Compile Include="Domain\Statistika\StatistikaPorekloPosiljke.cs" />
+    <Compile Include="Domain\Statistika\StatistikaRazlogBrisanjaPosiljke.cs" />
+    <Compile Include="Domain\Statistika\StatistikaSat.cs" />
+    <Compile Include="Domain\Statistika\StatistikaDan.cs" />
+    <Compile Include="Domain\Kurir\SpisakOtkupnina.cs" />
+    <Compile Include="Domain\Kurir\SpisakDostava.cs" />
+    <Compile Include="Domain\Kurir\KurirskaListaDostava.cs" />
+    <Compile Include="Domain\Kurir\KovertaZaDokument.cs" />
+    <Compile Include="Domain\Kurir\KovertaZaOtkupninu.cs" />
+    <Compile Include="Domain\Kurir\KurirRazduzenjeSpecifikacija.cs" />
+    <Compile Include="Domain\Kurir\KurirRazduzenje.cs" />
+    <Compile Include="Domain\Posiljka\NapomenaPosiljkaPodTip.cs" />
+    <Compile Include="Domain\Posiljka\NapomenaPosiljka.cs" />
+    <Compile Include="Domain\Finansije\BankaPazaraSpecifikacija.cs" />
+    <Compile Include="Domain\Prijava\PrijavaReklamacijaZalba.cs" />
+    <Compile Include="Domain\Ugovor\UgovorRptCenovnik2.cs" />
+    <Compile Include="Domain\Ugovor\UgovorRptCenovnik1.cs" />
+    <Compile Include="Domain\Ugovor\UgovorRpt.cs" />
+    <Compile Include="Domain\Ugovor\UgovorVip.cs" />
+    <Compile Include="Domain\Ugovor\UgovorPovlascenaCenaTip.cs" />
+    <Compile Include="Domain\Ugovor\UgovorObracunCena.cs" />
+    <Compile Include="Domain\Ugovor\UgovorNapomenaTip.cs" />
+    <Compile Include="Domain\Ugovor\UgovorNapomena.cs" />
+    <Compile Include="Domain\Ugovor\UgovorNacinNaplate.cs" />
+    <Compile Include="Domain\Ugovor\UgovorKontaktBex.cs" />
+    <Compile Include="Domain\Ugovor\UgovorFakturisanje.cs" />
+    <Compile Include="Domain\Ugovor\Ugovor.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaOtkupZbirniStavka.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaOtkupZbirni.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaObrisana.cs" />
+    <Compile Include="Domain\Sken\SkenRead.cs" />
+    <Compile Include="Domain\Sken\SkenTip.cs" />
+    <Compile Include="Domain\Sken\SkenPracenje.cs" />
+    <Compile Include="Domain\Sken\Sken.cs" />
+    <Compile Include="Domain\Sken\SkenStart.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaZadatakStatus.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaZadatakTip.cs" />
+    <Compile Include="Domain\Statistika\StatKasnjenja.cs" />
+    <Compile Include="Domain\Paket\PaketTip.cs" />
+    <Compile Include="Domain\WebFile\WebFilesTip.cs" />
+    <Compile Include="Domain\WebFile\WebFiles.cs" />
+    <Compile Include="Domain\WebFile\Gallery.cs" />
+    <Compile Include="Domain\Zaposleni\EvidencijaVozaca.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniDan.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniDanStatus.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniNapomena.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniStatus.cs" />
+    <Compile Include="Domain\Adrese\ZonaPodTip.cs" />
+    <Compile Include="Domain\Adrese\ZonaTip.cs" />
+    <Compile Include="Domain\Adrese\Zona.cs" />
+    <Compile Include="Domain\Paket\PaketZadatak.cs" />
+    <Compile Include="Domain\Paket\Paket.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaNapomenaTip.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaNapomena.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaPlacanjeTip.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaPlacanje.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaUslugaTip.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaUsluga.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaZadatak.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaSadrzaj.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaKategorija.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaVrsta.cs" />
+    <Compile Include="Domain\Posiljka\PosiljkaStatus.cs" />
+    <Compile Include="Domain\Adrese\Opstina.cs" />
+    <Compile Include="Domain\Adrese\ReonTip.cs" />
+    <Compile Include="Domain\Posiljka\Posiljka.cs" />
+    <Compile Include="Domain\Kurir\KurirZaduzenje.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkDnevnik.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkDnevnikTip.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkAlarm.cs" />
+    <Compile Include="Domain\VozniPark\VozniPark.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkModel.cs" />
+    <Compile Include="Domain\VozniPark\VozniKarakteristike.cs" />
+    <Compile Include="Domain\VozniPark\Gorivo.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkBoja.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkKaroserija.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkStatus.cs" />
+    <Compile Include="Domain\Opste\FilterSpisakKolona.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkTip.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniPlata.cs" />
+    <Compile Include="Domain\Opste\PolIzbor.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktAdresaAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktDelatnostAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktEmailAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktFizickoLiceAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktPravnoLiceAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktTelefonAnnotations.cs" />
+    <Compile Include="Domain\Zaposleni\Annotations\ZaposleniAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Annotations\KontaktZiroRacunAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\PakAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\PlaceAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\RegionAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\ReonAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\ReoncicAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\StreetAnnotations.cs" />
+    <Compile Include="Domain\Adrese\Annotations\ZipAnnotations.cs" />
+    <Compile Include="Domain\Kontakt\Kontakt.cs" />
+    <Compile Include="Domain\Kontakt\KontaktAdresa.cs" />
+    <Compile Include="Domain\Kontakt\KontaktDelatnost.cs" />
+    <Compile Include="Domain\Kontakt\KontaktEmail.cs" />
+    <Compile Include="Domain\Kontakt\KontaktFizickoLice.cs" />
+    <Compile Include="Domain\Kontakt\KontaktPravnoLice.cs" />
+    <Compile Include="Domain\Kontakt\KontaktTelefon.cs" />
+    <Compile Include="Domain\Zaposleni\Zaposleni.cs" />
+    <Compile Include="Domain\Kontakt\KontaktZiroRacun.cs" />
+    <Compile Include="Domain\Adrese\PAK.cs" />
+    <Compile Include="Domain\Adrese\Place.cs" />
+    <Compile Include="Domain\Adrese\Region.cs" />
+    <Compile Include="Domain\Adrese\Reon.cs" />
+    <Compile Include="Domain\Adrese\Reoncic.cs" />
+    <Compile Include="Domain\Adrese\Street.cs" />
+    <Compile Include="Domain\Zaposleni\Sektor.cs" />
+    <Compile Include="Domain\Opste\Firma.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniRadnoMesto.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniStrucnaSprema.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniRazlogOtkaza.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniOsnovOsiguranja.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniProgramZaposlenja.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniSlava.cs" />
+    <Compile Include="Domain\VozniPark\VozniParkMenjac.cs" />
+    <Compile Include="Domain\Zaposleni\ZaposleniZanimanje.cs" />
+    <Compile Include="Domain\Adrese\Zip.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspNet.DAL.EF.Models.Security\AspNet.DAL.EF.Models.Security.csproj">
+      <Project>{b8e084e2-3f31-45d5-a959-dac421db1343}</Project>
+      <Name>AspNet.DAL.EF.Models.Security</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

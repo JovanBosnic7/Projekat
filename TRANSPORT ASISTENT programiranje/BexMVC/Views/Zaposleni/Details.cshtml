@@ -1,0 +1,93 @@
+﻿@model BexMVC.ViewModels.ImageEditorViewModel
+<script type="text/javascript">
+
+            var $table0 = $('#tableZaposleniNapomena_'+@ViewBag.Id);
+            $table0.bootstrapTable({
+                url: '/Zaposleni/GetZaposleniNapomeneData?id=' +@ViewBag.Id,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+            });
+           
+
+        $('#zaposleniNapomene_' +@ViewBag.Id).click(function () {
+
+            $('#tableZaposleniNapomena_'+@ViewBag.Id).bootstrapTable('refresh');
+        });
+
+    
+
+        function responseHandler(res) {
+            var flatArray = [];
+            console.log(res);
+            $.each(res, function (i, element) {
+                flatArray.push(JSON.flatten(element));
+                console.log(element);
+            });
+            return flatArray;
+        }
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+        function dateTimeFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY HH:MM:SS');
+        }
+
+        function formatYesNo(value, row, index) {
+            return value == false ? 'ne' : 'da';
+
+        }
+</script>
+
+<div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+
+     <div class="panel panel-default  ">
+           <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabGallery_@ViewBag.Id">Galerija</a>
+                </h4>
+           </div>
+           <div id="tabGallery_@ViewBag.Id" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="ListPanel" data-url="@Url.Action("_List","GalleryAdmin")">
+                        @Html.Action("_List", "GalleryAdmin", new { tipId = ViewBag.TipId, id = ViewBag.Id })
+                    </div>
+                </div>
+           </div>
+     </div>
+   
+    <div class="panel panel-default  ">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#tabZaposleniNapomene_@ViewBag.Id" id="zaposleniNapomene_@ViewBag.Id">Napomene </a>
+
+            </h4>
+            <div id="createNapomena_@ViewBag.Id">
+                @Html.Action("CreateNapomenaPartial", new { zaposleniId = @ViewBag.Id })
+            </div>
+        </div>
+        <div id="tabZaposleniNapomene_@ViewBag.Id" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table id="tableZaposleniNapomena_@ViewBag.Id">
+
+                    <thead>
+
+                        <tr>
+                            <th data-field="DatumUnosa" data-formatter="dateFormat">Datum unosa</th>
+                            <th data-field="UserUnosa">Uneo korisnik</th>
+                            <th data-field="Napomena">Napomena</th>
+                        </tr>
+
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

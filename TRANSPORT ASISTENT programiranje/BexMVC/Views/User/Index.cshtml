@@ -1,0 +1,102 @@
+﻿@model AspNet.DAL.EF.Models.Security.ApplicationUser
+
+@{
+    ViewBag.Title = "Registrovani korisnici programa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    @*<h1 class="page-header">Evidencija kontakti</h1>*@
+                    <h2 class="card-title" style="color:#666;">Evidencija registrovanih korisnika programa</h2>
+                    <p class="card-category">Povezivanje registrovanih korisnika programa sa zaposlenim/klijentima</p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+                        <button id="add" class="btn btn-primary" disabled>
+                            Dodaj
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        <button id="remove" class="btn btn-primary" disabled>
+                            Briši
+                        </button>
+                    </div>
+
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-show-columns="true"
+                               data-show-refresh="true"
+                               data-show-export="true"
+                               @*data-query-params="queryParams"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-show-footer="true"
+                               data-filter-control="true"
+                               data-toolbar="#toolbar">
+                            <thead>
+                                @*<tr>
+
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                        <input name="search" id="UserName" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Email" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="AccessFailedCount" class="form-control input-sm" type="text">
+                                    </th>
+
+                                </tr>*@
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="UserName" data-sortable="true" data-filter-control="input">Korisničko ime</th>
+                                    <th data-field="Email" data-sortable="true" data-filter-control="input">Email</th>
+                                    <th data-field="AccessFailedCount" data-sortable="true" data-filter-control="input">Br. omašenih logovanja</th>
+
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $edit = $('#edit'),
+                    $remove = $('#remove');
+
+                $table.configTable('/User/GetUserData');
+
+                $(document).ready(function () {
+                    var $checkTableElements = [$edit, $remove];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+                    $edit.clickOptions('User/Edit?id=');
+                    $remove.clickPostOptionsMessage('User/Remove?id=', 'Uspešno ste izbrisali registrovanog korisnika.');
+                    
+
+                });
+
+            </script>
+        }
+    </div>
+</div>

@@ -1,0 +1,118 @@
+﻿
+@model DDtrafic.ViewModels.AlarmiIndexData
+
+@{
+    ViewBag.Title = "Alarmi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Evidencija alarma</h1>
+        <p>Pregled svih isteka dokumenata za vozače, vozila i servise</p>
+    </div>
+</div>
+<hr />
+<div class="row" style="background:#eee;">
+    <div class="card">
+        <div class="card-body">
+            <div id="toolbar" class="columns columns-left btn-group ">
+
+                <button id="create" class="btn btn-primary">
+                    @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                </button>
+                <button id="edit" class="btn btn-primary" disabled>
+                    Izmeni
+                </button>
+                <button id="delete" class="btn btn-primary" disabled>
+                    Briši
+                </button>
+            </div>
+
+
+
+            <div class="table-responsive" style="min-height:300px;">
+                <table id="table"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       data-query-params="queryParams"
+                       data-show-refresh="true"
+                       data-show-columns="true"
+                       data-show-export="true"
+                       data-filter-control="true"
+                       data-detail-view="true"
+                       data-page-list="[10, 25, 50, 100]"
+                       data-toolbar="#toolbar">
+
+                    <thead>
+                        <tr>
+                            <th data-checkbox="true"></th>
+                            <th data-field="Registracija" data-sortable="true" data-filter-control="input">Registracija</th>
+                            <th data-field="Zaposleni" data-sortable="true" data-filter-control="input">Zaposleni</th>
+                            <th data-field="Alarm" data-sortable="true" data-filter-control="input">Alarm</th>
+                            <th data-field="Datum" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum urađeno</th>
+                            <th data-field="DatumIsteka" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum isteka</th>
+                            <th data-field="DatumAlarma" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum alarma</th>
+                            <th data-field="Km" data-sortable="true" data-filter-control="input">Km urađeno</th>
+                            <th data-field="KmIsteka" data-sortable="true" data-filter-control="input">Km isteka</th>
+                            <th data-field="KmAlarma" data-sortable="true" data-filter-control="input">Km alarma</th>
+                            <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
+
+    <script type="text/javascript">
+
+
+
+
+        var $table = $('#table');
+        var $remove = $('#remove'),
+            $add = $('#add'),
+            $edit = $('#edit'),
+            $delete = $('#delete');
+
+        $table.configTable('Alarmi/GetAlarm');
+        $table.hideColTable();
+
+        $(document).ready(function () {
+
+            var $checkTableElements = [$edit, $delete];
+            $table.checkOptionsTable($checkTableElements);
+
+            $table.optionsTable();
+
+            $add.clickButtonWithoutParams('Alarmi/Create');
+            $edit.clickOptions('Alarmi/Edit?id=');
+            $delete.clickOptions('Alarmi/Delete?id=');
+
+        });
+
+        function getIdSelections() {
+            return $.map($table.bootstrapTable('getSelections'), function (row) {
+                var paramsSelection = { vozniParkId: row.Id };
+                return paramsSelection
+            });
+        }
+
+
+
+    </script>
+}
+@*</div>
+    </div>*@

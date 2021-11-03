@@ -1,0 +1,355 @@
+﻿@model Bex.Models.VozniParkSteta
+
+@{
+    ViewBag.Title = "Vozni Park - Dodavanje štete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Unos štete za vozilo</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../Stete">Štete</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj štetu</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Unos štete za vozilo: @ViewBag.RegOznaka</h3>
+                            <hr>
+
+                        </div>
+                        @*@using (Html.BeginForm(new { @class = "form-horizontal" }))*@
+                        @using (Html.BeginForm("Create", "Stete", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ZavisnaTabelaId, new { Value = ViewBag.ZavisnaTabelaId })
+                            <input type="hidden" id="KnjigovodstveniManjak" name="KnjigovodstveniManjak">
+                            <input type="hidden" id="PotpisanaOdluka" name="PotpisanaOdluka">
+                            <input type="hidden" id="Nenaplativo" name="Nenaplativo">
+                            <input type="hidden" id="Sporno" name="Sporno">
+                            <input type="hidden" id="Kes" name="Kes">
+                            <input type="hidden" id="Racun" name="Racun">
+
+                            @Html.HiddenFor(model => model.StetocinaZaposleniId, new { id = "StetocinaZaposleniId" })
+
+
+
+                            <div>
+                                <label class="control-label col-sm-2">Broj</label>
+                                <div class="col-sm-10">
+                                    <input name="Broj" id="Broj" class="form-control input-sm" type="text" disabled>
+                                </div>
+                            </div>
+                            @*<div>
+                <label class="control-label col-sm-2" for="Nalog">Nalog</label>
+                <div class="col-sm-10">
+
+                    @Html.DropDownList("NalogIzdao", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NalogIzdao, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+                            <div>
+                                <label class="control-label col-sm-2" for="FirmaStete">Firma štete</label>
+                                <div class="col-sm-10">
+                                    @*<input name="Broj" id="Broj" class="form-control input-sm" type="text">*@
+                                    @Html.DropDownList("FirmaSteteId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.FirmaSteteId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2" for="Kategorija">Kategorija</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("KategorijaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.KategorijaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Opis</label>
+                                <div class="col-sm-10">
+                                    <input name="Opis" id="Opis" class="form-control input-sm" type="text">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Napomena</label>
+                                <div class="col-sm-10">
+                                    <input name="Napomena" id="Napomena" class="form-control input-sm" type="text">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2" for="Centar">Centar</label>
+                                <div class="col-sm-10">
+                                    @*<input name="Broj" id="Broj" class="form-control input-sm" type="text">*@
+                                    @Html.DropDownList("StetocinaCentarId", null, " ", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StetocinaCentarId, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="ui-widget">
+                                <label class="control-label col-sm-2" for="zaposleni">Zaposleni</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        <input id="stetocinaZaposleni" class="form-control">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">D. predaje pravnoj s.</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumPredajePravnoj, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-datum-predaje-ps" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Datum odluke</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumOdluke, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-datum-odluke" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2" for="KnjigovodstveniManjak">Knjig. manjak</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="ManjakCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2" for="PotpisanaOdluka">Potpisana odluka</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="OdlukaCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2" for="Sporno">U obradi</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="SpornoCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2" for="Nenaplativo">Nenaplativo</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="NenaplativoCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Iznos štete</label>
+                                <div class="col-sm-10">
+                                    <input name="IznosRsd" id="IznosRsd" class="form-control input-sm" type="text">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Naplatiti od radnika</label>
+                                <div class="col-sm-10">
+                                    <input name="IznosZaNaplatu" id="IznosZaNaplatu" class="form-control input-sm" type="text">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2" for="Kes">Keš</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="KesCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2" for="Racun">Račun</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="RacunCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <link rel="stylesheet" href="~/Content/jquery.ui.timepicker.css">
+            @*<link rel="stylesheet" href="~/Content/multi-select.css">*@
+            <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="~/Content/bootstrap/js/jquery.ui.timepicker.js"></script>
+            <script type="text/javascript">
+
+                $('.datepicker-datum-predaje-ps, .datepicker-datum-odluke').datepicker({ dateFormat: 'dd-mm-yy' });
+                $('.datepicker-datum-predaje-ps, .datepicker-datum-odluke').attr("autocomplete", "off");
+
+                $("#stetocinaZaposleni").autocomplete({
+                    source: function (request, response) {
+
+                        $.ajax({
+                            url: "/Zaposleni/GetZaposleniPoStaromAutocomplete?query=" + request.term,
+                            dataType: "json",
+                            success: function (data) {
+                                response($.map(data, function (v, i) {
+                                    return {
+                                        value: v.Name,
+                                        id: v.Id,
+                                        pomId: v.PomocniId
+                                    };
+                                }));
+                            }
+                        });
+                    },
+                    minLength: 2,
+                    select: function (event, ui) {
+                        $('#StetocinaZaposleniId').val(ui.item.id);
+                        //$('#RadnoMestoId').val(ui.item.pomId);
+                        console.log("Kontakt ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+
+                    }
+                });
+
+                $('#stetocinaZaposleni').change(function () {
+                    if ($(this).val() > '0') {
+                        $('#StetocinaCentarId').val == '-1';
+                        $('#StetocinaCentarId').attr('disabled', 'disabled');
+                    } else {
+                        $('#StetocinaCentarId').attr('disabled', false);
+                    }
+                });
+                $('#StetocinaCentarId').change(function () {
+                    if ($(this).val() > '0') {
+                        $('#stetocinaZaposleni').val == '-1';
+                        $('#stetocinaZaposleni').attr('disabled', 'disabled');
+                    } else {
+                        $('#stetocinaZaposleni').attr('disabled', false);
+                        
+                    }
+                });
+
+                $('#KnjigovodstveniManjak').val($(this).is(':checked'))
+                $('#ManjakCheck').change(function () {
+
+                    $('#KnjigovodstveniManjak').val($(this).is(':checked'))
+
+                });
+                $('#PotpisanaOdluka').val($(this).is(':checked'))
+                $('#OdlukaCheck').change(function () {
+
+                    $('#PotpisanaOdluka').val($(this).is(':checked'))
+
+                });
+                $('#Nenaplativo').val($(this).is(':checked'))
+                $('#NenaplativoCheck').change(function () {
+
+                    $('#Nenaplativo').val($(this).is(':checked'))
+
+                });
+                $('#Sporno').val($(this).is(':checked'))
+                $('#SpornoCheck').change(function () {
+
+                    $('#Sporno').val($(this).is(':checked'))
+
+                });
+                $('#Kes').val($(this).is(':checked'))
+                $('#KesCheck').change(function () {
+
+                    $('#Kes').val($(this).is(':checked'))
+
+                });
+                $('#Racun').val($(this).is(':checked'))
+                $('#RacunCheck').change(function () {
+
+                    $('#Racun').val($(this).is(':checked'))
+
+                });
+                //});
+
+                //function OnSuccess(response) {
+                //    alert(response);
+                //    window.close();
+                //}
+
+                //function OnFailure(response) {
+                //    alert(response);
+                //}
+
+            </script>
+        }
+    </div>
+</div>

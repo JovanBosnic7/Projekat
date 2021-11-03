@@ -1,0 +1,70 @@
+﻿@model Bex.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Evidencija korisnika programa</h1>
+            </div>
+        </div>
+        <div>
+            <h4>Korisnik : @ViewBag.KontaktNaziv</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Korisnicko ime
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KorisnickoIme)
+                </dd>
+
+                <dt>
+                    Lozinka
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Lozinka)
+                </dd>
+                <dt>
+                    Bar kod
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BarKod)
+                </dd>
+                <dt>
+                    Region
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RegionId)
+                </dd>
+                <dt>
+                    Klijent
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Klijent)
+                </dd>
+                <dt>
+                    Aktivan
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Aktivan)
+                </dd>             
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "../User")
+        </p>
+    </div>
+</div>

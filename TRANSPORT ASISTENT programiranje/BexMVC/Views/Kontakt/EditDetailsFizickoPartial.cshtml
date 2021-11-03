@@ -1,0 +1,162 @@
+﻿@model Bex.Models.KontaktFizickoLice
+
+@{
+    Layout = null;
+}
+
+
+@using (Ajax.BeginForm("EditDetailsFizickoPartial", "Kontakt", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "editFizickoPartial" }))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.KontaktId, new { Value = @ViewBag.KontaktId })
+
+    <div class="panel panel-default  " id="div_fizicko_lice">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#tabFizickoLice">FIZIČKO LICE - dodatni podaci</a>
+                @if (@ViewBag.AddFizickoLice)
+                {
+                    <span style="color:green;"> - Uspešno ste dodali podatke...</span>
+                }
+
+            </h4>
+        </div>
+        <div id="tabFizickoLice" class="panel-collapse collapse ">
+            <div class="panel-body">
+                <div class="container">
+                    <div class="container-fluid" style="margin-bottom:10px;">
+
+                        <!-- Breadcrumbs-->
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="../Kontakt">Kontakti</a>
+                            </li>
+                            <li class="breadcrumb-item active">Dodaj</li>
+                        </ol>
+
+                        <!-- Page Content -->
+                        <h3>Unos dodatnih podataka za fizičko lice</h3>
+                        <hr>
+                        <p>Unesite datume isteka dokumenata i ostale podatke...</p>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">JMBG</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MaticniBroj, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MaticniBroj, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Datum rođenja</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.DatumRodjenja, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-fl" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Mesto rođenja</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MestoRodjenja, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MestoRodjenja, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Državljanstvo</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.Drzavljanstvo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Drzavljanstvo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Broj LK</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.BrojLicneKarte, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BrojLicneKarte, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">D. isteka LK</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.DatumIstekaLicneKarte, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-fl" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Mesto LK</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MestoIzdavanjaLicneKarte, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MestoIzdavanjaLicneKarte, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Broj vozačke</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.BrojVozackeDozvole, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BrojVozackeDozvole, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">D. isteka vozačke</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.DatumIstekaVozackeDozvole, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-fl" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Kategorije</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.KategorijaVozackeDozvole, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.KategorijaVozackeDozvole, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Broj vozačke</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MestoIzdavanjaVozackeDozvole, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MestoIzdavanjaVozackeDozvole, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Broj pasoša</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.BrojPasosa, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BrojPasosa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">D. isteka pasoša</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.DatumIstekaPasosa, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-fl" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Mesto pasoša</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MestoIzdavanjaPasosa, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MestoIzdavanjaPasosa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Pol</label>
+                        <div class="col-sm-10">
+                            @Html.EnumDropDownListFor(model => model.Pol, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Pol, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <div class="btn-group pull-right ">
+                                <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,23 @@
+﻿@model BexMVC.ViewModels.AddressTypeViewModel
+
+    @using (Ajax.BeginForm("AddressTypePartial", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "CreateAddress", InsertionMode = InsertionMode.Replace }))
+    {
+        @*@Html.AntiForgeryToken()*@
+
+        <div class="form-horizontal">
+            <hr />
+            <h4>Select an address type to add</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.pakId)
+            <div class="form-group">
+                <label>Adresa</label>
+                @Html.DropDownListFor(model => model.SelectedAddressType, new SelectList(Model.AddressTypes, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "AddressType" })
+                @Html.ValidationMessageFor(model => model.SelectedAddressType, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Select" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }

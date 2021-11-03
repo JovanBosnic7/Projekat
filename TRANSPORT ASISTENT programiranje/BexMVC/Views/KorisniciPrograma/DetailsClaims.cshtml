@@ -1,0 +1,54 @@
+﻿@model IEnumerable<System.Security.Claims.Claim>
+
+@{
+    ViewBag.Title = "Claims";
+    Layout = null;
+
+}
+
+<div>
+    <script type="text/javascript">
+
+        var userID = $('#UserId').val();
+
+        var $table0 = $('#tableClaims_' + userID);
+        $table0.bootstrapTable({
+            url: '/KorisniciPrograma/GetClaimsData?userId=' + userID,
+            formatNoMatches: function () {
+                return ' Nema podataka ';
+            }
+        });
+        function formatRemoveRole(value, row, index) {
+           
+            return '<a href="KorisniciPrograma/RemoveClaim?claimType=' + row.ClaimType + '&claimValue=' + row.Value + '&userId=' + userID + '"><i class="glyphicon glyphicon-remove"></i></a>';
+        }
+    </script>
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabClaims_@ViewBag.UserId">Prava pristupa</a>
+                </h4>
+            </div>
+            <div id="tabClaims_@ViewBag.UserId" class="panel-collapse">
+                <div class="panel-body">
+                    <table id="tableClaims_@ViewBag.UserId">
+                        <input type="hidden" id="UserId" value="@ViewBag.UserId" />
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="Opis">Opis</th>
+                                <th data-field="ClaimType">Tip</th>
+                                <th data-field="Value">Vrednost</th>
+                                <th data-field="Id" data-formatter="formatRemoveRole">Izbaci</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

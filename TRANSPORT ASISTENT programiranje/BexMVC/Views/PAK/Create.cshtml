@@ -1,0 +1,189 @@
+﻿@model Bex.Models.PAK
+@using BexMVC.Helpers
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Dodavanje novog PAK-a</h2>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group ui-widget">
+                                        <label for="opstine">Opštine: </label>
+                                        <input id="opstine" class="form-control">
+                                    </div>
+
+                                    <div class="form-group ui-widget">
+                                        <label for="mesto">Mesto: </label>
+                                        <input id="mesto" class="form-control">
+                                    </div>
+
+                                    <div class="form-group ui-widget">
+                                        <label for="ulica">Ulica: </label>
+                                        <input id="ulica" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pak</label>
+                                        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                    </div>
+
+
+
+                                    
+                                    <div class="form-group">
+                                        <label>Reončić</label>
+                                        <br />
+                                        @Html.AutocompleteFor(model => model.NazivReoncica, model => model.ReoncicId, "GetReoncic", "Pak", false, new { htmlAttributes = new { @class = "form-control", placeholder = "Kucajte podatke o reoncicu..." } })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Reon</label>
+                                        <br />
+                                        @Html.AutocompleteFor(model => model.NazivReona, model => model.ReonId, "GetReon", "Pak", false, new { htmlAttributes = new { @class = "form-control", placeholder = "Kucajte podatke o reonu..." } })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Region</label>
+                                        <br />
+                                        @Html.AutocompleteFor(model => model.NazivRegiona, model => model.RegionId, "GetRegion", "Pak", false, new { htmlAttributes = new { @class = "form-control", placeholder = "Kucajte podatke o regionu..." } })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Od broja</label>
+                                        @Html.EditorFor(model => model.OdBroja, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.OdBroja, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Do broja</label>
+                                        @Html.EditorFor(model => model.DoBroja, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DoBroja, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Parnost</label>
+                                        @Html.EditorFor(model => model.Parnost, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Parnost, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Napomena</label>
+                                        @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Back to List", "../Street")
+            </div>
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var opstinaId = 0;
+                    var mestoId = 0;
+                    var ulicaId = 0;
+
+                    $("#opstine").autocomplete({
+                        source: function (request, response) {
+
+                            $.ajax({
+                                url: "/Pak/GetOpstina?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            });
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            opstinaId = ui.item.id;
+                            console.log("Opstina ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+                        }
+                    });
+                
+
+                    $("#mesto").autocomplete({
+                        source: function (request, response) {
+
+                            $.ajax({
+                                url: "/Pak/GetMestaZaDodavanje?query=" + request.term + "&opstinaId=" + opstinaId,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            });
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            mestoId = ui.item.id;
+                            console.log("Mesto ---- Selected: " + ui.item.id + " aka " + ui.item.value );
+                        }
+                    });
+
+                    $("#ulica").autocomplete({
+                        source: function (request, response) {
+
+                            $.ajax({
+                                url: "/Pak/GetUlica?query=" + request.term + "&mestoId=" + mestoId,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            });
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            ulicaId = ui.item.id;
+                            console.log("Ulica ---- Selected: " + ui.item.id + " aka " + ui.item.value );
+                        }
+                    });
+                    
+                });
+               
+            </script>
+        }
+    </div>
+</div>

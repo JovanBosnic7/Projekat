@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFAC2F89-A765-48D8-BDA5-668E3C04223D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bex.DAL.EF.UOW</RootNamespace>
+    <AssemblyName>Bex.DAL.EF.UOW.Club</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThenInclude.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThenInclude.EF6.1.0.0.8\lib\net452\ThenInclude.EF6.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BexUow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AddressRepository.cs" />
+    <Compile Include="Repositories\CenovnikRepository.cs" />
+    <Compile Include="Repositories\EvidencijaVozacaRepository.cs" />
+    <Compile Include="Repositories\TPterminiRepository.cs" />
+    <Compile Include="Repositories\PrijavaRepository.cs" />
+    <Compile Include="Repositories\PosiljkaRepository.cs" />
+    <Compile Include="Repositories\KontaktRepository.cs" />
+    <Compile Include="Repositories\ReonRepository.cs" />
+    <Compile Include="Repositories\ReoncicRepository.cs" />
+    <Compile Include="Repositories\PlaceRepository.cs" />
+    <Compile Include="Repositories\UgovorRepository.cs" />
+    <Compile Include="Repositories\StreetRepository.cs" />
+    <Compile Include="Repositories\KontaktAdresaRepository.cs" />
+    <Compile Include="Repositories\MagacinRepository.cs" />
+    <Compile Include="Repositories\GorivoRepository.cs" />
+    <Compile Include="Repositories\VozniParkRepository.cs" />
+    <Compile Include="Repositories\KorisniciProgramaRepository.cs" />
+    <Compile Include="Repositories\ZaposleniRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bex.Common\Bex.Common.csproj">
+      <Project>{a0168a9d-c054-4888-830c-2a7ac400c2b5}</Project>
+      <Name>Bex.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bex.DAL.EF.Common\Bex.DAL.EF.Common.csproj">
+      <Project>{ae1ee308-de41-4f83-a459-7fd29720f4ba}</Project>
+      <Name>Bex.DAL.EF.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bex.DAL.EF.Contexts.Main\Bex.DAL.EF.Contexts.Main.csproj">
+      <Project>{2b3900d8-4044-453d-abca-b41ce4bf317a}</Project>
+      <Name>Bex.DAL.EF.Contexts.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bex.Models\Bex.Models.csproj">
+      <Project>{1e83c5c5-c953-4304-987d-f4a0d2e2618b}</Project>
+      <Name>Bex.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,323 @@
+﻿@model Bex.Models.Zaposleni
+
+@{
+    ViewBag.Title = "Izmena zaposlenog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Izmena detalja o zaposlenom</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../Zaposleni">Zaposleni</a>
+                                </li>
+                                <li class="breadcrumb-item active">Izmena</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Izmena podataka o zaposlenom</h3>
+                            <hr>
+                            <p>Izaberite kontakt koji se zapošljava i popunite formu ispod</p>
+
+                        </div>
+                       <div class="row">
+                           <div class="col-md-2">
+                               @Html.Action("_ProfileImage", new { tipId = 4, id = Model.Id, isProfile = 1 })
+                           </div>
+                           <div class="col-md-10">
+                               @using (Html.BeginForm("Edit", "Zaposleni", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+                               {
+                                   @Html.AntiForgeryToken()
+                                   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                   <input type="hidden" id="Aktivan" name="Aktivan">
+                                   @Html.HiddenFor(model => model.Id, new { id = "Id" })
+                                   @Html.HiddenFor(model => model.KontaktId, new { id = "KontaktId" })
+
+                                   <div class="form-group ui-widget">
+                                       <label class="control-label col-sm-2" for="kontakt"><a href="../Kontakt/Create" target="_blank"><i class="fa fa-link fa-fw"></i><u>Zaposleni</u></a> </label>
+                                       <div class="col-sm-10">
+                                           <input id="kontakt" class="form-control" value="@ViewBag.ZaposleniNaziv">
+                                           <div id="detailsKontakt" style="display:none;" class="col-sm-10">
+                                               <ul id="detailsList"></ul>
+                                           </div>
+
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="DatumZaposlenja">D. zaposlenja</label>
+                                       <div class="col-sm-10">
+                                           @Html.TextBoxFor(model => model.DatumZaposlenja, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-zaposlenja" })
+                                           @*@Html.ValidationMessageFor(model => model.DatumZaposlenja, "", new { @class = "text-danger" })*@
+                                       </div>
+                                   </div>
+
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="DatumPrijave">Datum prijave</label>
+                                       <div class="col-sm-10">
+                                           @Html.TextBoxFor(model => model.DatumPrijave, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-prijava" })
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2">Na određeno do</label>
+                                       <div class="col-sm-10">
+                                           @Html.TextBoxFor(model => model.DatumNaOdredjenoDo, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-odredjeno" })
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2">D. prestanka</label>
+                                       <div class="col-sm-10">
+                                           @Html.TextBoxFor(model => model.DatumPrestankaRada, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-prestanak" })
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="RazlogOtkazaId">Otkaz</label>
+                                       <div class="col-sm-10">
+                                           @Html.DropDownList("RazlogOtkazaId", null, " ", htmlAttributes: new { @class = "form-control" })
+                                           @Html.ValidationMessageFor(model => model.RazlogOtkazaId, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="PrethodniRSgodina">RS godina</label>
+                                       <div class="col-sm-10">
+                                           @Html.EditorFor(model => model.PrethodniRSgodina, new { htmlAttributes = new { @class = "form-control" } })
+                                           @Html.ValidationMessageFor(model => model.PrethodniRSgodina, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="PrethodniRSmesec">RS meseci</label>
+                                       <div class="col-sm-10">
+                                           @Html.EditorFor(model => model.PrethodniRSmesec, new { htmlAttributes = new { @class = "form-control" } })
+                                           @Html.ValidationMessageFor(model => model.PrethodniRSmesec, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="PrethodniRSdana">RS dana</label>
+                                       <div class="col-sm-10">
+                                           @Html.EditorFor(model => model.PrethodniRSdana, new { htmlAttributes = new { @class = "form-control" } })
+                                           @Html.ValidationMessageFor(model => model.PrethodniRSdana, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2">Status</label>
+                                       <div class="col-sm-10">
+                                           @Html.DropDownList("StatusRadnika", null, " ", htmlAttributes: new { @class = "form-control" })
+                                           @Html.ValidationMessageFor(model => model.StatusRadnika, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="OsiguranjeId">Osiguranje</label>
+                                       <div class="col-sm-10">
+                                           @Html.DropDownList("OsiguranjeId", null, " ", htmlAttributes: new { @class = "form-control" })
+                                           @Html.ValidationMessageFor(model => model.OsiguranjeId, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="OvlascenZaBanke">Banka ovlaš.</label>
+                                       <div class="col-sm-10">
+                                           @Html.EditorFor(model => model.OvlascenZaBanke, new { htmlAttributes = new { @class = "form-control" } })
+                                           @Html.ValidationMessageFor(model => model.OvlascenZaBanke, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="ProgramZaposlenjaId">Prog. zaposlenja</label>
+                                       <div class="col-sm-10">
+                                           @Html.DropDownList("ProgramZaposlenjaId", null, " ", htmlAttributes: new { @class = "form-control" })
+                                           @Html.ValidationMessageFor(model => model.ProgramZaposlenjaId, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="Napomena">Napomena</label>
+                                       <div class="col-sm-10">
+                                           @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                                           @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2" for="Aktivan">Aktivan</label>
+                                       <div class="col-sm-10">
+                                           <div class="form-check">
+                                               <label class="form-check-label control-label">
+                                                   <input class="form-check-input" type="checkbox" @(Convert.ToBoolean(Model.Aktivan) == true ? "checked='checked'" : string.Empty) value="" id="AktivanCheck">
+                                                   <span class="form-check-sign">
+                                                       <span class="check"></span>
+                                                   </span>
+                                               </label>
+                                           </div>
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label class="control-label col-sm-2"></label>
+                                       <div class="col-sm-10">
+                                           <div class="btn-group pull-right ">
+                                               <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                           </div>
+                                       </div>
+                                   </div>
+                               }
+                           </div>
+                       </div>
+                                
+                            
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div id="createLicniPodaci">
+                    @Html.Action("CreateLicniPodaciPartial", new { zaposleniId = @ViewBag.ZaposleniId })
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="createObrazovanje">
+                    @Html.Action("CreateObrazovanjePartial", new { zaposleniId = @ViewBag.ZaposleniId })
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="createZaposlenje">
+                    @Html.Action("CreateZaposlenjePartial", new { zaposleniId = @ViewBag.ZaposleniId })
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="createPlata">
+                    @Html.Action("CreatePlataPartial", new { zaposleniId = @ViewBag.ZaposleniId })
+                </div>
+            </div>
+
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".datepicker-dat-zaposlenja, .datepicker-prijava, .datepicker-odredjeno, .datepicker-prestanak, .datepicker-lekarskog").datepicker({ dateFormat: 'dd-mm-yy' });
+                        $(".datepicker-dat-zaposlenja, .datepicker-prijava, .datepicker-odredjeno, .datepicker-prestanak, .datepicker-lekarskog").attr("autocomplete", "off");
+
+                        $("#kontakt").autocomplete({
+                            source: function (request, response) {
+
+                                $.ajax({
+                                    url: "/Kontakt/GetKontaktAutocomplete?query=" + request.term + "&isPravno=false&isAll=false",
+                                    dataType: "json",
+                                    success: function (data) {
+                                        response($.map(data, function (v, i) {
+                                            return {
+                                                value: v.Name,
+                                                id: v.Id
+                                            };
+                                        }));
+                                    }
+                                });
+                            },
+                            minLength: 2,
+                            select: function (event, ui) {
+                                $('#KontaktId').val(ui.item.id);
+                                console.log("Kontakt ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+                                $('#detailsKontakt').show();
+                                addDetailsKontakt(ui.item.id);
+                            }
+                        });
+
+                        $("#sef").autocomplete({
+                            source: function (request, response) {
+
+                                $.ajax({
+                                    url: "/Zaposleni/GetZaposleniAutoComplete?query=" + request.term,
+                                    dataType: "json",
+                                    success: function (data) {
+                                        response($.map(data, function (v, i) {
+                                            return {
+                                                value: v.Name,
+                                                id: v.Id
+                                            };
+                                        }));
+                                    }
+                                });
+                            },
+                            minLength: 2,
+                            select: function (event, ui) {
+                                $('#KontaktSefId').val(ui.item.id);
+                                console.log("Zaposleni ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+
+                            }
+                        });
+
+                        $('#Aktivan').val(@(Convert.ToBoolean(Model.Aktivan) == true ? "true" : "false"));
+                        $('#AktivanCheck').change(function () {
+
+                            $('#Aktivan').val($(this).is(':checked'))
+
+                        });
+
+                        $('#InvalidnoLice').val(@(Convert.ToBoolean(Model.InvalidnoLice) == true ? "true" : "false"));
+                        $('#InvLiceCheck').change(function () {
+                            $('#InvalidnoLice').val($(this).is(':checked'))
+                        });
+
+                        $('#MinimalacCheck').change(function () {
+                            $('#PlataMinimalac').val($(this).is(':checked'))
+                        });
+
+                    });
+                    function dateFormat(value) {
+                        return (value === null) ? "" :  moment(value).format('DD/MM/YYYY');
+                    }
+                    function stringFormat(value) {
+                        return (value === null || value === undefined) ? '<a href="../Kontakt/Create" target="_blank"><i class="fa fa-arrow-right fa-fw"></i>DODAJ</a>' : value;
+                    }
+
+                    function addDetailsKontakt(selectedKontaktId) {
+
+                            $.getJSON('@Url.Action("GetDetailsKontakt")', { kontaktId: selectedKontaktId }, function (data) {
+                                //console.log(data);
+                                if (data != null && !jQuery.isEmptyObject(data)) {
+                                    $.each(data, function (index, details) {
+                                        console.log(details.Drzavljanstvo);
+                                        $("#detailsKontakt")
+                                            .html('  <li>JMBG: ' + stringFormat(details.MaticniBroj)+'</li>'
+                                            + '<li>Državljanstvo: ' + stringFormat(details.Drzavljanstvo) + '</li>'
+                                            + '<li>Lična karta: ' + stringFormat(details.BrojLicneKarte) + ' </li>'
+                                            + '<li>Sup lične karte: ' + stringFormat(details.MestoIzdavanjaLicneKarte) + '</li>'
+                                            + '<li>Datum izdavanja: ' + dateFormat(details.DatumIstekaLicneKarte) + '</li>'
+                                            + '<li>Vozačka: ' + stringFormat(details.BrojVozackeDozvole) + '</li>'
+                                            + '<li>Datum vozačke: ' + dateFormat(details.DatumIstekaVozackeDozvole) + '</li>'
+                                            + '<li>Tekući: ' + stringFormat(details.ZiroRacun) + ' </li>'
+                                            + '<li>Telefon: ' + stringFormat(details.Telefon) + ' </li>'
+                                            + '<li>Email: ' + stringFormat(details.Email) + ' </li>');
+                                    });
+                                };
+                            });
+                        }
+            </script>
+        }
+    </div>
+</div>

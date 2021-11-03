@@ -1,0 +1,72 @@
+﻿@model Bex.Models.KontaktDelatnost
+@{
+    Layout = null;
+}
+
+
+@using (Ajax.BeginForm("CreateDetailsDelatnostPartial", "Kontakt", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "createDelatnostPartial" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.KontaktId, new { Value = @ViewBag.KontaktId })
+
+    <div class="panel panel-default  ">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#tabDelatnost">Delatnost</a>
+                @if (@ViewBag.AddDelatnost)
+                {
+                    <span style="color:green;"> - Uspešno ste dodali podatke...</span>
+                }
+
+            </h4>
+        </div>
+        <div id="tabAdresa" class="panel-collapse collapse ">
+            <div class="panel-body">
+                <div class="container">
+                    <div class="container-fluid" style="margin-bottom:10px;">
+
+                        <!-- Breadcrumbs-->
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="../Kontakt">Kontakti</a>
+                            </li>
+                            <li class="breadcrumb-item active">Dodaj</li>
+                        </ol>
+
+                        <!-- Page Content -->
+                        <h3>Unos delatnosti za pravna lica</h3>
+                        <hr>
+                        <p>Unesite šifru i naziv delatnosti...</p>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Šifra</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.SifraDelatnosti, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SifraDelatnosti, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Naziv</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.NazivDelatnosti, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NazivDelatnosti, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <div class="btn-group pull-right ">
+                                <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,92 @@
+﻿@model Bex.Models.Cekovi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<div>
+
+    <script type="text/javascript">
+
+        var datumDospeca= $("#datDosp_"+@ViewBag.bankaId).val();
+        $('#tabCekovi_' +@ViewBag.bankaId).show();
+        var $tableCekovi = $('#tableCekovi_'+@ViewBag.bankaId);
+        $tableCekovi.bootstrapTable({
+            url: '/CekoviKasa/GetCekoviData?bankaId=' +@ViewBag.bankaId + '&datumDospeca=' + datumDospeca,
+            formatLoadingMessage: function () {
+                return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+            },
+                
+            formatNoMatches: function () {
+                return ' Nema podataka ';
+            }
+        });
+        
+
+
+
+        function dateFormat(value, row, index) {
+            if (value == null) {
+                return "";
+            }
+            else {
+                return moment(value).format('DD/MM/YYYY');
+            }
+            
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+        function dateTimeFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY HH:MM:SS');
+        }
+
+       
+    </script>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-success" id="tabCekovi_@ViewBag.bankaId">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <input type="hidden" value="@ViewBag.datumDospeca" id="datDosp_@ViewBag.bankaId" />
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabCekovi_@ViewBag.bankaId">Čekovi</a>
+                </h4>
+            </div>
+            <div  class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table id="tableCekovi_@ViewBag.bankaId">
+
+                        <thead>
+                            <tr>
+                                <th data-field="DatumDospeca" data-formatter="dateFormat" data-sortable="true">Dat. dospeća</th>
+                                <th data-field="BrojCeka" data-sortable="true">Broj čeka</th>
+                                <th data-field="Iznos" data-formatter="intFormat" data-sortable="true">Iznos</th>
+                                <th data-field="TekuciRacun" data-sortable="true">Račun</th>
+                                <th data-field="BankaNaziv" data-sortable="true">Banka</th>
+                                <th data-field="BankaTekuciRacun">Račun banke</th>
+                                <th data-field="DatumUnosa" data-formatter="dateFormat" data-sortable="true">Dat. unosa</th>
+                                <th data-field="UserUneo" data-sortable="true">Uneo</th>
+                                <th data-field="BrojSpecifikacije" data-sortable="true">Specifikacija</th>
+                                <th data-field="InternoRazduzen" data-formatter="formatBooleanYesNo" class="text-center">Interno raz.</th>
+                                <th data-field="DatumRealizacije" data-formatter="dateFormat" data-sortable="true">Dat. realizacije</th>
+                                <th data-field="ZastupnikNaziv">Zastupnik</th>
+                                <th data-field="ProvizijaIznos" data-formatter="intFormat">Provizija</th>
+                                <th data-field="Napomena">Napomena</th>
+                                <th data-field="Storno" data-formatter="formatBooleanYesNo">Storniran</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>       
+
+    </div>
+</div>
+
+

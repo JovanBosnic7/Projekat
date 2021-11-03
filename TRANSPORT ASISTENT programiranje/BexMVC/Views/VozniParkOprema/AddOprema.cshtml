@@ -1,0 +1,99 @@
+﻿@model BexMVC.ViewModels.VozniParkOpremaIndexData
+
+@{
+    ViewBag.Title = "Oprema za vozilo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Dodavanje opreme za vozilo</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../VozniPark">Vozni park</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj opremu </li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Pregled sve opreme za vozilo</h3>
+                            <hr>
+                            <p>Označite željenu opremu i kliknite na sačuvaj</p>
+
+                        </div>
+
+
+
+                        <div class="table-responsive" style="min-height:300px;">
+                            <table id="table"
+                                   data-pagination="true"
+                                   data-side-pagination="server"
+                                   data-page-list="[10, 25, 50, 100]"
+                                   data-show-footer="true"
+                                   data-filter-control="true"
+                                   data-toolbar="#toolbar">
+                                <thead>
+                                    
+                                    <tr>
+                                        <th data-checkbox="true"></th>
+                                        <th data-field="PodtipNaziv" data-sortable="true" data-filter-control="input">Naziv</th>
+                                        <th data-field="TipNaziv" data-sortable="true" data-filter-control="input">Tip</th>
+                                        <th data-field="GrupaNaziv" data-sortable="true" data-filter-control="input">Grupa</th>
+
+                                    </tr>
+
+                                </thead>
+
+                            </table>
+
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right">
+                                    <button id="@ViewBag.VpId" class="btn btn-default btn-xs addOpremaToVozilo">
+                                        Sačuvaj
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+                                @section Scripts {
+                                    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+                                    @Scripts.Render("~/bundles/tableConfig")
+
+                                    <script type="text/javascript">
+                                        var $table = $('#table');
+
+                                        var $addOprema = $('.addOpremaToVozilo');
+
+                                        $table.configTable('/VozniParkOprema/GetOpremaData');
+
+                                        $(document).ready(function () {
+
+                                            $table.optionsTable();
+                                            $addOprema.dropDownChoice('AddOpremaToVozilo', "Uspešno ste dodali opremu za vozilo!");
+
+
+                                        });
+
+                                    </script>
+                                }
+                            </div>
+                        </div>

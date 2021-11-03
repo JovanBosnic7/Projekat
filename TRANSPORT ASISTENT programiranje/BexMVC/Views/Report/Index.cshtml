@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Choose Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">IZVESTAJI </h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-md-right">
+                @Html.ActionLink("PrintReport", "PrintReport", "Report")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="reportName" placeholder="Report Name" value="SpecifikacijaRazduzenjaReport">
+            </div>
+            <div class="col-md-3">
+                <button type="button" id="btnSearch" class="btn btn-raised btn-primary btn-block">Get Report</button>
+            </div>
+        </div>
+
+        <div class="row" id="divReport">
+
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <script>
+                $(function () {
+                    $('#btnSearch').click(function () {
+                        var searchText = $("#reportName").val();
+
+                        var src = '../../Reports/BaseReport.aspx?';
+                        src = src + "reportName=" + searchText
+
+                        var iframe = '<iframe id="reportFrame" width="1000" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                        $("#divReport").html(iframe);
+                    });
+                });
+            </script>
+        }
+
+    </div>
+</div>

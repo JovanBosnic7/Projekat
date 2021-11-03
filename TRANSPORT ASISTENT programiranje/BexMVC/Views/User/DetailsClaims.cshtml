@@ -1,0 +1,47 @@
+﻿@model IEnumerable<System.Security.Claims.Claim>
+
+@{
+    ViewBag.Title = "Claims";
+    Layout = null;
+
+}
+
+<div>
+    <script type="text/javascript">
+
+        var userID = $('#UserId').val();
+        var $table0 = $('#tableClaims_' + userID);
+        $table0.bootstrapTable({
+            url: '/User/GetClaimsData?userId=' + userID,
+            formatNoMatches: function () {
+                return ' Nema podataka ';
+            }
+        });
+    </script>
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabClaims_@ViewBag.UserId">Prava pristupa</a>
+                </h4>
+            </div>
+            <div id="tabClaims_@ViewBag.UserId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableClaims_@ViewBag.UserId">
+                        <input type="hidden" id="UserId" value="@ViewBag.UserId" />
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="ClaimType">Type</th>
+                                <th data-field="ClaimValue">Value</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

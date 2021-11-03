@@ -1,0 +1,210 @@
+﻿@model DDtrafic.ViewModels.PutniNalogIndexData
+
+@{
+
+        ViewBag.Title = "Create";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Unos putnog naloga  <small>Evidencija putnih naloga</small></h1>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="../PutniNalog">Putni nalog</a>
+            </li>
+            <li class="breadcrumb-item active">Dodaj</li>
+        </ol>
+
+    </div>
+</div>
+<hr />
+
+<div class="row" style="background:#eee;padding:20px;">
+
+    @*@using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
+    @using (Html.BeginForm("Create", "PutniNalog", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.VpId, new { Value = ViewBag.VpId })
+        @Html.HiddenFor(model => model.VozacId, new { Value = ViewBag.ZaposleniId })
+
+        <div>
+            <label class="control-label col-sm-2" for="vozilo">Vozilo </label>
+            <div class="col-sm-10">
+                <input id="vozilo" class="form-control">
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2" for="vozac">Vozač</label>
+            <div class="col-sm-10">
+                <input id="vozac" class="form-control">
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Datum start</label>
+            <div class="col-sm-10">
+                <div class="'input-group'" type="text">
+                    @Html.TextBoxFor(model => model.DatumStart, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-start" })
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Datum stop</label>
+            <div class="col-sm-10">
+                <div class="'input-group'" type="text">
+                    @Html.TextBoxFor(model => model.DatumStop, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-stop" })
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Relacija</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Relacija, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Relacija, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Km start</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.KmStart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KmStart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Km stop</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.KmStop, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KmStop, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Napomena</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2"></label>
+            <div class="col-sm-10">
+                <div class="col-sm-4">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary pull-right " />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <script type="text/javascript">
+
+                $('.datepicker-dat-start, .datepicker-dat-stop').datepicker({ dateFormat: 'dd-mm-yy' });
+                $('.datepicker-dat-start, .datepicker-dat-stop').attr("autocomplete", "off");
+
+                $(document).ready(function () {
+
+
+                    $(".datepicker-dat-start").datepicker({
+                        onSelect: function (dateText) {
+                            alert("Selected date: " + dateText + ", Current Selected Value= " + this.value);
+                            $(this).change();
+                        }
+                    }).on("change", function () {
+                        $(".datepicker-dat-stop").datepicker("setDate", $(".datepicker-dat-kreiranja").val());
+                    });
+
+
+                    $('#showProgress').click(function () {
+                        $('#showProgress').hide();
+                        $('#progress').show();
+                    });
+
+                    $("#vozilo").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "../PutniNalog/GetVozila?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#VpId').val(ui.item.id);
+                        }
+                    });
+
+
+                    $("#vozac").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "../PutniNalog/GetZaposleni?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#VozacId').val(ui.item.id);
+                        }
+                    });
+
+                });
+
+
+                $.validator.methods.date = function (value, element) {
+                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+                }
+                function OnSuccess(response) {
+                    alert(response);
+                    window.close();
+                }
+
+                function OnFailure(response) {
+                    alert(response);
+                }
+
+                $("form").bind("keydown", function (e) {
+                    if (e.keyCode === 13) return false;
+                });
+              
+                $(function () {
+                    $.validator.methods.date = function (value, element) {
+                        if ($.browser.webkit) {
+                            //ES - Chrome does not use the locale when new Date objects instantiated:
+                            var d = new Date();
+
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                        }
+                        else {
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                        }
+                    };
+                });
+
+              
+
+    </script>
+}
+

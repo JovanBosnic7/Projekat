@@ -1,0 +1,92 @@
+﻿@model Bex.Models.Reon
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Izmena reona</h2>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Oznaka</label>
+                                            @Html.EditorFor(model => model.OznReona, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.OznReona, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Reon</label>
+                                            @Html.EditorFor(model => model.NazivReona, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NazivReona, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Region</label>
+                                            @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tip</label>
+                                            @Html.DropDownList("Tip", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Tip, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Bar kod</label>
+                                            @Html.EditorFor(model => model.BarKodReona, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.BarKodReona, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Km do reona</label>
+                                            @Html.EditorFor(model => model.KmDoReona, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.KmDoReona, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Optimalno km</label>
+                                            @Html.EditorFor(model => model.OptimalnaKilometraza, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.OptimalnaKilometraza, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="" id="Stornirano"> Stornirano
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Back to List", "../Reon")
+            </div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+    </div>
+</div>
+

@@ -1,0 +1,260 @@
+﻿@model Bex.Models.VozniPark
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Unos novog vozila</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../VozniPark">Vozni park</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Unos osnovnih podataka o vozilu</h3>
+                            <hr>
+                            <p>Izaberite model i unesite ostale karakteristike vozila</p>
+
+                        </div>
+                        @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.ModelId, new { id = "ModelId" })
+
+                            @*<input type="hidden" id="Aktivno" name="Aktivno">*@
+                            <input type="hidden" id="LinijskoVozilo" name="LinijskoVozilo">
+                            @*@Html.HiddenFor(model => model.ModelId)*@
+                            @*@Html.HiddenFor(model => model.SubVozacId)
+            @Html.HiddenFor(model => model.SubOdgovornoLiceId)*@
+
+                            <div>
+                                <label class="control-label col-sm-2">Garažni broj</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.GarazniBroj, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GarazniBroj, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Naziv vozila</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.NazivVozila, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NazivVozila, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Registracija</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Oznaka, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Oznaka, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Stara reg.</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.OznakaStara, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OznakaStara, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Registrovano</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumRegistracije, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-reg" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-widget">
+                                <label class="control-label col-sm-2" for="model">Model </label>
+                                <div class="col-sm-10">
+
+                                    <div class='input-group'>
+                                        <input id="model" class="form-control">
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Tip </label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.TipVozila, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.TipVozila, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Karakteristike</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("KarakteristikaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.KarakteristikaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Nabavna Km</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.KmNabavna, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.KmNabavna, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Boja</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("BojaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BojaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2">Limit KM</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.KmLimit, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.KmLimit, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="control-label col-sm-2" for="LinijskoVozilo">Linijsko</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="LinijskoCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div>
+                <label class="control-label col-sm-2" for="Aktivno">Aktivno</label>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <label class="form-check-label control-label">
+                            <input class="form-check-input" type="checkbox" value="" id="AktivnoCheck">
+                            <span class="form-check-sign">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>*@
+
+                            <div>
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" id="showProgress" />
+                                        <div id="progress" style="display:none;">
+                                            <button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif" /> Sacekajte...</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryDatePickerForm")
+            @Scripts.Render("~/bundles/jqueryval")
+
+            <script type="text/javascript">
+
+
+                $(document).ready(function () {
+
+                    $('.datepicker-dat-reg').datepicker(
+                        {
+                            dateFormat: 'dd-mm-yy'
+                        });
+                    $('.datepicker-dat-reg').attr("autocomplete", "off");
+
+                    $("#model").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "/VozniPark/GetModel?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#ModelId').val(ui.item.id);
+                            //console.log("Model ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+                        }
+                    });
+                    //$('#Aktivno').val($(this).is(':checked'))
+                    //$('#AktivnoCheck').change(function () {
+
+                    //    $('#Aktivno').val($(this).is(':checked'))
+
+                    //});
+                    $('#LinijskoVozilo').val($(this).is(':checked'))
+                    $('#LinijskoCheck').change(function () {
+
+                        $('#LinijskoVozilo').val($(this).is(':checked'))
+
+                    });
+
+                    $('#showProgress').click(function () {
+                        $('#showProgress').hide();
+                        $('#progress').show();
+
+                    });
+
+
+
+                })
+
+                
+
+            </script>
+
+
+
+        }
+    </div>
+    </div>

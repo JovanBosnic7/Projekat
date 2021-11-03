@@ -1,0 +1,106 @@
+﻿@model Bex.Models.ZaposleniPlata
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Evidencija plata</h1>
+            </div>
+        </div>
+        <div>
+            <h4>Zaposleni : @ViewBag.ZaposleniNaziv</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Firma
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FirmaPlataId)
+                </dd>
+
+                <dt>
+                    Koeficijent
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataKeoficijent)
+                </dd>
+
+                <dt>
+                    Racun
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataNaRacun)
+                </dd>
+
+                <dt>
+                    Doprinosi
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataDoprinosi)
+                </dd>
+
+                <dt>
+                    Bruto
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataBruto)
+                </dd>
+
+                <dt>
+                    Minimalac
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataMinimalac)
+                </dd>
+
+                <dt>
+                    Kes
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataKes)
+                </dd>
+
+                <dt>
+                    Neto
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataNeto)
+                </dd>
+
+                <dt>
+                    Ukupno
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataUkupno)
+                </dd>
+
+                <dt>
+                    Napomena
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlataNapomena)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "../Zaposleni")
+        </p>
+    </div>
+</div>

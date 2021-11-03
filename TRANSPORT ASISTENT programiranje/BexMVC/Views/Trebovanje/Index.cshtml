@@ -1,0 +1,210 @@
+﻿
+@model BexMVC.ViewModels.TrebovanjeIndexData
+
+@{
+    ViewBag.Title = "Trebovanje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    @*<h1 class="page-header">Evidencija kontakti</h1>*@
+                    <h2 class="card-title" style="color:#666;">Evidencija trebovanja</h2>
+                    <p class="card-category">Pregled svih trebovanja</p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar">
+
+                        <button id="create" class="btn btn-primary">
+                            @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                        </button>
+                        @*<button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>*@
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="opcije" disabled>
+                                Opcije
+
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                @*<li id="zona">
+                                    @Html.ActionLink("Ubaci u zonu", "")
+                                </li>*@
+                                @*<li id="alarm">
+                                    <a href="#">Alarm</a>
+                                </li>*@
+                                <li id="posalji">
+                                    <a href="#">Pošalji trebovano</a>
+                                </li>
+                            </ul>
+                        </div>
+                        @*<div class="btn-group ">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="vpOprema" disabled>
+                                Unos opreme
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.VpOprema)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="opremaId"> @item.NazivTipa</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>*@
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               data-detail-view="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+                                <tr>
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    @*<th>
+            @Html.DropDownList("Marka", (SelectList)ViewBag.Marka, "    ", new { @class = "form-control input-sm" })
+        </th>
+        <th>
+            @Html.DropDownList("Model", (SelectList)ViewBag.Model, "    ", new { @class = "form-control input-sm" })
+        </th>
+        <th>
+            <input name="search" id="Sasija" class="form-control input-sm" type="text" placeholder="Search">
+        </th>*@
+                                    <th>
+                                        <input name="search" id="IdTrebovanja" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="DatumUnosa" class="form-control input-sm datepicker-dat-unosa" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Trebuje" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Adresa" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="ProfitniCentar" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Uneo" class="form-control input-sm" type="text" placeholder="Search" data-visible="false">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="DatumIzdavanja" class="form-control input-sm datepicker-dat-izdavanja" type="text" placeholder="Search" >
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Izdao" class="form-control input-sm" type="text" placeholder="Search" data-visible="false">
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    @*<th data-field="Id" data-visible="false">Id</th>*@
+                                    <th data-field="IdTrebovanja" data-sortable="true">Broj</th>
+                                    <th data-field="DatumUnosa" data-formatter="dateFormat" >Datum Unosa</th>
+                                    <th data-field="Trebuje" data-footer-formatter="totalNameFormatter">Trebuje</th>
+                                    <th data-field="Adresa" data-footer-formatter="totalNameFormatter">Adresa</th>
+                                    <th data-field="ProfitniCentar" data-footer-formatter="totalNameFormatter">Profitni Centar</th>
+                                    <th data-field="Uneo" data-footer-formatter="totalNameFormatter">Uneo</th>
+                                    <th data-field="DatumIzdavanja" data-formatter="dateFormat" >Datum Izdavanja</th>
+                                    <th data-field="Izdao" data-footer-formatter="totalNameFormatter">Izdao</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+        <script type="text/javascript">
+                var $table = $('#table');
+                var $remove = $('#remove'),
+                    $edit = $('#edit'),
+                    //$zona = $('#zona'),
+                    //$alarm = $('#alarm'),
+                    //$gallery = $('#gallery'),
+                    //$vpOprema = $('#vpOprema'),
+                    $opcije = $('#opcije');
+
+                @*var $statusId = @ViewBag.StatusId;
+                
+                if ($statusId == 1) {
+                    $table.addFilter("Statusi", "Aktivno");
+                } else if ($statusId == 2) {
+                    $table.addFilter("Statusi", "Servis");
+                }*@
+
+
+                $table.configTable('/Trebovanje/GetTrebovanje');
+                $table.hideColTable();
+
+
+
+                $('.datepicker-dat-unosa, .datepicker-dat-izdavanja').datepicker();
+                $('.datepicker-dat-unosa, .datepicker-dat-izdavanja').attr("autocomplete", "off");
+
+
+                $(document).ready(function () {
+
+                    var $checkTableElements = [$edit, $opcije];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    var $checkMoreTableElements = [$vpOprema];
+                    $table.checkMoreOptionsTable($checkMoreTableElements);
+
+                    $table.optionsTable();
+
+                    $('.datepicker-dat-unosa').on("change", function () {
+
+                        $('.datepicker-dat-unosa').datepicker('setDate', this.value);
+
+                        addSearchTerms($table);
+
+                    })
+
+                    $('.datepicker-dat-izdavanja').on("change", function () {
+
+                        $('.datepicker-dat-izdavanja').datepicker('setDate', this.value);
+
+                        addSearchTerms($table);
+
+                    })
+
+
+                    $edit.clickOptions('Trebovanje/Edit?id=');
+                    //$zona.clickOptions('VozniPark/DodajZonu?id=');
+                    //$alarm.clickOptions('VozniPark/CreateAlarm?vozniParkId=');
+                    //$gallery.clickOptions('../GalleryAdmin/Create?tipId=2&isProfile=0&id=');
+
+                    //$('.opremaId').dropDownChoice('./CreateAlarmOprema', 'Uspesno ste dodali opremu!');
+
+                    //$table.detailsTable('VozniPark/DetailsDnevnik');
+
+                });
+
+
+
+
+
+        </script>
+        }
+    </div>
+</div>

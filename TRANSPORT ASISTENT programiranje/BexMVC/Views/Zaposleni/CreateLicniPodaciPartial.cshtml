@@ -1,0 +1,106 @@
+﻿@model Bex.Models.Zaposleni
+
+
+@{
+    Layout = null;
+}
+
+
+
+@using (Ajax.BeginForm("CreateLicniPodaciPartial", "Zaposleni", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "createLicniPodaci" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id, new { Value = @ViewBag.ZaposleniId })
+
+
+    <input type="hidden" id="InvalidnoLice" name="InvalidnoLice">
+
+
+    <div class="panel panel-default  " id="div_licni_podaci">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#tabLicniPodaci">Lični podaci</a>
+                @if (@ViewBag.AddLicniPodaci)
+                {
+                    <span style="color:green;"> - Uspešno ste dodali podatke...</span>
+                }
+               
+            </h4>
+        </div>
+        <div id="tabLicniPodaci" class="panel-collapse collapse ">
+            <div class="panel-body">
+                <div class="container">
+                    <div class="container-fluid" style="margin-bottom:10px;">
+
+                        <!-- Breadcrumbs-->
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="../Zaposleni">Zaposleni</a>
+                            </li>
+                            <li class="breadcrumb-item active">Dodaj</li>
+                        </ol>
+
+                        <!-- Page Content -->
+                        <h3>Unos ličnih podataka vezanih za zaposlenog</h3>
+                        <hr>
+                        <p>Unesite ime roditelja, slava...</p>
+
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Imeroditelja">Ime roditelja</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.ImeRoditelja, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ImeRoditelja, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="DatumLekarskog">Datum Lekarskog</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.DatumLekarskog, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-lekarskog" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="Slava">Slava</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("SlavaId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SlavaId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="InvLiceCheck">Inv. lice</label>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <label class="form-check-label control-label">
+                                    <input class="form-check-input" type="checkbox" @( (ViewBag.HasInvalidnoLice) ? (Convert.ToBoolean(Model.InvalidnoLice) == true ? "checked='checked'" : string.Empty) : string.Empty ) value="" id="InvLiceCheck">
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <div class="btn-group pull-right ">
+                                <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+}

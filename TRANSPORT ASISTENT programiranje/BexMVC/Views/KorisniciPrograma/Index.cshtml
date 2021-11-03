@@ -1,0 +1,130 @@
+﻿@model Bex.Models.KorisniciPrograma
+
+@{
+    ViewBag.Title = "Korisnici programa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    @*<h1 class="page-header">Evidencija kontakti</h1>*@
+                    <h2 class="card-title" style="color:#666;">Evidencija korisnika programa</h2>
+                    <p class="card-category">Pregled svih korisnika programa - zaposleni i klijenti</p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+                        <button id="create" class="btn btn-primary">
+                            @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        <button id="claim" class="btn btn-primary" disabled>
+                            Dodaj prava
+                        </button>
+                    </div>
+
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               @*data-query-params="queryParams"*@
+                               data-show-columns="true"
+                               data-show-refresh="true"
+                               data-show-export="true"
+                               data-detail-view="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-show-footer="true"
+                               data-filter-control="true" 
+                               data-toolbar="#toolbar">
+                            <thead>
+                                @*<tr>
+
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                        <input name="search" id="KontaktNaziv" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="KorisnickoIme" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="BarKod" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Region", (SelectList)ViewBag.Regioni, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th class="text-center">
+                                        <select name="search" id="Klijent" class="form-control input-sm">
+                                            <option value="">Sve</option>
+                                            <option value="1">Da</option>
+                                            <option value="0">Ne</option>
+                                        </select>
+                                    </th>
+                                    <th class="text-center">
+                                        <select name="search" id="Aktivan" class="form-control input-sm">
+                                            <option value="">Sve</option>
+                                            <option value="1">Da</option>
+                                            <option value="0">Ne</option>
+                                        </select>
+                                    </th>
+
+                                </tr>*@
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="KontaktNaziv" data-sortable="true" data-filter-control="input">Korisnik</th>
+                                    <th data-field="KorisnickoIme" data-sortable="true" data-filter-control="input">Korisnicko ime</th>
+                                    <th data-field="BarKod" data-sortable="true" data-filter-control="input">Barkod</th>
+                                    <th data-field="RegionNaziv" data-sortable="true" data-filter-control="input">Region</th>
+                                    <th data-field="Klijent" data-sortable="true" data-formatter="formatBooleanYesNo" data-filter-control="select" data-filter-data="var:boolean_DaNe">Klijent</th>
+                                    <th data-field="Aktivan" data-sortable="true" data-formatter="formatBooleanYesNo" data-filter-control="select" data-filter-data="var:boolean_DaNe">Aktivan</th>
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $edit = $('#edit'),
+                    $claim = $('#claim');
+
+                var boolean_DaNe = {
+                    "2": "Ne",
+                    "1": "Da",
+                    "": "Sve"
+                };
+
+                $table.configTable('/KorisniciPrograma/GetKorisniciData');
+
+                $(document).ready(function () {
+
+                    var $checkTableElements = [$edit, $claim];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+                    $edit.clickOptions('KorisniciPrograma/Edit?id=');
+                    $claim.clickOptions('KorisniciPrograma/AddClaims?id=');
+
+                    $table.detailsTable('KorisniciPrograma/DetailsClaims');
+
+                });
+
+            </script>
+        }
+    </div>
+</div>

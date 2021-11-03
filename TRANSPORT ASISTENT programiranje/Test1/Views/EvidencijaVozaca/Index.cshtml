@@ -1,0 +1,120 @@
+﻿
+@model DDtrafic.ViewModels.EvidencijaVozacaIndexData
+
+@{
+    ViewBag.Title = "Evidencija";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Evidencija</h1>
+        <p>Evidencija radnog vremena vozaca</p>
+    </div>
+</div>
+<hr />
+<div class="row" style="background:#eee;">
+    <div class="card">
+        <div class="card-body">
+            <div id="toolbar" class="columns columns-left btn-group ">
+
+                <button id="add" class="btn btn-primary" disabled>
+                    Dodaj
+                </button>
+                <button id="edit" class="btn btn-primary" disabled>
+                    Izmeni
+                </button>
+                <button id="delete" class="btn btn-primary" disabled>
+                    Briši
+                </button>
+                <button id="importEvidencija" class="btn btn-primary">
+                    Uvezi evidenciju
+                </button>
+            </div>
+
+
+
+            <div class="table-responsive" style="min-height:300px;">
+                <table id="table"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       data-query-params="queryParams"
+                       data-show-refresh="true"
+                       data-show-columns="true"
+                       data-show-export="true"
+                       data-filter-control="true"
+                       data-detail-view="true"
+                       data-page-list="[10, 25, 50, 100]"
+                       data-toolbar="#toolbar">
+
+                    <thead>
+                        <tr>
+                            <th data-checkbox="true"></th>
+                            <th data-field="Vozac" data-sortable="true" data-filter-control="input">Vozač</th>
+                            <th data-field="Dan" data-sortable="true" data-filter-control="input">Dan</th>
+                            <th data-field="Datum" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum</th>
+                            <th data-field="VremePocetka" data-sortable="true" data-filter-control="input">V.početka</th>
+                            <th data-field="VremeZavrsetka" data-sortable="true" data-filter-control="input">V.završetka</th>
+                            <th data-field="RadniDan" data-sortable="true" data-filter-control="input">Radni dan</th>
+                            <th data-field="DnevnoRadnoVreme" data-sortable="true" data-filter-control="input">Dnevno RV</th>
+                            <th data-field="UpravljanjeVozilom" data-sortable="true" data-filter-control="input">Upravljanje</th>
+                            <th data-field="OstaloRadnoVreme" data-sortable="true" data-filter-control="input">Ostalo RV</th>
+                            <th data-field="VremeRaspolozivosti" data-sortable="true" data-filter-control="input">Vr. raspoloživosti</th>
+                            <th data-field="VremeOdmora" data-sortable="true" data-filter-control="input">Vr. odmora</th>
+                            <th data-field="PlacenoOdsustvo" data-sortable="true" data-filter-control="input">Pl. odsustvo</th>
+                            <th data-field="NocniRad" data-sortable="true" data-filter-control="input">Noćni rad</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
+
+    <script type="text/javascript">
+        var $table = $('#table');
+        var $remove = $('#remove'),
+            $add = $('#add'),
+            $edit = $('#edit'),
+            $import = $('#importEvidencija'),
+            $delete = $('#delete');
+
+        $table.configTable('EvidencijaVozaca/GetEvidencija');
+        $table.hideColTable();
+
+        $(document).ready(function () {
+
+            var $checkTableElements = [$edit, $delete];
+            $table.checkOptionsTable($checkTableElements);
+
+            $table.optionsTable();
+
+            $edit.clickOptions('EvidencijaVozaca/Edit?id=');
+            $delete.clickOptions('EvidencijaVozaca/Delete?id=', false);
+            $import.clickButtonWithoutParams('EvidencijaVozaca/Import');
+
+        });
+
+        function getIdSelections() {
+            return $.map($table.bootstrapTable('getSelections'), function (row) {
+                var paramsSelection = { vozniParkId: row.Id };
+                return paramsSelection
+            });
+        }
+
+
+    </script>
+}
+@*</div>
+    </div>*@

@@ -1,0 +1,823 @@
+﻿@model BexMVC.ViewModels.MagacinDetailsIndexData
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h2 class="card-title" style="color:#666;">Razduzenje kurira @Model.KurirNaziv na reonu @Model.ReonNaziv</h2>
+
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>Ukupno obavljenih dostava: <b> @Model.UkupnoObavljenihDostavaDanas od @Model.UkupnoDostavaNareonu </b> na reonu.</td>
+                                    <td>Ukupno obavljenih preuzimanja <b> @Model.UkupnoObavljenihPreuzimanjaDanas od @Model.UkupnoPreuzimanjaNareonu </b> na reonu.</td>
+                                    <td>Ukupan iznos pazara: <b>@Model.UkupnoPazara </b></td>
+                                    <td>Ukupan iznos otkupa: <b>@Model.UkupnoOtkupa</b></td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-group">
+                            @using (Html.BeginForm("SaveRazduzenje", "Magacin", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <input name="reonId" id="reonId" class="form-control input-sm" type="hidden" value="@ViewBag.ReonId">
+                                <input name="kurirId" id="kurirId" class="form-control input-sm" type="hidden" value="@ViewBag.KurirId">
+                                <input name="zonaId" id="zonaId" class="form-control input-sm" type="hidden" value="@ViewBag.ZonaId">
+                                
+                                <div class="btn-group ">
+                                    <label id="lblRazduzenje">Unesite iznos za razduzenje:</label>
+                                </div>
+                                <div class="btn-group ">
+                                    <input name="UkupnoRazduzio" id="ukupnoRazduzio" class="form-control input-sm" type="text" placeholder="Unesite iznos" disabled>
+                                </div>
+                                <div class="btn-group ">
+                                    <input type="submit" value="Razduzi" class="btn btn-default btn-sm" id="btnRazduzi" disabled />
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <div id="toolbar">
+
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="napomeneDostave">
+                                @*<i class="glyphicon glyphicon-list-alt"></i>*@
+                                Napomene za dostave
+
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.NapomeneDostave)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="napomenaDostave"> @item.NazivPodTipa2</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="napomenePreuzimanja">
+                                @*<i class="glyphicon glyphicon-list-alt"></i>*@
+                                Napomene za preuzimanja
+
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.NapomenePreuzimanja)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="napomenaPreuzimanje"> @item.NazivPodTipa2</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="napomeneOtkupnine">
+                                @*<i class="glyphicon glyphicon-list-alt"></i>*@
+                                Napomene za otkupnine
+
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.NapomeneOtkupnine)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="napomenaOtkupnine"> @item.NazivPodTipa2</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="napomeneOtpremnice">
+                                @*<i class="glyphicon glyphicon-list-alt"></i>*@
+                                Napomene za T dokumenta
+
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.NapomeneOtpremnice)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="napomenaOtpremnice"> @item.NazivPodTipa2</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="prijavaReklamacija">
+                                @*<i class="glyphicon glyphicon-list-alt"></i>*@
+                                Reklamacija
+
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.Reklamacija)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="prijavaReklamacija"> @item.Naziv</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                        @*<div class="btn-group ">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="promenaReonaZadatka">
+                                Promena reona
+
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                @foreach (var item in ViewBag.PromenaReona)
+                                {
+                                    <li>
+                                        <a href="#" id="@item.Id" class="promenaReona"> @item.OznReona</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>*@
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                @*<i class="glyphicon glyphicon-print"></i>*@
+                                Stampa
+
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                <li>
+                                    <a href="#" id="btnSearch">Specifikacija razduzenja</a>
+                                    <input id="reportName" value="SpecifikacijaRazduzenjaReport" type="hidden" />
+                                    <input id="kurirId" value="@ViewBag.KurirId" type="hidden" />
+                                    <input id="kurirNaziv" value="@Model.KurirNaziv" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch2">Potvrda za razduzenje</a>
+                                    <input id="reportName2" value="PotvrdaRazduzenjaReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch3">Koverte za zbirne otkupe</a>
+                                    <input id="reportName3" value="KoverteZaZbirneOtkupeReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch4">Specifikacija zbirnih otkupa</a>
+                                    <input id="reportName4" value="SpecifikacijaZbirnihOtkupaReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch5">Kurirska lista dostava</a>
+                                    <input id="reportName5" value="KurirskaListaDostavaReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch6">Spisak dostava</a>
+                                    <input id="reportName6" value="SpisakDostavaReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch7">Spisak otkupnina</a>
+                                    <input id="reportName7" value="SpisakOtkupninaReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch8">Spisak T zadataka</a>
+                                    <input id="reportName8" value="SpisakTzadatakaReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch9">Koverte za pojedinačne otkupe</a>
+                                    <input id="reportName9" value="KovertaZaOtkupninuReport" type="hidden" />
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" id="btnSearch10">Koverte za T dokumenta</a>
+                                    <input id="reportName10" value="KovertaZaDokumentReport" type="hidden" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-default" id="reportDiv">
+                        <button type="button" class="close" id="btnCloseReportDiv">zatvori ×</button>
+                        <div class="row" id="divReport">
+
+                        </div>
+                    </div>
+
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               @*data-show-columns="true"*@
+                               @*data-show-export="true"*@
+                               @*data-export-data-type="selected"*@
+                               @*data-export-types="['csv', 'excel', 'pdf']"*@
+                               data-detail-view="true"
+                               @*data-detail-formatter="detailFormatter"*@
+                               @*data-striped="true"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+                                @*<tr>
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                       
+                                        @Html.EnumDropDownListFor(  x => x.StatusZadatka,
+                                                                   " ",
+                                                                   new { @class = "form-control input-sm",  @id= "StatusZadatka" })
+                                    </th>
+                                    <th>
+                                        <input type='text' id="PosiljkaId" placeholder="Search" class="form-control input-sm" />
+                                    </th>
+                                    <th>
+                                        
+                                        @Html.EnumDropDownListFor(  x => x.TipZadatka,
+                                                                    " ",
+                                                                    new { @class = "form-control input-sm", @id= "TipZadatka" })
+                                    </th>
+                                    <th>
+                                        <input name="search" id="KlijentDetails" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>                                    
+                                    <th>
+                                        <input name="search" id="Reon" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="NapomenaZadatak" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+
+
+                                    <th>
+                                        <input name="search" id="DatumObavljanja" type="text" placeholder="Izaberite datum" class="form-control input-sm datepicker-dat-obavljanja">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="VremeObavljanja" class="form-control input-sm" type="text" placeholder="Search" disabled>
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Izvrsio" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Aktuelan" type="text" placeholder="Izaberite datum" class="form-control input-sm datepicker-dat-aktuelan">
+                                    </th>
+                                </tr>*@
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="StatusZadatka" data-formatter="statusFormat" data-sortable="true" data-filter-control="input">Status</th>
+                                    <th data-field="PosiljkaId" data-formatter="DetailsPosiljkeLink" data-sortable="true" data-filter-control="input">Posiljka</th>
+                                    <th data-field="TipZadatka" data-sortable="true" data-filter-control="input">Tip</th>
+                                    <th data-field="KlijentDetails" data-sortable="true" data-filter-control="input">Klijent</th>
+                                    @*<th data-field="KontaktOsoba">Kontakt</th>
+        <th data-field="KontaktTel">Telefon 1</th>
+        <th data-field="KontaktTel2">Telefon 2</th>*@
+                                    <th data-field="Reon" data-sortable="true" data-filter-control="input">Reon</th>
+                                    <th data-field="NapomenaZadatak" data-sortable="true" data-filter-control="input">Napomena</th>
+
+
+                                    <th data-field="DatumObavljanja" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. izvrsenja</th>
+                                    <th data-field="VremeObavljanja" data-formatter="timeFormat" data-sortable="true" data-filter-control="input">Vr. izvrsenja</th>
+                                    <th data-field="Izvrsio" data-sortable="true" data-filter-control="input">Izvrsio</th>
+                                    <th data-field="Aktuelan" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Aktuelan od</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+                        <script type="text/javascript">
+                var $table = $('#table');
+                var $search = $('#table #search');
+                var $ok = $('#ok');
+                var pageSize = 10;
+                var pageNumber = 1;
+                //var searchText = "";
+                //var searchColumn = "";
+                var sortColumn = "";
+                var sortOrder = "";
+                var searchArray = [];
+                var dataAll = [];
+
+                //var searchTerms = "";
+                //var searchConcatenate = "";
+@*var array = @Html.Raw(Json.Encode(@Model.ListaZadatakaRazduzenjaKurira));
+                for (var i = 0; i < array.length; i++) {
+                    console.log(array[i]);
+
+    }*@
+
+
+                $table.bootstrapTable({
+                    url: '/Magacin/GetZadaciRazduzenjeDetailsData',
+                    formatLoadingMessage: function () {
+                        return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+                    },
+                    classes: 'table-no-bordered table-sm table-hover'
+                });
+
+
+
+                //$('.datepicker-dat-obavljanja,.datepicker-dat-aktuelan').datepicker();
+                //$(".datepicker-dat-obavljanja,.datepicker-dat-aktuelan").attr("autocomplete", "off");
+
+                            $(document).ready(function () {
+                                $("#reportDiv").hide();
+                                $("#lblRazduzenje").hide();
+
+
+                                if (@Model.CountBezStatusa == 0) {
+                                    $('#ukupnoRazduzio').removeAttr('disabled');
+                                    $('#btnRazduzi').removeAttr('disabled');
+                                    $("#lblRazduzenje").show();
+                                }
+                                $('#btnSearch').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName").val();
+                                    var kurirId = $("#kurirId").val();
+                                    var kurirNaziv = $("#kurirNaziv").val();
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+                                    src = src + "&kurirNaziv=" + kurirNaziv
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+
+                                $('#btnSearch2').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName2").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+
+                                $('#btnSearch3').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName3").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+
+                                $('#btnSearch4').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName4").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+
+                                $('#btnSearch5').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName5").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+                                $('#btnSearch6').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName6").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+                                $('#btnSearch7').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName7").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+                                $('#btnSearch8').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName8").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+                                $('#btnSearch9').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName9").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+                                $('#btnSearch10').click(function () {
+                                    $("#reportDiv").show();
+                                    var reportName = $("#reportName10").val();
+                                    var kurirId = $("#kurirId").val();
+
+
+                                    var src = '../../Reports/BaseReport.aspx?';
+                                    src = src + "reportName=" + reportName
+                                    src = src + "&kurirId=" + kurirId
+
+
+                                    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                                    $("#divReport").html(iframe);
+                                });
+
+                                $('#btnCloseReportDiv').click(function () {
+                                    $("#reportDiv").hide();
+                                });
+
+
+                                //$('.datepicker-dat-obavljanja,.datepicker-dat-aktuelan').on("change", function () {
+
+                                //    $(this).datepicker('setDate', this.value);
+
+                                //    addSearchTerms($table);
+
+                                //});
+
+                                $table.on('check.bs.table uncheck.bs.table ' +
+                                    'check-all.bs.table uncheck-all.bs.table', function () {
+
+                                        /* ako selektuje P zadatak dugme napomene za dostavu je disable i obrnuto */
+                                        var ids = getIdSelections();
+                                        for (var i = 0; i <= ids.length - 1; i++) {
+                                            if (ids[i].tipZadatka == "P") {
+                                                $('#napomeneDostave').attr('disabled', 'disabled');
+                                                $('#prijavaReklamacija').attr('disabled', 'disabled');
+                                                $('#napomeneOtkupnine').attr('disabled', 'disabled');
+                                                $('#napomeneOtpremnice').attr('disabled', 'disabled');
+                                            }
+                                            else if ((ids[i].tipZadatka == "D") || (ids[i].tipZadatka == "V")) {
+                                                $('#napomenePreuzimanja').attr('disabled', 'disabled');
+                                                //$('#prijavaReklamacija').attr('disabled', 'disabled');
+                                                $('#napomeneOtkupnine').attr('disabled', 'disabled');
+                                                $('#napomeneOtpremnice').attr('disabled', 'disabled');
+                                                }
+                                            else if (ids[i].tipZadatka == "N") {
+                                                $('#napomenePreuzimanja').attr('disabled', 'disabled');
+                                                $('#prijavaReklamacija').attr('disabled', 'disabled');
+                                                $('#napomeneDostave').attr('disabled', 'disabled');
+                                                $('#napomeneOtpremnice').attr('disabled', 'disabled');
+                                            }
+                                            else if (ids[i].tipZadatka == "T") {
+                                                $('#napomenePreuzimanja').attr('disabled', 'disabled');
+                                                $('#prijavaReklamacija').attr('disabled', 'disabled');
+                                                $('#napomeneDostave').attr('disabled', 'disabled');
+                                                $('#napomeneOtkupnine').attr('disabled', 'disabled');
+                                            }
+                                        }
+                                        /* ponisti disable ako nista nije selektovano */
+                                        if (ids.length == 0) {
+                                            $('#napomeneDostave').removeAttr('disabled');
+                                            $('#napomenePreuzimanja').removeAttr('disabled');
+                                            $('#napomeneOtkupnine').removeAttr('disabled');
+                                            $('#prijavaReklamacija').removeAttr('disabled');
+                                            $('#napomeneOtpremnice').removeAttr('disabled');
+                                        }
+
+                                    });
+
+                                $table.on('page-change.bs.table', function (e, number, size) {
+                                    pageNumber = number;
+                                    pageSize = size;
+
+                                    $table.bootstrapTable('refresh');
+                                    $table.bootstrapTable("showLoading");
+
+
+                                });
+
+                                $table.on('sort.bs.table', function (order, name) {
+
+                                    sortColumn = name;
+
+                                });
+
+                                $("#table select").change(function () {
+
+                                    addSearchTerms($table);
+
+                                });
+
+                                $("#table input").keypress(function (event) {
+                                    if (event.which == 13) {
+
+                                        event.preventDefault();
+                                        addSearchTerms($table);
+                                    }
+
+                                });
+
+                                $('#toolbar').find('select').change(function () {
+                                    $('#table').bootstrapTable('destroy').bootstrapTable({
+                                        exportDataType: $(this).val()
+                                    });
+                                });
+
+
+                                $('.napomenaDostave, .napomenaPreuzimanje, .napomenaOtkupnine, .napomenaOtpremnice').click(function () {
+                                    var ids = getIdSelections();
+
+                                    var napomenaId = $(this).attr('id');
+
+                                    var postData = { reonId: @ViewBag.ReonId, kurirId:@ViewBag.KurirId, napomenaId: napomenaId, selectedValues: ids };
+                                    //console.log(JSON.stringify(postData));
+                                    $.ajax({
+                                        url: "./UpisiNapomenu",
+                                        type: 'POST',
+                                        dataType: "json",
+                                        traditional: true,
+                                        data: JSON.stringify(postData),
+                                        contentType: "application/json; charset=utf-8",
+                                        success: function (data) {
+                                            alert("Uspesno ste upisali napomenu!");
+                                            location.reload();
+                                        },
+                                        error: function (xhr, textStatus, error) {
+                                            //var err = eval("(" + xhr.responseText + ")");
+                                            console.log(xhr.statusText);
+                                            console.log(textStatus);
+                                            console.log(error);
+                                            //console.log(eee);
+                                            //alert('Ajax error!' + eee);
+                                        }
+                                    });
+                                });
+
+                                 $('.prijavaReklamacija').click(function () {
+                                    var ids = getIdSelections();
+
+                                    var podTipId = $(this).attr('id');
+
+                                        var postData = { reonId: @ViewBag.ReonId, kurirId:@ViewBag.KurirId, napomenaId: podTipId, selectedValues: ids };
+                                     
+
+                                    $.ajax({
+                                        url: "./PrijaviReklamaciju",
+                                        type: 'POST',
+                                        dataType: "json",
+                                        traditional: true,
+                                        data: JSON.stringify(postData),
+                                        contentType: "application/json; charset=utf-8",
+                                        success: function (data) {
+                                            alert("Uspesno ste prijavili reklamaciju!");
+                                            location.reload();
+                                        },
+                                        error: function (xhr, textStatus, error) {
+                                            //var err = eval("(" + xhr.responseText + ")");
+                                            console.log(xhr.statusText);
+                                            console.log(textStatus);
+                                            console.log(error);
+                                            //console.log(eee);
+                                            //alert('Ajax error!' + eee);
+                                        }
+                                    });
+                                });
+
+                                $('.promenaReona').click(function () {
+                                    var ids = getIdSelections();
+
+                                    var reonId = $(this).attr('id');
+
+                                    var postData = { reonId: @ViewBag.ReonId, kurirId:@ViewBag.KurirId, napomenaId: reonId, selectedValues: ids };
+                                    //console.log(postData);
+
+                                    $.ajax({
+                                        url: "./PromeniReon",
+                                        type: 'POST',
+                                        dataType: "json",
+                                        traditional: true,
+                                        data: JSON.stringify(postData),
+                                        contentType: "application/json; charset=utf-8",
+                                        success: function (data) {
+                                            alert("Uspesno ste promenili reon zadatka!");
+                                            location.reload();
+                                        },
+                                        error: function (xhr, textStatus, error) {
+                                            //var err = eval("(" + xhr.responseText + ")");
+                                            console.log(xhr.statusText);
+                                            console.log(textStatus);
+                                            console.log(error);
+                                            //console.log(eee);
+                                            //alert('Ajax error!' + eee);
+                                        }
+                                    });
+                                });
+
+
+                                $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                                    $detail.html('Loading from ajax request...');
+                                    //alert(row.PosiljkaId);
+                                    var prvoSlovo = row.PosiljkaId.substring(0, 1);
+                                    var posiljkaId = 0;
+                                    var barKod = '';
+                                    if (prvoSlovo == 'Z') {
+                                        posiljkaId = row.PosiljkaId.substring(3, 12);
+                                        barKod = row.PosiljkaId;
+                                    }
+                                    else {
+                                        posiljkaId = row.PosiljkaId;
+                                        barKod = "";
+                                    }
+                                    //alert(posiljkaId);
+                                    $.ajax({
+                                        url: "./DetailsRazduzenje",
+                                        type: 'get',
+
+                                        data: {
+                                            id: posiljkaId,
+                                            zbirniBarKod: barKod
+                                        },
+                                        success: function (data) {
+                                            $detail.html(data)
+                                        },
+                                        error: function () {
+                                            alert('Ajax error!');
+                                        }
+                                    });
+                                });
+
+                            });
+
+                
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        var paramsSelection = { posiljkaId: row.PosiljkaId, tipZadatka: row.TipZadatka };
+                        return paramsSelection
+                    });
+                }
+
+                function queryParams(p) {
+
+                    var params = {
+                        pageNumber: pageNumber,
+                        pageSize: pageSize,
+                        searchTerms: searchArray.toString(),
+                        sortColumn: sortColumn,
+                        sortOrder: p.order,
+                        offset: 0,
+                        limit: 10,
+                        reonId: @ViewBag.ReonId,
+                        kurirId:  @ViewBag.KurirId,
+                        zonaId:@ViewBag.ZonaId
+                    };
+
+
+                    return params;
+                }
+
+                            function formatYesNo(value, row, index) {
+                                return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                            }
+
+                            function statusFormat(value, row, index) {
+
+                                return (value == 0 && (row.NapomenaZadatak == null || row.NapomenaZadatak == "")) ? null : '<i class="glyphicon glyphicon-ok"></i>';
+
+                            }
+                            function DetailsPosiljkeLink(value, row, index) {
+
+                                return "<a href='../Posiljka?posiljkaId=" + value + "' target='_blank' class='details_link'>" + value + "</a>";
+                            }
+
+
+                            function dateFormat(value, row, index) {
+
+                                if (value == null) return '';
+                                return moment(value).format('DD/MM/YYYY');
+                            }
+
+                            function timeFormat(value, row, index) {
+                                if (value == null) return '';
+                                return moment(value).format('HH:MM:SS');
+                            }
+
+
+                function addSearchTerms(table) {
+                    var searchText = "";
+                    var searchColumn = "";
+
+                    searchArray = [];
+
+                    pageNumber = 1;
+                    pageSize = 10;
+
+                    $("table#table :input").each(function () {
+
+
+                        var input = $(this);
+
+
+                        searchText = input.val();
+                        searchColumn = input.attr('id');
+                        if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                        {
+                            //alert(input.val() + " ---- " + input.attr('id'));
+
+                            if (input.val() == "on") {
+                                searchText = input.is(":checked");
+                            }
+
+                            //searchConcatenate += searchColumn + ":" + searchText + ",";
+                            searchArray.push(searchColumn + ":" + searchText);
+                            //searchT[searchColumn] = searchText;
+                        }
+                    });
+
+                    table.bootstrapTable('refresh');
+                }
+
+                
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+                        </script>
+                    }
+                </div>
+            </div>
+
+

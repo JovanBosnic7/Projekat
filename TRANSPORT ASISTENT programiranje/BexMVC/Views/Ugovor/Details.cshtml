@@ -1,0 +1,101 @@
+﻿@model Bex.Models.Ugovor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Detalji o vozilu</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <h2>@*Details*@</h2>
+
+        <div>
+            @*<h4>Kontakt</h4>*@
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Naziv ugovora
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Kontakt.Naziv)
+                </dd>
+
+                <dt>
+                    Region
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Region.NazivSkraceni)
+                </dd>
+
+                <dt>
+                    Broj ugovora
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UgovorBroj)
+                </dd>
+
+                <dt>
+                    Datum ugovora
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DatumUgovora)
+                </dd>
+
+                <dt>
+                    Verzija ugovora
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UgovorVerzija)
+                </dd>
+
+                <dt>
+                    Datum verzije
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DatumPoslednjeVerzije)
+                </dd>
+
+                <dt>
+                    Datum obnove
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DatumObnove)
+                </dd>
+
+                <dt>
+                    Ugovorio
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UgovorilacNaziv)
+                </dd>
+                <dt>
+                    Agent
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Zaposleni.Kontakt.Naziv)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

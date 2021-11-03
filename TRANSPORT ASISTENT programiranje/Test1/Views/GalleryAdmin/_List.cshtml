@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DDtrafic.ViewModels.ImageList>
+
+
+<ul style="list-style:none;" class="row">
+    @foreach (var item in Model)
+    {
+    <li class="col-md-2">
+        <br />
+        <input type="button" title="Izbriši" value="X" onclick="location.href='@Url.Action("ChangeActive", "GalleryAdmin", new { Area="", Id=item.Id , status= false })'" />
+        <br />
+        <br />
+        <a data-fancybox="gallery" data-caption="@item.Title" href="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= item.WebImageId })">
+            <img class="img" src="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= item.WebImageId, t =2 })" style="width:50%;height:60px;" />
+        </a>
+
+        <br />
+        <br />
+        <label>
+            <h4>
+                <b>@item.Title</b><br />
+                @*@item.UpdateDate <br />*@
+
+            </h4>
+        </label>
+
+        <br />
+        <br />
+    </li>
+    }
+</ul>
+
+
+    @*<script>
+
+
+        $('#IsActive').change(function () {
+
+            alert("aaaaaaaaa")
+            $('#IsActive').val($(this).is(':checked'))
+            var id = $("#idFoto").val();
+            alert(id)
+            //stornoFoto($("#idFoto").val());
+
+        });
+
+
+                function stornoFoto(idFoto) {
+                    alert("bbbbbbb")
+                    alert(idFoto)
+                $.getJSON('@Url.Action("../GalleryAdminController/ChangeActive")', { id: selectedTipAlarma, status: false }, function (data) {
+                    if (data != null && !jQuery.isEmptyObject(data)) {
+                        alert (data)
+                    };
+                });
+            }
+
+
+    </script>*@
+
+

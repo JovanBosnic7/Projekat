@@ -1,0 +1,374 @@
+﻿@model Bex.Models.VozniPark
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Unos novog vozila  <small>Unos osnovnih podataka o vozilu</small></h1>
+       
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="../VozniPark">Vozni park</a>
+            </li>
+            <li class="breadcrumb-item active">Dodaj</li>
+        </ol>
+
+    </div>
+</div>
+<hr />
+@*<div id="wrapper" >
+    <div id="page-wrapper">*@
+<div class="row" style="background:#eee;padding:20px;">
+
+    @*@using (Html.BeginForm(new { @class = "form-horizontal" }))*@
+    @using (Html.BeginForm("Create", "VozniPark", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.ModelId, new { id = "ModelId" })
+
+        <div class="col-sm-6">
+            <div>
+                <label class="control-label col-sm-4">Registracija</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Oznaka, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Oznaka, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">D. prve reg.</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(model => model.DatumRegistracije, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-reg" })
+
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Garažni broj</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.GarazniBroj, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GarazniBroj, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Vrsta vozila</label>
+                <div class="col-sm-8">
+                    @Html.DropDownList("KategorijaId", null, "", htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.KategorijaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div>
+                    <label class="control-label col-sm-4">Karoserija</label>
+                    <div class="col-sm-8">
+                        @Html.DropDownList("KaroserijaId", null, htmlAttributes: new { @class = "form-control " })
+                        @Html.ValidationMessageFor(model => model.KaroserijaId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            <div>
+                <label class="control-label col-sm-4">Karoserija</label>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.KaroserijaId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "NazivKaroserije"), "", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.KaroserijaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Pod karoserija</label>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.PodKaroserijaId, new SelectList(Enumerable.Empty<SelectListItem>(), "Id", "NazivPodKaroserije"), "", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PodKaroserijaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="ui-widget">
+                <label class="control-label col-sm-4" for="model">Model </label>
+                <div class="col-sm-8">
+
+                    <input id="model" class="form-control">
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Tip </label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.TipVozila, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.TipVozila, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="Proizvedeno">God. proizvodnje</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.GodinaProizvodnje, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.GodinaProizvodnje, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="Sasija">Šasija</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Sasija, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sasija, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="Motor">Broj motora</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Motor, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Motor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Snaga motora</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Snaga, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Snaga, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div>
+                <label class="control-label col-sm-4">Zapremina motora</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Zapremina, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Zapremina, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Masa</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Masa, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Masa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <label class="control-label col-sm-4" for="Nosivost">Nosivost</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Nosivost, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Nosivost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">NDM</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.NDM, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.NDM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Nabavna Km</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.KmNabavna, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.KmNabavna, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Limit L/100KM</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.PropisanaPotrosnja, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PropisanaPotrosnja, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="BrojVrata">Br. vrata</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.BrojVrata, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.BrojVrata, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="BrMestaSedenje">Br. mesta sedenje</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.BrMestaSedenje, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.BrMestaSedenje, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="BrMestaStajanje">Br. mesta stajanje</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.BrMestaStajanje, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.BrMestaStajanje, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="PogonskiPneumatici">Pogon gume</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.PogonskiPneumatici, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.PogonskiPneumatici, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="UpravljackiPneumatici">Upravljačke gume</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.UpravljackiPneumatici, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.UpravljackiPneumatici, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Gorivo</label>
+                <div class="col-sm-8">
+                    @Html.DropDownList("GorivoId", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.GorivoId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Menjač</label>
+                <div class="col-sm-8">
+                    @Html.DropDownList("MenjacId", null, htmlAttributes: new { @class = "form-control " })
+                    @Html.ValidationMessageFor(model => model.MenjacId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4" for="Status">Status</label>
+                <div class="col-sm-8">
+                    @Html.DropDownList("StatusVozilaId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StatusVozilaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="control-label col-sm-4">Napomena</label>
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div>
+                <label class="control-label col-sm-4"></label>
+                <div class="col-sm-8">
+                    <div class="col-sm-10">
+                        <input type="submit" value="Sačuvaj" class="btn btn-primary pull-right " />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryDatePickerForm")
+                @Scripts.Render("~/bundles/jqueryval")
+
+                <script type="text/javascript">
+
+
+                    $(document).ready(function () {
+
+                        $('.datepicker-dat-reg').datepicker({dateFormat: 'dd-mm-yy'});
+                        $('.datepicker-dat-reg').attr("autocomplete", "off");
+
+                        $("#KategorijaId").change(function () {
+                            var kategorijaId = $('#KategorijaId').val();
+                            napuniKaroseriju(kategorijaId);
+                            napuniPodKaroserijuPoKategoriji(kategorijaId);
+                        });
+
+                        $("#KaroserijaId").change(function () {
+                            var karoserijaId = $('#KaroserijaId').val();
+                            napuniPodKaroseriju(karoserijaId);
+                        });
+
+                        $("#model").autocomplete({
+                            source: function (request, response) {
+                                $.ajax({
+                                    url: "../VozniPark/GetModel?query=" + request.term,
+                                    dataType: "json",
+                                    success: function (data) {
+                                        response($.map(data, function (v, i) {
+                                            return {
+                                                value: v.Name,
+                                                id: v.Id
+                                            };
+                                        }));
+                                    }
+                                })
+                            },
+                            minLength: 2,
+                            select: function (event, ui) {
+                                $('#ModelId').val(ui.item.id);
+                                //console.log("Model ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+                            }
+                        });
+
+                        $('#showProgress').click(function () {
+                            $('#showProgress').hide();
+                            $('#progress').show();
+
+                        });
+                    })
+
+                    $("form").bind("keydown", function (e) {
+                        if (e.keyCode === 13) return false;
+                    });
+
+                    $(function () {
+                        $.validator.methods.date = function (value, element) {
+                            if ($.browser.webkit) {
+                                //ES - Chrome does not use the locale when new Date objects instantiated:
+                                var d = new Date();
+
+                                return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                            }
+                            else {
+                                return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                            }
+                        };
+                    });
+
+                    function napuniKaroseriju(kategorijaId) {
+                        $.ajax({
+                            url: '../VozniPark/NapuniKaroseriju?kategorijaId=' + kategorijaId,
+                            type: "GET",
+                            dataType: "JSON",
+                            data: { Kategorija: kategorijaId },
+                            success: function (karoserije) {
+                                $("#KaroserijaId").html(""); // clear before appending new list 
+                                $.each(karoserije, function (i, karoserija) {
+                                    $("#KaroserijaId").append(
+                                        $('<option></option>').val(karoserija.Id).html(karoserija.NazivKaroserije));
+                                });
+                            }
+                        });
+                    }
+
+                    function napuniPodKaroseriju(karoserijaId) {
+                        $.ajax({
+                            url: '../VozniPark/NapuniPodKaroseriju?karoserijaId=' + karoserijaId,
+                            type: "GET",
+                            dataType: "JSON",
+                            data: { Karoserija: karoserijaId },
+                            success: function (podKaroserije) {
+                                $("#PodKaroserijaId").html(""); // clear before appending new list 
+                                $.each(podKaroserije, function (i, podKaroserija) {
+                                    $("#PodKaroserijaId").append(
+                                        $('<option></option>').val(podKaroserija.Id).html(podKaroserija.NazivPodKaroserije));
+                                });
+                            }
+                        });
+                    }
+
+                    function napuniPodKaroserijuPoKategoriji(kategorijaId) {
+                        alert(kategorijaId);
+                        $.ajax({
+                            url: '../VozniPark/NapuniPodKaroserijuPoKategoriji?kategorijaId=' + kategorijaId,
+                            type: "GET",
+                            dataType: "JSON",
+                            data: { Kategorija: kategorijaId },
+                            success: function (podKaroserije) {
+                                $("#PodKaroserijaId").html(""); // clear before appending new list 
+                                $.each(podKaroserije, function (i, podKaroserija) {
+                                    $("#PodKaroserijaId").append(
+                                        $('<option></option>').val(podKaroserija.Id).html(podKaroserija.NazivPodKaroserije));
+                                });
+                            }
+                        });
+                    }
+                
+
+                </script>
+
+
+
+            }
+            @*</div>
+        </div>*@

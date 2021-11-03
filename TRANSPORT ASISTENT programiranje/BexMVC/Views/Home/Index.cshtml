@@ -1,0 +1,449 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+
+                        <h4 class="card-title-first-page">
+                            Prijavljeno danas:
+                            <br/>
+                            <span class="pull-right">
+                                <span id="prijavljenoPaketaDanas" style="font-weight:bold;"></span> paketa
+                                /
+                                <span id="prijavljenoPosiljkiDanas" style="font-weight:bold;"></span> posiljki
+                            </span><br />
+
+                            Prijavljeno prethodnih 5 dana:
+                            <br/>
+                            <span class="pull-right">
+                                <span id="prijavljenoPaketiPetDana" style="font-weight:bold;"></span> paketa
+                                /
+                                <span id="prijavljenoPosiljkePetDana" style="font-weight:bold;"></span> posiljki
+                            </span><br />
+
+                            Ukupno prijavljeno:
+                            <br/>
+                            <span class="pull-right">
+                                <span id="ukupnoPaketi" style="font-weight:bold;"></span> paketa
+                                /
+                                <span id="ukupnoPosiljke" style="font-weight:bold;"></span> posiljki
+                            </span>
+
+                        </h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-barcode"></i></span>
+                            <span class="pull-right"><a href="/Posiljke"> &nbsp; Pošiljke</a></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+                            Preuzeto danas: 
+                            <br/>
+                            <span class="pull-right">
+                                <span id="preuzetePosiljkiDanas" style="font-weight:bold;"></span> posiljki / <span id="preuzetoPaketaDanas" style="font-weight:bold;"></span> paketa
+                                <br/>
+                                (<span id="procPosiljke" style="font-weight:bold;"></span>% / <span id="procPaketi" style="font-weight:bold;"></span>%)
+                            </span>
+                            <br /><br />
+                            Cena osnovne usluge: 
+                            <br/>
+                            <span class="pull-right"><span id="cenaPosiljkeOsnovneUsluge" style="font-weight:bold;"></span> rsd / <span id="cenaPaketaOsnovneUsluge" style="font-weight:bold;"></span> rsd</span><br />
+                            Cena sa dodatnim uslugama: 
+                            <br/>
+                            <span class="pull-right"><span id="cenaPosiljkeUsluge" style="font-weight:bold;"></span> rsd / <span id="cenaPaketaUsluge" style="font-weight:bold;"></span> rsd</span>
+                        </h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-bell"></i> </span>
+                            <span class="pull-right"><a href="/Magacin">&nbsp; Kurir dan - region</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        @*</div>
+        <div class="row">*@
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+
+                            Pazar - osnovne usluge: <span class="pull-right"><span id="osnovneUsluge" style="font-weight:bold;"></span> rsd </span><br />
+                            Pazar - dodatne usluge: <span class="pull-right"><span id="dodatneUsluge" style="font-weight:bold;"></span> rsd </span><br />
+                            Otkupnine ukupno: <span class="pull-right"><span id="otkupnine" style="font-weight:bold;"></span> rsd </span>
+                        </h4>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-money"></i> </span>
+                            <span class="pull-right"><a href="/Banka">&nbsp;Stanje u kasi</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+
+                            @*Prijavljeno danas: <span class="pull-right"><span id="prijavljenoRekDanas" style="font-weight:bold;">xxx</span> </span><br />
+                            Trenutno istraga: <span class="pull-right"><span id="trenutnoIstraga" style="font-weight:bold;">yyy</span>  </span><br />
+                            Trenutno odluka: <span class="pull-right"><span id="trenutnoOdluka" style="font-weight:bold;">zzz</span>  </span>*@
+                            Ukupno zaposlenih: <span class="pull-right"><span id="ukupnoZaposlenih" style="font-weight:bold;"></span> </span><br />
+                            Započeta smena: <span class="pull-right"><span id="zapocetaSmena" style="font-weight:bold;"></span> / <span id="ukupnoKurira" style="font-weight:bold;"></span></span><br />
+                            Evidencija rada: <span class="pull-right"><span id="evidencijaRada" style="font-weight:bold;"></span> / <span id="ukupnoZaposlenih1" style="font-weight:bold;"></span></span>
+                        </h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-phone"></i> </span>
+                            <span class="pull-right"><a href="/Zaposleni">&nbsp; Zaposleni</a></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingDIV" style="display:none; text-align:center;margin-bottom:10px;">
+            <button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif" /> Sacekajte...</button>
+        </div>
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/chart")
+
+            <script type="text/javascript">
+                var izabranDatum = "";
+                var izabranTip = "";
+
+                $.ajax({
+                    url: "Home/GetEvidentiranePosiljkeCount",
+                    type: 'get',
+                    success: function (data) {
+
+                        //console.log(data.prijavljenoPaketaDanas);
+
+                        $('#prijavljenoPosiljkiDanas').append(data.prijavljenoPosiljkiDanas);
+                        $('#prijavljenoPaketaDanas').append(data.prijavljenoPaketaDanas);
+
+                        $('#prijavljenoPosiljkePetDana').append(data.prijavljenoPosiljkePetDana);
+                        $('#prijavljenoPaketiPetDana').append(data.prijavljenoPaketiPetDana);
+
+                        $('#ukupnoPosiljke').append(data.ukupnoPosiljke);
+                        $('#ukupnoPaketi').append(data.ukupnoPaketi);
+
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                });
+
+
+
+                $.ajax({
+                    url: "Home/GetPreuzetiZadaciData",
+                    type: 'get',
+                    success: function (data) {
+                        console.log("pppp: " + data);
+                        //$('#obavljeni_ukupno').append(data);
+
+                        $('#preuzetePosiljkiDanas').append(data.preuzetePosiljkiDanas);
+                        $('#preuzetoPaketaDanas').append(data.preuzetoPaketaDanas);
+
+                        $('#procPosiljke').append(data.procPosiljke);
+                        $('#procPaketi').append(data.procPaketi);
+
+                        $('#cenaPosiljkeOsnovneUsluge').append(data.cenaPosiljkeOsnovneUsluge);
+                        $('#cenaPaketaOsnovneUsluge').append(data.cenaPaketaOsnovneUsluge);
+
+                        $('#cenaPosiljkeUsluge').append(data.cenaPosiljkeUsluge);
+                        $('#cenaPaketaUsluge').append(data.cenaPaketaUsluge);
+
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                });
+
+                $.ajax({
+                    url: "Home/GetNaplacenoData",
+                    type: 'get',
+                    success: function (data) {
+                        console.log("Dodatne: " + data.dodatneUsluge);
+                        //$('#naplaceno_razduzeno').append(data);
+                        $('#osnovneUsluge').append(data.osnovneUsluge);
+                        $('#dodatneUsluge').append(data.dodatneUsluge);
+                        $('#otkupnine').append(data.otkupnine);
+
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                });
+
+                $.ajax({
+                    url: "Home/GetZaposleniData",
+                    type: 'get',
+                    success: function (data) {
+                        $('#ukupnoZaposlenih').append(data.zaposleniDataAll);
+                        $('#ukupnoZaposlenih1').append(data.zaposleniDataAll);
+                        $('#zapocetaSmena').append(data.kuriraZapoceloSmenu);
+                        $('#evidencijaRada').append(data.evidencijaRada);
+                        $('#ukupnoKurira').append(data.zaposleniDataKurir);
+
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                });
+
+
+
+
+
+            </script>
+        }
+
+
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title-new" style="color:#666;">
+                            <span id="lbl_naslov_line">Evidentirani paketi</span>
+                            <span class="pull-right">
+                                <input type='text' id="datum-area-evidentirane" placeholder="Izaberite datum" class="form-control input-xs" />
+                                <input type='text' id="datum-area-izbrisane" placeholder="Izaberite datum" class="form-control input-xs" style="display:none;" />
+                                <input type='text' id="datum-area-evidentirane-poreklo" placeholder="Izaberite datum" class="form-control input-xs" style="display:none;" />
+                            </span>
+                        </h3>
+
+
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div id="morris-line-evidentirane-chart"></div>
+                                <div id="morris-line-evidentirane-poreklo-chart"></div>
+                                <div id="morris-line-izbrisane-chart"></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <table class="table" id="tableEvidentirane" style="margin-top:60px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Datum</th>
+                                            <th>Paketa</th>
+                                            <th>Pošiljki</th>
+                                            <th>Pak/Poš</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody></tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <div class="btn-group">
+
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Izaberite vrstu izvestaja
+
+                                </button>
+                                <ul class="dropdown-menu pull-left" role="menu">
+                                    <li>
+                                        <a href="#" id="izvEvidentiranihLine">Evidentirani paketi</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvProsecnaCenaLine">Prosecna cena posiljka / paket</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvEvidentiranihOdakleLine">Evidentirane posiljke - poreklo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvIzbrisaneLine">Izbrisane posiljke</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title-new" style="color:#666;">
+                            <span id="lbl_naslov_bar">Evidentirani paketi</span>
+                            <span class="pull-right">
+                                <input type='text' id="datum-bar-evidentirane" placeholder="Izaberite datum" class="form-control input-xs" />
+                                <input type='text' id="datum-bar-izbrisane" placeholder="Izaberite datum" class="form-control input-xs" style="display:none;" />
+                                <input type='text' id="datum-bar-evidentirane-poreklo" placeholder="Izaberite datum" class="form-control input-xs" style="display:none;" />
+                            </span>
+
+                        </h3>
+
+
+                    </div>
+                    <div class="card-body">
+
+                        <div id="morris-bar-evidentirane-chart"></div>
+                        <div id="morris-bar-evidentirane-poreklo-chart"></div>
+                        <div id="morris-bar-izbrisane-chart"></div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <div class="btn-group">
+
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Izaberite vrstu izvestaja
+
+                                </button>
+                                <ul class="dropdown-menu pull-left" role="menu">
+                                    <li>
+                                        <a href="#" id="izvEvidentiranihBar">Evidentirani paketi</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvProsecnaCenaBar">Prosecna cena posiljka / paket</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvEvidentiranihOdakleBar">Evidentirane posiljke - poreklo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvIzbrisaneBar">Izbrisane posiljke</a>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title-new" style="color:#666;">
+                            <span id="lbl_naslov_bar_stacked">Evidentirani paketi</span>
+                            <span class="pull-right">
+                                <input type='text' id="datum-bar-stacked-evidentirane" placeholder="Izaberite datum" class="form-control input-xs" />
+                                <input type='text' id="datum-bar-stacked-izbrisane" placeholder="Izaberite datum" class="form-control input-xs" style="display:none;" />
+                                <input type='text' id="datum-bar-stacked-evidentirane-poreklo" placeholder="Izaberite datum" class="form-control input-xs" style="display:none;" />
+                            </span>
+                        </h3>
+
+
+                    </div>
+                    <div class="card-body">
+                        <div id="morris-bar-stacked-evidentirane-chart"></div>
+                        <div id="morris-bar-stacked-evidentirane-poreklo-chart"></div>
+                        <div id="morris-bar-stacked-izbrisane-chart"></div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <div class="btn-group">
+
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Izaberite vrstu izvestaja
+
+                                </button>
+                                <ul class="dropdown-menu pull-left" role="menu">
+                                    <li>
+                                        <a href="#" id="izvEvidentiranihBarStacked">Evidentirani paketi</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvProsecnaCenaBarStacked">Prosecna cena posiljka / paket</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvEvidentiranihOdakleBarStacked">Evidentirane posiljke - poreklo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvIzbrisaneBarStacked">Izbrisane posiljke</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <div class="row" id="card-donut" style="display:none;">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title" style="color:#666;">
+                            <span id="lbl_naslov_donut">Evidentirani paketi</span>
+                            <span class="pull-right">
+                                @*<input type='text' id="datum-donut-evidentirane" placeholder="Izaberite datum" class="form-control input-xs" />*@
+                                <input type='text' id="datum-donut-izbrisane" placeholder="Izaberite datum" class="form-control input-xs" />
+                                <input type='text' id="datum-donut-evidentirane-poreklo" placeholder="Izaberite datum" class="form-control input-xs" />
+                            </span>
+                        </h3>
+
+
+                    </div>
+                    <div class="card-body">
+
+                        <div id="morris-donut-evidentirane-poreklo-chart"></div>
+                        <div id="morris-donut-izbrisane-chart"></div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <div class="btn-group">
+
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Izaberite vrstu izvestaja
+
+                                </button>
+                                <ul class="dropdown-menu pull-left" role="menu">
+                                    <li>
+                                        <a href="#" id="izvEvidentiranihOdakleDonut">Evidentirane posiljke - poreklo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="izvIzbrisaneDonut">Izbrisane posiljke</a>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->

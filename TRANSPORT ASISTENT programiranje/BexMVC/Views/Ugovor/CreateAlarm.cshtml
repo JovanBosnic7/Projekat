@@ -1,0 +1,155 @@
+﻿@model BexMVC.ViewModels.AlarmIndexData
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <br />
+        @using (Html.BeginForm())
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.VpId, new { Value = ViewBag.VpId })
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                Dodavanje alarma
+
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.VpAlarmTip, "Alarm tip", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("VpAlarmTip", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(model => model.VpAlarmTip, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Datum, "Datum", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @*@Html.TextBoxFor(model => model.Datum, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })*@
+                                @Html.TextBoxFor(model => model.Datum, "{0:yyyy-MM-dd}", new { @class = "form-control  datepicker" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Km, "Kilometraza", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Km, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Km, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DatumIsteka, "Datum isteka", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.DatumIsteka, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.KmIsteka, "Kilometraza isteka", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.KmIsteka, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.KmIsteka, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DatumAlarma, "Datum alarma", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.DatumAlarma, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Napomena, "Napomena", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Kolicina, "Kolicina", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Kolicina, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Kolicina, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Cena, "Cena", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Cena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Cena, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IznosDin, "Dinara", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.IznosDin, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.IznosDin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IznosEur, "Eura", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.IznosEur, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.IznosEur, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Opis, "Opis", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @*<div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "../VozniPark")
+        </div>
+
+        @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type="text/javascript">
+
+            $('.datepicker-dat-reg, .datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+                //,
+                //showOn: "button",
+                //buttonImage: "../Content/images/calendar.gif",
+                //buttonText: "Select date"
+            });
+                                                                                    //$('.datepicker').datepicker({
+                                                                                    //    format: 'yyyy-mm-dd',
+                                                                                    //    startDate: '-3d'
+                                                                                    //});
+        </script>
+        }
+    </div>
+</div>

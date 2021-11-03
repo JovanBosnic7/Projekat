@@ -1,0 +1,122 @@
+﻿@model Bex.Models.KorisniciPrograma
+
+@{
+    ViewBag.Title = "Uloge i prava korisnika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Dodavanje prava korisniku</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../KorisniciPrograma">Korisnici programa</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj prava</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Pregled svih prava za korisnika</h3>
+                            <hr>
+                            <p>Označite željena prava i kliknite na sačuvaj</p>
+
+                        </div>
+
+
+
+                        <div class="table-responsive" style="min-height:300px;">
+                            <table id="table"
+                                   data-pagination="true"
+                                   data-side-pagination="server"
+                                   @*data-query-params="queryParams"*@
+                                   data-detail-view="true"
+                                   data-page-list="[10, 25, 50, 100]"
+                                   data-show-footer="true"
+                                   data-filter-control="true"
+                                   data-toolbar="#toolbar">
+                                <thead>
+                                    @*<tr>
+
+                                        <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+
+                                        <th>
+                                            <input name="search" id="Filter" class="form-control input-sm" type="text">
+                                        </th>
+                                        <th>
+                                            <input name="search" id="Name" class="form-control input-sm" type="text">
+                                        </th>
+                                        <th>
+                                            <input name="search" id="Value" class="form-control input-sm" type="text">
+                                        </th>
+                                        <th>
+                                            <input name="search" id="Description" class="form-control input-sm" type="text">
+                                        </th>
+                                        <th>
+                                            @Html.DropDownList("Role", (SelectList)ViewBag.Role, "Sve uloge", new { @class = "form-control input-sm" })
+                                        </th>
+
+                                    </tr>*@
+                                    <tr>
+                                        <th data-checkbox="true"></th>
+                                        <th data-field="Filter" data-sortable="true" data-filter-control="input">Filter</th>
+                                        <th data-field="Name" data-sortable="true" data-filter-control="input">Naziv</th>
+                                        <th data-field="Value" data-sortable="true" data-filter-control="input">Vrednost</th>
+                                        <th data-field="Description" data-sortable="true" data-filter-control="input">Opis</th>
+                                        <th data-field="Role" data-visible="false">Role</th>
+                                    </tr>
+
+                                </thead>
+
+                            </table>
+
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right">
+                                    <button id="@ViewBag.UserId" class="btn btn-default btn-xs addClaimToUser">
+                                        Sačuvaj
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+                                @section Scripts {
+                                    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+                                    @Scripts.Render("~/bundles/tableConfig")
+
+                                    <script type="text/javascript">
+                                        var $table = $('#table');
+
+                                        var $addClaim = $('.addClaimToUser');
+
+                                        $table.configTable('/ClaimsRoles/GetClaimsRolesData');
+
+                                        $(document).ready(function () {
+
+                                            $table.optionsTable();
+                                            $addClaim.dropDownChoice('AddClaimsToUser', "Uspešno ste dodali prava korisniku!");
+
+
+                                        });
+
+                                    </script>
+                                }
+                            </div>
+                        </div>

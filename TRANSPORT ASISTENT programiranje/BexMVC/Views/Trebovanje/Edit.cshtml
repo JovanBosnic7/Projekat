@@ -1,0 +1,291 @@
+﻿@model Bex.Models.VozniPark
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Vozilo: @ViewBag.VoziloRegOznaka</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../VozniPark">Vozni park</a>
+                                </li>
+                                <li class="breadcrumb-item active">Izmeni</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Izmena osnovnih podataka o vozilu</h3>
+                            <hr>
+                            <p>Izaberite model i unesite ostale karakteristike vozila</p>
+
+                        </div>
+                        @using (Html.BeginForm(new { @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id, new { id = "Id" })
+                            @Html.HiddenFor(model => model.ModelId, new { id = "ModelId" })
+                            <input type="hidden" id="Aktivno" name="Aktivno">
+                            <input type="hidden" id="Linijsko" name="Linijsko">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Garažni broj</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.GarazniBroj, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.GarazniBroj, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Naziv vozila</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.NazivVozila, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NazivVozila, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Registracija</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Oznaka, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Oznaka, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Stara reg.</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.OznakaStara, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OznakaStara, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Registrovano</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.DatumRegistracije, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-reg" })
+                                </div>
+                            </div>
+                            <div class="form-group ui-widget">
+                                <label class="control-label col-sm-2" for="kontakt">Model </label>
+                                <div class="col-sm-10">
+                                    <input id="model" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Bar kod</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.BarKod, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BarKod, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Karakteristike</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("KarakteristikaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.KarakteristikaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Nabavna Km</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.KmNabavna, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.KmNabavna, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Boja</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("BojaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BojaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Limit KM</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.KmLimit, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.KmLimit, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Linijsko">Linijsko</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="LinijskoCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Aktivno">Aktivno</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label control-label">
+                                            <input class="form-check-input" type="checkbox" value="" id="AktivnoCheck">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="createZaduzenjeVozila">
+                    @Html.Action("CreateZaduzenjeVozilaPartial", new { voziloId = @ViewBag.VoziloId })
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="createTehnickeKarakteristikeVozila">
+                    @Html.Action("CreateTehnickeKarakteristikeVozilaPartial", new { voziloId = @ViewBag.VoziloId })
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+            <script type="text/javascript">
+
+
+                $(document).ready(function () {
+
+                    $('.datepicker-dat-reg').datepicker({ dateFormat: 'dd-mm-yy' });
+                    $('.datepicker-dat-reg').attr("autocomplete", "off");
+
+                    $("#model").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "/VozniPark/GetModel?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#ModelId').val(ui.item.id);
+                            console.log("Model ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+                        }
+                    });
+
+                    $('#AktivnoCheck').change(function () {
+
+                        $('#Aktivno').val($(this).is(':checked'))
+
+                    });
+
+                    $('#LinijskoCheck').change(function () {
+
+                        $('#Linijsko').val($(this).is(':checked'))
+
+                    });
+
+                    $("#odgovornoLice").autocomplete({
+                        source: function (request, response) {
+
+                            $.ajax({
+                                url: "/Zaposleni/GetZaposleniAutoComplete?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            });
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#SubOdgovornoLiceId').val(ui.item.id);
+                            console.log("Kontakt ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+                            
+                        }
+                    });
+
+                    $("#vozac").autocomplete({
+                        source: function (request, response) {
+
+                            $.ajax({
+                                url: "/Zaposleni/GetZaposleniAutoComplete?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            });
+                        },
+                        minLength: 7,
+                        select: function (event, ui) {
+                            $('#SubVozacId').val(ui.item.id);
+                            console.log("Kontakt ---- Selected: " + ui.item.id + " aka " + ui.item.value);
+
+                        }
+                    });
+
+                })
+
+
+            </script>
+
+
+
+        }
+    </div>
+</div>

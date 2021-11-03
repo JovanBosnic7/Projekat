@@ -1,0 +1,186 @@
+﻿
+@model BexMVC.ViewModels.TPterminiIndexData
+
+@{
+    ViewBag.Title = "Tehnički pregled: Termini";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Termini tehničkog pregleda</h2>
+                    <p class="card-category">Pregled termina tehničkog pregleda</p>
+                </div>
+                <!-- /.col-lg-12 -->
+                @*<input type="hidden" value="@ViewBag.IsFilter" id="isFilter" />*@
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+
+                        @*<button id="create" class="btn btn-primary">
+                                @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                            </button>*@
+                        <button id="add" class="btn btn-primary">
+                            Dodaj
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+
+                        <button id="zakljuciDan" class="btn btn-primary">
+                                Zaključi dan
+                            </button>
+
+
+                    </div>
+                    
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-refresh="true"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               data-filter-control="true"
+                               data-detail-view="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="DatumTermina" data-formatter="dateFormat" data-filter-control="datepicker" data-sortable="true">Datum termina</th>
+                                    <th data-field="TerminOd" data-sortable="true" data-filter-control="input">Termin od</th>
+                                    <th data-field="TerminDo" data-sortable="true" data-filter-control="input">Termin do</th>
+                                    <th data-field="LokacijaTP" data-filter-control="select" data-filter-data="url:/TPtermini/GetLokacija" data-sortable="true">Lokacija</th>
+                                    <th data-field="Ime" data-sortable="true" data-filter-control="input">Ime</th>
+                                    <th data-field="Prezime" data-sortable="true" data-filter-control="input">Prezime</th>
+                                    <th data-field="Telefon" data-sortable="true" data-filter-control="input">Telefon</th>
+                                    <th data-field="RegOznaka" data-sortable="true" data-filter-control="input">Registracija</th>
+                                    <th data-field="Kategorija" data-sortable="true" data-filter-control="input">Kategorija</th>
+                                    <th data-field="Model" data-sortable="true" data-filter-control="input">Model</th>
+                                    <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                                    <th data-field="StatusTermina" data-filter-control="select" data-filter-data="url:/TPtermini/GetStatus" data-sortable="true">Status</th>
+                                    <th data-field="Uneo" data-sortable="true" data-filter-control="input">Zakazao</th>
+
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+            var $edit = $('#edit'),
+                $add = $('#add'),
+                $zakljuciDan = $('#zakljuciDan'),
+                $opcije = $('#opcije');
+
+            //var $filterId = @ViewBag.FilterId;
+
+
+                //if ($filterId == 1 ) {
+                //    //$table.addFilter("Storno", "false");
+                //    //$("#KmUkupno").value("0");
+                //    $table.addFilter("KmUkupno", "0");
+                //}
+
+                 @*var $statusId = @ViewBag.StatusId;
+
+                if ($statusId == 1) {
+                    $table.addFilter("StatusTermina", "Slobodno");
+                } else if ($statusId == 2) {
+                    $table.addFilter("StatusTermina", "Rezervisano");
+                } else if ($statusId == 3) {
+                    $table.addFilter("StatusTermina", "Za proveru");
+                }
+
+                var $lokacijaId = @ViewBag.LokacijaId;
+
+                if ($lokacijaId == 1) {
+                    $table.addFilter("LokacijaTP", "Šabac");
+                } else if ($lokacijaId == 2) {
+                    $table.addFilter("LokacijaTP", "BG 1");
+                } else if ($lokacijaId == 3) {
+                    $table.addFilter("LokacijaTP", "BG 2");
+                    }*@
+
+            var danas = new Date().toISOString().slice(0, 10);
+
+
+
+            $table.addFilter("DatumTermina", danas + " to " + danas);
+            $table.addFilter("LokacijaTP", "Šabac");
+                $table.configTable('/TPtermini/GetTPtermini');
+                $table.hideColTable();
+
+                $(document).ready(function () {
+
+                    var $checkTableElements = [$edit, $opcije];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+
+                    $add.clickButtonWithoutParams('TPtermini/Create');
+                    $edit.clickOptions('TPtermini/Edit?id=');
+
+                    //$('#DatumTermina').dateRangePicker({
+                    //    autoClose: true
+                    //}).bind('datepicker-closed', function () {
+                    //    var izabranDatum = $('#DatumTermina').val();
+                    //    if (izabranDatum !== "") {
+                    //        $table.addFilter("DatumTermina", izabranDatum);
+                    //        $table.refreshTable();
+                    //    }
+                    //    });
+                    //$('#DatumStop').dateRangePicker({
+                    //    autoClose: true
+                    //}).bind('datepicker-closed', function () {
+                    //    var izabranDatum = $('#DatumStop').val();
+                    //    if (izabranDatum !== "") {
+                    //        $table.addFilter("DatumStop", izabranDatum);
+                    //        $table.refreshTable();
+                    //    }
+                    //});
+
+
+
+
+
+
+                    $zakljuciDan.clickOptions('TPtermini/ZakljuciDan');
+
+
+
+                });
+
+
+
+
+
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+            </script>
+        }
+    </div>
+</div>

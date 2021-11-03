@@ -1,0 +1,446 @@
+﻿@model BexMVC.ViewModels.PosiljkaIndexData
+
+@{
+    ViewBag.Title = "Posiljka";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    @*<h1 class="page-header">Evidencija kontakti</h1>*@
+                    <h2 class="card-title" style="color:#666;">Evidencija pošiljki</h2>
+                    <p class="card-category">Pregled svih pošiljki koje imaju bar jedan aktuelan zadatak</p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               @*data-export-data-type="selected"*@
+                               @*data-export-types="['xml', 'csv', 'excel', 'pdf']"*@
+                               data-detail-view="true"
+                               @*data-detail-formatter="detailFormatter"*@
+                               @*data-striped="true"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar"
+                               @*data-show-footer="true"*@>
+
+                            @*data-show-pagination-switch="true"*@
+                            @*data-page-size ="10"
+            data-page-number="1"*@
+                            @*data-response-handler="responseHandler"*@
+                            @*data-search="true"*@
+                            @*data-toggle="table"*@
+                            @*data-url="/Kontakt/GetKontakt?pageNumber=0&pageSize=10"*@
+                            @*data-detail-formatter="detailFormatter"*@
+                            @*data-filter-control="true"*@
+
+                            <thead>
+                                <tr>
+
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th id="aaa">
+                                        <input name="search" id="PosiljkaId" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Posiljalac" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PosiljalacAdresa" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Primalac" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PrimalacAdresa" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="UkupnoPaketa" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Status", (SelectList)ViewBag.Statusi, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Vrsta", (SelectList)ViewBag.Vrsta, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Kategorija", (SelectList)ViewBag.Kategorija, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("Sadrzaj", (SelectList)ViewBag.Sadrzaj, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Ugovor" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Cena" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Uneo" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input type='text' id="DatumEvidentiranja" placeholder="Izaberite datum" class="form-control input-sm datepicker-dat-evidentiranja" />
+                                    </th>
+                                    <th>
+                                        <input name="search" id="VremeEvidentiranja" class="form-control input-sm" type="text" disabled>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th data-field="PosiljkaId" data-sortable="true" class="text-center"> Br. posiljke </th>
+                                    <th data-field="Posiljalac" data-sortable="true" class="text-nowrap">Posiljalac</th>
+                                    <th data-field="PosiljalacAdresa" data-sortable="true" class="text-nowrap">Adresa P</th>
+                                    <th data-field="Primalac" data-sortable="true" class="text-nowrap">Primalac</th>
+                                    <th data-field="PrimalacAdresa" data-sortable="true" class="text-nowrap">Adresa D</th>
+                                    <th data-field="UkupnoPaketa" data-sortable="true" class="text-right">Paketa</th>
+                                    <th data-field="Status" data-sortable="true">Status</th>
+                                    <th data-field="Vrsta" data-sortable="true">Vrsta</th>
+                                    <th data-field="Kategorija" data-sortable="true">Kategorija</th>
+                                    <th data-field="Sadrzaj" data-sortable="true">Sadrzaj</th>
+                                    <th data-field="Ugovor" data-sortable="true">Ugovor</th>
+                                    <th data-field="CenaUkupna" data-sortable="true" class="text-right">Cena</th>
+                                    <th data-field="UserDodao" data-sortable="true">Uneo</th>
+                                    <th data-field="DatumEvidentiranja" data-sortable="true" data-formatter="dateFormat" class="text-center">Dat. evid.</th>
+                                    <th data-field="VremeEvidentiranja" data-sortable="true" data-formatter="timeFormat" class="text-center">Vreme evid.</th>
+
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+                <script type="text/javascript">
+                var $table = $('#table');
+                var $search = $('#table #search');
+                var $ok = $('#ok');
+                var pageSize = 10;
+                var pageNumber = 1;
+                var sortColumn = "";
+                var sortOrder = "";
+
+
+                var searchArray = [];
+                var hiddenArray = [];
+
+                //alert("not ready");
+                $table.bootstrapTable({
+                    url: '/Posiljka/GetPosiljkaData',
+                    formatLoadingMessage: function () {
+                        return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+                    },
+                    classes: 'table-no-bordered table-sm table-hover'
+                });
+
+                var $remove = $('#remove'),
+                    $edit = $('#edit'),
+                    selections = [];
+
+                $('.datepicker-dat-evidentiranja').datepicker();
+
+
+                $(document).ready(function () {
+
+
+                    $('tr.no-records-found td:first-child').css('padding', '50px');
+
+                    $('.datepicker-dat-evidentiranja').on("change", function () {
+
+                        $('.datepicker-dat-evidentiranja').datepicker('setDate', this.value);
+
+                        addSearchTerms($table);
+
+                    })
+
+                    $table.on('check.bs.table uncheck.bs.table ' +
+                        'check-all.bs.table uncheck-all.bs.table', function () {
+
+                            // save your data, here just save the current page
+                            selections = getIdSelections();
+
+
+                            if (selections.length == 1) {
+                                $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                                $edit.prop('disabled', false);
+
+                            } else {
+                                $remove.prop('disabled', true);
+                                $edit.prop('disabled', true);
+                            }
+
+                            // push or splice the selections if you want to save all data selections
+                        });
+
+                    $table.on('column-switch.bs.table', function (e, field, checked) {
+                        //alert('SHIOW ' + field + " --- " + checked);
+
+                        if (!checked)
+                            hiddenArray.push(field);
+
+                        for (var i = 0; i < hiddenArray.length; i++) {
+                            //console.log(hiddenArray[i]);
+                            if (checked && field == hiddenArray[i]) {
+                                //console.log("vracen: " + field + " --- " + hiddenArray[i]);
+                                hiddenArray.splice(i, 1);
+                                $('#' + hiddenArray[i]).parent().parent().show();
+                            }
+
+                            //console.log("sakriven: " + field + " --- " + hiddenArray[i]);
+                            $('#' + hiddenArray[i]).parent().parent().hide();
+
+
+                        }
+
+                    });
+
+                    $table.on('page-change.bs.table', function (e, number, size) {
+                        pageNumber = number;
+                        pageSize = size;
+
+                        $table.bootstrapTable('refresh');
+                        $table.bootstrapTable("showLoading");
+
+                    });
+
+                    $table.on('sort.bs.table', function (order, name) {
+                        //alert(name + " ---- " + order);
+                        //console.log("Name: " + name);
+                        //alert("dadsdasd");
+                        sortColumn = name;
+                        //sortOrder = order;
+
+                        $table.bootstrapTable("showLoading");
+
+                    });
+
+                    $("#table select").change(function () {
+
+                        addSearchTerms($table);
+                        //$table.bootstrapTable('refresh');
+                    });
+
+                    $("#table input").keypress(function (event) {
+                        if (event.which == 13) {
+
+                            event.preventDefault();
+                            addSearchTerms($table);
+                        }
+
+                    });
+
+
+
+
+                    /////////////////////////////////////////////detalji
+
+                    $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .css("border", "1px solid gray");
+
+                        //$detail.css("border-bottom", "1px solid gray");
+                        $detail.css("border-left", "1px solid gray");
+
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .children('td')
+                            .css("border-top", "1px solid gray");
+
+                        $detail.html('Ucitavanje detalja o posiljci...');
+                        //alert(row.PosiljkaId);
+                        $.ajax({
+                            url: "Posiljka/DetailsZadaci",
+                            type: 'get',
+
+                            data: {
+                                id: row.PosiljkaId
+                            },
+                            success: function (data) {
+                                $detail.html(data)
+                            },
+                            error: function () {
+                                alert('Ajax error!');
+                            }
+                        });
+                    });
+
+                    $table.on('collapse-row.bs.table', function (e, index, row, $detail) {
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .css("border-left", "none")
+                            .css("border-top", "none");
+
+                        $detail.css("border-left", "none");
+
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .children('td')
+                            .css("border-top", "none");
+
+
+                    });
+
+
+
+                    //$("table").colResizable();
+                    //$('#table').dragtable();
+
+                    $('#toolbar').find('select').change(function () {
+                        $('#table').bootstrapTable('destroy').bootstrapTable({
+                            exportDataType: $(this).val()
+                        });
+                    });
+
+
+
+                });
+
+
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        return row.Id
+                    });
+                }
+
+                function queryParams(p) {
+                    //var params = {};
+
+                    //$('#toolbar').find('input[name]').each(function () {
+                    //    params[$(this).attr('name')] = $(this).val();
+                    //});
+                    var params = {
+                        pageNumber: pageNumber,
+                        pageSize: pageSize,
+                        searchTerms: searchArray.toString(),
+                        sortColumn: sortColumn,
+                        sortOrder: p.order,
+                        offset:0,
+                        limit: 10,
+                        posiljkaId:  @ViewBag.PosiljkaId
+                    };
+
+                    //searchConcatenate = "";
+                    //searchTerms = "";
+                    //console.log("ARRAY: ", searchArray.toString());
+                    //alert("PARAMS: " + pageNumber);
+
+
+                    return params;
+                }
+                function responseHandler(res) {
+                    return res.rows;
+                }
+
+                function addSearchTerms(table) {
+                    var searchText = "";
+                    var searchColumn = "";
+
+                    searchArray = [];
+
+                    pageNumber = 1;
+                    pageSize = 10;
+
+
+
+                    $("table#table :input").each(function () {
+
+
+                        var input = $(this);
+
+
+                        searchText = input.val();
+                        searchColumn = input.attr('id');
+                        if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                        {
+                            //alert(input.val() + " ---- " + input.attr('id'));
+
+                            if (input.val() == "on") {
+                                searchText = input.is(":checked");
+                            }
+
+                            //searchConcatenate += searchColumn + ":" + searchText + ",";
+                            searchArray.push(searchColumn + ":" + searchText);
+                            //searchT[searchColumn] = searchText;
+                        }
+                    });
+
+                    table.bootstrapTable('refresh');
+                    table.bootstrapTable('showLoading');
+                    table.bootstrapTable('selectPage', 1);
+                }
+
+                function formatYesNo(value, row, index) {
+                    return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                }
+
+                function totalTextFormatter(data) {
+                    return '&Sigma;';
+                }
+
+                function totalFormatter(data) {
+                    return data.length;
+                }
+
+                function totalNameFormatter(data) {
+                    return data.length;
+                }
+
+                function sumFormatter(data) {
+                    field = this.field;
+                    return data.reduce(function (sum, row) {
+                        return sum + (+row[field]);
+                    }, 0);
+                }
+
+                function avgFormatter(data) {
+                    return sumFormatter.call(this, data) / data.length;
+                }
+
+                //function ToJavaScriptDate(value) {
+                //    var pattern = /Date\(([^)]+)\)/;
+                //    var results = pattern.exec(value);
+                //    var dt = new Date(parseFloat(results[1]));
+                //    return dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
+
+                //}
+
+                function dateFormat(value, row, index) {
+                    return moment(value).format('DD/MM/YYYY');
+                }
+
+                function timeFormat(value, row, index) {
+                    return (value == null) ? '' : moment(value).format('HH:MM:SS');
+                }
+
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+                </script>
+            }
+        </div>
+</div>

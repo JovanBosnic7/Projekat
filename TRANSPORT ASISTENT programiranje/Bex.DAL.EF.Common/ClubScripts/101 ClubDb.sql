@@ -1,0 +1,37 @@
+USE master;
+GO
+
+USE ClubDb1;
+SELECT * FROM dbo.Movies ORDER BY 1 DESC;
+SELECT * FROM dbo.MovieBinaries ORDER BY 1 DESC;
+GO
+
+USE ClubDb2;
+SELECT * FROM dbo.Posts ORDER BY 1 DESC;
+SELECT * FROM base.Entries ORDER BY 1 DESC;
+SELECT * FROM base.EntryContents ORDER BY 1 DESC;
+SELECT * FROM dbo.Comments ORDER BY 1 DESC;
+
+USE master;
+GO
+
+/*
+IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'ClubDb1')
+	BEGIN
+		USE master;
+		ALTER DATABASE ClubDb1
+			SET SINGLE_USER
+			WITH ROLLBACK IMMEDIATE;
+		DROP DATABASE ClubDb1;
+	END
+GO
+IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'ClubDb2')
+	BEGIN
+		USE master;
+		ALTER DATABASE ClubDb2
+			SET SINGLE_USER
+			WITH ROLLBACK IMMEDIATE;
+		DROP DATABASE ClubDb2;
+	END
+GO
+*/

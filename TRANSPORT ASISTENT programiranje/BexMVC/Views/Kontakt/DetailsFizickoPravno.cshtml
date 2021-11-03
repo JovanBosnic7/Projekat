@@ -1,0 +1,239 @@
+﻿@model BexMVC.ViewModels.KontaktIndexData
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<div>
+
+    <script type="text/javascript">
+
+        var pravno = @ViewBag.Pravno;
+        //alert("AAAA " + pravno);
+        if (pravno != 0) {
+           // alert("PRAVNO");
+            var $table1 = $('#tablePravno_'+ @ViewBag.KontaktId);
+            $table1.bootstrapTable({
+                url: '/Kontakt/GetPravnoData?id=' +@ViewBag.KontaktId
+            });
+            $("#div_fizicko").hide();
+            $("#div_pravno").show();
+        }
+        else {
+            //alert("FIZICKO");
+            var $table2 = $('#tableFizicko_'+ @ViewBag.KontaktId);
+            $table2.bootstrapTable({
+                url: '/Kontakt/GetFizickoData?id=' +@ViewBag.KontaktId
+            });
+            $("#div_fizicko").show();
+            $("#div_pravno").hide();
+        }
+
+            var $table3 = $('#tableAdresa');
+            $table3.bootstrapTable({
+                url: '/Kontakt/GetAdresaData?id='+@ViewBag.KontaktId
+            });
+            var $table4 = $('#tableTelefoni');
+            $table4.bootstrapTable({
+                url: '/Kontakt/GetTelefoniData?id='+@ViewBag.KontaktId
+            });
+            var $table5 = $('#tableEmail');
+            $table5.bootstrapTable({
+                url: '/Kontakt/GetEmailData?id='+@ViewBag.KontaktId
+            });
+            var $table6 = $('#tableZiroRacun');
+            $table6.bootstrapTable({
+                url: '/Kontakt/GetZiroRacunData?id='+@ViewBag.KontaktId
+            });
+            var $table7 = $('#tableDelatnosti');
+            $table7.bootstrapTable({
+                url: '/Kontakt/GetDelatnostiData?id='+@ViewBag.KontaktId
+            });
+
+    </script>
+
+    @*//////////////////////////////////////////////////// DETALJI PRAVNO  /////////////////////////////////////////////////*@
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        @*<div class="panel-group">*@
+        @*<div class="panel panel-success" id="div_pravno">*@
+        <div class="panel panel-default  " id="div_pravno">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabPravno_@ViewBag.KontaktId">Detalji</a>
+                </h4>
+            </div>
+            <div id="tabPravno_@ViewBag.KontaktId" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table id="tablePravno_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="Id" data-visible="false">Id</th>
+                                <th data-field="PIB">PIB</th>
+                                <th data-field="MaticniBroj">Maticni broj</th>
+                                <th data-field="Poslovnica">Poslovnica</th>
+                                <th data-field="WebSajt">Web sajt</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*//////////////////////////////////////////////////// DETALJI FIZICKO  /////////////////////////////////////////////////*@
+
+        <div class="panel panel-default" id="div_fizicko">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabFizicko_@ViewBag.KontaktId">Detalji</a>
+                </h4>
+            </div>
+            <div id="tabFizicko_@ViewBag.KontaktId" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <table id="tableFizicko_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="DatumRodjenja" data-visible="false">Datum Rodjenja</th>
+                                <th data-field="BrojLicneKarte">Broj Licne Karte</th>
+                                <th data-field="BrojVozackeDozvole">Broj Vozacke Dozvole</th>
+                                <th data-field="BrojPasosa">Broj Pasosa</th>
+                                <th data-field="Pol">Pol</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*////////////////////////////////////////////////// ADRESE //////////////////////////////////////////////*@
+
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabAdresa_@ViewBag.KontaktId">Adrese</a>
+                </h4>
+            </div>
+            <div id="tabAdresa_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableAdresa_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="Id" data-visible="false">Id</th>
+                                <th data-field="KontaktId" data-sortable="true">Kontakt</th>
+                                @*<th data-field="PakId" data-switchable="true" data-footer-formatter="totalFormatter">Adresa</th>*@
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*///////////////////////////////////////////////// TELEFONI ///////////////////////////////////////////*@
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabTelefoni_@ViewBag.KontaktId">Telefoni</a>
+                </h4>
+            </div>
+            <div id="tabTelefoni_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableTelefoni_@ViewBag.KontaktId">
+                        <thead>
+                            <tr>
+                                <th data-field="Id" data-visible="false">Id</th>
+                                <th data-field="KontaktId" data-sortable="true">Kontakt</th>
+                                @*<th data-field="PakId" data-switchable="true" data-footer-formatter="totalFormatter">Adresa</th>*@
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*/////////////////////////////////////////////// EMAIL ///////////////////////////////////////////////*@
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabEmail_@ViewBag.KontaktId">Email</a>
+                </h4>
+            </div>
+            <div id="tabEmail_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableEmail_@ViewBag.KontaktId">
+                        <thead>
+                            <tr>
+                                <th data-field="Id" data-visible="false">Id</th>
+                                <th data-field="KontaktId" data-sortable="true">Kontakt</th>
+                                @*<th data-field="PakId" data-switchable="true" data-footer-formatter="totalFormatter">Adresa</th>*@
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*////////////////////////////////////////////////////// ZIRO RACUN //////////////////////////////////////////*@
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabZiroRacun_@ViewBag.KontaktId">Ziro racuni</a>
+                </h4>
+            </div>
+            <div id="tabZiroRacun_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableZiroRacun_@ViewBag.KontaktId">
+                        <thead>
+                            <tr>
+                                <th data-field="Id" data-visible="false">Id</th>
+                                <th data-field="KontaktId" data-sortable="true">Kontakt</th>
+                                @*<th data-field="PakId" data-switchable="true" data-footer-formatter="totalFormatter">Adresa</th>*@
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*///////////////////////////////////////////////// DELATNOSTI //////////////////////////////////////////////*@
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabDelatnosti_@ViewBag.KontaktId">Delatnosti</a>
+                </h4>
+            </div>
+            <div id="tabDelatnosti_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableDelatnosti_@ViewBag.KontaktId">
+                        <thead>
+                            <tr>
+                                <th data-field="Id" data-visible="false">Id</th>
+                                <th data-field="KontaktId" data-sortable="true">Kontakt</th>
+                                @*<th data-field="PakId" data-switchable="true" data-footer-formatter="totalFormatter">Adresa</th>*@
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*</div>*@
+</div>
+
+

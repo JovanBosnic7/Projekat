@@ -1,0 +1,196 @@
+﻿
+@*@model PagedList.PagedList<BexMVC.ViewModels.AddressData>*@
+@model  IEnumerable<Bex.ViewModels.AddressViewModel>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Adrese";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Evidencija adresa</h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Opcije
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                @Html.ActionLink("Dodaj novu ulicu", "Create")
+                            </li>
+                            <li>
+                                <a href="#">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#">Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Separated link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div  class="clearfix"> </div>
+
+
+            </div>
+            <table class="table">
+                @*table-fit*@
+                
+                @using (Html.BeginForm("", "PAK", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+                {
+                    <tr style="background-color:#dff0d8;">
+                        <th ></th>
+                        <th>
+                            @Html.TextBox("searchPak", ViewBag.CurrentPakFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchUlica", ViewBag.CurrentUlicaFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchMesta", ViewBag.CurrentMestoFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchReoncic", ViewBag.CurrentReoncicFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchReon", ViewBag.CurrentReonFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchRegion", ViewBag.CurrentRegionFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchBroj", ViewBag.CurrentBrojFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchDoBroj", ViewBag.CurrentDoBrojFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                            <input type="submit" value="Trazi" class="btn-sm btn-primary" style="display:none;"/>
+                        </th>
+                    </tr>
+                }
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.ActionLink("Pak", "Index", new { sortOrder = ViewBag.PakSortParm })
+                    </th>
+                   
+                    <th>
+                       @Html.ActionLink("Ulica", "Index", new { sortOrder = ViewBag.UlicaSortParm })
+                    </th>
+                    <th>
+                        Mesto
+                    </th>
+                    <th>
+                        Reoncic
+                    </th>
+                    <th>
+                        Reon
+                    </th>
+                    <th>
+                        Region
+                    </th>
+                    <th>
+                        odBroja
+                    </th>
+                    <th>
+                        DoBroja
+                    </th>
+
+
+                </tr>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+                    <tr>
+                        <td>
+                             <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    ...
+                                    @*<span class="caret"></span>*@
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li>
+                                        @Html.ActionLink(" Kartice", "Index", new { id = item.Pak }, new { @class = "fa fa-sitemap" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink(" Detalji", "Details", new { id = item.Pak }, new { @class = "fa fa-eye" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink(" Izmeni", "Edit", new { id = item.Pak }, new { @class = "glyphicon glyphicon-pencil" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink(" Brisi", "Delete", new { id = item.Pak }, new { @class = "glyphicon glyphicon-remove" })
+                                    </li>
+                                </ul>
+                            </div>
+                            @*@Html.ActionLink(" ", "Index", new { id = item.Pak }, new { @class = "fa fa-sitemap" }) |
+                            @Html.ActionLink(" ", "Details", new { id = item.Pak }, new { @class = "fa fa-eye" }) |
+                            @Html.ActionLink(" ", "Edit", new { id = item.Pak }, new { @class = "glyphicon glyphicon-pencil" }) |
+                            @Html.ActionLink(" ", "Delete", new { id = item.Pak }, new { @class = "glyphicon glyphicon-remove" })*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pak)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NazivUlice)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink(item.NazivMesta, "Index", "Place",  new {  searchMesto = item.NazivMesta }, new { target = "_blank" })
+                            @*@Html.DisplayFor(modelItem => item.NazivMesta)*@
+                        </td>
+                        <td>
+                            @Html.ActionLink(item.NazivReoncica, "Index", "Reoncic", new { searchString = item.NazivReoncica }, new { target = "_blank" })
+                            @*@Html.DisplayFor(modelItem => item.NazivReoncica)*@
+                        </td>
+                        <td>
+                            @Html.ActionLink(item.OznReona, "Index", "Reon", new { searchReon = item.OznReona }, new { target = "_blank" })
+                            @*@Html.DisplayFor(modelItem => item.OznReona)*@
+                        </td>
+                        <td>
+                           
+                            @Html.DisplayFor(modelItem => item.NazivSkraceniRegiona)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OdBroja)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DoBroja)
+                        </td>
+
+                    </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="8" style="text-align:center">
+           Unesite podatke u pretragu...
+        </td>
+    </tr>
+}
+</table>
+@if (Model != null)
+{
+            <div id='Paging' style="text-align:center">
+                @Html.PagedListPager((IPagedList)ViewBag.OnePageAdresa, page => Url.Action("Index", new { page, searchUlica = ViewBag.CurrentUlicaFilter, searchMesta = ViewBag.CurrentMestoFilter, searchBroj = ViewBag.CurrentBrojFilter }))
+                Strana @ViewBag.PageNumber od @ViewBag.TotalPages
+            </div>
+}
+        </div>
+    </div>
+    
+</div>

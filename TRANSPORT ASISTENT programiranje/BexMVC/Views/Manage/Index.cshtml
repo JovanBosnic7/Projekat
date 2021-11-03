@@ -1,0 +1,100 @@
+﻿@model BexMVC.ViewModels.IndexViewModel
+@{
+    ViewBag.Title = "Izmena naloga";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2>@ViewBag.Title.</h2>
+
+                    <p class="text-success">@ViewBag.StatusMessage</p>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h4>Change your account settings</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>Password:</dt>
+                            <dd>
+                                [
+                                @if (Model.HasPassword)
+                                {
+                                    @Html.ActionLink("Change your password", "ChangePassword")
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Create", "SetPassword")
+                                }
+                                ]
+                            </dd>
+                            <dt>Email:</dt>
+                            <dd>
+                                [
+                                @if (Model.IsEmailConfirmed)
+                                {
+                                    <text>Confirmed</text>
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Confirm your Email", "EmailConfirmation")
+                                }
+                                ]
+                            </dd>
+                            <dt>Phone Number:</dt>
+                            <dd>
+                                @(Model.PhoneNumber ?? "None")
+                                @if (Model.PhoneNumber != null)
+                                {
+                                    if (!Model.IsPhoneNumberConfirmed)
+                                    {<text>[&nbsp;@Html.ActionLink("Confirm", "ConfirmPhoneNumber", new { phoneNumber = Model.PhoneNumber })&nbsp;]</text>}
+                                <text>[&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;]</text>
+                                <text>[&nbsp;@Html.ActionLink("Remove", "RemovePhoneNumber")&nbsp;]</text>
+                            }
+                            else
+                            {
+                                <text>[&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")&nbsp;]</text>
+                            }
+                            </dd>
+                            <dt>External Logins:</dt>
+                            <dd>
+                                @Model.Logins.Count [&nbsp;@Html.ActionLink("Manage", "ManageLogins")&nbsp;]
+                            </dd>
+                            <dt>Two-Factor Authentication:</dt>
+                            <dd>
+                                @if (Model.TwoFactor)
+                                {
+                                    using (Html.BeginForm("DisableTFA", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <text>Enabled
+                                            <input type="submit" value="Disable" class="btn btn-link" />
+                                        </text>
+                                    }
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("EnableTFA", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <text>Disabled
+                                            <input type="submit" value="Enable" class="btn btn-link" />
+                                        </text>
+                                    }
+                                }
+                            </dd>
+                            @if (Model.IsInAdmins)
+                            {
+                                <dt>Roles:</dt>
+                                <dd>
+                                    [&nbsp;@Html.ActionLink("Roles", "Index", "Role")&nbsp;]
+                                </dd>
+                            }
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

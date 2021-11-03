@@ -1,0 +1,66 @@
+﻿@model Bex.Models.Ugovor
+@using BexMVC.Helpers
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("SaveObecanoPartial", "Ugovor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id, new { Value = @Url.RequestContext.RouteData.Values["id"] })
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.AdresaTxt, "Adresa", htmlAttributes: new { @class = "control-label col-md-2 small" })
+            <div class="col-md-10">
+                @Html.AutocompleteFor(model => model.AdresaTxt, model => model.PakId, "GetAdrese", "Kontakt", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Kucajte podatke o adresi..." } })
+                @Html.ValidationMessageFor(model => model.AdresaTxt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrojTxt, "Broj", htmlAttributes: new { @class = "control-label col-md-2 small" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BrojTxt, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.BrojTxt, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ObecanoPaketa, "Obecano paketa", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ObecanoPaketa, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.ObecanoPaketa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ObecanPromet, "Obećan promet", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ObecanPromet, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.ObecanPromet, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SezonskiKlijent, "Sezonski klijent", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.SezonskiKlijent, new { htmlAttributes = new { @class = "form-control " } })
+            @Html.ValidationMessageFor(model => model.SezonskiKlijent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SezonaSlanja, "Sezona", htmlAttributes: new { @class = "control-label col-md-2 small" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SezonaSlanja, new { htmlAttributes = new { @class = "form-control input-sm" } })
+            @Html.ValidationMessageFor(model => model.SezonaSlanja, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Sacuvaj" class="btn btn-primary pull-right" />
+        </div>
+    </div>
+
+}

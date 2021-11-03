@@ -1,0 +1,177 @@
+﻿@model Bex.Models.Cekovi
+
+@{
+    ViewBag.Title = "Čekovi - Dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Čekovi</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../Cekovi?izmena=0">Čekovi</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Dodavanje čekova</h3>
+                            <hr>
+                            <p></p>
+
+                        </div>
+                        @using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            @*@Html.HiddenFor(model => model.BankaId, new { id = "BankaId" })
+                            @Html.HiddenFor(model => model.ProvizijaId, new { id = "ProvizijaId" })*@
+                            @Html.HiddenFor(model => model.ZastupnikId, new { id = "ZastupnikId" })
+
+
+                            <div>
+                                <label class="control-label col-sm-2" for="banka">Banka</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("BankaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BankaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Broj TR</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.BrojTekucegRacuna, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BrojTekucegRacuna, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Broj čeka</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.BrojCeka, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                    @Html.ValidationMessageFor(model => model.BrojCeka, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Datum dospeća</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumDospeca, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-dospeca" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Iznos čeka</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.IznosCeka, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IznosCeka, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2">Napomena</label>
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="ui-widget">
+                                <label class="control-label col-sm-2" for="Zastupnik">Zastupnik</label>
+                                <div class="col-sm-10">
+                                    <input id="zastupnik" class="form-control" value="@ViewBag.ZastupnikId">
+
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label col-sm-2" for="provizija">Provizija</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("ProvizijaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ProvizijaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryDatePickerForm")
+            @Scripts.Render("~/bundles/jqueryval")
+            
+            <script type="text/javascript">
+
+
+                $(document).ready(function () {
+
+
+                    $('.datepicker-dat-dospeca').datepicker({ dateFormat: 'dd-mm-yy' });
+                    $('.datepicker-dat-dospeca').attr("autocomplete", "off");
+
+                    $("#zastupnik").autocomplete({
+                        source: function (request, response) {
+
+                            $.ajax({
+                                url: "/Cekovi/GetZastupnikeAutoComplete?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            });
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#ZastupnikId').val(ui.item.id);
+                        }
+                    });
+
+                });
+
+                function OnSuccess(response) {
+                    alert(response);
+                    window.close();
+                }
+
+                function OnFailure(response) {
+                    alert(response);
+                }
+
+            </script>
+
+        }
+    </div>
+</div>

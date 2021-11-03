@@ -1,0 +1,139 @@
+﻿@model Bex.Models.KontaktFizickoLice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Podaci o fizickom licu: @ViewBag.KontaktNaziv</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ime
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kontakt.Ime)
+        </dd>
+
+        <dt>
+            D. rodjenja
+       </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumRodjenja)
+        </dd>
+
+        <dt>
+            Mesto rodjenja
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MestoRodjenja)
+        </dd>
+
+        <dt>
+            Drzavljanstvo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drzavljanstvo)
+        </dd>
+
+        <dt>
+            Broj LK
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojLicneKarte)
+        </dd>
+
+        <dt>
+            D. iskteka LK
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumIstekaLicneKarte)
+        </dd>
+
+        <dt>
+           Mesto LK
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MestoIzdavanjaLicneKarte)
+        </dd>
+
+        <dt>
+            Broj vozacke
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojVozackeDozvole)
+        </dd>
+
+        <dt>
+            D. isteka vozacke
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumIstekaVozackeDozvole)
+        </dd>
+
+        <dt>
+            Kategorije
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategorijaVozackeDozvole)
+        </dd>
+
+        <dt>
+            Mesto vozacke
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MestoIzdavanjaVozackeDozvole)
+        </dd>
+
+        <dt>
+            Broj pasosa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojPasosa)
+        </dd>
+
+        <dt>
+            D. isteka pasosa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumIstekaPasosa)
+        </dd>
+
+        <dt>
+            Mesto pasosa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MestoIzdavanjaPasosa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pol)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "../Kontakt")
+</p>

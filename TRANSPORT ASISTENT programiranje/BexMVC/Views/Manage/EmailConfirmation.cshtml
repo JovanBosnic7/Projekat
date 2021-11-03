@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Email Confirmation";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+<div>
+    <p>
+        Please check your email to confirm it.
+    </p>
+</div>
+
+<!-- in production delete lines to the end-->
+<p class="text-danger">
+    For DEMO only: Please confirm your mail by clicking <a href="@ViewBag.Link">here</a>
+</p>
+<p class="text-info">
+    In production, register real email service as EmailService property of Application User Manager.<br />
+    For more information on how to enable account email confirmation please visit <a href="https://go.microsoft.com/fwlink/?LinkID=320771">https://go.microsoft.com/fwlink/?LinkID=320771</a>
+</p>

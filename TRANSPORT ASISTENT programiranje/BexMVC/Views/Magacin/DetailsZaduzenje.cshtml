@@ -1,0 +1,93 @@
+﻿@model Bex.Models.KurirRazduzenje
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    
+}
+
+<div>
+
+    <script type="text/javascript">
+
+            var $table = $('#tableObavljeniZadaciReon_'+@ViewBag.ReonId);
+            $table.bootstrapTable({
+                url: '/Magacin/GetObavljeniZadaciReonData?reonId='+@ViewBag.ReonId + '&kurirId='+@ViewBag.KurirId
+            });
+
+        function DetailsObavljeneDostaveLink(value, row, index) {
+            return "<a href='../Magacin/DetailsObavljeneDostave?reonId=" + @ViewBag.ReonId + "&kurirId="+@ViewBag.KurirId+"' target='_blank'>" + value + "</a>";
+        }
+
+        function DetailsObavljenaPreuzimanjaLink(value, row, index) {
+            return "<a href='../Magacin/DetailsObavljenaPreuzimanja?reonId=" + @ViewBag.ReonId + "&kurirId="+@ViewBag.KurirId+"' target='_blank'>" + value + "</a>";
+        }
+       
+
+        @*$(document).ready(function () {
+
+            $('#razduzi_'+@ViewBag.ReonId).click(function () {
+                var ids = getIdSelections();
+                location.href = "VozniPark/Edit?id=" + @ViewBag.ReonId;
+
+            });
+
+
+        });*@
+    </script>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-success  ">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <h4 class="panel-title" style="margin-top:5px;">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#tabObavljeniZadaci_@ViewBag.ReonId">Obavljeni zadaci na reonu: @ViewBag.ReonId </a>
+                        </h4>
+                    </div>
+                    <div class="col-lg-10">
+                        @using (Html.BeginForm("SaveRazduzenje", "Magacin", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.ReonId, new { reonId = @ViewBag.ReonId })
+                            @Html.HiddenFor(model => model.KurirId, new { kurirId = @ViewBag.KurirId })
+                            <div class="btn-group ">
+                                <input name="UkupnoRazduzio" id="ukupnoRazduzio" class="form-control input-sm" type="text" placeholder="Unesite iznos">
+                            </div>
+                            <div class="btn-group ">
+                                <input type="submit" value="Razduzi" class="btn btn-default btn-sm" />
+
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+                </div>
+                    <div id="tabObavljeniZadaci_@ViewBag.ReonId" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table id="tableObavljeniZadaciReon_@ViewBag.ReonId">
+
+                                <thead>
+
+                                    <tr>
+                                        <th data-field="UkupnoObavljenihDostavaDanas" data-formatter="DetailsObavljeneDostaveLink">Ukupno Obavljenih Dostava Danas</th>
+                                        <th data-field="UkupnoDostavaNareonu" data-formatter="DetailsObavljeneDostaveLink">Ukupno Dostava Na reonu</th>
+                                        <th data-field="UkupnoObavljenihPreuzimanjaDanas" data-formatter="DetailsObavljenaPreuzimanjaLink">Ukupno Obavljenih Preuzimanja Danas</th>
+                                        <th data-field="UkupnoPreuzimanjaNareonu" data-formatter="DetailsObavljenaPreuzimanjaLink">Ukupno Preuzimanja Na reonu</th>
+                                        <th data-field="UkupnoPazara">Ukupno Pazara</th>
+                                        <th data-field="UkupnoOtkupa">Ukupno Otkupa</th>
+                                    </tr>
+
+                                </thead>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+</div>
+
+

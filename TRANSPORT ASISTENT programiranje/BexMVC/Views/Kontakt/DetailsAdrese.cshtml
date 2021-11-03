@@ -1,0 +1,67 @@
+﻿@model Bex.Models.KontaktAdresa
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    
+}
+
+
+
+
+<div>
+
+    <script type="text/javascript">
+        
+        var $table = $('#table2');
+     $table.bootstrapTable({
+         url: '/Kontakt/GetKontaktAdresa'
+     });
+
+
+        //$(document).ready(function () {
+
+        //    $table.bootstrapTable({
+        //        url: '/Kontakt/GetKontakt'
+        //    });
+
+
+        //});
+
+
+
+
+    </script>
+
+
+
+    <table id="table2"
+           @*data-url="/Kontakt/GetKontaktAdresa"*@
+          >
+
+        <thead>
+
+            <tr>
+                
+                <th data-field="Id" data-visible="false">Id</th>
+                <th data-field="KontaktId" data-sortable="true">
+                    Kontakt
+                 
+                </th>
+                <th data-field="PakId" data-switchable="true" data-footer-formatter="totalFormatter">
+                    Adresa
+                    
+                </th> 
+               
+            </tr>
+
+        </thead>
+
+    </table>
+    
+    
+
+        
+   
+</div>
+
+

@@ -1,0 +1,58 @@
+﻿@model Bex.Models.PosiljkaOtkupZbirniStavka
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+    
+}
+
+<div>
+
+    <script type="text/javascript">
+
+            var $table = $('#tableSpecifikacija_'+@ViewBag.BarKod);
+            $table.bootstrapTable({
+                url: '/Magacin/GetZbirnaSpecifikacijaData?barKod='+@ViewBag.BarKod
+            });
+
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+    </script>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-success  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabSpecifikacija_@ViewBag.BarKod">Specifikacija zbirnih otkupa</a>
+                </h4>
+            </div>
+            <div id="tabSpecifikacija_@ViewBag.BarKod" class="panel-collapse collapse in">
+                <div class="panel-body" >
+                    <table id="tableSpecifikacija_@ViewBag.BarKod" >
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="BarKod" data-visible="false">Id</th>
+                                <th data-field="PosiljkaId">Posiljka</th>
+                                <th data-field="NazivKlijenta">Klijent</th>
+                                <th data-field="Adresa">Adresa</th>
+                                <th data-field="Otkup">Otkup</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+

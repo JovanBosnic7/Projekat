@@ -1,0 +1,58 @@
+﻿@model DDtrafic.ViewModels.ImageEditorViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<div>
+    <script type="text/javascript">
+
+        var $tableAlarmi = $('#tableAlarmi_'+@ViewBag.ZaposleniId);
+        $tableAlarmi.bootstrapTable({
+            url: 'VozniPark/GetDetailsAlarmIservis?grupaId=3&id=' +@ViewBag.ZaposleniId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+    </script>
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabAlarmi_@ViewBag.ZaposleniId">Alarmi</a>
+                </h4>
+            </div>
+            <div id="tabAlarmi_@ViewBag.ZaposleniId" class="panel-collapse collapse">
+                <div class="panel-body" id="details">
+                    <table id="tableAlarmi_@ViewBag.ZaposleniId">
+                        <thead>
+                            <tr>
+                                <th data-field="Tip">Tip alarma</th>
+                                <th data-field="Datum" data-formatter="dateFormat">D. urađeno</th>
+                                <th data-field="DatumIsteka" data-formatter="dateFormat">D. isteka</th>
+                                <th data-field="DatumAlarma" data-formatter="dateFormat">D. alarma</th>
+                                <th data-field="Napomena">Napomena</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabGallery_@ViewBag.ZaposleniId">Galerija</a>
+                </h4>
+            </div>
+            <div id="tabGallery_@ViewBag.ZaposleniId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div id="ListPanel" data-url="@Url.Action("_List","GalleryAdmin")">
+                        @Html.Action("_List", "GalleryAdmin", new { tipId = 2, id = ViewBag.ZaposleniId })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

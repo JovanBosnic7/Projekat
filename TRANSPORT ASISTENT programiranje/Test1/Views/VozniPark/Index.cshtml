@@ -1,0 +1,192 @@
+﻿
+@model DDtrafic.ViewModels.VozniParkIndexData1
+
+@{
+    ViewBag.Title = "Vozni Park";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Evidencija vozila u voznom parku</h1>
+        <p>Pregled svih vozila</p>
+    </div>
+</div>
+<hr />
+<div class="row" style="background:#eee;">
+    
+    <div class="card">
+        <div class="card-body">
+            <div id="toolbar" class="columns columns-left btn-group ">
+
+                <button id="create" class="btn btn-primary">
+                    @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                </button>
+                <button id="edit" class="btn btn-primary" disabled>
+                    Izmeni
+                </button>
+                <button id="delete" class="btn btn-primary" disabled>
+                    Briši
+                </button>
+                <button id="addFiles" class="btn btn-primary" disabled>
+                    Dodaj dokument/sliku
+                </button>
+
+            </div>
+
+            <div class="table-responsive" style="min-height:300px;">
+                <table id="table"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       data-query-params="queryParams"
+                       data-show-refresh="true"
+                       data-show-columns="true"
+                       data-show-export="true"
+                       data-filter-control="true"
+                       data-detail-view="true"
+                       data-page-list="[10, 25, 50, 100]"
+                       data-toolbar="#toolbar">
+
+                    <thead>
+
+                        <tr name="lalal" id="akakak">
+                            <th data-checkbox="true"></th>
+                            <th data-field="Id" data-sortable="true" data-filter-control="input" class="context-menu-one">Rbr</th>
+                            <th data-field="Oznaka" data-filter-control="input" data-sortable="true">Registracija</th>
+                            <th data-field="GarazniBroj" data-filter-control="input" data-switchable="true" data-sortable="true" data-visible="false">Garazni broj</th>
+                            <th data-field="Kategorija" data-sortable="true" data-filter-control="select" data-filter-data="url:/VozniPark/GetKategorija" title="Uneti kategoriju vozila">Vrsta</th>
+                            <th data-field="Karoserija" data-filter-control="input" data-switchable="true" data-sortable="true" data-visible="false">Karoserija</th>
+                            <th data-field="PodKaroserija" data-filter-control="input" data-switchable="true" data-sortable="true" data-visible="false">Pod karoserija</th>
+                            <th data-field="Marka" data-sortable="true" data-filter-control="input">Marka</th>
+                            <th data-field="Model" data-sortable="true" data-filter-control="input" data-visible="false">Model</th>
+                            <th data-field="TipVozila" data-sortable="true" data-filter-control="input" data-visible="false">Tip</th>
+                            <th data-field="Godiste" data-filter-control="input" data-sortable="true" data-visible="false">Godiste</th>
+                            <th data-field="Sasija" data-sortable="true" data-filter-control="input">Sasija</th>
+                            <th data-field="BrojMotora" data-sortable="true" data-filter-control="input" data-visible="false">Br.motora</th>
+                            <th data-field="SnagaMotora" data-sortable="true" data-filter-control="input" data-visible="false">Snaga</th>
+                            <th data-field="Zapremina" data-sortable="true" data-filter-control="input" data-visible="false">Zapremina</th>
+                            <th data-field="Masa" data-sortable="true" data-filter-control="input" data-visible="false">Masa</th>
+                            <th data-field="Nosivost" data-sortable="true" data-filter-control="input">Nosivost</th>
+                            <th data-field="NDM" data-sortable="true" data-filter-control="input" data-visible="false">NDM</th>
+                            <th data-field="NabavnaKM" data-sortable="true" data-filter-control="input" data-visible="false">Nabavna km</th>
+                            <th data-field="PropisanaPotrosnja" data-formatter="intFormat" data-visible="false" data-filter-control="input" data-sortable="true">Propisana potrosnja</th>
+                            <th data-field="BrojVrata" data-formatter="intFormat" data-visible="false" data-filter-control="input" data-sortable="true">Br.vrata</th>
+                            <th data-field="BrMestaZaSedenje" data-formatter="intFormat" data-visible="false" data-filter-control="input" data-sortable="true">Br.sedenje</th>
+                            <th data-field="BrMestaZaStajanje" data-formatter="intFormat" data-visible="false" data-filter-control="input" data-sortable="true">Br.stajanje</th>
+                            <th data-field="PogonskiPneumatici" data-sortable="true" data-filter-control="input" data-visible="false">Pogonski</th>
+                            <th data-field="UpravljackiPneumatici" data-sortable="true" data-filter-control="input" data-visible="false">Upravljački</th>
+                            <th data-field="VrstaGoriva" data-visible="false" data-filter-control="input" data-sortable="true">Gorivo</th>
+                            <th data-field="Menjac" data-visible="false" data-filter-control="input" data-sortable="true">Menjac</th>
+                            <th data-field="Sifra" data-filter-control="input" data-sortable="true">Šifra</th>
+                            <th data-field="Status" data-filter-control="select" data-filter-data="url:/VozniPark/GetStatus" data-sortable="true">Status</th>
+                            <th data-field="Napomena" data-visible="false" data-filter-control="input" data-sortable="true">Napomena</th>
+                            <th data-field="DatumRegistracije" data-formatter="dateFormat" data-visible="false" data-filter-control="datepicker" data-sortable="true">Datum reg.</th>
+
+
+</thead>
+
+                </table>
+                @*<ul id="contextMenu"   role="menu" style="display:none">
+                <li><a tabindex="-1" href="#">Action</a></li>
+                <li><a tabindex="-1" href="#">Another action</a></li>
+                <li><a tabindex="-1" href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#">Separated link</a></li>
+            </ul>*@
+
+                @*<span class="context-menu-one btn btn-neutral">right click me</span>*@
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
+
+    <script type="text/javascript">
+
+
+
+
+                var $table = $('#table');
+                var $remove = $('#remove'),
+                $add = $('#add'),
+                    $edit = $('#edit'),
+                    $delete = $('#delete'),
+                    $zona = $('#zona'),
+                    $alarm = $('#alarm'),
+                    $popravka = $('#popravka'),
+                    $steta = $('#steta'),
+                    $gallery = $('#gallery'),
+                    $vpOprema = $('#vpOprema'),
+                    $opcije = $('#opcije'),
+                    $addFiles = $('#addFiles'),
+                    $print = $('#print');
+                    $("#reportDiv").hide();
+
+                var $statusId = @ViewBag.StatusId;
+                @*var $idVozila = @ViewBag.VpId;*@
+                if ($statusId == 1) {
+                    $table.addFilter("Statusi", "Aktivno");
+                } else if ($statusId == 2) {
+                    $table.addFilter("Statusi", "Servis");
+                }
+
+
+                $table.configTable('VozniPark/GetVozniPark');
+                $table.hideColTable();
+
+
+
+                //$('.datepicker-dat-registracije, .datepicker-dat-zaduzenja').datepicker();
+                //$('.datepicker-dat-registracije, .datepicker-dat-zaduzenja').attr("autocomplete", "off");
+
+
+
+            $(document).ready(function () {
+
+
+                var $checkTableElements = [$edit, $opcije, $delete, $print, $vpOprema, $addFiles];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    //var $checkMoreTableElements = [$vpOprema];
+                    //$table.checkMoreOptionsTable($checkMoreTableElements);
+
+                    $table.optionsTable();
+
+               
+
+                    $add.clickButtonWithoutParams('VozniPark/Create');
+                    $edit.clickOptions('VozniPark/Edit?id=');
+                    $delete.clickOptions('VozniPark/Delete?id=');
+                    $alarm.clickOptions('VozniPark/CreateAlarm?popravka=false&vozniParkId=');
+                    $popravka.clickOptions('VozniPark/CreateAlarm?popravka=true&vozniParkId=');
+                $vpOprema.clickOptions('VozniParkOprema/AddOprema?id=');
+                $addFiles.clickOptions('GalleryAdmin/Create?tipId=1&isProfile=0&id=');
+
+                    //$('.opremaId').dropDownChoice('./CreateAlarmOprema', 'Uspesno ste dodali opremu!');
+
+                    $table.detailsTable('VozniPark/Details');
+
+
+
+
+            });
+
+            function getIdSelections() {
+                return $.map($table.bootstrapTable('getSelections'), function (row) {
+                    var paramsSelection = { vozniParkId: row.Id };
+                    return paramsSelection
+                });
+            }
+
+
+
+    </script>
+}
+@*</div>
+    </div>*@

@@ -1,0 +1,337 @@
+﻿@model Bex.Models.Ugovor
+@using BexMVC.Helpers
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <br />
+
+        @*@Html.HiddenFor(model => model.ModelId)
+            @Html.HiddenFor(model => model.SubVozacId)
+            @Html.HiddenFor(model => model.SubOdgovornoLiceId)*@
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                Dodavanje ugovora
+
+                @*<div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                        </div>
+                    </div>*@
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RegionId, "Region", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NosilacNaziv, "Nosilac", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.AutocompleteFor(model => model.NosilacNaziv, model => model.KontaktIdNosilac, "GetSub", "Ugovor", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Zapocnite unos..." } })
+                                    @Html.ValidationMessageFor(model => model.NosilacNaziv, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cenovnik1Broj, "Cenovnik 1", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.AutocompleteFor(model => model.Cenovnik1Broj, model => model.Cenovnik1Id, "GetCenovnik", "Ugovor", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Zapocnite unos..." } })
+                                    @Html.ValidationMessageFor(model => model.Cenovnik1Broj, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cenovnik2Broj, "Cenovnik 2", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.AutocompleteFor(model => model.Cenovnik2Broj, model => model.Cenovnik2Id, "GetCenovnik", "Ugovor", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Zapocnite unos..." } })
+                                    @Html.ValidationMessageFor(model => model.Cenovnik2Broj, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ZastupnikKlijenta, "Zastupnik", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ZastupnikKlijenta, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.ZastupnikKlijenta, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UgovorBroj, "Broj ugovora", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.UgovorBroj, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.UgovorBroj, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.DatumUgovora, "Datum ugovora", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @*@Html.TextBoxFor(model => model.DatumRegistracije, "{0:yyyy-MM-dd}", new { @class = "form-control input-sm", type = "date" })*@
+                                    @Html.TextBoxFor(model => model.DatumUgovora, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker-dat-ugovora" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UgovorVerzija, "Verzija ugovora", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.UgovorVerzija, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.UgovorVerzija, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.DatumPoslednjeVerzije, "Datum verzije", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @*@Html.TextBoxFor(model => model.DatumRegistracije, "{0:yyyy-MM-dd}", new { @class = "form-control input-sm", type = "date" })*@
+                                    @Html.TextBoxFor(model => model.DatumPoslednjeVerzije, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker-dat-verzije" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UgovorilacNaziv, "Ugovorio", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.AutocompleteFor(model => model.UgovorilacNaziv, model => model.UgovorilacUserId, "GetUser", "Ugovor", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Zapocnite unos..." } })
+                                    @Html.ValidationMessageFor(model => model.UgovorilacNaziv, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ZaposleniNaziv, "Agent", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.AutocompleteFor(model => model.ZaposleniNaziv, model => model.AgentZaposleniId, "GetZaposleni", "Ugovor", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Zapocnite unos..." } })
+                                    @Html.ValidationMessageFor(model => model.ZaposleniNaziv, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PosrednikNaziv, "Posrednik", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.AutocompleteFor(model => model.PosrednikNaziv, model => model.PosrednikUserId, "GetUser", "Ugovor", false, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = "Zapocnite unos..." } })
+                                    @Html.ValidationMessageFor(model => model.PosrednikNaziv, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.DatumObnove, "Datum obnove", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.DatumObnove, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker-dat-obnove" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VracenAneks, "Vraćen an.", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.CheckBoxFor(model => model.VracenAneks, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.VracenAneks, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.DatumIOSa, "Datum IOSa", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.DatumIOSa, "{0:yyyy-MM-dd}", new { @class = " form-control  datepicker-dat-iosa" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NeRacunaSeAnaliza2, "Ne rač. se an. 2", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.CheckBoxFor(model => model.NeRacunaSeAnaliza2, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.NeRacunaSeAnaliza2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.KompanijaId, "Kompanija", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.KompanijaId, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.KompanijaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Aktivan, "Aktivan", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.CheckBoxFor(model => model.Aktivan, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Aktivan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Fiktivan, "Fiktivan", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.CheckBoxFor(model => model.Fiktivan, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Fiktivan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StariBrojUgovora, "Stari br. ugovora", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.StariBrojUgovora, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.StariBrojUgovora, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Snimi" class="btn btn-default pull-right" />
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Save" class="btn btn-default" />
+                                    </div>
+                                </div>*@
+                        }
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    <div class="col-lg-6">
+                        @*<div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" class="collapsed">Cenovnik</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <div id="EditDeatilsPartial">
+                                            @Html.Action("EditDetailsCenovnikPartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed" aria-expanded="false">Fakturisanje</a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div id="EditDeatilsPartial">
+                                        @Html.Action("EditDetailsFakturisanjePartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="true">Obracun cena</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div id="EditDeatilsPartial">
+                                        @Html.Action("EditDetailsObracunCenaPartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">Obecani mesecni promet</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div id="EditDeatilsPartial">
+                                        @Html.Action("EditDetailsObecanoPartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">VIP</a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div id="EditDeatilsPartial">
+                                        @Html.Action("EditDetailsVIPPartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix" class="collapsed" aria-expanded="false">Napomene</a>
+                                </h4>
+                            </div>
+                            <div id="collapseSix" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div id="EditDeatilsPartial">
+                                        @Html.Action("EditDetailsNapomenePartial", new { id = Url.RequestContext.RouteData.Values["id"] })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to List", "../Ugovor")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <script type="text/javascript">
+
+                $('.datepicker-dat-ugovora, .datepicker-dat-verzije, .datepicker-dat-obnove, .datepicker-dat-iosa').datepicker({
+                    format: 'yyyy-mm-dd'
+                    //,
+                    //showOn: "button",
+                    //buttonImage: "../Content/images/calendar.gif",
+                    //buttonText: "Select date"
+                });
+
+                $(document).ready(function () {
+                    $("#models").autocomplete({
+                        source: function (request, response) {
+                            //alert(request.term);
+                            $.ajax({
+                                url: "/Ugovor/SelectBoxModel",
+                                type: "GET",
+                                dataType: "json",
+                                data: { Prefix: request.term },
+                                success: function (data) {
+                                    response($.map(data, function (item) {
+                                        return {
+                                            label: item.NazivModela,
+                                            id: item.Id
+                                        }
+                                    }));
+
+                                }
+                            })
+                        },
+                        messages: {
+                            noResults: "", results: ""
+                        }
+                    });
+                })
+
+
+            </script>
+
+
+
+        }
+    </div>
+</div>

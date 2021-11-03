@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4AFAFE12-B6A3-49B8-86B4-7F2BAE2804E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bex.DAL.EF.Models</RootNamespace>
+    <AssemblyName>Bex.DAL.EF.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations\EvidencijaVozacaConfiguration.cs" />
+    <Compile Include="Configurations\VpPopravkeTipConfiguration.cs" />
+    <Compile Include="Configurations\VpPopravkeConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkPodKaroserijaConfiguration.cs" />
+    <Compile Include="Configurations\VpTrosakConfiguration.cs" />
+    <Compile Include="Configurations\VpAlarmTipConfiguration.cs" />
+    <Compile Include="Configurations\VpAlarmGrupaConfiguration.cs" />
+    <Compile Include="Configurations\NovostiConfiguration.cs" />
+    <Compile Include="Configurations\PPoblastConfiguration.cs" />
+    <Compile Include="Configurations\PPvrstaConfiguration.cs" />
+    <Compile Include="Configurations\PravniPostupakConfiguration.cs" />
+    <Compile Include="Configurations\FirmaVPConfiguration.cs" />
+    <Compile Include="Configurations\StetaConfiguration.cs" />
+    <Compile Include="Configurations\StetaKategorijaConfiguration.cs" />
+    <Compile Include="Configurations\TicketStatusConfiguration.cs" />
+    <Compile Include="Configurations\TicketPrimalacTipConfiguration.cs" />
+    <Compile Include="Configurations\TicketPrimalacConfiguration.cs" />
+    <Compile Include="Configurations\TicketPostConfiguration.cs" />
+    <Compile Include="Configurations\TicketKategorijaConfiguration.cs" />
+    <Compile Include="Configurations\TicketConfiguration.cs" />
+    <Compile Include="Configurations\TPlokacijeConfiguration.cs" />
+    <Compile Include="Configurations\TPocitavanjaConfiguration.cs" />
+    <Compile Include="Configurations\TPterminiConfiguration.cs" />
+    <Compile Include="Configurations\DimenzijeNavConfiguration.cs" />
+    <Compile Include="Configurations\ArtikliVrstaConfiguration.cs" />
+    <Compile Include="Configurations\ArtikliGrupaConfiguration.cs" />
+    <Compile Include="Configurations\LagerConfiguration.cs" />
+    <Compile Include="Configurations\MagacinSpisakConfiguration.cs" />
+    <Compile Include="Configurations\KontaktUlogaTipConfiguration.cs" />
+    <Compile Include="Configurations\KontaktUlogaConfiguration.cs" />
+    <Compile Include="Configurations\CekoviProvizijaConfiguration.cs" />
+    <Compile Include="Configurations\CekoviConfiguration.cs" />
+    <Compile Include="Configurations\BankeConfiguration.cs" />
+    <Compile Include="Configurations\CeneConfiguration.cs" />
+    <Compile Include="Configurations\CenovnikConfiguration.cs" />
+    <Compile Include="Configurations\GorivoTocenjeConfiguration.cs" />
+    <Compile Include="Configurations\GorivoKarticaConfiguration.cs" />
+    <Compile Include="Configurations\GorivoPumpaConfiguration.cs" />
+    <Compile Include="Configurations\PutniNalogTipConfiguration.cs" />
+    <Compile Include="Configurations\PutniNalogConfiguration.cs" />
+    <Compile Include="Configurations\ArtikliConfiguration.cs" />
+    <Compile Include="Configurations\TrebovanjeStavkeConfiguration.cs" />
+    <Compile Include="Configurations\TrebovanjeConfiguration.cs" />
+    <Compile Include="Configurations\StetaTipConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkMarkaConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkKategorija.cs" />
+    <Compile Include="Configurations\TPstatusTerminaConfiguration.cs" />
+    <Compile Include="Configurations\VpOpremaPodTipConfiguration.cs" />
+    <Compile Include="Configurations\VpOpremaTipConfiguration.cs" />
+    <Compile Include="Configurations\VpOpremaGrupaConfiguration.cs" />
+    <Compile Include="Configurations\VpOpremaConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniDanConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniDanStatusConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniNapomenaConfiguration.cs" />
+    <Compile Include="Configurations\WebFilesTipConfiguration.cs" />
+    <Compile Include="Configurations\WebFilesConfiguration.cs" />
+    <Compile Include="Configurations\GalleryConfiguration.cs" />
+    <Compile Include="Configurations\KalendarPlanerConfiguration.cs" />
+    <Compile Include="Configurations\KorisniciProgramaClaimsConfiguration.cs" />
+    <Compile Include="Configurations\KorisniciProgramaClaimsRolesConfiguration.cs" />
+    <Compile Include="Configurations\PrijavaStatusConfiguration.cs" />
+    <Compile Include="Configurations\PrijavaNapomenaConfiguration.cs" />
+    <Compile Include="Configurations\PrijavaNacinConfiguration.cs" />
+    <Compile Include="Configurations\PrijavaPodTipConfiguration.cs" />
+    <Compile Include="Configurations\PrijavaTipConfiguration.cs" />
+    <Compile Include="Configurations\PrijavaReklamacijaZalbaLogConfiguration.cs" />
+    <Compile Include="Configurations\StatistikaPorekloPosiljkeConfiguration.cs" />
+    <Compile Include="Configurations\StatistikaRazlogBrisanjaPosiljkeConfiguration.cs" />
+    <Compile Include="Configurations\StatistikaSatConfiguration.cs" />
+    <Compile Include="Configurations\StatistikaDanConfiguration.cs" />
+    <Compile Include="Configurations\BankaPazaraConfiguration.cs" />
+    <Compile Include="Configurations\KorisniciProgramaConfiguration.cs" />
+    <Compile Include="Configurations\SpisakOtkupninaConfiguration.cs" />
+    <Compile Include="Configurations\SpisakDostavaConfiguration.cs" />
+    <Compile Include="Configurations\KurirskaListaDostavaConfiguration.cs" />
+    <Compile Include="Configurations\KovertaZaDokumentConfiguration.cs" />
+    <Compile Include="Configurations\KovertaZaOtkupninuConfiguration.cs" />
+    <Compile Include="Configurations\KurirRazduzenjeSpecifikacijaConfiguration.cs" />
+    <Compile Include="Configurations\KurirRazduzenjeConfiguration.cs" />
+    <Compile Include="Configurations\NapomenaPosiljkaConfiguration.cs" />
+    <Compile Include="Configurations\NapomenaPosiljkaPodTipConfiguration.cs" />
+    <Compile Include="Configurations\BankaPazaraSpecifikacijaConfiguration.cs" />
+    <Compile Include="Configurations\PrijavaReklamacijaZalbaConfiguration.cs" />
+    <Compile Include="Configurations\UgovorRptConfiguration.cs" />
+    <Compile Include="Configurations\UgovorRptCenovnik2Configuration.cs" />
+    <Compile Include="Configurations\UgovorRptCenovnik1Configuration.cs" />
+    <Compile Include="Configurations\UgovorVipConfiguration.cs" />
+    <Compile Include="Configurations\UgovorPovlascenaCenaTipConfiguration.cs" />
+    <Compile Include="Configurations\UgovorObracunCenaConfiguration.cs" />
+    <Compile Include="Configurations\UgovorNapomenaTipConfiguration.cs" />
+    <Compile Include="Configurations\UgovorNapomenaConfiguration.cs" />
+    <Compile Include="Configurations\UgovorNacinNaplateConfiguration.cs" />
+    <Compile Include="Configurations\UgovorKontaktBexConfiguration.cs" />
+    <Compile Include="Configurations\UgovorFakturisanjeConfiguration.cs" />
+    <Compile Include="Configurations\UgovorConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaOtkupZbirniStavkaConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaOtkupZbirniConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaObrisanaConfiguration.cs" />
+    <Compile Include="Configurations\SkenConfiguration.cs" />
+    <Compile Include="Configurations\SkenPracenjeConfiguration.cs" />
+    <Compile Include="Configurations\SkenReadConfiguration.cs" />
+    <Compile Include="Configurations\SkenTipConfiguration.cs" />
+    <Compile Include="Configurations\SkenStartConfiguration.cs" />
+    <Compile Include="Configurations\StatKasnjenjaConfiguration.cs" />
+    <Compile Include="Configurations\PaketTipConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniStatusConfiguration.cs" />
+    <Compile Include="Configurations\ZonaPodTipConfiguration.cs" />
+    <Compile Include="Configurations\ZonaTipConfiguration.cs" />
+    <Compile Include="Configurations\ZonaConfiguration.cs" />
+    <Compile Include="Configurations\PaketZadatakConfiguration.cs" />
+    <Compile Include="Configurations\PaketConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaNapomenaTipConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaNapomenaConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaPlacanjeTipConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaPlacanjeConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaUslugaTipConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaUslugaConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaZadatakConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaSadrzajConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaKategorijaConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaVrstaConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaStatusConfiguration.cs" />
+    <Compile Include="Configurations\KontaktAdresaConfiguration.cs" />
+    <Compile Include="Configurations\KontaktConfiguration.cs" />
+    <Compile Include="Configurations\KontaktDelatnostConfiguration.cs" />
+    <Compile Include="Configurations\KontaktEmailConfiguration.cs" />
+    <Compile Include="Configurations\KontaktFizickoLiceConfiguration.cs" />
+    <Compile Include="Configurations\KontaktPravnoLiceConfiguration.cs" />
+    <Compile Include="Configurations\KontaktTelefonConfiguration.cs" />
+    <Compile Include="Configurations\OpstinaConfiguration.cs" />
+    <Compile Include="Configurations\ReonTipConfiguration.cs" />
+    <Compile Include="Configurations\PlaceConfiguration.cs" />
+    <Compile Include="Configurations\PosiljkaConfiguration.cs" />
+    <Compile Include="Configurations\KurirZaduzenjeConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkDnevnikConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkDnevnikTipConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkAlarmConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkModelConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkKarakteristikeConfiguration.cs" />
+    <Compile Include="Configurations\GorivoConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkBojaConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkKaroserijaConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkStatusConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkTipConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniPlataConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniConfiguration.cs" />
+    <Compile Include="Configurations\KontaktZiroRacunConfiguration.cs" />
+    <Compile Include="Configurations\PakConfiguration.cs" />
+    <Compile Include="Configurations\RegionConfiguration.cs" />
+    <Compile Include="Configurations\ReoncicConfiguration.cs" />
+    <Compile Include="Configurations\ReonConfiguration.cs" />
+    <Compile Include="Configurations\StreetConfiguration.cs" />
+    <Compile Include="Configurations\SektorConfiguration.cs" />
+    <Compile Include="Configurations\FirmaConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniRadnoMestoConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniStrucnaSpremaConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniRazlogOtkazaConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniOsnovOsiguranjaConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniProgramZaposlenjaConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniSlavaConfiguration.cs" />
+    <Compile Include="Configurations\VozniParkMenjacConfiguration.cs" />
+    <Compile Include="Configurations\ZaposleniZanimanjeConfiguration.cs" />
+    <Compile Include="Configurations\ZipConfiguration.cs" />
+    <Compile Include="Correctors\KontaktCorrector.cs" />
+    <Compile Include="Interfaces\ICorrector.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bex.Models\Bex.Models.csproj">
+      <Project>{1e83c5c5-c953-4304-987d-f4a0d2e2618b}</Project>
+      <Name>Bex.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

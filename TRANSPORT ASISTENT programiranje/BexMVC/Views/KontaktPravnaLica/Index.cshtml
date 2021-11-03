@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EFproject.KontaktPravnaLica>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kontakt.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PIB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DelatnostId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direktor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Poslovnica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SedisteKontaktId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WebSajt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kontakt.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PIB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DelatnostId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direktor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Poslovnica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SedisteKontaktId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WebSajt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

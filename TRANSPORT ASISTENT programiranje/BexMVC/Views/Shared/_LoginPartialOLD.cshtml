@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    string controllerAction =
+        ViewContext.RouteData.Values["Action"].ToString()
+        + ViewContext.RouteData.Values["Controller"].ToString();
+    Func<string, string> IsSelected = x =>
+        x == controllerAction ? "active" : "";
+}
+
+@if (Request.IsAuthenticated)
+{
+   
+        <script type="text/javascript">
+            document.getElementById("leftSideBar").style.display = "block";
+            //$('#leftSideBar')
+            //alert("AAAA");
+        </script>
+    
+
+   
+    <li class="dropdown-toggle">
+
+        @Html.ActionLink("Prijavljeni korisnik: " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+    </li>
+    <li class="dropdown-toggle">
+        @Html.ActionLink("Izlogujte se", "LogOff", "Account", routeValues: null, htmlAttributes: new { title = "Logoff" })
+    </li>
+    
+
+}
+@*else
+{
+    
+    <li class="dropdown-toggle">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li class="dropdown-toggle">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    
+}*@
+

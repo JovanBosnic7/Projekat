@@ -1,0 +1,42 @@
+﻿@model Bex.Models.KontaktZiroRacun
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Evidencija ziro racuna</h1>
+            </div>
+        </div>
+        <div>
+            <h4>Kontakt: ViewBag.Naziv</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Banka
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Banka)
+                </dd>
+
+                <dt>
+                    Ziro racun
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BrojZiroRacuna)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "../Kontakt")
+        </p>
+    </div>
+</div>

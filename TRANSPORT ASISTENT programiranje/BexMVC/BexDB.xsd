@@ -1,0 +1,1484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BexDB" targetNamespace="http://tempuri.org/BexDB.xsd" xmlns:mstns="http://tempuri.org/BexDB.xsd" xmlns="http://tempuri.org/BexDB.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="BexMainDbContext" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BexMainDbContext (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.BexMainDbContext.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vPotvrdaRazduzenjeKuriraTableAdapter" GeneratorDataComponentClassName="vPotvrdaRazduzenjeKuriraTableAdapter" Name="vPotvrdaRazduzenjeKurira" UserDataComponentName="vPotvrdaRazduzenjeKuriraTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vPotvrdaRazduzenjeKurira" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Naziv, OznReona, UkupnoOtkupa, UkupnoPazara, UkupnoNaplatio, UkupnoRazduzio, Razlika, Datum, KurirId FROM dbo.vPotvrdaRazduzenjeKurira</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Naziv" DataSetColumn="Naziv" />
+              <Mapping SourceColumn="OznReona" DataSetColumn="OznReona" />
+              <Mapping SourceColumn="UkupnoOtkupa" DataSetColumn="UkupnoOtkupa" />
+              <Mapping SourceColumn="UkupnoPazara" DataSetColumn="UkupnoPazara" />
+              <Mapping SourceColumn="UkupnoNaplatio" DataSetColumn="UkupnoNaplatio" />
+              <Mapping SourceColumn="UkupnoRazduzio" DataSetColumn="UkupnoRazduzio" />
+              <Mapping SourceColumn="Razlika" DataSetColumn="Razlika" />
+              <Mapping SourceColumn="Datum" DataSetColumn="Datum" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptKovertaZaDokumentTableAdapter" GeneratorDataComponentClassName="vRptKovertaZaDokumentTableAdapter" Name="vRptKovertaZaDokument" UserDataComponentName="vRptKovertaZaDokumentTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptKovertaZaDokument" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptKovertaZaDokument
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TipZadatka" DataSetColumn="TipZadatka" />
+              <Mapping SourceColumn="RegionReonT" DataSetColumn="RegionReonT" />
+              <Mapping SourceColumn="RegionReonD" DataSetColumn="RegionReonD" />
+              <Mapping SourceColumn="Naziv" DataSetColumn="Naziv" />
+              <Mapping SourceColumn="Posiljalac" DataSetColumn="Posiljalac" />
+              <Mapping SourceColumn="AdresaP" DataSetColumn="AdresaP" />
+              <Mapping SourceColumn="Primalac" DataSetColumn="Primalac" />
+              <Mapping SourceColumn="AdresaD" DataSetColumn="AdresaD" />
+              <Mapping SourceColumn="BarKod" DataSetColumn="BarKod" />
+              <Mapping SourceColumn="Otkupnina" DataSetColumn="Otkupnina" />
+              <Mapping SourceColumn="CenaUkupna" DataSetColumn="CenaUkupna" />
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="KontaktImeP" DataSetColumn="KontaktImeP" />
+              <Mapping SourceColumn="KontaktTelefoniP" DataSetColumn="KontaktTelefoniP" />
+              <Mapping SourceColumn="KontaktImeD" DataSetColumn="KontaktImeD" />
+              <Mapping SourceColumn="KontaktTelefoniD" DataSetColumn="KontaktTelefoniD" />
+              <Mapping SourceColumn="VipT" DataSetColumn="VipT" />
+              <Mapping SourceColumn="Napomena" DataSetColumn="Napomena" />
+              <Mapping SourceColumn="Otpremnica" DataSetColumn="Otpremnica" />
+              <Mapping SourceColumn="Povratnica" DataSetColumn="Povratnica" />
+              <Mapping SourceColumn="PlacenOdgovor" DataSetColumn="PlacenOdgovor" />
+              <Mapping SourceColumn="LicnoUrucenje" DataSetColumn="LicnoUrucenje" />
+              <Mapping SourceColumn="Vrednost" DataSetColumn="Vrednost" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="KesPosiljalac" DataSetColumn="KesPosiljalac" />
+              <Mapping SourceColumn="KesPrimalac" DataSetColumn="KesPrimalac" />
+              <Mapping SourceColumn="FakturaPosiljalac" DataSetColumn="FakturaPosiljalac" />
+              <Mapping SourceColumn="FakturaPrimalac" DataSetColumn="FakturaPrimalac" />
+              <Mapping SourceColumn="KesN" DataSetColumn="KesN" />
+              <Mapping SourceColumn="Platilac" DataSetColumn="Platilac" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptKoverteZaZbirneOtkupeTableAdapter" GeneratorDataComponentClassName="vRptKoverteZaZbirneOtkupeTableAdapter" Name="vRptKoverteZaZbirneOtkupe" UserDataComponentName="vRptKoverteZaZbirneOtkupeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptKoverteZaZbirneOtkupe" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select BarKod, BrojOtkupa, UkupnoOtkupa, NazivKlijenta, Adresa, Telefon, RegionReon, ReonId From  vRptKoverteZaZbirneOtkupe</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BarKod" DataSetColumn="BarKod" />
+              <Mapping SourceColumn="BrojOtkupa" DataSetColumn="BrojOtkupa" />
+              <Mapping SourceColumn="UkupnoOtkupa" DataSetColumn="UkupnoOtkupa" />
+              <Mapping SourceColumn="NazivKlijenta" DataSetColumn="NazivKlijenta" />
+              <Mapping SourceColumn="Adresa" DataSetColumn="Adresa" />
+              <Mapping SourceColumn="Telefon" DataSetColumn="Telefon" />
+              <Mapping SourceColumn="RegionReon" DataSetColumn="RegionReon" />
+              <Mapping SourceColumn="ReonId" DataSetColumn="ReonId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptKovertaZaOtkupninuTableAdapter" GeneratorDataComponentClassName="vRptKovertaZaOtkupninuTableAdapter" Name="vRptKovertaZaOtkupninu" UserDataComponentName="vRptKovertaZaOtkupninuTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptKovertaZaOtkupninu" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptKovertaZaOtkupninu
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TipZadatka" DataSetColumn="TipZadatka" />
+              <Mapping SourceColumn="RegionReonN" DataSetColumn="RegionReonN" />
+              <Mapping SourceColumn="RegionReonD" DataSetColumn="RegionReonD" />
+              <Mapping SourceColumn="Naziv" DataSetColumn="Naziv" />
+              <Mapping SourceColumn="Posiljalac" DataSetColumn="Posiljalac" />
+              <Mapping SourceColumn="AdresaP" DataSetColumn="AdresaP" />
+              <Mapping SourceColumn="Primalac" DataSetColumn="Primalac" />
+              <Mapping SourceColumn="AdresaD" DataSetColumn="AdresaD" />
+              <Mapping SourceColumn="BarKod" DataSetColumn="BarKod" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Otkupnina" DataSetColumn="Otkupnina" />
+              <Mapping SourceColumn="CenaUkupna" DataSetColumn="CenaUkupna" />
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="KontaktImeP" DataSetColumn="KontaktImeP" />
+              <Mapping SourceColumn="KontaktTelefoniP" DataSetColumn="KontaktTelefoniP" />
+              <Mapping SourceColumn="KontaktImeD" DataSetColumn="KontaktImeD" />
+              <Mapping SourceColumn="KontaktTelefoniD" DataSetColumn="KontaktTelefoniD" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+              <Mapping SourceColumn="Stamp" DataSetColumn="Stamp" />
+              <Mapping SourceColumn="Napomena" DataSetColumn="Napomena" />
+              <Mapping SourceColumn="LicnoUrucenje" DataSetColumn="LicnoUrucenje" />
+              <Mapping SourceColumn="Otpremnica" DataSetColumn="Otpremnica" />
+              <Mapping SourceColumn="Povratnica" DataSetColumn="Povratnica" />
+              <Mapping SourceColumn="PlacenOdgovor" DataSetColumn="PlacenOdgovor" />
+              <Mapping SourceColumn="Vrednost" DataSetColumn="Vrednost" />
+              <Mapping SourceColumn="KesPosiljalac" DataSetColumn="KesPosiljalac" />
+              <Mapping SourceColumn="KesPrimalac" DataSetColumn="KesPrimalac" />
+              <Mapping SourceColumn="FakturaPosiljalac" DataSetColumn="FakturaPosiljalac" />
+              <Mapping SourceColumn="FakturaPrimalac" DataSetColumn="FakturaPrimalac" />
+              <Mapping SourceColumn="Platilac" DataSetColumn="Platilac" />
+              <Mapping SourceColumn="KesN" DataSetColumn="KesN" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptSpecifikacijaZbirnihOtkupaTableAdapter" GeneratorDataComponentClassName="vRptSpecifikacijaZbirnihOtkupaTableAdapter" Name="vRptSpecifikacijaZbirnihOtkupa" UserDataComponentName="vRptSpecifikacijaZbirnihOtkupaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptSpecifikacijaZbirnihOtkupa" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select PosiljkaId, BarKod, NazivKlijenta,RegionReon,DatumNaplateOtkupnine, UplatilacOtkupnine, AdresaUplatiocaOtkupnine, Otkupnina, BrojOtkupa, UkupnoOtkupa, ReonId from vRptSpecifikacijaZbirnihOtkupa</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="BarKod" DataSetColumn="BarKod" />
+              <Mapping SourceColumn="NazivKlijenta" DataSetColumn="NazivKlijenta" />
+              <Mapping SourceColumn="RegionReon" DataSetColumn="RegionReon" />
+              <Mapping SourceColumn="DatumNaplateOtkupnine" DataSetColumn="DatumNaplateOtkupnine" />
+              <Mapping SourceColumn="UplatilacOtkupnine" DataSetColumn="UplatilacOtkupnine" />
+              <Mapping SourceColumn="AdresaUplatiocaOtkupnine" DataSetColumn="AdresaUplatiocaOtkupnine" />
+              <Mapping SourceColumn="Otkupnina" DataSetColumn="Otkupnina" />
+              <Mapping SourceColumn="BrojOtkupa" DataSetColumn="BrojOtkupa" />
+              <Mapping SourceColumn="UkupnoOtkupa" DataSetColumn="UkupnoOtkupa" />
+              <Mapping SourceColumn="ReonId" DataSetColumn="ReonId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptSpisakTzadatakaTableAdapter" GeneratorDataComponentClassName="vRptSpisakTzadatakaTableAdapter" Name="vRptSpisakTzadataka" UserDataComponentName="vRptSpisakTzadatakaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptSpisakTzadataka" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptSpisakTzadataka</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TipZadatka" DataSetColumn="TipZadatka" />
+              <Mapping SourceColumn="RegionReonT" DataSetColumn="RegionReonT" />
+              <Mapping SourceColumn="Posiljalac" DataSetColumn="Posiljalac" />
+              <Mapping SourceColumn="AdresaP" DataSetColumn="AdresaP" />
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="KontaktImeP" DataSetColumn="KontaktImeP" />
+              <Mapping SourceColumn="KontaktTelefoniP" DataSetColumn="KontaktTelefoniP" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptSpisakOtkupninaTableAdapter" GeneratorDataComponentClassName="vRptSpisakOtkupninaTableAdapter" Name="vRptSpisakOtkupnina" UserDataComponentName="vRptSpisakOtkupninaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptSpisakOtkupnina" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptSpisakOtkupnina</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TipZadatka" DataSetColumn="TipZadatka" />
+              <Mapping SourceColumn="RegionReonT" DataSetColumn="RegionReonT" />
+              <Mapping SourceColumn="Posiljalac" DataSetColumn="Posiljalac" />
+              <Mapping SourceColumn="AdresaP" DataSetColumn="AdresaP" />
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="KontaktTelefoniP" DataSetColumn="KontaktTelefoniP" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="BarKod" DataSetColumn="BarKod" />
+              <Mapping SourceColumn="Otkupnina" DataSetColumn="Otkupnina" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptSpisakDostavaTableAdapter" GeneratorDataComponentClassName="vRptSpisakDostavaTableAdapter" Name="vRptSpisakDostava" UserDataComponentName="vRptSpisakDostavaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptSpisakDostava" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptSpisakDostava</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="TipZadatka" DataSetColumn="TipZadatka" />
+              <Mapping SourceColumn="VipD" DataSetColumn="VipD" />
+              <Mapping SourceColumn="UlicaNaziv" DataSetColumn="UlicaNaziv" />
+              <Mapping SourceColumn="NazivKlijenta" DataSetColumn="NazivKlijenta" />
+              <Mapping SourceColumn="Napomene" DataSetColumn="Napomene" />
+              <Mapping SourceColumn="Otkup" DataSetColumn="Otkup" />
+              <Mapping SourceColumn="Usluga" DataSetColumn="Usluga" />
+              <Mapping SourceColumn="UkupnoPaketa" DataSetColumn="UkupnoPaketa" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+              <Mapping SourceColumn="Naziv" DataSetColumn="Naziv" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Otpremnica" DataSetColumn="Otpremnica" />
+              <Mapping SourceColumn="Povratnica" DataSetColumn="Povratnica" />
+              <Mapping SourceColumn="PlacenOdgovor" DataSetColumn="PlacenOdgovor" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptKurirskaListaDostavaTableAdapter" GeneratorDataComponentClassName="vRptKurirskaListaDostavaTableAdapter" Name="vRptKurirskaListaDostava" UserDataComponentName="vRptKurirskaListaDostavaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptKurirskaListaDostava" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptKurirskaListaDostava</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="TipZadatka" DataSetColumn="TipZadatka" />
+              <Mapping SourceColumn="NazivReoncica" DataSetColumn="NazivReoncica" />
+              <Mapping SourceColumn="AktuelanOd" DataSetColumn="AktuelanOd" />
+              <Mapping SourceColumn="VipD" DataSetColumn="VipD" />
+              <Mapping SourceColumn="UlicaNaziv" DataSetColumn="UlicaNaziv" />
+              <Mapping SourceColumn="NazivKlijenta" DataSetColumn="NazivKlijenta" />
+              <Mapping SourceColumn="Napomene" DataSetColumn="Napomene" />
+              <Mapping SourceColumn="Telefoni" DataSetColumn="Telefoni" />
+              <Mapping SourceColumn="BezgotovinskoP" DataSetColumn="BezgotovinskoP" />
+              <Mapping SourceColumn="BezgotovinskoD" DataSetColumn="BezgotovinskoD" />
+              <Mapping SourceColumn="Otkup" DataSetColumn="Otkup" />
+              <Mapping SourceColumn="Usluga" DataSetColumn="Usluga" />
+              <Mapping SourceColumn="NazivKategorije" DataSetColumn="NazivKategorije" />
+              <Mapping SourceColumn="UkupnoPaketa" DataSetColumn="UkupnoPaketa" />
+              <Mapping SourceColumn="TipUslugeId" DataSetColumn="TipUslugeId" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+              <Mapping SourceColumn="Naziv" DataSetColumn="Naziv" />
+              <Mapping SourceColumn="Otpremnica" DataSetColumn="Otpremnica" />
+              <Mapping SourceColumn="Povratnica" DataSetColumn="Povratnica" />
+              <Mapping SourceColumn="PlacenOdgovor" DataSetColumn="PlacenOdgovor" />
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptUgovorTableAdapter" GeneratorDataComponentClassName="vRptUgovorTableAdapter" Name="vRptUgovor" UserDataComponentName="vRptUgovorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptUgovor" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptUgovor</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdUgovora" DataSetColumn="IdUgovora" />
+              <Mapping SourceColumn="NazivFirma" DataSetColumn="NazivFirma" />
+              <Mapping SourceColumn="AdresaFirma" DataSetColumn="AdresaFirma" />
+              <Mapping SourceColumn="MaticniBrojFirma" DataSetColumn="MaticniBrojFirma" />
+              <Mapping SourceColumn="PIBfirma" DataSetColumn="PIBfirma" />
+              <Mapping SourceColumn="Delatnost" DataSetColumn="Delatnost" />
+              <Mapping SourceColumn="UgovorVerzija" DataSetColumn="UgovorVerzija" />
+              <Mapping SourceColumn="DatumPoslednjeVerzije" DataSetColumn="DatumPoslednjeVerzije" />
+              <Mapping SourceColumn="Ugovorilac" DataSetColumn="Ugovorilac" />
+              <Mapping SourceColumn="Nosilac" DataSetColumn="Nosilac" />
+              <Mapping SourceColumn="Adresa" DataSetColumn="Adresa" />
+              <Mapping SourceColumn="PlaceName" DataSetColumn="PlaceName" />
+              <Mapping SourceColumn="PIB" DataSetColumn="PIB" />
+              <Mapping SourceColumn="MaticniBroj" DataSetColumn="MaticniBroj" />
+              <Mapping SourceColumn="ZastupnikKlijenta" DataSetColumn="ZastupnikKlijenta" />
+              <Mapping SourceColumn="Cenovnik1Id" DataSetColumn="Cenovnik1Id" />
+              <Mapping SourceColumn="NaplataId" DataSetColumn="NaplataId" />
+              <Mapping SourceColumn="BezZastitneCene" DataSetColumn="BezZastitneCene" />
+              <Mapping SourceColumn="ZastitnaCena" DataSetColumn="ZastitnaCena" />
+              <Mapping SourceColumn="RabatMinBrojPaketa" DataSetColumn="RabatMinBrojPaketa" />
+              <Mapping SourceColumn="RabatProcenatZaBrojPaketa" DataSetColumn="RabatProcenatZaBrojPaketa" />
+              <Mapping SourceColumn="RabatMinIznosFakture" DataSetColumn="RabatMinIznosFakture" />
+              <Mapping SourceColumn="RabatProcenatZaIznosFakture" DataSetColumn="RabatProcenatZaIznosFakture" />
+              <Mapping SourceColumn="Cenovnik2Id" DataSetColumn="Cenovnik2Id" />
+              <Mapping SourceColumn="ValutaDana" DataSetColumn="ValutaDana" />
+              <Mapping SourceColumn="FakturaDana" DataSetColumn="FakturaDana" />
+              <Mapping SourceColumn="FakturaEmailom" DataSetColumn="FakturaEmailom" />
+              <Mapping SourceColumn="FakturaPostom" DataSetColumn="FakturaPostom" />
+              <Mapping SourceColumn="PravnoLice" DataSetColumn="PravnoLice" />
+              <Mapping SourceColumn="NaplataPoFakturi" DataSetColumn="NaplataPoFakturi" />
+              <Mapping SourceColumn="FakturaProc" DataSetColumn="FakturaProc" />
+              <Mapping SourceColumn="ZastitnaCenaFak" DataSetColumn="ZastitnaCenaFak" />
+              <Mapping SourceColumn="PovlasceneCeneKlijentuId" DataSetColumn="PovlasceneCeneKlijentuId" />
+              <Mapping SourceColumn="OdobrenoBezgotovinsko" DataSetColumn="OdobrenoBezgotovinsko" />
+              <Mapping SourceColumn="RabatProcenat" DataSetColumn="RabatProcenat" />
+              <Mapping SourceColumn="BrojPunomocja" DataSetColumn="BrojPunomocja" />
+              <Mapping SourceColumn="DatumPunomocja" DataSetColumn="DatumPunomocja" />
+              <Mapping SourceColumn="Aktivan" DataSetColumn="Aktivan" />
+              <Mapping SourceColumn="TekuciRacun" DataSetColumn="TekuciRacun" />
+              <Mapping SourceColumn="Telefon1" DataSetColumn="Telefon1" />
+              <Mapping SourceColumn="Telefon2" DataSetColumn="Telefon2" />
+              <Mapping SourceColumn="Telefon3" DataSetColumn="Telefon3" />
+              <Mapping SourceColumn="Fax" DataSetColumn="Fax" />
+              <Mapping SourceColumn="WebSite" DataSetColumn="WebSite" />
+              <Mapping SourceColumn="Mail" DataSetColumn="Mail" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptCenovnik1TableAdapter" GeneratorDataComponentClassName="vRptCenovnik1TableAdapter" Name="vRptCenovnik1" UserDataComponentName="vRptCenovnik1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptCenovnik1" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptCenovnik1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdUgovora" DataSetColumn="IdUgovora" />
+              <Mapping SourceColumn="Cenovnik1" DataSetColumn="Cenovnik1" />
+              <Mapping SourceColumn="Kategorija1" DataSetColumn="Kategorija1" />
+              <Mapping SourceColumn="Cena1" DataSetColumn="Cena1" />
+              <Mapping SourceColumn="Cena1bezPDV" DataSetColumn="Cena1bezPDV" />
+              <Mapping SourceColumn="PDV1" DataSetColumn="PDV1" />
+              <Mapping SourceColumn="NazivVrste1" DataSetColumn="NazivVrste1" />
+              <Mapping SourceColumn="IdVrste1" DataSetColumn="IdVrste1" />
+              <Mapping SourceColumn="CenaProc1" DataSetColumn="CenaProc1" />
+              <Mapping SourceColumn="IdKategorije1" DataSetColumn="IdKategorije1" />
+              <Mapping SourceColumn="IdCene" DataSetColumn="IdCene" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptCenovnik2TableAdapter" GeneratorDataComponentClassName="vRptCenovnik2TableAdapter" Name="vRptCenovnik2" UserDataComponentName="vRptCenovnik2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptCenovnik2" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptCenovnik2</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdUgovora" DataSetColumn="IdUgovora" />
+              <Mapping SourceColumn="Cenovnik2" DataSetColumn="Cenovnik2" />
+              <Mapping SourceColumn="Kategorija2" DataSetColumn="Kategorija2" />
+              <Mapping SourceColumn="Cena2" DataSetColumn="Cena2" />
+              <Mapping SourceColumn="Cena2bezPDV" DataSetColumn="Cena2bezPDV" />
+              <Mapping SourceColumn="PDV2" DataSetColumn="PDV2" />
+              <Mapping SourceColumn="NazivVrste2" DataSetColumn="NazivVrste2" />
+              <Mapping SourceColumn="IdVrste2" DataSetColumn="IdVrste2" />
+              <Mapping SourceColumn="CenaProc2" DataSetColumn="CenaProc2" />
+              <Mapping SourceColumn="IdKategorije2" DataSetColumn="IdKategorije2" />
+              <Mapping SourceColumn="IdCene" DataSetColumn="IdCene" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vSpecifikacijaRazduzenjeKuriraTableAdapter" GeneratorDataComponentClassName="vSpecifikacijaRazduzenjeKuriraTableAdapter" Name="vSpecifikacijaRazduzenjeKurira" UserDataComponentName="vSpecifikacijaRazduzenjeKuriraTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vSpecifikacijaRazduzenjeKurira" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vSpecifikacijaRazduzenjeKurira</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Klijent" DataSetColumn="Klijent" />
+              <Mapping SourceColumn="Paketa" DataSetColumn="Paketa" />
+              <Mapping SourceColumn="Kategorija" DataSetColumn="Kategorija" />
+              <Mapping SourceColumn="Pazar" DataSetColumn="Pazar" />
+              <Mapping SourceColumn="Otkup" DataSetColumn="Otkup" />
+              <Mapping SourceColumn="Ukupno" DataSetColumn="Ukupno" />
+              <Mapping SourceColumn="KurirId" DataSetColumn="KurirId" />
+              <Mapping SourceColumn="PosiljkaId" DataSetColumn="PosiljkaId" />
+              <Mapping SourceColumn="Adresa" DataSetColumn="Adresa" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptBarKodVozilaTableAdapter" GeneratorDataComponentClassName="vRptBarKodVozilaTableAdapter" Name="vRptBarKodVozila" UserDataComponentName="vRptBarKodVozilaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptBarKodVozila" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptBarKodVozila</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdVP" DataSetColumn="IdVP" />
+              <Mapping SourceColumn="GarazniBroj" DataSetColumn="GarazniBroj" />
+              <Mapping SourceColumn="NazivVozila" DataSetColumn="NazivVozila" />
+              <Mapping SourceColumn="Oznaka" DataSetColumn="Oznaka" />
+              <Mapping SourceColumn="Opis" DataSetColumn="Opis" />
+              <Mapping SourceColumn="BarKod" DataSetColumn="BarKod" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vRptTPocitavanjaTableAdapter" GeneratorDataComponentClassName="vRptTPocitavanjaTableAdapter" Name="vRptTPocitavanja" UserDataComponentName="vRptTPocitavanjaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BexMainDbContext (Web.config)" DbObjectName="NB.dbo.vRptTPocitavanja" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from vRptTPocitavanja</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdOcitavanja" DataSetColumn="IdOcitavanja" />
+              <Mapping SourceColumn="NazivModela" DataSetColumn="NazivModela" />
+              <Mapping SourceColumn="NazivMarke" DataSetColumn="NazivMarke" />
+              <Mapping SourceColumn="KategorijaNaziv" DataSetColumn="KategorijaNaziv" />
+              <Mapping SourceColumn="BrojMotora" DataSetColumn="BrojMotora" />
+              <Mapping SourceColumn="BrojSasije" DataSetColumn="BrojSasije" />
+              <Mapping SourceColumn="BrojVrata" DataSetColumn="BrojVrata" />
+              <Mapping SourceColumn="NazivBoje" DataSetColumn="NazivBoje" />
+              <Mapping SourceColumn="Naziv" DataSetColumn="Naziv" />
+              <Mapping SourceColumn="DatumOcitavanja" DataSetColumn="DatumOcitavanja" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BexDB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="BexDB" msprop:Generator_UserDSName="BexDB">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vPotvrdaRazduzenjeKurira" msprop:Generator_TableClassName="vPotvrdaRazduzenjeKuriraDataTable" msprop:Generator_TableVarName="tablevPotvrdaRazduzenjeKurira" msprop:Generator_RowChangedName="vPotvrdaRazduzenjeKuriraRowChanged" msprop:Generator_TablePropName="vPotvrdaRazduzenjeKurira" msprop:Generator_RowDeletingName="vPotvrdaRazduzenjeKuriraRowDeleting" msprop:Generator_RowChangingName="vPotvrdaRazduzenjeKuriraRowChanging" msprop:Generator_RowEvHandlerName="vPotvrdaRazduzenjeKuriraRowChangeEventHandler" msprop:Generator_RowDeletedName="vPotvrdaRazduzenjeKuriraRowDeleted" msprop:Generator_RowClassName="vPotvrdaRazduzenjeKuriraRow" msprop:Generator_UserTableName="vPotvrdaRazduzenjeKurira" msprop:Generator_RowEvArgName="vPotvrdaRazduzenjeKuriraRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Naziv" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_UserColumnName="Naziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OznReona" msprop:Generator_ColumnVarNameInTable="columnOznReona" msprop:Generator_ColumnPropNameInRow="OznReona" msprop:Generator_ColumnPropNameInTable="OznReonaColumn" msprop:Generator_UserColumnName="OznReona" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UkupnoOtkupa" msprop:Generator_ColumnVarNameInTable="columnUkupnoOtkupa" msprop:Generator_ColumnPropNameInRow="UkupnoOtkupa" msprop:Generator_ColumnPropNameInTable="UkupnoOtkupaColumn" msprop:Generator_UserColumnName="UkupnoOtkupa" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UkupnoPazara" msprop:Generator_ColumnVarNameInTable="columnUkupnoPazara" msprop:Generator_ColumnPropNameInRow="UkupnoPazara" msprop:Generator_ColumnPropNameInTable="UkupnoPazaraColumn" msprop:Generator_UserColumnName="UkupnoPazara" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UkupnoNaplatio" msprop:Generator_ColumnVarNameInTable="columnUkupnoNaplatio" msprop:Generator_ColumnPropNameInRow="UkupnoNaplatio" msprop:Generator_ColumnPropNameInTable="UkupnoNaplatioColumn" msprop:Generator_UserColumnName="UkupnoNaplatio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UkupnoRazduzio" msprop:Generator_ColumnVarNameInTable="columnUkupnoRazduzio" msprop:Generator_ColumnPropNameInRow="UkupnoRazduzio" msprop:Generator_ColumnPropNameInTable="UkupnoRazduzioColumn" msprop:Generator_UserColumnName="UkupnoRazduzio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Razlika" msprop:Generator_ColumnVarNameInTable="columnRazlika" msprop:Generator_ColumnPropNameInRow="Razlika" msprop:Generator_ColumnPropNameInTable="RazlikaColumn" msprop:Generator_UserColumnName="Razlika" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Datum" msprop:Generator_ColumnVarNameInTable="columnDatum" msprop:Generator_ColumnPropNameInRow="Datum" msprop:Generator_ColumnPropNameInTable="DatumColumn" msprop:Generator_UserColumnName="Datum" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptKovertaZaDokument" msprop:Generator_TableClassName="vRptKovertaZaDokumentDataTable" msprop:Generator_TableVarName="tablevRptKovertaZaDokument" msprop:Generator_TablePropName="vRptKovertaZaDokument" msprop:Generator_RowDeletingName="vRptKovertaZaDokumentRowDeleting" msprop:Generator_RowChangingName="vRptKovertaZaDokumentRowChanging" msprop:Generator_RowEvHandlerName="vRptKovertaZaDokumentRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptKovertaZaDokumentRowDeleted" msprop:Generator_UserTableName="vRptKovertaZaDokument" msprop:Generator_RowChangedName="vRptKovertaZaDokumentRowChanged" msprop:Generator_RowEvArgName="vRptKovertaZaDokumentRowChangeEvent" msprop:Generator_RowClassName="vRptKovertaZaDokumentRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TipZadatka" msprop:Generator_ColumnVarNameInTable="columnTipZadatka" msprop:Generator_ColumnPropNameInRow="TipZadatka" msprop:Generator_ColumnPropNameInTable="TipZadatkaColumn" msprop:Generator_UserColumnName="TipZadatka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReonT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReonT" msprop:Generator_ColumnPropNameInRow="RegionReonT" msprop:Generator_ColumnPropNameInTable="RegionReonTColumn" msprop:Generator_UserColumnName="RegionReonT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReonD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReonD" msprop:Generator_ColumnPropNameInRow="RegionReonD" msprop:Generator_ColumnPropNameInTable="RegionReonDColumn" msprop:Generator_UserColumnName="RegionReonD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Naziv" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_UserColumnName="Naziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Posiljalac" msprop:Generator_ColumnVarNameInTable="columnPosiljalac" msprop:Generator_ColumnPropNameInRow="Posiljalac" msprop:Generator_ColumnPropNameInTable="PosiljalacColumn" msprop:Generator_UserColumnName="Posiljalac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaP" msprop:Generator_ColumnVarNameInTable="columnAdresaP" msprop:Generator_ColumnPropNameInRow="AdresaP" msprop:Generator_ColumnPropNameInTable="AdresaPColumn" msprop:Generator_UserColumnName="AdresaP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Primalac" msprop:Generator_ColumnVarNameInTable="columnPrimalac" msprop:Generator_ColumnPropNameInRow="Primalac" msprop:Generator_ColumnPropNameInTable="PrimalacColumn" msprop:Generator_UserColumnName="Primalac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaD" msprop:Generator_ColumnVarNameInTable="columnAdresaD" msprop:Generator_ColumnPropNameInRow="AdresaD" msprop:Generator_ColumnPropNameInTable="AdresaDColumn" msprop:Generator_UserColumnName="AdresaD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BarKod" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBarKod" msprop:Generator_ColumnPropNameInRow="BarKod" msprop:Generator_ColumnPropNameInTable="BarKodColumn" msprop:Generator_UserColumnName="BarKod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Otkupnina" msprop:Generator_ColumnVarNameInTable="columnOtkupnina" msprop:Generator_ColumnPropNameInRow="Otkupnina" msprop:Generator_ColumnPropNameInTable="OtkupninaColumn" msprop:Generator_UserColumnName="Otkupnina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CenaUkupna" msprop:Generator_ColumnVarNameInTable="columnCenaUkupna" msprop:Generator_ColumnPropNameInRow="CenaUkupna" msprop:Generator_ColumnPropNameInTable="CenaUkupnaColumn" msprop:Generator_UserColumnName="CenaUkupna" type="xs:int" minOccurs="0" />
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" minOccurs="0" />
+              <xs:element name="KontaktImeP" msprop:Generator_ColumnVarNameInTable="columnKontaktImeP" msprop:Generator_ColumnPropNameInRow="KontaktImeP" msprop:Generator_ColumnPropNameInTable="KontaktImePColumn" msprop:Generator_UserColumnName="KontaktImeP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KontaktTelefoniP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKontaktTelefoniP" msprop:Generator_ColumnPropNameInRow="KontaktTelefoniP" msprop:Generator_ColumnPropNameInTable="KontaktTelefoniPColumn" msprop:Generator_UserColumnName="KontaktTelefoniP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KontaktImeD" msprop:Generator_ColumnVarNameInTable="columnKontaktImeD" msprop:Generator_ColumnPropNameInRow="KontaktImeD" msprop:Generator_ColumnPropNameInTable="KontaktImeDColumn" msprop:Generator_UserColumnName="KontaktImeD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KontaktTelefoniD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKontaktTelefoniD" msprop:Generator_ColumnPropNameInRow="KontaktTelefoniD" msprop:Generator_ColumnPropNameInTable="KontaktTelefoniDColumn" msprop:Generator_UserColumnName="KontaktTelefoniD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VipT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVipT" msprop:Generator_ColumnPropNameInRow="VipT" msprop:Generator_ColumnPropNameInTable="VipTColumn" msprop:Generator_UserColumnName="VipT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Napomena" msprop:Generator_ColumnVarNameInTable="columnNapomena" msprop:Generator_ColumnPropNameInRow="Napomena" msprop:Generator_ColumnPropNameInTable="NapomenaColumn" msprop:Generator_UserColumnName="Napomena" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Otpremnica" msprop:Generator_ColumnVarNameInTable="columnOtpremnica" msprop:Generator_ColumnPropNameInRow="Otpremnica" msprop:Generator_ColumnPropNameInTable="OtpremnicaColumn" msprop:Generator_UserColumnName="Otpremnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Povratnica" msprop:Generator_ColumnVarNameInTable="columnPovratnica" msprop:Generator_ColumnPropNameInRow="Povratnica" msprop:Generator_ColumnPropNameInTable="PovratnicaColumn" msprop:Generator_UserColumnName="Povratnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PlacenOdgovor" msprop:Generator_ColumnVarNameInTable="columnPlacenOdgovor" msprop:Generator_ColumnPropNameInRow="PlacenOdgovor" msprop:Generator_ColumnPropNameInTable="PlacenOdgovorColumn" msprop:Generator_UserColumnName="PlacenOdgovor" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LicnoUrucenje" msprop:Generator_ColumnVarNameInTable="columnLicnoUrucenje" msprop:Generator_ColumnPropNameInRow="LicnoUrucenje" msprop:Generator_ColumnPropNameInTable="LicnoUrucenjeColumn" msprop:Generator_UserColumnName="LicnoUrucenje" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Vrednost" msprop:Generator_ColumnVarNameInTable="columnVrednost" msprop:Generator_ColumnPropNameInRow="Vrednost" msprop:Generator_ColumnPropNameInTable="VrednostColumn" msprop:Generator_UserColumnName="Vrednost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="KesPosiljalac" msprop:Generator_ColumnVarNameInTable="columnKesPosiljalac" msprop:Generator_ColumnPropNameInRow="KesPosiljalac" msprop:Generator_ColumnPropNameInTable="KesPosiljalacColumn" msprop:Generator_UserColumnName="KesPosiljalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KesPrimalac" msprop:Generator_ColumnVarNameInTable="columnKesPrimalac" msprop:Generator_ColumnPropNameInRow="KesPrimalac" msprop:Generator_ColumnPropNameInTable="KesPrimalacColumn" msprop:Generator_UserColumnName="KesPrimalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FakturaPosiljalac" msprop:Generator_ColumnVarNameInTable="columnFakturaPosiljalac" msprop:Generator_ColumnPropNameInRow="FakturaPosiljalac" msprop:Generator_ColumnPropNameInTable="FakturaPosiljalacColumn" msprop:Generator_UserColumnName="FakturaPosiljalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FakturaPrimalac" msprop:Generator_ColumnVarNameInTable="columnFakturaPrimalac" msprop:Generator_ColumnPropNameInRow="FakturaPrimalac" msprop:Generator_ColumnPropNameInTable="FakturaPrimalacColumn" msprop:Generator_UserColumnName="FakturaPrimalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KesN" msprop:Generator_ColumnVarNameInTable="columnKesN" msprop:Generator_ColumnPropNameInRow="KesN" msprop:Generator_ColumnPropNameInTable="KesNColumn" msprop:Generator_UserColumnName="KesN" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Platilac" msprop:Generator_ColumnVarNameInTable="columnPlatilac" msprop:Generator_ColumnPropNameInRow="Platilac" msprop:Generator_ColumnPropNameInTable="PlatilacColumn" msprop:Generator_UserColumnName="Platilac" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptKoverteZaZbirneOtkupe" msprop:Generator_TableClassName="vRptKoverteZaZbirneOtkupeDataTable" msprop:Generator_TableVarName="tablevRptKoverteZaZbirneOtkupe" msprop:Generator_TablePropName="vRptKoverteZaZbirneOtkupe" msprop:Generator_RowDeletingName="vRptKoverteZaZbirneOtkupeRowDeleting" msprop:Generator_RowChangingName="vRptKoverteZaZbirneOtkupeRowChanging" msprop:Generator_RowEvHandlerName="vRptKoverteZaZbirneOtkupeRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptKoverteZaZbirneOtkupeRowDeleted" msprop:Generator_UserTableName="vRptKoverteZaZbirneOtkupe" msprop:Generator_RowChangedName="vRptKoverteZaZbirneOtkupeRowChanged" msprop:Generator_RowEvArgName="vRptKoverteZaZbirneOtkupeRowChangeEvent" msprop:Generator_RowClassName="vRptKoverteZaZbirneOtkupeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BarKod" msprop:Generator_ColumnVarNameInTable="columnBarKod" msprop:Generator_ColumnPropNameInRow="BarKod" msprop:Generator_ColumnPropNameInTable="BarKodColumn" msprop:Generator_UserColumnName="BarKod">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojOtkupa" msprop:Generator_ColumnVarNameInTable="columnBrojOtkupa" msprop:Generator_ColumnPropNameInRow="BrojOtkupa" msprop:Generator_ColumnPropNameInTable="BrojOtkupaColumn" msprop:Generator_UserColumnName="BrojOtkupa" type="xs:int" minOccurs="0" />
+              <xs:element name="UkupnoOtkupa" msprop:Generator_ColumnVarNameInTable="columnUkupnoOtkupa" msprop:Generator_ColumnPropNameInRow="UkupnoOtkupa" msprop:Generator_ColumnPropNameInTable="UkupnoOtkupaColumn" msprop:Generator_UserColumnName="UkupnoOtkupa" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NazivKlijenta" msprop:Generator_ColumnVarNameInTable="columnNazivKlijenta" msprop:Generator_ColumnPropNameInRow="NazivKlijenta" msprop:Generator_ColumnPropNameInTable="NazivKlijentaColumn" msprop:Generator_UserColumnName="NazivKlijenta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Adresa" msprop:Generator_ColumnVarNameInTable="columnAdresa" msprop:Generator_ColumnPropNameInRow="Adresa" msprop:Generator_ColumnPropNameInTable="AdresaColumn" msprop:Generator_UserColumnName="Adresa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Telefon" msprop:Generator_ColumnVarNameInTable="columnTelefon" msprop:Generator_ColumnPropNameInRow="Telefon" msprop:Generator_ColumnPropNameInTable="TelefonColumn" msprop:Generator_UserColumnName="Telefon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReon" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReon" msprop:Generator_ColumnPropNameInRow="RegionReon" msprop:Generator_ColumnPropNameInTable="RegionReonColumn" msprop:Generator_UserColumnName="RegionReon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReonId" msprop:Generator_ColumnVarNameInTable="columnReonId" msprop:Generator_ColumnPropNameInRow="ReonId" msprop:Generator_ColumnPropNameInTable="ReonIdColumn" msprop:Generator_UserColumnName="ReonId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptKovertaZaOtkupninu" msprop:Generator_TableClassName="vRptKovertaZaOtkupninuDataTable" msprop:Generator_TableVarName="tablevRptKovertaZaOtkupninu" msprop:Generator_TablePropName="vRptKovertaZaOtkupninu" msprop:Generator_RowDeletingName="vRptKovertaZaOtkupninuRowDeleting" msprop:Generator_RowChangingName="vRptKovertaZaOtkupninuRowChanging" msprop:Generator_RowEvHandlerName="vRptKovertaZaOtkupninuRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptKovertaZaOtkupninuRowDeleted" msprop:Generator_UserTableName="vRptKovertaZaOtkupninu" msprop:Generator_RowChangedName="vRptKovertaZaOtkupninuRowChanged" msprop:Generator_RowEvArgName="vRptKovertaZaOtkupninuRowChangeEvent" msprop:Generator_RowClassName="vRptKovertaZaOtkupninuRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TipZadatka" msprop:Generator_ColumnVarNameInTable="columnTipZadatka" msprop:Generator_ColumnPropNameInRow="TipZadatka" msprop:Generator_ColumnPropNameInTable="TipZadatkaColumn" msprop:Generator_UserColumnName="TipZadatka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReonN" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReonN" msprop:Generator_ColumnPropNameInRow="RegionReonN" msprop:Generator_ColumnPropNameInTable="RegionReonNColumn" msprop:Generator_UserColumnName="RegionReonN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReonD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReonD" msprop:Generator_ColumnPropNameInRow="RegionReonD" msprop:Generator_ColumnPropNameInTable="RegionReonDColumn" msprop:Generator_UserColumnName="RegionReonD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Naziv" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_UserColumnName="Naziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Posiljalac" msprop:Generator_ColumnVarNameInTable="columnPosiljalac" msprop:Generator_ColumnPropNameInRow="Posiljalac" msprop:Generator_ColumnPropNameInTable="PosiljalacColumn" msprop:Generator_UserColumnName="Posiljalac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaP" msprop:Generator_ColumnVarNameInTable="columnAdresaP" msprop:Generator_ColumnPropNameInRow="AdresaP" msprop:Generator_ColumnPropNameInTable="AdresaPColumn" msprop:Generator_UserColumnName="AdresaP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Primalac" msprop:Generator_ColumnVarNameInTable="columnPrimalac" msprop:Generator_ColumnPropNameInRow="Primalac" msprop:Generator_ColumnPropNameInTable="PrimalacColumn" msprop:Generator_UserColumnName="Primalac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaD" msprop:Generator_ColumnVarNameInTable="columnAdresaD" msprop:Generator_ColumnPropNameInRow="AdresaD" msprop:Generator_ColumnPropNameInTable="AdresaDColumn" msprop:Generator_UserColumnName="AdresaD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BarKod" msprop:Generator_ColumnVarNameInTable="columnBarKod" msprop:Generator_ColumnPropNameInRow="BarKod" msprop:Generator_ColumnPropNameInTable="BarKodColumn" msprop:Generator_UserColumnName="BarKod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Otkupnina" msprop:Generator_ColumnVarNameInTable="columnOtkupnina" msprop:Generator_ColumnPropNameInRow="Otkupnina" msprop:Generator_ColumnPropNameInTable="OtkupninaColumn" msprop:Generator_UserColumnName="Otkupnina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CenaUkupna" msprop:Generator_ColumnVarNameInTable="columnCenaUkupna" msprop:Generator_ColumnPropNameInRow="CenaUkupna" msprop:Generator_ColumnPropNameInTable="CenaUkupnaColumn" msprop:Generator_UserColumnName="CenaUkupna" type="xs:int" minOccurs="0" />
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" minOccurs="0" />
+              <xs:element name="KontaktImeP" msprop:Generator_ColumnVarNameInTable="columnKontaktImeP" msprop:Generator_ColumnPropNameInRow="KontaktImeP" msprop:Generator_ColumnPropNameInTable="KontaktImePColumn" msprop:Generator_UserColumnName="KontaktImeP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KontaktTelefoniP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKontaktTelefoniP" msprop:Generator_ColumnPropNameInRow="KontaktTelefoniP" msprop:Generator_ColumnPropNameInTable="KontaktTelefoniPColumn" msprop:Generator_UserColumnName="KontaktTelefoniP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KontaktImeD" msprop:Generator_ColumnVarNameInTable="columnKontaktImeD" msprop:Generator_ColumnPropNameInRow="KontaktImeD" msprop:Generator_ColumnPropNameInTable="KontaktImeDColumn" msprop:Generator_UserColumnName="KontaktImeD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KontaktTelefoniD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKontaktTelefoniD" msprop:Generator_ColumnPropNameInRow="KontaktTelefoniD" msprop:Generator_ColumnPropNameInTable="KontaktTelefoniDColumn" msprop:Generator_UserColumnName="KontaktTelefoniD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+              <xs:element name="Stamp" msprop:Generator_ColumnVarNameInTable="columnStamp" msprop:Generator_ColumnPropNameInRow="Stamp" msprop:Generator_ColumnPropNameInTable="StampColumn" msprop:Generator_UserColumnName="Stamp" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Napomena" msprop:Generator_ColumnVarNameInTable="columnNapomena" msprop:Generator_ColumnPropNameInRow="Napomena" msprop:Generator_ColumnPropNameInTable="NapomenaColumn" msprop:Generator_UserColumnName="Napomena" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LicnoUrucenje" msprop:Generator_ColumnVarNameInTable="columnLicnoUrucenje" msprop:Generator_ColumnPropNameInRow="LicnoUrucenje" msprop:Generator_ColumnPropNameInTable="LicnoUrucenjeColumn" msprop:Generator_UserColumnName="LicnoUrucenje" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Otpremnica" msprop:Generator_ColumnVarNameInTable="columnOtpremnica" msprop:Generator_ColumnPropNameInRow="Otpremnica" msprop:Generator_ColumnPropNameInTable="OtpremnicaColumn" msprop:Generator_UserColumnName="Otpremnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Povratnica" msprop:Generator_ColumnVarNameInTable="columnPovratnica" msprop:Generator_ColumnPropNameInRow="Povratnica" msprop:Generator_ColumnPropNameInTable="PovratnicaColumn" msprop:Generator_UserColumnName="Povratnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PlacenOdgovor" msprop:Generator_ColumnVarNameInTable="columnPlacenOdgovor" msprop:Generator_ColumnPropNameInRow="PlacenOdgovor" msprop:Generator_ColumnPropNameInTable="PlacenOdgovorColumn" msprop:Generator_UserColumnName="PlacenOdgovor" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Vrednost" msprop:Generator_ColumnVarNameInTable="columnVrednost" msprop:Generator_ColumnPropNameInRow="Vrednost" msprop:Generator_ColumnPropNameInTable="VrednostColumn" msprop:Generator_UserColumnName="Vrednost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KesPosiljalac" msprop:Generator_ColumnVarNameInTable="columnKesPosiljalac" msprop:Generator_ColumnPropNameInRow="KesPosiljalac" msprop:Generator_ColumnPropNameInTable="KesPosiljalacColumn" msprop:Generator_UserColumnName="KesPosiljalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KesPrimalac" msprop:Generator_ColumnVarNameInTable="columnKesPrimalac" msprop:Generator_ColumnPropNameInRow="KesPrimalac" msprop:Generator_ColumnPropNameInTable="KesPrimalacColumn" msprop:Generator_UserColumnName="KesPrimalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FakturaPosiljalac" msprop:Generator_ColumnVarNameInTable="columnFakturaPosiljalac" msprop:Generator_ColumnPropNameInRow="FakturaPosiljalac" msprop:Generator_ColumnPropNameInTable="FakturaPosiljalacColumn" msprop:Generator_UserColumnName="FakturaPosiljalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FakturaPrimalac" msprop:Generator_ColumnVarNameInTable="columnFakturaPrimalac" msprop:Generator_ColumnPropNameInRow="FakturaPrimalac" msprop:Generator_ColumnPropNameInTable="FakturaPrimalacColumn" msprop:Generator_UserColumnName="FakturaPrimalac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Platilac" msprop:Generator_ColumnVarNameInTable="columnPlatilac" msprop:Generator_ColumnPropNameInRow="Platilac" msprop:Generator_ColumnPropNameInTable="PlatilacColumn" msprop:Generator_UserColumnName="Platilac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KesN" msprop:Generator_ColumnVarNameInTable="columnKesN" msprop:Generator_ColumnPropNameInRow="KesN" msprop:Generator_ColumnPropNameInTable="KesNColumn" msprop:Generator_UserColumnName="KesN" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptSpecifikacijaZbirnihOtkupa" msprop:Generator_TableClassName="vRptSpecifikacijaZbirnihOtkupaDataTable" msprop:Generator_TableVarName="tablevRptSpecifikacijaZbirnihOtkupa" msprop:Generator_TablePropName="vRptSpecifikacijaZbirnihOtkupa" msprop:Generator_RowDeletingName="vRptSpecifikacijaZbirnihOtkupaRowDeleting" msprop:Generator_RowChangingName="vRptSpecifikacijaZbirnihOtkupaRowChanging" msprop:Generator_RowEvHandlerName="vRptSpecifikacijaZbirnihOtkupaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptSpecifikacijaZbirnihOtkupaRowDeleted" msprop:Generator_UserTableName="vRptSpecifikacijaZbirnihOtkupa" msprop:Generator_RowChangedName="vRptSpecifikacijaZbirnihOtkupaRowChanged" msprop:Generator_RowEvArgName="vRptSpecifikacijaZbirnihOtkupaRowChangeEvent" msprop:Generator_RowClassName="vRptSpecifikacijaZbirnihOtkupaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" />
+              <xs:element name="BarKod" msprop:Generator_ColumnVarNameInTable="columnBarKod" msprop:Generator_ColumnPropNameInRow="BarKod" msprop:Generator_ColumnPropNameInTable="BarKodColumn" msprop:Generator_UserColumnName="BarKod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NazivKlijenta" msprop:Generator_ColumnVarNameInTable="columnNazivKlijenta" msprop:Generator_ColumnPropNameInRow="NazivKlijenta" msprop:Generator_ColumnPropNameInTable="NazivKlijentaColumn" msprop:Generator_UserColumnName="NazivKlijenta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReon" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReon" msprop:Generator_ColumnPropNameInRow="RegionReon" msprop:Generator_ColumnPropNameInTable="RegionReonColumn" msprop:Generator_UserColumnName="RegionReon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DatumNaplateOtkupnine" msprop:Generator_ColumnVarNameInTable="columnDatumNaplateOtkupnine" msprop:Generator_ColumnPropNameInRow="DatumNaplateOtkupnine" msprop:Generator_ColumnPropNameInTable="DatumNaplateOtkupnineColumn" msprop:Generator_UserColumnName="DatumNaplateOtkupnine" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UplatilacOtkupnine" msprop:Generator_ColumnVarNameInTable="columnUplatilacOtkupnine" msprop:Generator_ColumnPropNameInRow="UplatilacOtkupnine" msprop:Generator_ColumnPropNameInTable="UplatilacOtkupnineColumn" msprop:Generator_UserColumnName="UplatilacOtkupnine" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaUplatiocaOtkupnine" msprop:Generator_ColumnVarNameInTable="columnAdresaUplatiocaOtkupnine" msprop:Generator_ColumnPropNameInRow="AdresaUplatiocaOtkupnine" msprop:Generator_ColumnPropNameInTable="AdresaUplatiocaOtkupnineColumn" msprop:Generator_UserColumnName="AdresaUplatiocaOtkupnine" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Otkupnina" msprop:Generator_ColumnVarNameInTable="columnOtkupnina" msprop:Generator_ColumnPropNameInRow="Otkupnina" msprop:Generator_ColumnPropNameInTable="OtkupninaColumn" msprop:Generator_UserColumnName="Otkupnina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BrojOtkupa" msprop:Generator_ColumnVarNameInTable="columnBrojOtkupa" msprop:Generator_ColumnPropNameInRow="BrojOtkupa" msprop:Generator_ColumnPropNameInTable="BrojOtkupaColumn" msprop:Generator_UserColumnName="BrojOtkupa" type="xs:int" minOccurs="0" />
+              <xs:element name="UkupnoOtkupa" msprop:Generator_ColumnVarNameInTable="columnUkupnoOtkupa" msprop:Generator_ColumnPropNameInRow="UkupnoOtkupa" msprop:Generator_ColumnPropNameInTable="UkupnoOtkupaColumn" msprop:Generator_UserColumnName="UkupnoOtkupa" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ReonId" msprop:Generator_ColumnVarNameInTable="columnReonId" msprop:Generator_ColumnPropNameInRow="ReonId" msprop:Generator_ColumnPropNameInTable="ReonIdColumn" msprop:Generator_UserColumnName="ReonId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptSpisakTzadataka" msprop:Generator_TableClassName="vRptSpisakTzadatakaDataTable" msprop:Generator_TableVarName="tablevRptSpisakTzadataka" msprop:Generator_TablePropName="vRptSpisakTzadataka" msprop:Generator_RowDeletingName="vRptSpisakTzadatakaRowDeleting" msprop:Generator_RowChangingName="vRptSpisakTzadatakaRowChanging" msprop:Generator_RowEvHandlerName="vRptSpisakTzadatakaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptSpisakTzadatakaRowDeleted" msprop:Generator_UserTableName="vRptSpisakTzadataka" msprop:Generator_RowChangedName="vRptSpisakTzadatakaRowChanged" msprop:Generator_RowEvArgName="vRptSpisakTzadatakaRowChangeEvent" msprop:Generator_RowClassName="vRptSpisakTzadatakaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TipZadatka" msprop:Generator_ColumnVarNameInTable="columnTipZadatka" msprop:Generator_ColumnPropNameInRow="TipZadatka" msprop:Generator_ColumnPropNameInTable="TipZadatkaColumn" msprop:Generator_UserColumnName="TipZadatka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReonT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReonT" msprop:Generator_ColumnPropNameInRow="RegionReonT" msprop:Generator_ColumnPropNameInTable="RegionReonTColumn" msprop:Generator_UserColumnName="RegionReonT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Posiljalac" msprop:Generator_ColumnVarNameInTable="columnPosiljalac" msprop:Generator_ColumnPropNameInRow="Posiljalac" msprop:Generator_ColumnPropNameInTable="PosiljalacColumn" msprop:Generator_UserColumnName="Posiljalac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaP" msprop:Generator_ColumnVarNameInTable="columnAdresaP" msprop:Generator_ColumnPropNameInRow="AdresaP" msprop:Generator_ColumnPropNameInTable="AdresaPColumn" msprop:Generator_UserColumnName="AdresaP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" minOccurs="0" />
+              <xs:element name="KontaktImeP" msprop:Generator_ColumnVarNameInTable="columnKontaktImeP" msprop:Generator_ColumnPropNameInRow="KontaktImeP" msprop:Generator_ColumnPropNameInTable="KontaktImePColumn" msprop:Generator_UserColumnName="KontaktImeP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KontaktTelefoniP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKontaktTelefoniP" msprop:Generator_ColumnPropNameInRow="KontaktTelefoniP" msprop:Generator_ColumnPropNameInTable="KontaktTelefoniPColumn" msprop:Generator_UserColumnName="KontaktTelefoniP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptSpisakOtkupnina" msprop:Generator_TableClassName="vRptSpisakOtkupninaDataTable" msprop:Generator_TableVarName="tablevRptSpisakOtkupnina" msprop:Generator_TablePropName="vRptSpisakOtkupnina" msprop:Generator_RowDeletingName="vRptSpisakOtkupninaRowDeleting" msprop:Generator_RowChangingName="vRptSpisakOtkupninaRowChanging" msprop:Generator_RowEvHandlerName="vRptSpisakOtkupninaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptSpisakOtkupninaRowDeleted" msprop:Generator_UserTableName="vRptSpisakOtkupnina" msprop:Generator_RowChangedName="vRptSpisakOtkupninaRowChanged" msprop:Generator_RowEvArgName="vRptSpisakOtkupninaRowChangeEvent" msprop:Generator_RowClassName="vRptSpisakOtkupninaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TipZadatka" msprop:Generator_ColumnVarNameInTable="columnTipZadatka" msprop:Generator_ColumnPropNameInRow="TipZadatka" msprop:Generator_ColumnPropNameInTable="TipZadatkaColumn" msprop:Generator_UserColumnName="TipZadatka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegionReonT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegionReonT" msprop:Generator_ColumnPropNameInRow="RegionReonT" msprop:Generator_ColumnPropNameInTable="RegionReonTColumn" msprop:Generator_UserColumnName="RegionReonT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Posiljalac" msprop:Generator_ColumnVarNameInTable="columnPosiljalac" msprop:Generator_ColumnPropNameInRow="Posiljalac" msprop:Generator_ColumnPropNameInTable="PosiljalacColumn" msprop:Generator_UserColumnName="Posiljalac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaP" msprop:Generator_ColumnVarNameInTable="columnAdresaP" msprop:Generator_ColumnPropNameInRow="AdresaP" msprop:Generator_ColumnPropNameInTable="AdresaPColumn" msprop:Generator_UserColumnName="AdresaP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" minOccurs="0" />
+              <xs:element name="KontaktTelefoniP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKontaktTelefoniP" msprop:Generator_ColumnPropNameInRow="KontaktTelefoniP" msprop:Generator_ColumnPropNameInTable="KontaktTelefoniPColumn" msprop:Generator_UserColumnName="KontaktTelefoniP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="BarKod" msprop:Generator_ColumnVarNameInTable="columnBarKod" msprop:Generator_ColumnPropNameInRow="BarKod" msprop:Generator_ColumnPropNameInTable="BarKodColumn" msprop:Generator_UserColumnName="BarKod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Otkupnina" msprop:Generator_ColumnVarNameInTable="columnOtkupnina" msprop:Generator_ColumnPropNameInRow="Otkupnina" msprop:Generator_ColumnPropNameInTable="OtkupninaColumn" msprop:Generator_UserColumnName="Otkupnina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptSpisakDostava" msprop:Generator_TableClassName="vRptSpisakDostavaDataTable" msprop:Generator_TableVarName="tablevRptSpisakDostava" msprop:Generator_TablePropName="vRptSpisakDostava" msprop:Generator_RowDeletingName="vRptSpisakDostavaRowDeleting" msprop:Generator_RowChangingName="vRptSpisakDostavaRowChanging" msprop:Generator_RowEvHandlerName="vRptSpisakDostavaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptSpisakDostavaRowDeleted" msprop:Generator_UserTableName="vRptSpisakDostava" msprop:Generator_RowChangedName="vRptSpisakDostavaRowChanged" msprop:Generator_RowEvArgName="vRptSpisakDostavaRowChangeEvent" msprop:Generator_RowClassName="vRptSpisakDostavaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" minOccurs="0" />
+              <xs:element name="TipZadatka" msprop:Generator_ColumnVarNameInTable="columnTipZadatka" msprop:Generator_ColumnPropNameInRow="TipZadatka" msprop:Generator_ColumnPropNameInTable="TipZadatkaColumn" msprop:Generator_UserColumnName="TipZadatka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VipD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVipD" msprop:Generator_ColumnPropNameInRow="VipD" msprop:Generator_ColumnPropNameInTable="VipDColumn" msprop:Generator_UserColumnName="VipD" type="xs:boolean" minOccurs="0" />
+              <xs:element name="UlicaNaziv" msprop:Generator_ColumnVarNameInTable="columnUlicaNaziv" msprop:Generator_ColumnPropNameInRow="UlicaNaziv" msprop:Generator_ColumnPropNameInTable="UlicaNazivColumn" msprop:Generator_UserColumnName="UlicaNaziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NazivKlijenta" msprop:Generator_ColumnVarNameInTable="columnNazivKlijenta" msprop:Generator_ColumnPropNameInRow="NazivKlijenta" msprop:Generator_ColumnPropNameInTable="NazivKlijentaColumn" msprop:Generator_UserColumnName="NazivKlijenta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Napomene" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNapomene" msprop:Generator_ColumnPropNameInRow="Napomene" msprop:Generator_ColumnPropNameInTable="NapomeneColumn" msprop:Generator_UserColumnName="Napomene" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Otkup" msprop:Generator_ColumnVarNameInTable="columnOtkup" msprop:Generator_ColumnPropNameInRow="Otkup" msprop:Generator_ColumnPropNameInTable="OtkupColumn" msprop:Generator_UserColumnName="Otkup" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Usluga" msprop:Generator_ColumnVarNameInTable="columnUsluga" msprop:Generator_ColumnPropNameInRow="Usluga" msprop:Generator_ColumnPropNameInTable="UslugaColumn" msprop:Generator_UserColumnName="Usluga" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UkupnoPaketa" msprop:Generator_ColumnVarNameInTable="columnUkupnoPaketa" msprop:Generator_ColumnPropNameInRow="UkupnoPaketa" msprop:Generator_ColumnPropNameInTable="UkupnoPaketaColumn" msprop:Generator_UserColumnName="UkupnoPaketa" type="xs:int" minOccurs="0" />
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+              <xs:element name="Naziv" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_UserColumnName="Naziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Otpremnica" msprop:Generator_ColumnVarNameInTable="columnOtpremnica" msprop:Generator_ColumnPropNameInRow="Otpremnica" msprop:Generator_ColumnPropNameInTable="OtpremnicaColumn" msprop:Generator_UserColumnName="Otpremnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Povratnica" msprop:Generator_ColumnVarNameInTable="columnPovratnica" msprop:Generator_ColumnPropNameInRow="Povratnica" msprop:Generator_ColumnPropNameInTable="PovratnicaColumn" msprop:Generator_UserColumnName="Povratnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PlacenOdgovor" msprop:Generator_ColumnVarNameInTable="columnPlacenOdgovor" msprop:Generator_ColumnPropNameInRow="PlacenOdgovor" msprop:Generator_ColumnPropNameInTable="PlacenOdgovorColumn" msprop:Generator_UserColumnName="PlacenOdgovor" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptKurirskaListaDostava" msprop:Generator_TableClassName="vRptKurirskaListaDostavaDataTable" msprop:Generator_TableVarName="tablevRptKurirskaListaDostava" msprop:Generator_TablePropName="vRptKurirskaListaDostava" msprop:Generator_RowDeletingName="vRptKurirskaListaDostavaRowDeleting" msprop:Generator_RowChangingName="vRptKurirskaListaDostavaRowChanging" msprop:Generator_RowEvHandlerName="vRptKurirskaListaDostavaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptKurirskaListaDostavaRowDeleted" msprop:Generator_UserTableName="vRptKurirskaListaDostava" msprop:Generator_RowChangedName="vRptKurirskaListaDostavaRowChanged" msprop:Generator_RowEvArgName="vRptKurirskaListaDostavaRowChangeEvent" msprop:Generator_RowClassName="vRptKurirskaListaDostavaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" minOccurs="0" />
+              <xs:element name="TipZadatka" msprop:Generator_ColumnVarNameInTable="columnTipZadatka" msprop:Generator_ColumnPropNameInRow="TipZadatka" msprop:Generator_ColumnPropNameInTable="TipZadatkaColumn" msprop:Generator_UserColumnName="TipZadatka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NazivReoncica" msprop:Generator_ColumnVarNameInTable="columnNazivReoncica" msprop:Generator_ColumnPropNameInRow="NazivReoncica" msprop:Generator_ColumnPropNameInTable="NazivReoncicaColumn" msprop:Generator_UserColumnName="NazivReoncica" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AktuelanOd" msprop:Generator_ColumnVarNameInTable="columnAktuelanOd" msprop:Generator_ColumnPropNameInRow="AktuelanOd" msprop:Generator_ColumnPropNameInTable="AktuelanOdColumn" msprop:Generator_UserColumnName="AktuelanOd" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="VipD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVipD" msprop:Generator_ColumnPropNameInRow="VipD" msprop:Generator_ColumnPropNameInTable="VipDColumn" msprop:Generator_UserColumnName="VipD" type="xs:boolean" minOccurs="0" />
+              <xs:element name="UlicaNaziv" msprop:Generator_ColumnVarNameInTable="columnUlicaNaziv" msprop:Generator_ColumnPropNameInRow="UlicaNaziv" msprop:Generator_ColumnPropNameInTable="UlicaNazivColumn" msprop:Generator_UserColumnName="UlicaNaziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NazivKlijenta" msprop:Generator_ColumnVarNameInTable="columnNazivKlijenta" msprop:Generator_ColumnPropNameInRow="NazivKlijenta" msprop:Generator_ColumnPropNameInTable="NazivKlijentaColumn" msprop:Generator_UserColumnName="NazivKlijenta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Napomene" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNapomene" msprop:Generator_ColumnPropNameInRow="Napomene" msprop:Generator_ColumnPropNameInTable="NapomeneColumn" msprop:Generator_UserColumnName="Napomene" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Telefoni" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTelefoni" msprop:Generator_ColumnPropNameInRow="Telefoni" msprop:Generator_ColumnPropNameInTable="TelefoniColumn" msprop:Generator_UserColumnName="Telefoni" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BezgotovinskoP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBezgotovinskoP" msprop:Generator_ColumnPropNameInRow="BezgotovinskoP" msprop:Generator_ColumnPropNameInTable="BezgotovinskoPColumn" msprop:Generator_UserColumnName="BezgotovinskoP" type="xs:boolean" minOccurs="0" />
+              <xs:element name="BezgotovinskoD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBezgotovinskoD" msprop:Generator_ColumnPropNameInRow="BezgotovinskoD" msprop:Generator_ColumnPropNameInTable="BezgotovinskoDColumn" msprop:Generator_UserColumnName="BezgotovinskoD" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Otkup" msprop:Generator_ColumnVarNameInTable="columnOtkup" msprop:Generator_ColumnPropNameInRow="Otkup" msprop:Generator_ColumnPropNameInTable="OtkupColumn" msprop:Generator_UserColumnName="Otkup" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Usluga" msprop:Generator_ColumnVarNameInTable="columnUsluga" msprop:Generator_ColumnPropNameInRow="Usluga" msprop:Generator_ColumnPropNameInTable="UslugaColumn" msprop:Generator_UserColumnName="Usluga" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NazivKategorije" msprop:Generator_ColumnVarNameInTable="columnNazivKategorije" msprop:Generator_ColumnPropNameInRow="NazivKategorije" msprop:Generator_ColumnPropNameInTable="NazivKategorijeColumn" msprop:Generator_UserColumnName="NazivKategorije" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UkupnoPaketa" msprop:Generator_ColumnVarNameInTable="columnUkupnoPaketa" msprop:Generator_ColumnPropNameInRow="UkupnoPaketa" msprop:Generator_ColumnPropNameInTable="UkupnoPaketaColumn" msprop:Generator_UserColumnName="UkupnoPaketa" type="xs:int" minOccurs="0" />
+              <xs:element name="TipUslugeId" msprop:Generator_ColumnVarNameInTable="columnTipUslugeId" msprop:Generator_ColumnPropNameInRow="TipUslugeId" msprop:Generator_ColumnPropNameInTable="TipUslugeIdColumn" msprop:Generator_UserColumnName="TipUslugeId" type="xs:int" minOccurs="0" />
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+              <xs:element name="Naziv" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_UserColumnName="Naziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Otpremnica" msprop:Generator_ColumnVarNameInTable="columnOtpremnica" msprop:Generator_ColumnPropNameInRow="Otpremnica" msprop:Generator_ColumnPropNameInTable="OtpremnicaColumn" msprop:Generator_UserColumnName="Otpremnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Povratnica" msprop:Generator_ColumnVarNameInTable="columnPovratnica" msprop:Generator_ColumnPropNameInRow="Povratnica" msprop:Generator_ColumnPropNameInTable="PovratnicaColumn" msprop:Generator_UserColumnName="Povratnica" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PlacenOdgovor" msprop:Generator_ColumnVarNameInTable="columnPlacenOdgovor" msprop:Generator_ColumnPropNameInRow="PlacenOdgovor" msprop:Generator_ColumnPropNameInTable="PlacenOdgovorColumn" msprop:Generator_UserColumnName="PlacenOdgovor" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptUgovor" msprop:Generator_TableClassName="vRptUgovorDataTable" msprop:Generator_TableVarName="tablevRptUgovor" msprop:Generator_TablePropName="vRptUgovor" msprop:Generator_RowDeletingName="vRptUgovorRowDeleting" msprop:Generator_RowChangingName="vRptUgovorRowChanging" msprop:Generator_RowEvHandlerName="vRptUgovorRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptUgovorRowDeleted" msprop:Generator_UserTableName="vRptUgovor" msprop:Generator_RowChangedName="vRptUgovorRowChanged" msprop:Generator_RowEvArgName="vRptUgovorRowChangeEvent" msprop:Generator_RowClassName="vRptUgovorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdUgovora" msprop:Generator_ColumnVarNameInTable="columnIdUgovora" msprop:Generator_ColumnPropNameInRow="IdUgovora" msprop:Generator_ColumnPropNameInTable="IdUgovoraColumn" msprop:Generator_UserColumnName="IdUgovora" type="xs:int" minOccurs="0" />
+              <xs:element name="NazivFirma" msprop:Generator_ColumnVarNameInTable="columnNazivFirma" msprop:Generator_ColumnPropNameInRow="NazivFirma" msprop:Generator_ColumnPropNameInTable="NazivFirmaColumn" msprop:Generator_UserColumnName="NazivFirma" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdresaFirma" msprop:Generator_ColumnVarNameInTable="columnAdresaFirma" msprop:Generator_ColumnPropNameInRow="AdresaFirma" msprop:Generator_ColumnPropNameInTable="AdresaFirmaColumn" msprop:Generator_UserColumnName="AdresaFirma" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MaticniBrojFirma" msprop:Generator_ColumnVarNameInTable="columnMaticniBrojFirma" msprop:Generator_ColumnPropNameInRow="MaticniBrojFirma" msprop:Generator_ColumnPropNameInTable="MaticniBrojFirmaColumn" msprop:Generator_UserColumnName="MaticniBrojFirma" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PIBfirma" msprop:Generator_ColumnVarNameInTable="columnPIBfirma" msprop:Generator_ColumnPropNameInRow="PIBfirma" msprop:Generator_ColumnPropNameInTable="PIBfirmaColumn" msprop:Generator_UserColumnName="PIBfirma" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Delatnost" msprop:Generator_ColumnVarNameInTable="columnDelatnost" msprop:Generator_ColumnPropNameInRow="Delatnost" msprop:Generator_ColumnPropNameInTable="DelatnostColumn" msprop:Generator_UserColumnName="Delatnost" type="xs:int" minOccurs="0" />
+              <xs:element name="UgovorVerzija" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUgovorVerzija" msprop:Generator_ColumnPropNameInRow="UgovorVerzija" msprop:Generator_ColumnPropNameInTable="UgovorVerzijaColumn" msprop:Generator_UserColumnName="UgovorVerzija" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="63" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DatumPoslednjeVerzije" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDatumPoslednjeVerzije" msprop:Generator_ColumnPropNameInRow="DatumPoslednjeVerzije" msprop:Generator_ColumnPropNameInTable="DatumPoslednjeVerzijeColumn" msprop:Generator_UserColumnName="DatumPoslednjeVerzije" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ugovorilac" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUgovorilac" msprop:Generator_ColumnPropNameInRow="Ugovorilac" msprop:Generator_ColumnPropNameInTable="UgovorilacColumn" msprop:Generator_UserColumnName="Ugovorilac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nosilac" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNosilac" msprop:Generator_ColumnPropNameInRow="Nosilac" msprop:Generator_ColumnPropNameInTable="NosilacColumn" msprop:Generator_UserColumnName="Nosilac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Adresa" msprop:Generator_ColumnVarNameInTable="columnAdresa" msprop:Generator_ColumnPropNameInRow="Adresa" msprop:Generator_ColumnPropNameInTable="AdresaColumn" msprop:Generator_UserColumnName="Adresa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PlaceName" msprop:Generator_ColumnVarNameInTable="columnPlaceName" msprop:Generator_ColumnPropNameInRow="PlaceName" msprop:Generator_ColumnPropNameInTable="PlaceNameColumn" msprop:Generator_UserColumnName="PlaceName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PIB" msprop:Generator_ColumnVarNameInTable="columnPIB" msprop:Generator_ColumnPropNameInRow="PIB" msprop:Generator_ColumnPropNameInTable="PIBColumn" msprop:Generator_UserColumnName="PIB" type="xs:int" minOccurs="0" />
+              <xs:element name="MaticniBroj" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMaticniBroj" msprop:Generator_ColumnPropNameInRow="MaticniBroj" msprop:Generator_ColumnPropNameInTable="MaticniBrojColumn" msprop:Generator_UserColumnName="MaticniBroj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ZastupnikKlijenta" msprop:Generator_ColumnVarNameInTable="columnZastupnikKlijenta" msprop:Generator_ColumnPropNameInRow="ZastupnikKlijenta" msprop:Generator_ColumnPropNameInTable="ZastupnikKlijentaColumn" msprop:Generator_UserColumnName="ZastupnikKlijenta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cenovnik1Id" msprop:Generator_ColumnVarNameInTable="columnCenovnik1Id" msprop:Generator_ColumnPropNameInRow="Cenovnik1Id" msprop:Generator_ColumnPropNameInTable="Cenovnik1IdColumn" msprop:Generator_UserColumnName="Cenovnik1Id" type="xs:int" minOccurs="0" />
+              <xs:element name="NaplataId" msprop:Generator_ColumnVarNameInTable="columnNaplataId" msprop:Generator_ColumnPropNameInRow="NaplataId" msprop:Generator_ColumnPropNameInTable="NaplataIdColumn" msprop:Generator_UserColumnName="NaplataId" type="xs:int" minOccurs="0" />
+              <xs:element name="BezZastitneCene" msprop:Generator_ColumnVarNameInTable="columnBezZastitneCene" msprop:Generator_ColumnPropNameInRow="BezZastitneCene" msprop:Generator_ColumnPropNameInTable="BezZastitneCeneColumn" msprop:Generator_UserColumnName="BezZastitneCene" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ZastitnaCena" msprop:Generator_ColumnVarNameInTable="columnZastitnaCena" msprop:Generator_ColumnPropNameInRow="ZastitnaCena" msprop:Generator_ColumnPropNameInTable="ZastitnaCenaColumn" msprop:Generator_UserColumnName="ZastitnaCena" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RabatMinBrojPaketa" msprop:Generator_ColumnVarNameInTable="columnRabatMinBrojPaketa" msprop:Generator_ColumnPropNameInRow="RabatMinBrojPaketa" msprop:Generator_ColumnPropNameInTable="RabatMinBrojPaketaColumn" msprop:Generator_UserColumnName="RabatMinBrojPaketa" type="xs:int" minOccurs="0" />
+              <xs:element name="RabatProcenatZaBrojPaketa" msprop:Generator_ColumnVarNameInTable="columnRabatProcenatZaBrojPaketa" msprop:Generator_ColumnPropNameInRow="RabatProcenatZaBrojPaketa" msprop:Generator_ColumnPropNameInTable="RabatProcenatZaBrojPaketaColumn" msprop:Generator_UserColumnName="RabatProcenatZaBrojPaketa" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RabatMinIznosFakture" msprop:Generator_ColumnVarNameInTable="columnRabatMinIznosFakture" msprop:Generator_ColumnPropNameInRow="RabatMinIznosFakture" msprop:Generator_ColumnPropNameInTable="RabatMinIznosFaktureColumn" msprop:Generator_UserColumnName="RabatMinIznosFakture" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RabatProcenatZaIznosFakture" msprop:Generator_ColumnVarNameInTable="columnRabatProcenatZaIznosFakture" msprop:Generator_ColumnPropNameInRow="RabatProcenatZaIznosFakture" msprop:Generator_ColumnPropNameInTable="RabatProcenatZaIznosFaktureColumn" msprop:Generator_UserColumnName="RabatProcenatZaIznosFakture" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cenovnik2Id" msprop:Generator_ColumnVarNameInTable="columnCenovnik2Id" msprop:Generator_ColumnPropNameInRow="Cenovnik2Id" msprop:Generator_ColumnPropNameInTable="Cenovnik2IdColumn" msprop:Generator_UserColumnName="Cenovnik2Id" type="xs:int" minOccurs="0" />
+              <xs:element name="ValutaDana" msprop:Generator_ColumnVarNameInTable="columnValutaDana" msprop:Generator_ColumnPropNameInRow="ValutaDana" msprop:Generator_ColumnPropNameInTable="ValutaDanaColumn" msprop:Generator_UserColumnName="ValutaDana" type="xs:int" minOccurs="0" />
+              <xs:element name="FakturaDana" msprop:Generator_ColumnVarNameInTable="columnFakturaDana" msprop:Generator_ColumnPropNameInRow="FakturaDana" msprop:Generator_ColumnPropNameInTable="FakturaDanaColumn" msprop:Generator_UserColumnName="FakturaDana" type="xs:int" minOccurs="0" />
+              <xs:element name="FakturaEmailom" msprop:Generator_ColumnVarNameInTable="columnFakturaEmailom" msprop:Generator_ColumnPropNameInRow="FakturaEmailom" msprop:Generator_ColumnPropNameInTable="FakturaEmailomColumn" msprop:Generator_UserColumnName="FakturaEmailom" type="xs:boolean" minOccurs="0" />
+              <xs:element name="FakturaPostom" msprop:Generator_ColumnVarNameInTable="columnFakturaPostom" msprop:Generator_ColumnPropNameInRow="FakturaPostom" msprop:Generator_ColumnPropNameInTable="FakturaPostomColumn" msprop:Generator_UserColumnName="FakturaPostom" type="xs:boolean" minOccurs="0" />
+              <xs:element name="PravnoLice" msprop:Generator_ColumnVarNameInTable="columnPravnoLice" msprop:Generator_ColumnPropNameInRow="PravnoLice" msprop:Generator_ColumnPropNameInTable="PravnoLiceColumn" msprop:Generator_UserColumnName="PravnoLice" type="xs:boolean" minOccurs="0" />
+              <xs:element name="NaplataPoFakturi" msprop:Generator_ColumnVarNameInTable="columnNaplataPoFakturi" msprop:Generator_ColumnPropNameInRow="NaplataPoFakturi" msprop:Generator_ColumnPropNameInTable="NaplataPoFakturiColumn" msprop:Generator_UserColumnName="NaplataPoFakturi" type="xs:boolean" minOccurs="0" />
+              <xs:element name="FakturaProc" msprop:Generator_ColumnVarNameInTable="columnFakturaProc" msprop:Generator_ColumnPropNameInRow="FakturaProc" msprop:Generator_ColumnPropNameInTable="FakturaProcColumn" msprop:Generator_UserColumnName="FakturaProc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ZastitnaCenaFak" msprop:Generator_ColumnVarNameInTable="columnZastitnaCenaFak" msprop:Generator_ColumnPropNameInRow="ZastitnaCenaFak" msprop:Generator_ColumnPropNameInTable="ZastitnaCenaFakColumn" msprop:Generator_UserColumnName="ZastitnaCenaFak" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PovlasceneCeneKlijentuId" msprop:Generator_ColumnVarNameInTable="columnPovlasceneCeneKlijentuId" msprop:Generator_ColumnPropNameInRow="PovlasceneCeneKlijentuId" msprop:Generator_ColumnPropNameInTable="PovlasceneCeneKlijentuIdColumn" msprop:Generator_UserColumnName="PovlasceneCeneKlijentuId" type="xs:int" minOccurs="0" />
+              <xs:element name="OdobrenoBezgotovinsko" msprop:Generator_ColumnVarNameInTable="columnOdobrenoBezgotovinsko" msprop:Generator_ColumnPropNameInRow="OdobrenoBezgotovinsko" msprop:Generator_ColumnPropNameInTable="OdobrenoBezgotovinskoColumn" msprop:Generator_UserColumnName="OdobrenoBezgotovinsko" type="xs:boolean" minOccurs="0" />
+              <xs:element name="RabatProcenat" msprop:Generator_ColumnVarNameInTable="columnRabatProcenat" msprop:Generator_ColumnPropNameInRow="RabatProcenat" msprop:Generator_ColumnPropNameInTable="RabatProcenatColumn" msprop:Generator_UserColumnName="RabatProcenat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BrojPunomocja" msprop:Generator_ColumnVarNameInTable="columnBrojPunomocja" msprop:Generator_ColumnPropNameInRow="BrojPunomocja" msprop:Generator_ColumnPropNameInTable="BrojPunomocjaColumn" msprop:Generator_UserColumnName="BrojPunomocja" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DatumPunomocja" msprop:Generator_ColumnVarNameInTable="columnDatumPunomocja" msprop:Generator_ColumnPropNameInRow="DatumPunomocja" msprop:Generator_ColumnPropNameInTable="DatumPunomocjaColumn" msprop:Generator_UserColumnName="DatumPunomocja" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Aktivan" msprop:Generator_ColumnVarNameInTable="columnAktivan" msprop:Generator_ColumnPropNameInRow="Aktivan" msprop:Generator_ColumnPropNameInTable="AktivanColumn" msprop:Generator_UserColumnName="Aktivan" type="xs:boolean" minOccurs="0" />
+              <xs:element name="TekuciRacun" msprop:Generator_ColumnVarNameInTable="columnTekuciRacun" msprop:Generator_ColumnPropNameInRow="TekuciRacun" msprop:Generator_ColumnPropNameInTable="TekuciRacunColumn" msprop:Generator_UserColumnName="TekuciRacun" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Telefon1" msprop:Generator_ColumnVarNameInTable="columnTelefon1" msprop:Generator_ColumnPropNameInRow="Telefon1" msprop:Generator_ColumnPropNameInTable="Telefon1Column" msprop:Generator_UserColumnName="Telefon1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Telefon2" msprop:Generator_ColumnVarNameInTable="columnTelefon2" msprop:Generator_ColumnPropNameInRow="Telefon2" msprop:Generator_ColumnPropNameInTable="Telefon2Column" msprop:Generator_UserColumnName="Telefon2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Telefon3" msprop:Generator_ColumnVarNameInTable="columnTelefon3" msprop:Generator_ColumnPropNameInRow="Telefon3" msprop:Generator_ColumnPropNameInTable="Telefon3Column" msprop:Generator_UserColumnName="Telefon3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Fax" msprop:Generator_ColumnVarNameInTable="columnFax" msprop:Generator_ColumnPropNameInRow="Fax" msprop:Generator_ColumnPropNameInTable="FaxColumn" msprop:Generator_UserColumnName="Fax" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WebSite" msprop:Generator_ColumnVarNameInTable="columnWebSite" msprop:Generator_ColumnPropNameInRow="WebSite" msprop:Generator_ColumnPropNameInTable="WebSiteColumn" msprop:Generator_UserColumnName="WebSite" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mail" msprop:Generator_ColumnVarNameInTable="columnMail" msprop:Generator_ColumnPropNameInRow="Mail" msprop:Generator_ColumnPropNameInTable="MailColumn" msprop:Generator_UserColumnName="Mail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptCenovnik1" msprop:Generator_TableClassName="vRptCenovnik1DataTable" msprop:Generator_TableVarName="tablevRptCenovnik1" msprop:Generator_TablePropName="vRptCenovnik1" msprop:Generator_RowDeletingName="vRptCenovnik1RowDeleting" msprop:Generator_RowChangingName="vRptCenovnik1RowChanging" msprop:Generator_RowEvHandlerName="vRptCenovnik1RowChangeEventHandler" msprop:Generator_RowDeletedName="vRptCenovnik1RowDeleted" msprop:Generator_UserTableName="vRptCenovnik1" msprop:Generator_RowChangedName="vRptCenovnik1RowChanged" msprop:Generator_RowEvArgName="vRptCenovnik1RowChangeEvent" msprop:Generator_RowClassName="vRptCenovnik1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdUgovora" msprop:Generator_ColumnVarNameInTable="columnIdUgovora" msprop:Generator_ColumnPropNameInRow="IdUgovora" msprop:Generator_ColumnPropNameInTable="IdUgovoraColumn" msprop:Generator_UserColumnName="IdUgovora" type="xs:int" minOccurs="0" />
+              <xs:element name="Cenovnik1" msprop:Generator_ColumnVarNameInTable="columnCenovnik1" msprop:Generator_ColumnPropNameInRow="Cenovnik1" msprop:Generator_ColumnPropNameInTable="Cenovnik1Column" msprop:Generator_UserColumnName="Cenovnik1" type="xs:int" minOccurs="0" />
+              <xs:element name="Kategorija1" msprop:Generator_ColumnVarNameInTable="columnKategorija1" msprop:Generator_ColumnPropNameInRow="Kategorija1" msprop:Generator_ColumnPropNameInTable="Kategorija1Column" msprop:Generator_UserColumnName="Kategorija1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cena1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCena1" msprop:Generator_ColumnPropNameInRow="Cena1" msprop:Generator_ColumnPropNameInTable="Cena1Column" msprop:Generator_UserColumnName="Cena1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cena1bezPDV" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCena1bezPDV" msprop:Generator_ColumnPropNameInRow="Cena1bezPDV" msprop:Generator_ColumnPropNameInTable="Cena1bezPDVColumn" msprop:Generator_UserColumnName="Cena1bezPDV" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PDV1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPDV1" msprop:Generator_ColumnPropNameInRow="PDV1" msprop:Generator_ColumnPropNameInTable="PDV1Column" msprop:Generator_UserColumnName="PDV1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NazivVrste1" msprop:Generator_ColumnVarNameInTable="columnNazivVrste1" msprop:Generator_ColumnPropNameInRow="NazivVrste1" msprop:Generator_ColumnPropNameInTable="NazivVrste1Column" msprop:Generator_UserColumnName="NazivVrste1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdVrste1" msprop:Generator_ColumnVarNameInTable="columnIdVrste1" msprop:Generator_ColumnPropNameInRow="IdVrste1" msprop:Generator_ColumnPropNameInTable="IdVrste1Column" msprop:Generator_UserColumnName="IdVrste1" type="xs:int" minOccurs="0" />
+              <xs:element name="CenaProc1" msprop:Generator_ColumnVarNameInTable="columnCenaProc1" msprop:Generator_ColumnPropNameInRow="CenaProc1" msprop:Generator_ColumnPropNameInTable="CenaProc1Column" msprop:Generator_UserColumnName="CenaProc1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IdKategorije1" msprop:Generator_ColumnVarNameInTable="columnIdKategorije1" msprop:Generator_ColumnPropNameInRow="IdKategorije1" msprop:Generator_ColumnPropNameInTable="IdKategorije1Column" msprop:Generator_UserColumnName="IdKategorije1" type="xs:int" minOccurs="0" />
+              <xs:element name="IdCene" msprop:Generator_ColumnVarNameInTable="columnIdCene" msprop:Generator_ColumnPropNameInRow="IdCene" msprop:Generator_ColumnPropNameInTable="IdCeneColumn" msprop:Generator_UserColumnName="IdCene" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptCenovnik2" msprop:Generator_TableClassName="vRptCenovnik2DataTable" msprop:Generator_TableVarName="tablevRptCenovnik2" msprop:Generator_TablePropName="vRptCenovnik2" msprop:Generator_RowDeletingName="vRptCenovnik2RowDeleting" msprop:Generator_RowChangingName="vRptCenovnik2RowChanging" msprop:Generator_RowEvHandlerName="vRptCenovnik2RowChangeEventHandler" msprop:Generator_RowDeletedName="vRptCenovnik2RowDeleted" msprop:Generator_UserTableName="vRptCenovnik2" msprop:Generator_RowChangedName="vRptCenovnik2RowChanged" msprop:Generator_RowEvArgName="vRptCenovnik2RowChangeEvent" msprop:Generator_RowClassName="vRptCenovnik2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdUgovora" msprop:Generator_ColumnVarNameInTable="columnIdUgovora" msprop:Generator_ColumnPropNameInRow="IdUgovora" msprop:Generator_ColumnPropNameInTable="IdUgovoraColumn" msprop:Generator_UserColumnName="IdUgovora" type="xs:int" minOccurs="0" />
+              <xs:element name="Cenovnik2" msprop:Generator_ColumnVarNameInTable="columnCenovnik2" msprop:Generator_ColumnPropNameInRow="Cenovnik2" msprop:Generator_ColumnPropNameInTable="Cenovnik2Column" msprop:Generator_UserColumnName="Cenovnik2" type="xs:int" minOccurs="0" />
+              <xs:element name="Kategorija2" msprop:Generator_ColumnVarNameInTable="columnKategorija2" msprop:Generator_ColumnPropNameInRow="Kategorija2" msprop:Generator_ColumnPropNameInTable="Kategorija2Column" msprop:Generator_UserColumnName="Kategorija2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cena2" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCena2" msprop:Generator_ColumnPropNameInRow="Cena2" msprop:Generator_ColumnPropNameInTable="Cena2Column" msprop:Generator_UserColumnName="Cena2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cena2bezPDV" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCena2bezPDV" msprop:Generator_ColumnPropNameInRow="Cena2bezPDV" msprop:Generator_ColumnPropNameInTable="Cena2bezPDVColumn" msprop:Generator_UserColumnName="Cena2bezPDV" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PDV2" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPDV2" msprop:Generator_ColumnPropNameInRow="PDV2" msprop:Generator_ColumnPropNameInTable="PDV2Column" msprop:Generator_UserColumnName="PDV2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NazivVrste2" msprop:Generator_ColumnVarNameInTable="columnNazivVrste2" msprop:Generator_ColumnPropNameInRow="NazivVrste2" msprop:Generator_ColumnPropNameInTable="NazivVrste2Column" msprop:Generator_UserColumnName="NazivVrste2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdVrste2" msprop:Generator_ColumnVarNameInTable="columnIdVrste2" msprop:Generator_ColumnPropNameInRow="IdVrste2" msprop:Generator_ColumnPropNameInTable="IdVrste2Column" msprop:Generator_UserColumnName="IdVrste2" type="xs:int" minOccurs="0" />
+              <xs:element name="CenaProc2" msprop:Generator_ColumnVarNameInTable="columnCenaProc2" msprop:Generator_ColumnPropNameInRow="CenaProc2" msprop:Generator_ColumnPropNameInTable="CenaProc2Column" msprop:Generator_UserColumnName="CenaProc2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IdKategorije2" msprop:Generator_ColumnVarNameInTable="columnIdKategorije2" msprop:Generator_ColumnPropNameInRow="IdKategorije2" msprop:Generator_ColumnPropNameInTable="IdKategorije2Column" msprop:Generator_UserColumnName="IdKategorije2" type="xs:int" minOccurs="0" />
+              <xs:element name="IdCene" msprop:Generator_ColumnVarNameInTable="columnIdCene" msprop:Generator_ColumnPropNameInRow="IdCene" msprop:Generator_ColumnPropNameInTable="IdCeneColumn" msprop:Generator_UserColumnName="IdCene" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vSpecifikacijaRazduzenjeKurira" msprop:Generator_TableClassName="vSpecifikacijaRazduzenjeKuriraDataTable" msprop:Generator_TableVarName="tablevSpecifikacijaRazduzenjeKurira" msprop:Generator_RowChangedName="vSpecifikacijaRazduzenjeKuriraRowChanged" msprop:Generator_TablePropName="vSpecifikacijaRazduzenjeKurira" msprop:Generator_RowDeletingName="vSpecifikacijaRazduzenjeKuriraRowDeleting" msprop:Generator_RowChangingName="vSpecifikacijaRazduzenjeKuriraRowChanging" msprop:Generator_RowEvHandlerName="vSpecifikacijaRazduzenjeKuriraRowChangeEventHandler" msprop:Generator_RowDeletedName="vSpecifikacijaRazduzenjeKuriraRowDeleted" msprop:Generator_RowClassName="vSpecifikacijaRazduzenjeKuriraRow" msprop:Generator_UserTableName="vSpecifikacijaRazduzenjeKurira" msprop:Generator_RowEvArgName="vSpecifikacijaRazduzenjeKuriraRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Klijent" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKlijent" msprop:Generator_ColumnPropNameInRow="Klijent" msprop:Generator_ColumnPropNameInTable="KlijentColumn" msprop:Generator_UserColumnName="Klijent" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="113" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Paketa" msprop:Generator_ColumnVarNameInTable="columnPaketa" msprop:Generator_ColumnPropNameInRow="Paketa" msprop:Generator_ColumnPropNameInTable="PaketaColumn" msprop:Generator_UserColumnName="Paketa" type="xs:int" minOccurs="0" />
+              <xs:element name="Kategorija" msprop:Generator_ColumnVarNameInTable="columnKategorija" msprop:Generator_ColumnPropNameInRow="Kategorija" msprop:Generator_ColumnPropNameInTable="KategorijaColumn" msprop:Generator_UserColumnName="Kategorija" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pazar" msprop:Generator_ColumnVarNameInTable="columnPazar" msprop:Generator_ColumnPropNameInRow="Pazar" msprop:Generator_ColumnPropNameInTable="PazarColumn" msprop:Generator_UserColumnName="Pazar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Otkup" msprop:Generator_ColumnVarNameInTable="columnOtkup" msprop:Generator_ColumnPropNameInRow="Otkup" msprop:Generator_ColumnPropNameInTable="OtkupColumn" msprop:Generator_UserColumnName="Otkup" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ukupno" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUkupno" msprop:Generator_ColumnPropNameInRow="Ukupno" msprop:Generator_ColumnPropNameInTable="UkupnoColumn" msprop:Generator_UserColumnName="Ukupno" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KurirId" msprop:Generator_ColumnVarNameInTable="columnKurirId" msprop:Generator_ColumnPropNameInRow="KurirId" msprop:Generator_ColumnPropNameInTable="KurirIdColumn" msprop:Generator_UserColumnName="KurirId" type="xs:int" minOccurs="0" />
+              <xs:element name="PosiljkaId" msprop:Generator_ColumnVarNameInTable="columnPosiljkaId" msprop:Generator_ColumnPropNameInRow="PosiljkaId" msprop:Generator_ColumnPropNameInTable="PosiljkaIdColumn" msprop:Generator_UserColumnName="PosiljkaId" type="xs:int" minOccurs="0" />
+              <xs:element name="Adresa" msprop:Generator_ColumnVarNameInTable="columnAdresa" msprop:Generator_ColumnPropNameInRow="Adresa" msprop:Generator_ColumnPropNameInTable="AdresaColumn" msprop:Generator_UserColumnName="Adresa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptBarKodVozila" msprop:Generator_TableClassName="vRptBarKodVozilaDataTable" msprop:Generator_TableVarName="tablevRptBarKodVozila" msprop:Generator_RowChangedName="vRptBarKodVozilaRowChanged" msprop:Generator_TablePropName="vRptBarKodVozila" msprop:Generator_RowDeletingName="vRptBarKodVozilaRowDeleting" msprop:Generator_RowChangingName="vRptBarKodVozilaRowChanging" msprop:Generator_RowEvHandlerName="vRptBarKodVozilaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptBarKodVozilaRowDeleted" msprop:Generator_RowClassName="vRptBarKodVozilaRow" msprop:Generator_UserTableName="vRptBarKodVozila" msprop:Generator_RowEvArgName="vRptBarKodVozilaRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdVP" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdVP" msprop:Generator_ColumnPropNameInRow="IdVP" msprop:Generator_ColumnPropNameInTable="IdVPColumn" msprop:Generator_UserColumnName="IdVP" type="xs:int" />
+              <xs:element name="GarazniBroj" msprop:Generator_ColumnVarNameInTable="columnGarazniBroj" msprop:Generator_ColumnPropNameInRow="GarazniBroj" msprop:Generator_ColumnPropNameInTable="GarazniBrojColumn" msprop:Generator_UserColumnName="GarazniBroj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NazivVozila" msprop:Generator_ColumnVarNameInTable="columnNazivVozila" msprop:Generator_ColumnPropNameInRow="NazivVozila" msprop:Generator_ColumnPropNameInTable="NazivVozilaColumn" msprop:Generator_UserColumnName="NazivVozila" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Oznaka" msprop:Generator_ColumnVarNameInTable="columnOznaka" msprop:Generator_ColumnPropNameInRow="Oznaka" msprop:Generator_ColumnPropNameInTable="OznakaColumn" msprop:Generator_UserColumnName="Oznaka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Opis" msprop:Generator_ColumnVarNameInTable="columnOpis" msprop:Generator_ColumnPropNameInRow="Opis" msprop:Generator_ColumnPropNameInTable="OpisColumn" msprop:Generator_UserColumnName="Opis" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BarKod" msprop:Generator_ColumnVarNameInTable="columnBarKod" msprop:Generator_ColumnPropNameInRow="BarKod" msprop:Generator_ColumnPropNameInTable="BarKodColumn" msprop:Generator_UserColumnName="BarKod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRptTPocitavanja" msprop:Generator_TableClassName="vRptTPocitavanjaDataTable" msprop:Generator_TableVarName="tablevRptTPocitavanja" msprop:Generator_TablePropName="vRptTPocitavanja" msprop:Generator_RowDeletingName="vRptTPocitavanjaRowDeleting" msprop:Generator_RowChangingName="vRptTPocitavanjaRowChanging" msprop:Generator_RowEvHandlerName="vRptTPocitavanjaRowChangeEventHandler" msprop:Generator_RowDeletedName="vRptTPocitavanjaRowDeleted" msprop:Generator_UserTableName="vRptTPocitavanja" msprop:Generator_RowChangedName="vRptTPocitavanjaRowChanged" msprop:Generator_RowEvArgName="vRptTPocitavanjaRowChangeEvent" msprop:Generator_RowClassName="vRptTPocitavanjaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdOcitavanja" msprop:Generator_ColumnVarNameInTable="columnIdOcitavanja" msprop:Generator_ColumnPropNameInRow="IdOcitavanja" msprop:Generator_ColumnPropNameInTable="IdOcitavanjaColumn" msprop:Generator_UserColumnName="IdOcitavanja" type="xs:int" />
+              <xs:element name="NazivModela" msprop:Generator_ColumnVarNameInTable="columnNazivModela" msprop:Generator_ColumnPropNameInRow="NazivModela" msprop:Generator_ColumnPropNameInTable="NazivModelaColumn" msprop:Generator_UserColumnName="NazivModela" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NazivMarke" msprop:Generator_ColumnVarNameInTable="columnNazivMarke" msprop:Generator_ColumnPropNameInRow="NazivMarke" msprop:Generator_ColumnPropNameInTable="NazivMarkeColumn" msprop:Generator_UserColumnName="NazivMarke" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KategorijaNaziv" msprop:Generator_ColumnVarNameInTable="columnKategorijaNaziv" msprop:Generator_ColumnPropNameInRow="KategorijaNaziv" msprop:Generator_ColumnPropNameInTable="KategorijaNazivColumn" msprop:Generator_UserColumnName="KategorijaNaziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojMotora" msprop:Generator_ColumnVarNameInTable="columnBrojMotora" msprop:Generator_ColumnPropNameInRow="BrojMotora" msprop:Generator_ColumnPropNameInTable="BrojMotoraColumn" msprop:Generator_UserColumnName="BrojMotora" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojSasije" msprop:Generator_ColumnVarNameInTable="columnBrojSasije" msprop:Generator_ColumnPropNameInRow="BrojSasije" msprop:Generator_ColumnPropNameInTable="BrojSasijeColumn" msprop:Generator_UserColumnName="BrojSasije" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojVrata" msprop:Generator_ColumnVarNameInTable="columnBrojVrata" msprop:Generator_ColumnPropNameInRow="BrojVrata" msprop:Generator_ColumnPropNameInTable="BrojVrataColumn" msprop:Generator_UserColumnName="BrojVrata" type="xs:int" minOccurs="0" />
+              <xs:element name="NazivBoje" msprop:Generator_ColumnVarNameInTable="columnNazivBoje" msprop:Generator_ColumnPropNameInRow="NazivBoje" msprop:Generator_ColumnPropNameInTable="NazivBojeColumn" msprop:Generator_UserColumnName="NazivBoje" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Naziv" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_UserColumnName="Naziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DatumOcitavanja" msprop:Generator_ColumnVarNameInTable="columnDatumOcitavanja" msprop:Generator_ColumnPropNameInRow="DatumOcitavanja" msprop:Generator_ColumnPropNameInTable="DatumOcitavanjaColumn" msprop:Generator_UserColumnName="DatumOcitavanja" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptKovertaZaDokument" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="vRptKoverteZaZbirneOtkupe_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptKoverteZaZbirneOtkupe" />
+      <xs:field xpath="mstns:BarKod" />
+    </xs:unique>
+    <xs:unique name="vRptKovertaZaOtkupninu_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptKovertaZaOtkupninu" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="vRptSpisakTzadataka_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptSpisakTzadataka" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="vRptSpisakOtkupnina_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptSpisakOtkupnina" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="vRptSpisakDostava_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptSpisakDostava" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="vRptKurirskaListaDostava_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptKurirskaListaDostava" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="vRptBarKodVozila_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptBarKodVozila" />
+      <xs:field xpath="mstns:IdVP" />
+    </xs:unique>
+    <xs:unique name="vRptTPocitavanja_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vRptTPocitavanja" />
+      <xs:field xpath="mstns:IdOcitavanja" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

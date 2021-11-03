@@ -1,0 +1,3114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="BexDB">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>fd90974a-745c-4ce8-8787-b49f14a455a0</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="UgovorDataSet">
+      <Query>
+        <DataSourceName>BexDB</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="IdUgovora">
+          <DataField>IdUgovora</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NazivFirma">
+          <DataField>NazivFirma</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdresaFirma">
+          <DataField>AdresaFirma</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MaticniBrojFirma">
+          <DataField>MaticniBrojFirma</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PIBfirma">
+          <DataField>PIBfirma</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Delatnost">
+          <DataField>Delatnost</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UgovorVerzija">
+          <DataField>UgovorVerzija</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DatumPoslednjeVerzije">
+          <DataField>DatumPoslednjeVerzije</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Ugovorilac">
+          <DataField>Ugovorilac</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Nosilac">
+          <DataField>Nosilac</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Adresa">
+          <DataField>Adresa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PlaceName">
+          <DataField>PlaceName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PIB">
+          <DataField>PIB</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="MaticniBroj">
+          <DataField>MaticniBroj</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ZastupnikKlijenta">
+          <DataField>ZastupnikKlijenta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Cenovnik1Id">
+          <DataField>Cenovnik1Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NaplataId">
+          <DataField>NaplataId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="BezZastitneCene">
+          <DataField>BezZastitneCene</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ZastitnaCena">
+          <DataField>ZastitnaCena</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RabatMinBrojPaketa">
+          <DataField>RabatMinBrojPaketa</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RabatProcenatZaBrojPaketa">
+          <DataField>RabatProcenatZaBrojPaketa</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RabatMinIznosFakture">
+          <DataField>RabatMinIznosFakture</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RabatProcenatZaIznosFakture">
+          <DataField>RabatProcenatZaIznosFakture</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Cenovnik2Id">
+          <DataField>Cenovnik2Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ValutaDana">
+          <DataField>ValutaDana</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FakturaDana">
+          <DataField>FakturaDana</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FakturaEmailom">
+          <DataField>FakturaEmailom</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="FakturaPostom">
+          <DataField>FakturaPostom</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PravnoLice">
+          <DataField>PravnoLice</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="NaplataPoFakturi">
+          <DataField>NaplataPoFakturi</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="FakturaProc">
+          <DataField>FakturaProc</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ZastitnaCenaFak">
+          <DataField>ZastitnaCenaFak</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PovlasceneCeneKlijentuId">
+          <DataField>PovlasceneCeneKlijentuId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OdobrenoBezgotovinsko">
+          <DataField>OdobrenoBezgotovinsko</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="RabatProcenat">
+          <DataField>RabatProcenat</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="BrojPunomocja">
+          <DataField>BrojPunomocja</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DatumPunomocja">
+          <DataField>DatumPunomocja</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Aktivan">
+          <DataField>Aktivan</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="TekuciRacun">
+          <DataField>TekuciRacun</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Telefon1">
+          <DataField>Telefon1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Telefon2">
+          <DataField>Telefon2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Telefon3">
+          <DataField>Telefon3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Fax">
+          <DataField>Fax</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WebSite">
+          <DataField>WebSite</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Mail">
+          <DataField>Mail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>BexDB</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\MM\Desktop\1MyProj\Bexeexpress\BexMVC\BexDB.xsd</rd:SchemaPath>
+        <rd:TableName>vRptUgovor</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>vRptUgovorTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="Cenovnik1DataSet">
+      <Query>
+        <DataSourceName>BexDB</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="IdUgovora">
+          <DataField>IdUgovora</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Cenovnik1">
+          <DataField>Cenovnik1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Kategorija1">
+          <DataField>Kategorija1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Cena1">
+          <DataField>Cena1</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Cena1bezPDV">
+          <DataField>Cena1bezPDV</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PDV1">
+          <DataField>PDV1</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="NazivVrste1">
+          <DataField>NazivVrste1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IdVrste1">
+          <DataField>IdVrste1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CenaProc1">
+          <DataField>CenaProc1</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IdKategorije1">
+          <DataField>IdKategorije1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>BexDB</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\MM\Desktop\1MyProj\Bexeexpress\BexMVC\BexDB.xsd</rd:SchemaPath>
+        <rd:TableName>vRptCenovnik1</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>vRptCenovnik1TableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="Cenovnik2DataSet">
+      <Query>
+        <DataSourceName>BexDB</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="IdUgovora">
+          <DataField>IdUgovora</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Cenovnik2">
+          <DataField>Cenovnik2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Kategorija2">
+          <DataField>Kategorija2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Cena2">
+          <DataField>Cena2</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Cena2bezPDV">
+          <DataField>Cena2bezPDV</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PDV2">
+          <DataField>PDV2</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="NazivVrste2">
+          <DataField>NazivVrste2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IdVrste2">
+          <DataField>IdVrste2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CenaProc2">
+          <DataField>CenaProc2</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IdKategorije2">
+          <DataField>IdKategorije2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>BexDB</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\MM\Desktop\1MyProj\Bexeexpress\BexMVC\BexDB.xsd</rd:SchemaPath>
+        <rd:TableName>vRptCenovnik2</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>vRptCenovnik2TableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>UGOVOR O PRUŽANJU USLUGA KURIRSKE SLUŽBE U UNUTRAŠNJEM
+SAOBRAĆAJU BR. </Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Label>UgovorVerzija</Label>
+                    <Value>=First(Fields!UgovorVerzija.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.76388mm</Top>
+            <Left>5.63035mm</Left>
+            <Height>11.11431mm</Height>
+            <Width>190.55834mm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Zaključen dana </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>DatumPoslednjeVerzije</Label>
+                    <Value>=First(Fields!DatumPoslednjeVerzije.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> godine, između:
+
+1. </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>NazivFirma</Label>
+                    <Value>=First(Fields!NazivFirma.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> matični broj: </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>MaticniBrojFirma</Label>
+                    <Value>=First(Fields!MaticniBrojFirma.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>, PIB: </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>PIBfirma</Label>
+                    <Value>=First(Fields!PIBfirma.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>, koji zastupa </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>Ugovorilac</Label>
+                    <Value>=First(Fields!Ugovorilac.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> po punomoćju broj </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>BrojPunomocja</Label>
+                    <Value>=First(Fields!BrojPunomocja.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> od </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>DatumPunomocja</Label>
+                    <Value>=First(Fields!DatumPunomocja.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>. godine (u daljem tekstu: Davalac usluga)
+i
+2. </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>Nosilac</Label>
+                    <Value>=First(Fields!Nosilac.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> iz </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>Mesto</Label>
+                    <Value>=First(Fields!PlaceName.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>, ul. </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>Adresa</Label>
+                    <Value>=First(Fields!Adresa.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Label>PIBakoJEpravno</Label>
+                    <Value>=IIF(First(Fields!PravnoLice.Value = true, "UgovorDataSet"), ", PIB:","")</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>PIB</Label>
+                    <Value>=First(Fields!PIB.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>, matični broj: </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>MaticniBroj</Label>
+                    <Value>=First(Fields!MaticniBroj.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>, </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>ZastupnikAkoJePravno</Label>
+                    <Value>=IIF(First(Fields!PravnoLice.Value=true, "UgovorDataSet"),"koga zastupa ", "")</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>ZastupnikKlijenta</Label>
+                    <Value>=First(Fields!ZastupnikKlijenta.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> (u daljem tekstu: Korisnik usluga) zaključili su sledeći:
+
+
+</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>Predmet ugovora</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>14.64208mm</Top>
+            <Left>5.63035mm</Left>
+            <Height>46.81321mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox15">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>NaplataPoFakturi</Label>
+                    <Value>=IIF(First(Fields!NaplataPoFakturi.Value , "UgovorDataSet")= true, "Cena se odnosi na naplatu po fakturnoj vrednosti: " + Sum(Fields!FakturaProc.Value, "UgovorDataSet").ToString() + "% od neto iznosa fakture + PDV.", "")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>ZastitnaCenaFak</Label>
+                    <Value>=IIF(Sum(Fields!ZastitnaCenaFak.Value, "UgovorDataSet")&gt; 0 , 
+	"Minimalna zaštitna cena po pošiljci iznosi " + Sum(Fields!ZastitnaCenaFak.Value, "UgovorDataSet").ToString() + " RSD sa PDV-om.", 
+	"")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox15</rd:DefaultName>
+            <Top>163.50182mm</Top>
+            <Left>5.63033mm</Left>
+            <Height>15.26042mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>ObracunCenePo</Label>
+                    <Value>=IIF(Sum(Fields!NaplataId.Value, "UgovorDataSet") = 1, "Cena se odnosi na svaki paket pojedinačno.", "Cena se odnosi na naplatu po pošiljci.")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>ZastitnaCena</Label>
+                    <Value>=IIF(First(Fields!BezZastitneCene.Value, "UgovorDataSet") = true,
+		  "Oslobođeni od zaštitne cene po paketu."
+		  ,		  IIF(Sum(Fields!ZastitnaCena.Value, "UgovorDataSet")&lt;&gt;0,"Minimalna zaštitna cena po paketu iznosi " + Sum(Fields!ZastitnaCena.Value, "UgovorDataSet").ToString() + " RSD sa PDV-om.",""))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>180.52612mm</Top>
+            <Left>5.63033mm</Left>
+            <Height>15.525mm</Height>
+            <Width>190.55833mm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox17">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>RabatNaFakturu</Label>
+                    <Value>=IIF(
+Sum(Fields!RabatProcenat.Value, "UgovorDataSet")&gt;0,
+	 "Odobrava se rabat na fakturu od " + Sum(Fields!RabatProcenat.Value, "UgovorDataSet").ToString() + "%.", 
+	 IIF(
+		 Sum(Fields!RabatMinBrojPaketa.Value, "UgovorDataSet")&gt;0,
+			 "Ako na mesečnom nivou pošaljete preko " +Sum(Fields!RabatMinBrojPaketa.Value, "UgovorDataSet").ToString() + " paketa, odobrava se rabat na fakturu od " + Sum(Fields!RabatProcenatZaBrojPaketa.Value, "UgovorDataSet").ToString()+ "%.",
+			 IIF(
+				 Sum(Fields!RabatMinIznosFakture.Value, "UgovorDataSet")&gt;0, 
+					 "Ako na mesečnom nivou ostvarite fakturu preko " +Sum(Fields!RabatMinIznosFakture.Value, "UgovorDataSet").ToString() + " RSD, odobrava se rabat na fakturu od " + Sum(Fields!RabatProcenatZaIznosFakture.Value, "UgovorDataSet").ToString()+ "%.","")))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox17</rd:DefaultName>
+            <Top>197.81501mm</Top>
+            <Left>5.63038mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55833mm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Cenovnik2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Cenovnik2</Label>
+                    <Value>=Switch(Sum(Fields!Cenovnik1Id.Value, "UgovorDataSet") &lt;&gt; Sum(Fields!Cenovnik2Id.Value, "UgovorDataSet") and Sum(Fields!Cenovnik2Id.Value, "UgovorDataSet")&gt;0, "Cene usluga dostave pošiljaka, kada troškove dostave snose klijenti Korisnika usluga, su sledeće:",
+          Sum(Fields!Cenovnik1Id.Value, "UgovorDataSet") = Sum(Fields!Cenovnik2Id.Value, "UgovorDataSet") and Sum(Fields!Cenovnik1Id.Value, "UgovorDataSet")&gt;0, "Sve definisane cene se odnose na Klijente Korisnika usluga.",
+          Sum(Fields!PovlasceneCeneKlijentuId.Value, "UgovorDataSet") = 0 and Sum(Fields!Cenovnik1Id.Value, "UgovorDataSet") &lt;&gt; Sum(Fields!Cenovnik2Id.Value, "UgovorDataSet"), "Sve definisane cene se odnose samo na Korisnika usluga.",
+		  Sum(Fields!PovlasceneCeneKlijentuId.Value , "UgovorDataSet")= 1, "Sve definisane cene se odnose na Klijente Korisnika usluga.",
+		  1 = 1,                           "" )</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>205.5789mm</Top>
+            <Left>5.63038mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55832mm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox18">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>ObracunCenePo</Label>
+                    <Value>=IIF(Sum(Fields!NaplataId.Value, "UgovorDataSet") = 1, "Cena se odnosi na svaki paket pojedinačno.", "Cena se odnosi na naplatu po pošiljci.")</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>ZastitnaCena</Label>
+                    <Value>=IIF(First(Fields!BezZastitneCene.Value, "UgovorDataSet") = true,
+		  "Oslobođeni od zaštitne cene po paketu."
+		  ,		  IIF(Sum(Fields!ZastitnaCena.Value, "UgovorDataSet")&lt;&gt;0,"Minimalna zaštitna cena po paketu iznosi " + Sum(Fields!ZastitnaCena.Value, "UgovorDataSet").ToString() + " RSD sa PDV-om.",""))</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>233.10668mm</Top>
+            <Left>5.53486mm</Left>
+            <Height>15.525mm</Height>
+            <Width>190.55832mm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox32">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>PeriodFakturisanja</Label>
+                    <Value>=IIF(First(Fields!OdobrenoBezgotovinsko.Value, "UgovorDataSet") = true,
+	IIF(Sum(Fields!FakturaDana.Value , "UgovorDataSet")&lt;&gt;0,
+		"- Period fakturisanja: " + Sum(Fields!FakturaDana.Value, "UgovorDataSet").ToString() + " dana.",
+		"- Period fakturisanja: mesečno."),"")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>ValutaPlacanja</Label>
+                    <Value>=IIF(First(Fields!OdobrenoBezgotovinsko.Value, "UgovorDataSet") = true,
+	IIF(Sum(Fields!ValutaDana.Value , "UgovorDataSet")&lt;&gt;0,
+		"- Valuta plaćanja: " + Sum(Fields!ValutaDana.Value, "UgovorDataSet").ToString() + " dana.",
+		"- Valuta plaćanja: 0 dana. Korisnik usluga je u obavezi da račun za izvršene usluge plati po dospeću istog."),"")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox32</rd:DefaultName>
+            <Top>250.39556mm</Top>
+            <Left>5.53486mm</Left>
+            <Height>14.90765mm</Height>
+            <Width>190.55832mm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox33">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Za sve što nije gore navedeno, ugovorne strane su saglasne da budu primenjeni opšti uslovi Davaoca usluga.
+
+Davalac usluga zadržava pravo da menja kategorije pošiljaka ukoliko prijavljena težina odstupa od stvarne. Takođe davalac usluga zadržava pravo posebnog obračuna za pošiljke velike zapremine, tzv. volumenski obračun čija je formula za računanje sadržana u Posebnim uslovima.
+
+Davalac usluga zadržava pravo izmene cena, s tim što se obavezuje da blagovremeno obaveštava klijenta o pomenutim promenama. Informacije o ceni pojedinih usluga biće dostupne na zvaničnoj internet prezentaciji. 
+
+Ukoliko dođe do promene PDV-a, ugovorne strane su saglasne da se izvrši korekcija cena u skladu sa izmenjenim procentom PDV-a, bez zaključenja Aneksa. 
+
+Za svaki dan prekoračenja u roku plaćanja, Korisniku usluga biće obračunata zakonska zatezna kamata.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox33</rd:DefaultName>
+            <Top>267.0671mm</Top>
+            <Left>5.53486mm</Left>
+            <Height>60.61762mm</Height>
+            <Width>190.55832mm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox34">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 3.</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>329.44861mm</Top>
+            <Left>5.53489mm</Left>
+            <Height>6mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox35">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>NacinDostaveFakture</Label>
+                    <Value>= Switch(First(Fields!FakturaPostom.Value = true, "UgovorDataSet") and First(Fields!FakturaEmailom.Value = false, "UgovorDataSet"), "Korisniku usluga će fakture za obavljene usluge biti dostavljene u štampanom obliku, poštom ili ličnim uručenjem.",
+         First(Fields!FakturaPostom.Value = false, "UgovorDataSet") and First(Fields!FakturaEmailom.Value = true, "UgovorDataSet"), "Korisniku usluga će fakture za obavljene usluge biti dostavljene u elektronskom obliku, sa elektronskim sertifikovanim potpisom. Korisnik usluga izjavljuje da je u potpunosti saglasan da se za usluge kurirske službe, može u elektronskom obliku dostavljati elektronski potpisane fakture - račune, na sledeću e-mail adresu ____________________. Ukoliko se e- mail adresa izmeni, klijent se obavezuje da će u najkraćem vremenskom periodu obavestiti Davaoca usluga o novoj e-mail adresi.",
+          First(Fields!FakturaPostom.Value = true, "UgovorDataSet") and First(Fields!FakturaEmailom.Value = true, "UgovorDataSet"), "Korisniku usluga će fakture za obavljene usluge biti dostavljene u štampanom obliku, poštom ili ličnim uručenjem. Korisniku usluga će fakture za obavljene usluge biti dostavljene i u elektronskom obliku, sa elektronskim sertifikovanim potpisom. Korisnik usluga izjavljuje da je u potpunosti saglasan da se za usluge kurirske službe, može u elektronskom obliku dostavljati elektronski potpisane fakture - račune, na sledeću e-mail adresu ____________________. Ukoliko se e- mail adresa izmeni, klijent se obavezuje da će u najkraćem vremenskom periodu obavestiti Davaoca usluga o novoj mail adresi.",
+		  First(Fields!FakturaPostom.Value = false, "UgovorDataSet") and First(Fields!FakturaEmailom.Value = false, "UgovorDataSet"), "Za obaveštenja informativnog karaktera od strane Davaoca usluga, Korisnik usluga ostavlja sledeću e-mail adresu: ____________________. Ukoliko se e- mail adresa izmeni, klijent će obavestiti Davaoca usluga o novoj e-mail adresi.",
+		  1 = 1,                            "" )</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Uzajamna prava i obaveze
+</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>336.50694mm</Top>
+            <Left>5.53486mm</Left>
+            <Height>29.01875mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox36">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 4.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>367.99514mm</Top>
+            <Left>5.53486mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox37">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>NacinDostaveFakture</Label>
+                    <Value>Korisnik usluga je dužan da pošiljke namenjene za isporuku adekvatno upakuje, na propisani ili uobičajeni način, da ne spaja više paketa u jedan paket a sve da ne bi došlo do nastanka štete (umanjenja ili oštećenja sadržine) ili ugrožavanja sigurnosti ljudi ili dobara, što podrazumeva stavljanje pošiljaka u odgovarajući omot (koverta, kutija, sanduk) radi obezbeđenja sadržine pošiljke.
+
+Korisnik usluga je obavezan da na čitljiv i uočljiv način naznači naziv i adresu primaoca, sadržaj, vrednost, otkupni iznos, kao i da sačini primopredajnu specifikaciju preuzetih pošiljaka po uputima Davalaca usluga. 
+
+Davalac usluga neće snositi štetu do koje dođe zbog neadekvatnog pakovanja, kao i usled netačnih podataka i uputstava Korisnika usluga. Takođe, Davalac usluga neće snosti odgovornost ukoliko se u pošiljci nalazi sadržaj od stakla. 
+
+Ugovorne strane saglasno utvrđuju da se u smislu ovog Ugovora, ni pod kojim uslovima neće vršiti prevoz oružja, municije, eksploziva, zapaljivih i opasnih materija, droge, životinja, kvarljive ili lomljive robe, novca, zlata, nakita, plemenitih metala, dragog kamenja, opojne droge i psihotropne materije, akcizne proizvode ili bilo koje druge robe zakonom zabranjene za transport, ili robe za koju Davalac usluga proceni da ne može preuzeti rizik prevoza.
+
+Otkupne pošiljke podrazumevaju registrovane pošiljke koje se primaocu uručuju uz prethodnu naplatu otkupnog iznosa, u korist pošiljaoca te pošiljke i </Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>otkupni iznos se pošiljaocu isplaćuje prvi radni dan nakon isporuke</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>
+
+Ugovorne strane su dužne da jedna drugu obaveste o promeni sedišta firme u roku od 7 dana od dana izvršene promene. Ako bilo koja od navedenih strana ne izvrši obavezu, svaki dokument između ugovorenih strana se smatra uredno uručenim kad se dostavi na adresu koje su označene u ovom Ugovoru.
+</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>375.75902mm</Top>
+            <Left>5.53486mm</Left>
+            <Height>95.95834mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox38">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 5.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>473.48125mm</Top>
+            <Left>5.5349mm</Left>
+            <Height>6mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox39">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Davalac usluge je dužan da, prilikom preuzimanja pošiljaka radi isporuke izda isečak iz PDA uređaja ili specifikaciju preuzetih pošiljki ili pisanu adresnicu koja predstavlja zvanični dokument o preuzimanju od strane Korisnika usluga ili njegovog ovlašćenog dobavljača, a koji će u sebi sadržati spisak sa adresama primaoca za koje pošiljke prevozimo, kao i iskazane vrednosti pošiljke (poštarine) u kojima se ta roba nalazi. Korisnik usluga ili dobavljač  je dužan da potpiše i u tom slučaju podaci označeni na otpremnom listu su neopozivi.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox39</rd:DefaultName>
+            <Top>481.24514mm</Top>
+            <Left>5.5349mm</Left>
+            <Height>26.45556mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox40">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 6.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>509.46458mm</Top>
+            <Left>5.5349mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox41">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>U slučaju nemogućnosti uručenja zbog netačne adrese, odbijanja prijema ili odsutnosti primaoca, Davalac usluga će po mogućstvu obavestiti Korisnika usluga o nemogućnosti uručenja pošiljke i u tom slučaju je Korisnik usluga dužan da izda dodatna uputstva. 
+
+U slučaju da primalac odbije da primi pošiljku ili je nemoguće isporučiti pošiljku zbog nepotpune adrese, Korisnik usluga plaća povrat pošiljke. 
+
+Ukoliko primalac, koji nije Korisnik usluga, odbije da gotovinski plati pošiljku, a nema sklopljen Ugovor sa Davaocem usluge, pošiljku je dužan da plati Korisnik usluga.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox41</rd:DefaultName>
+            <Top>517.22847mm</Top>
+            <Left>5.53493mm</Left>
+            <Height>43.30625mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox42">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 7.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>562.29861mm</Top>
+            <Left>5.53493mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox43">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Preuzimanjem pošiljaka u smislu ovog Ugovora Davalac usluga se sa svoje strane obavezuje da se o preuzetoj robi savesno odnosi, sa pažnjom dobrog privrednika. Davalac usluge ne snosi odgovornost za izgubljenu dobit Korisnika usluga ukoliko dođe do kašnjenja, oštećenja ili usled više sile. </Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox43</rd:DefaultName>
+            <Top>570.0625mm</Top>
+            <Left>5.53496mm</Left>
+            <Height>16.05416mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox44">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 8.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>587.88055mm</Top>
+            <Left>5.5348mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox45">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Davalac usluga se obavezuje da u kontaktima sa kupcima i komitentima Korisnika usluga vodi računa o ugledu i interesima Korisnika usluga, da zajedno u obostranom interesu obavlja delatnost koja širi ugled, a predstavlja zadovoljstvo svakog primaoca. Strateški cilj i Korisnika usluga i Davalaca usluga je zajedništvo u delatnosti, odnosno vrsti usluge.
+
+Ugovorne strane se obavezuju da će poslove koji čine predmet ovog Ugovora kao i poslove i radnje izvršene po posebnom nalogu obavljati sa pažnjom savesnog privrednika štiteći ugled i interese druge ugovorene strane.
+
+
+
+</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>Vreme trajanja Ugovora</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox45</rd:DefaultName>
+            <Top>595.64444mm</Top>
+            <Left>5.53497mm</Left>
+            <Height>47.80417mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>20</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox46">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 9.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>645.2125mm</Top>
+            <Left>5.5348mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>21</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox47">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Ovaj Ugovor je zaključen na neodređeno vreme, počev od dana kada ga potpišu i overe označene ugovorne strane.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox47</rd:DefaultName>
+            <Top>652.97639mm</Top>
+            <Left>5.53497mm</Left>
+            <Height>7.32292mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>22</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox48">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 10.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>662.06319mm</Top>
+            <Left>5.53497mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox49">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Svaka od ugovornih strana zadržava pravo da Ugovor može raskinuti na osnovu sporazuma ugovornih strana ili jednostrano u slučaju da suprotna strana ne izvršava obaveze predviđene Ugovorom i time teže oštećuje interese druge ugovorne strane. Sporazum o raskidu Ugovora ili jednostrani otkaz Ugovora moraju biti sačinjeni u pisanoj formi. Ugovor se može menjati i dopunjavati u formi Aneksa isključivo u pisanoj formi i potpisana od strane ovlašćenih predstavnika ugovornih strana i jedino je tako punovažna.
+
+Korisnik usluga je dužan da izmiri sve svoje novčane obaveze, troškove i nadoknade prema Davaocu usluga, a Davalac usluga da izvrši otpremu robe u skladu sa ovim Ugovorom.
+
+
+
+</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>Završne odredbe</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox49</rd:DefaultName>
+            <Top>669.82708mm</Top>
+            <Left>5.53497mm</Left>
+            <Height>57.32917mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>24</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox50">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 11.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>728.92014mm</Top>
+            <Left>5.53497mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>25</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox51">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Za sve što ovim Ugovorom nije predviđeno, važiće odredbe Zakona o obligacionim odnosima, Opšte uzanse za promet robom, Zakona o poštanskim uslugama, odredaba Posebnih uslova za obavljanje poštanskih usluga Davaoca usluga, kao potpisanog Protokola između ugovornih strana a u vezi člana 1. ovog Ugovora. Ugovorne strane su dužne da sva sporna pitanja rešavaju sporazumno, u duhu dobrih poslovnih običaja.
+
+U slučaju da se određeno sporno pitanje ne može saglasno rešiti, rešavaće stvarno nadležni sud.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox51</rd:DefaultName>
+            <Top>736.68403mm</Top>
+            <Left>5.5348mm</Left>
+            <Height>30.34166mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>26</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox52">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 12.</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox52</rd:DefaultName>
+            <Top>768.78958mm</Top>
+            <Left>5.5348mm</Left>
+            <Height>6mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>27</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox53">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Ovaj Ugovor je sačinjen u 2 (dva) istovetna primerka, od kojih svakoj od označenih Ugovornih strana pripada po 1 (jedan) primerak.  </Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox53</rd:DefaultName>
+            <Top>776.20069mm</Top>
+            <Left>5.5348mm</Left>
+            <Height>12.87917mm</Height>
+            <Width>190.5583mm</Width>
+            <ZIndex>28</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox54">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Davalac usluga
+
+
+________________________________
+(</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Label>Ugovorilac</Label>
+                    <Value>=First(Fields!Ugovorilac.Value, "UgovorDataSet")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>)</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox54</rd:DefaultName>
+            <Top>801.02293mm</Top>
+            <Left>5.53497mm</Left>
+            <Height>25.91666mm</Height>
+            <Width>53.2007mm</Width>
+            <ZIndex>29</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox55">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Korisnik usluga
+
+
+________________________________
+</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox54</rd:DefaultName>
+            <Top>801.02293mm</Top>
+            <Left>142.91207mm</Left>
+            <Height>25.91666mm</Height>
+            <Width>53.18124mm</Width>
+            <ZIndex>30</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox9">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 1.</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>63.21918mm</Top>
+            <Left>5.63049mm</Left>
+            <Height>6mm</Height>
+            <Width>190.55813mm</Width>
+            <ZIndex>31</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox10">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Shodno ovom Ugovoru Korisnik usluga poverava, a Davalac usluga prihvata vršenje usluga koje obavlja na osnovu registrovane delatnosti i Posebnih uslova za obavljanje poštanskih usluga, za Korisnika usluga u unutrašnjem saobraćaju. 
+
+Usluga dostave pošiljaka podrazumeva sve radnje i mere Davalaca usluga, od preuzimanja pošiljaka od Korisnika usluga do isporuke tj. uručenja primaocu, i to: prijem, prevoz, pretovar, skladištenje, uručenje i eventualno povrat i naplatu otkupne pošiljke, zatim naplatu otkupnih iznosa za račun Korisnika usluga, kao i prijem, uručenje i povrat pratećih otpremnih dokumenata, u skladu sa Zakonom o poštanskim uslugama, Pravilnikom o opštim uslovima za obavljanje poštanskih usluga i Posebnim uslovima za obavljanje poštanskih usluga.
+
+</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>Cena usluga:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox10</rd:DefaultName>
+            <Top>70.98307mm</Top>
+            <Left>5.63049mm</Left>
+            <Height>44.1mm</Height>
+            <Width>190.55813mm</Width>
+            <ZIndex>32</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox21">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Član 2.</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>116.84695mm</Top>
+            <Left>5.63049mm</Left>
+            <Height>5.72708mm</Height>
+            <Width>190.55834mm</Width>
+            <ZIndex>33</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox22">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Nadoknada za navedene usluge određena je važećim cenovnikom.
+Ugovorne strane sporazumno prihvataju uslove koji definišu cenu i izabrane dodatne usluge.
+
+</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Label>PrimenaCenovnika</Label>
+                    <Value>=IIF(Sum(Fields!Cenovnik1Id.Value , "UgovorDataSet")= 0, "Ugovorne strane su saglasne da se za obračun izvršenih usluga primenjuje standardni cenovnik Davaoca usluga.","Ugovorne strane su saglasne da se izvrši formiranje cena usluga a prema tabelernom prikazu:")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>124.33793mm</Top>
+            <Left>5.63049mm</Left>
+            <Height>17.63611mm</Height>
+            <Width>190.55813mm</Width>
+            <ZIndex>34</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Tablix3">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>82.12661mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>29.80743mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>27.47678mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>28.4925mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>22.65482mm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NazivVrste1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NazivVrste1.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NazivVrste1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>5</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox105">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Opis usluge</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox105</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox106">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cena bez PDV</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox106</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox107">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>PDV</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox107</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox108">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cena sa PDV</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox108</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox109">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cena proc.</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox109</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Kategorija13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Kategorija1.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Kategorija13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Cena1bezPDV1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Cena1bezPDV.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Cena1bezPDV1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PDV11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!PDV1.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PDV11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Cena11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Cena1.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Cena11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="CenaProc1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF (Sum(Fields!CenaProc1.Value)&gt;0, Sum(Fields!CenaProc1.Value).ToString() + "%", "")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>CenaProc1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="IdVrste1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!IdVrste1.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!NazivVrste1.Value</Value>
+                      <Direction>Descending</Direction>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember>
+                      <TablixMembers>
+                        <TablixMember>
+                          <Group Name="Kategorija1">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!Kategorija1.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!Kategorija1.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                        </TablixMember>
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Cenovnik1DataSet</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!IdKategorije1.Value</Value>
+              </SortExpression>
+            </SortExpressions>
+            <Top>143.73793mm</Top>
+            <Left>5.53518mm</Left>
+            <Height>18mm</Height>
+            <Width>190.55813mm</Width>
+            <ZIndex>35</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix4">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>82.12661mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>29.80743mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>27.47678mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>28.4925mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>22.65482mm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NazivVrste2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NazivVrste2.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NazivVrste1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>5</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox110">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Opis usluge</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox105</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox111">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cena bez PDV</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox106</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox112">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>PDV</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox107</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox113">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cena sa PDV</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox108</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox114">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Cena proc.</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox109</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Kategorija14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Kategorija2.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Kategorija13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Cena1bezPDV3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Cena2bezPDV.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Cena1bezPDV1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PDV12">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!PDV2.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PDV11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Cena12">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Cena2.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Cena11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="CenaProc2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF (Sum(Fields!CenaProc2.Value)&gt;0, Sum(Fields!CenaProc2.Value).ToString() + "%", "")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>CenaProc1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="IdVrste2">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!IdVrste2.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!NazivVrste2.Value</Value>
+                      <Direction>Descending</Direction>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember>
+                      <TablixMembers>
+                        <TablixMember>
+                          <Group Name="Kategorija2">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!Kategorija2.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!Kategorija2.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                        </TablixMember>
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Cenovnik2DataSet</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!IdKategorije2.Value</Value>
+              </SortExpression>
+            </SortExpressions>
+            <Top>213.34279mm</Top>
+            <Left>5.63069mm</Left>
+            <Height>18mm</Height>
+            <Width>190.55814mm</Width>
+            <ZIndex>36</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>826.93959mm</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>202.32708mm</Width>
+      <Page>
+        <PageHeader>
+          <Height>44.06825mm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Image Name="Image2">
+              <Source>Embedded</Source>
+              <Value>logo</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0mm</Top>
+              <Left>53.98771mm</Left>
+              <Height>19.7625mm</Height>
+              <Width>41.9875mm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox24">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="call center" + System.Environment.NewLine +
+First(Fields!Telefon1.Value, "UgovorDataSet")+ System.Environment.NewLine +
+First(Fields!Telefon2.Value, "UgovorDataSet")+ System.Environment.NewLine +
+First(Fields!Telefon3.Value, "UgovorDataSet")+ System.Environment.NewLine +
+ System.Environment.NewLine +
+"fax: " + First(Fields!Fax.Value, "UgovorDataSet") + System.Environment.NewLine +
+System.Environment.NewLine +
+First(Fields!WebSite.Value, "UgovorDataSet") + System.Environment.NewLine +
+First(Fields!Mail.Value, "UgovorDataSet")</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox24</rd:DefaultName>
+              <Top>0mm</Top>
+              <Left>153.99091mm</Left>
+              <Height>6mm</Height>
+              <Width>42.19792mm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="Image1">
+              <Source>Embedded</Source>
+              <Value>iso</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0mm</Top>
+              <Left>97.7391mm</Left>
+              <Height>29.16755mm</Height>
+              <Width>50.98333mm</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox25">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!NazivFirma.Value, "UgovorDataSet") + System.Environment.NewLine +
+ System.Environment.NewLine +
+"PIB: " + First(Fields!PIBfirma.Value, "UgovorDataSet") + System.Environment.NewLine +
+"Matični broj: " + First(Fields!MaticniBrojFirma.Value, "UgovorDataSet") + System.Environment.NewLine +
+"Šifra delatnosti: " + Sum(Fields!Delatnost.Value, "UgovorDataSet").ToString() + System.Environment.NewLine +
+"Tekući račun: " + First(Fields!TekuciRacun.Value, "UgovorDataSet")</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox25</rd:DefaultName>
+              <Top>0mm</Top>
+              <Left>5.53518mm</Left>
+              <Height>20.77797mm</Height>
+              <Width>47.04142mm</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <BottomBorder>
+              <Style>Solid</Style>
+            </BottomBorder>
+          </Style>
+        </PageHeader>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Kurir">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Kurir</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logo">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="iso">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Mm</rd:ReportUnitType>
+  <rd:ReportID>d048e122-a0a8-499e-a2f1-4eab8ce515b1</rd:ReportID>
+</Report>

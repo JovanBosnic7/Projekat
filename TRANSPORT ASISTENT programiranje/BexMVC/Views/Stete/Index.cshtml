@@ -1,0 +1,236 @@
+﻿
+@model BexMVC.ViewModels.StetaIndexData
+
+@{
+    ViewBag.Title = "Štete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Štete</h2>
+                    <p class="card-category">Pregled šteta</p>
+                </div>
+                <!-- /.col-lg-12 -->
+                @*<input type="hidden" value="@ViewBag.IsFilter" id="isFilter" />*@
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+
+                        @*<button id="create" class="btn btn-primary">
+            @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+        </button>*@
+                        @*<button id="add" class="btn btn-primary"> --KADA BUDEMO SREDILI DA SE SVE STETE UNOSE PREKO NOVOG, MOZE DA SE PUSTI I CREATE STETE DIREKTNO, ZA SAD SAMO IZ VPa
+                            Dodaj
+                        </button>*@
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+
+                        @*<button id="gorivo" class="btn btn-primary" disabled>
+            Točenje goriva
+        </button>*@
+
+                        @*<div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="print" disabled>
+                                Štampa
+                            </button>
+                            <ul class="dropdown-menu pull-left" role="menu">
+                                <li>
+                                    <a href="#" id="btnTPocitavanje">Očitavanje</a>
+                                    <input id="reportTPocitavanje" value="TPocitavanjeReport" type="hidden" />
+                                </li>
+                            </ul>
+                        </div>*@
+                    </div>
+                    
+                    @*<div class="panel-default" id="reportDiv">
+                        <button type="button" class="close" id="btnCloseReportDiv">zatvori ×</button>
+                        <div class="row" id="divReport">
+
+                        </div>
+                    </div>*@
+                    
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-refresh="true"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               data-filter-control="true"
+                               data-detail-view="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="Id" data-sortable="true" data-filter-control="input">Broj</th>
+                                    <th data-field="DatumUnosa" data-formatter="dateFormat" data-filter-control="datepicker" data-sortable="true">Uneto</th>
+                                    <th data-field="FirmaStete" data-sortable="true" data-filter-control="input">Firma</th>
+                                    <th data-field="NalogSektor" data-sortable="true" data-filter-control="input">Sektor</th>
+                                    <th data-field="NalogIzdao" data-sortable="true" data-filter-control="input">Nalog Izdao</th>
+                                    <th data-field="StetocinaZaposleni" data-sortable="true" data-filter-control="input">Šteta Zaposleni</th>
+                                    <th data-field="StetocinaCentar" data-sortable="true" data-filter-control="input">Šteta Centar</th>
+                                    <th data-field="Vozilo" data-sortable="true" data-filter-control="input">Vozilo</th>
+                                    <th data-field="StetaTip" data-sortable="true" data-filter-control="input">Tip</th>
+                                    <th data-field="Opis" data-sortable="true" data-filter-control="input">Opis</th>
+                                    <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                                    <th data-field="IznosRsd" data-sortable="true" data-filter-control="input">Iznos štete</th>
+                                    <th data-field="IznosZaNaplatu" data-sortable="true" data-filter-control="input">Naplaćeno</th>
+                                    <th data-field="DatumPredajePravnojSluzbi" data-formatter="dateFormat" data-filter-control="datepicker" data-sortable="true">Datum Pravnoj</th>
+                                    <th data-field="DatumOdluke" data-formatter="dateFormat" data-filter-control="datepicker" data-sortable="true">Datum Odluke</th>
+                                    @*<th data-field="LokacijaTP" data-filter-control="select" data-filter-data="url:/TPtermini/GetLokacija" data-sortable="true">Lokacija</th>*@
+                                    @*<th data-field="KategorijaVozila" data-sortable="true" data-filter-control="input">Kategorija</th>
+        <th data-field="KaroserijaVozila" data-sortable="true" data-filter-control="input">Karoserija</th>
+        <th data-field="Model" data-sortable="true" data-filter-control="input">Model</th>
+        <th data-field="Boja" data-sortable="true" data-filter-control="input">Boja</th>
+        <th data-field="BrojVrata" data-sortable="true" data-filter-control="input">Broj vrata</th>*@
+                                    @*<th data-field="Kontrolor" data-sortable="true" data-filter-control="input">Kontrolor</th>*@
+                                    @*<th data-field="Uneo" data-sortable="true" data-filter-control="input">Uneo</th>
+        <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>*@
+
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+            var $edit = $('#edit'),
+                $add = $('#add'),
+                    $gorivo = $('#gorivo'),
+                    $opcije = $('#opcije'),
+                    $print = $('#print');
+                $("#reportDiv").hide();
+
+            //var $filterId = @ViewBag.FilterId;
+
+
+                //if ($filterId == 1 ) {
+                //    //$table.addFilter("Storno", "false");
+                //    //$("#KmUkupno").value("0");
+                //    $table.addFilter("KmUkupno", "0");
+                //}
+
+                 @*var $statusId = @ViewBag.StatusId;
+
+                if ($statusId == 1) {
+                    $table.addFilter("StatusTermina", "Slobodno");
+                } else if ($statusId == 2) {
+                    $table.addFilter("StatusTermina", "Rezervisano");
+                } else if ($statusId == 3) {
+                    $table.addFilter("StatusTermina", "Za proveru");
+                }
+
+                var $lokacijaId = @ViewBag.LokacijaId;
+
+                if ($lokacijaId == 1) {
+                    $table.addFilter("LokacijaTP", "Šabac");
+                } else if ($lokacijaId == 2) {
+                    $table.addFilter("LokacijaTP", "BG 1");
+                } else if ($lokacijaId == 3) {
+                    $table.addFilter("LokacijaTP", "BG 2");
+                    }*@
+
+            var danas = new Date().toISOString().slice(0, 10);
+
+
+
+            //$table.addFilter("DatumTermina", danas + " to " + danas);
+            //$table.addFilter("LokacijaTP", "Šabac");
+                $table.configTable('/Stete/GetStete');
+                $table.hideColTable();
+
+                $(document).ready(function () {
+
+                    var $checkTableElements = [$edit, $opcije, $print];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+
+                    $add.clickButtonWithoutParams('Stete/Create');
+                    $edit.clickOptions('Stete/Edit?id=');
+
+                    //$('#DatumTermina').dateRangePicker({
+                    //    autoClose: true
+                    //}).bind('datepicker-closed', function () {
+                    //    var izabranDatum = $('#DatumTermina').val();
+                    //    if (izabranDatum !== "") {
+                    //        $table.addFilter("DatumTermina", izabranDatum);
+                    //        $table.refreshTable();
+                    //    }
+                    //    });
+                    //$('#DatumStop').dateRangePicker({
+                    //    autoClose: true
+                    //}).bind('datepicker-closed', function () {
+                    //    var izabranDatum = $('#DatumStop').val();
+                    //    if (izabranDatum !== "") {
+                    //        $table.addFilter("DatumStop", izabranDatum);
+                    //        $table.refreshTable();
+                    //    }
+                    //});
+
+
+
+
+
+
+                    //$gorivo.clickOptions('Gorivo/Create?id=');
+
+                    //$('#btnTPocitavanje').click(function () {
+                    //    $("#reportDiv").show();
+                    //    var reportName = $("#reportTPocitavanje").val();
+                    //    var ids = getIdSelections();
+
+                    //    var src = '../../Reports/BaseReport.aspx?';
+                    //    src = src + "reportName=" + reportName
+                    //    src = src + "&ocitavanjeId=" + ids[0].ocitavanjeId;
+
+                    //    var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                    //    $("#divReport").html(iframe);
+                    //});
+
+                    //$('#btnCloseReportDiv').click(function () {
+                    //    $("#reportDiv").hide();
+                    //});
+
+                });
+
+
+
+
+
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        var paramsSelection = { ocitavanjeId: row.Id };
+                        return paramsSelection
+                    });
+                }
+            </script>
+        }
+    </div>
+</div>

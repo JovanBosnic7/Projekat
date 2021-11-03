@@ -1,0 +1,95 @@
+﻿@model Bex.Models.BankaSpecifikacija
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<div>
+
+    <script type="text/javascript">
+
+            var $table = $('#tableOtkupZaUplatu');
+            $table.bootstrapTable({
+                url: '/GetOtkupZaUplatuData?id='+@ViewBag.RegionId
+            });
+
+        //function LinkFormatter(value, row, index) {
+
+        //    console.log("row: ", row);
+        //    return "<a href='../Street?searchUlica=" + row.DnevnikId + "' target='_blank'>" + value + "</a>";
+        //}
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+        $(document).ready(function () {
+
+            $('#tabOtkupZaUplatu_'+ @ViewBag.RegionId).click(function () {
+
+                $.ajax({
+                    url: "Banka/DetailsOtkupZaUplatu",
+                    type: 'get',
+
+                    data: {
+                        id: @ViewBag.RegionId
+
+                    },
+                    success: function (data) {
+
+                        $('#details').html(data)
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                    });
+
+            });
+
+
+        });
+    </script>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-success  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabOtkupZaUplatu_@ViewBag.RegionId">Otkup za uplatu</a>
+                </h4>
+            </div>
+            <div id="tabOtkupZaUplatu_@ViewBag.RegionId" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table id="tableOtkupZaUplatu">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="DnevnikId" data-visible="false">Id</th>
+                                <th data-field="DnevnikDatum" data-formatter="dateFormat">Datum</th>
+                                <th data-field="DnevnikTip" data-formatter="LinkFormatter">Tip troska</th>
+                                <th data-field="DnevnikRegion">Region</th>
+                                <th data-field="DnevnikKm">Kilometraza</th>
+                                <th data-field="DnevnikKolicina">Kolicina</th>
+                                <th data-field="DnevnikCena">Cena</th>
+                                <th data-field="DnevnikIznosDin">Iznos din.</th>
+                                <th data-field="DnevnikIznosEur">Iznos eur.</th>
+                                <th data-field="DnevnikOpis">Opis</th>
+                                <th data-field="DnevnikNapomena">Napomena</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

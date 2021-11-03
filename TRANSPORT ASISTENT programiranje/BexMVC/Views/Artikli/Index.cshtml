@@ -1,0 +1,245 @@
+﻿
+@model BexMVC.ViewModels.ArtikliIndexData
+
+@{
+    ViewBag.Title = "Artikli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Artikli</h2>
+                    <p class="card-category">Pregled artikala sa količinama na stanju</p>
+                </div>
+
+
+                @*<div class="card-footer">
+            <div class="btn-group">
+                @using (Html.BeginForm("UlazIzlazLager", "Artikli", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input name="Id" id="id" class="form-control input-sm" type="hidden" value="@ViewBag.Id">
+
+                    <div class="btn-group ">
+                        <label id="lblUlazIzlazLager">Unesite količinu koja se dodaje ili skida sa stanja lagera:</label>
+                    </div>
+                    <br />
+                    <div class="btn-group ">
+                        <input name="Ulaz" id="Ulaz" class="form-control input-sm" type="text" placeholder="Ulaz">
+                    </div>
+                    <br />
+                    <div class="btn-group ">
+                        <input name="Izlaz" id="Izlaz" class="form-control input-sm" type="text" placeholder="Izlaz">
+                    </div>
+                    <br />
+                    <div class="btn-group ">
+                        <input type="submit" value="UpisiUI" class="btn btn-default btn-sm" id="btnUpisiUI"/>
+
+                    </div>
+                }
+            </div>
+        </div>*@
+                <!-- /.col-lg-12 -->
+                <div class="row">
+                    @*<div class="card-body" id="lagerDivUI">
+            <button type="button" class="close" id="btnCloseLagerDivUI">zatvori ×</button>
+            <div class="container">
+                @using (Html.BeginForm("SaveUlazIzlazLager", "Artikli", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input name="artId" id="artId" class="form-control input-sm" type="hidden" value="">
+
+                    <div class="form-group">
+                        <label class="control-label">Unesite količinu koja se dodaje ili skida sa stanja lagera:</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-1">Kolicina</label>
+                        KOLIČINA: <input name="kolicina" id="kolicina" class="form-control input-sm" type="text" placeholder="+ulaz/-izlaz">
+                        <div class="col-sm-4">
+                <input name="kolicina" id="kolicina" class="form-control input-sm" type="text" placeholder="+ulaz/-izlaz">
+            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-6"></label>
+                        <div class="col-sm-10">
+                            <div class="btn-group pull-left ">
+                                <input type="submit" value="Upiši" id="btnUpisiUI" class="btn btn-default btn-xs" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group ">
+            <input name="kolicina" id="kolicina" class="form-control input-sm" type="text" placeholder="+ulaz/-izlaz">
+        </div>
+        <br />
+        <div class="btn-group ">
+            <input type="submit" value="UpisiUI" class="btn btn-default btn-sm" id="btnUpisiUI" />
+
+        </div>
+                }
+            </div>
+        </div>*@
+                    
+                    <div class="card-footer" id="lagerDivUI" style="margin-left: 35px!important;">
+                        
+                        
+                        <div class="btn-group">
+                            @using (Html.BeginForm("SaveUlazIzlazLager", "Artikli", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <input name="artId" id="artId" class="form-control input-sm" type="hidden" value="">
+                                <div class="form-group">
+                                    <label class="control-label">Unesite količinu koja se dodaje ili skida sa stanja lagera:</label>
+                                </div>
+                                <div class="panel-default">
+                                    <button type="button" class="close" id="btnCloseLagerDivUI">zatvori ×</button>
+                                </div>
+                                <div class="btn-group ">
+                                    <label id="lblRazduzenje">KOLIČINA:</label>
+                                </div>
+                                <div class="btn-group ">
+                                    <input name="kolicina" id="kolicina" class="form-control input-sm" type="text" placeholder="+ulaz/-izlaz">
+                                </div>
+                                <div class="btn-group ">
+                                    <input type="submit" value="Upiši" class="btn btn-default btn-sm" style="font-size: 1rem;" id="btnUpisiUI"/>
+
+                                </div>
+                            }
+                        </div>
+                        
+                    </div>
+                </div>
+                    <div class="card-body">
+                        <div id="toolbar">
+                            <button id="create" class="btn btn-primary">
+                                @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                            </button>
+                            <button id="edit" class="btn btn-primary" disabled>
+                                Izmeni
+                            </button>
+                            <button id="lagerUI" class="btn btn-primary" disabled>
+                                U/I lager
+                            </button>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="table-responsive" style="min-height:300px;">
+                            <table id="table"
+                                   data-pagination="true"
+                                   data-side-pagination="server"
+                                   @*data-query-params="queryParams"*@
+                                   data-show-columns="true"
+                                   data-show-export="true"
+                                   data-detail-view="true"
+                                   data-page-list="[10, 25, 50, 100, Sve]"
+                                   data-show-footer="true"
+                                   data-toolbar="#toolbar">
+
+                                <thead>
+                                    <tr>
+                                        <th data-checkbox="true" rowspan="2" data-footer-formatter="Σ"></th>
+                                        <th>
+                                            <input id="Id" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Sifra" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Grupa" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Opis" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Kolicina" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input id="Napomena" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th class="text-center">
+                                            <select name="search" id="Nav" class="form-control input-sm">
+                                                <option value="">Sve</option>
+                                                <option value="1">Da</option>
+                                                <option value="2">Ne</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th data-field="Id" data-sortable="true">Broj</th>
+                                        <th data-field="Sifra" data-sortable="true">Šifra</th>
+                                        <th data-field="Grupa" data-sortable="true">Grupa</th>
+                                        <th data-field="Opis" data-sortable="true">Opis</th>
+                                        <th data-field="Kolicina" data-sortable="true" data-footer-formatter="sumFormatter">Količina</th>
+                                        <th data-field="Napomena" data-sortable="true">Napomena</th>
+                                        <th data-field="Nav" data-formatter="formatBooleanYesNo" class="text-center">Nav</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $edit = $('#edit'),
+                    $lagerUI = $('#lagerUI');
+
+
+                $table.configTable('/Artikli/GetArtikli');
+                $table.hideColTable();
+
+
+                $(document).ready(function () {
+
+                    $("#lagerDivUI").hide();
+
+                    $('#lagerUI').click(function () {
+                        var a = getIdSelections1();
+                        $("#artId").val = a;
+                        $("#lagerDivUI").show();
+                    });
+
+                    $('#btnCloseLagerDivUI').click(function () {
+                        $("#lagerDivUI").hide();
+                    });
+
+                    var $checkTableElements = [$edit, $lagerUI];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+
+                    $edit.clickOptions('Artikli/Edit?id=');
+                    
+                });                
+
+                function getIdSelections1() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        var artId = row.Id;
+                        return artId
+                    });
+                }
+
+            </script>
+        }
+    </div>
+</div>

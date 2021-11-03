@@ -1,0 +1,294 @@
+﻿
+@model BexMVC.ViewModels.CenovnikIndexData
+
+@{
+    ViewBag.Title = "Čekovi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+
+                            Nerealizovani - broj: <span class="pull-right"><span id="brojNerealizovanih"  style="font-weight:bold;"></span></span><br />
+                            Nerealizovani - iznos: <span class="pull-right"><span id="iznosNerealizovanih" style="font-weight:bold;"></span> rsd </span><br />
+
+                        </h4>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-money"></i> </span>
+                            <span class="pull-right"><a>&nbsp;Ukupno nerealizovanih</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+
+                            Nerealizovani - broj: <span class="pull-right"><span id="brojNerealizovanihTekucaNedelja" style="font-weight:bold;"></span></span><br />
+                            Nerealizovani - iznos: <span class="pull-right"><span id="iznosNerealizovanihTekucaNedelja" style="font-weight:bold;"></span> rsd </span><br />
+
+                        </h4>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-money"></i> </span>
+                            <span class="pull-right"><a>&nbsp;Tekuća nedelja</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+
+                            Broj: <span class="pull-right"><span id="brojNerealizovanihProslaNedelja" style="font-weight:bold;"></span></span><br />
+                            Iznos: <span class="pull-right"><span id="iznosNerealizovanihProslaNedelja" style="font-weight:bold;"></span> rsd </span><br />
+
+                        </h4>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-money"></i> </span>
+                            <span class="pull-right"><a>&nbsp;Sledeća nedelja</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+
+                            Broj: <span class="pull-right"><span id="brojNerealizovanihPre2Nedelje" style="font-weight:bold;"></span></span><br />
+                            Iznos: <span class="pull-right"><span id="iznosNerealizovanihPre2Nedelje" style="font-weight:bold;"></span> rsd </span><br />
+
+                        </h4>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-money"></i> </span>
+                            <span class="pull-right"><a>&nbsp;Za dve nedelje</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h2 class="card-title" style="color:#666;">Evidencija čekova</h2>
+                        <p class="card-category">Pregled svih čekova</p>
+                    </div>
+                    <!-- /.col-lg-12 -->
+
+                    <div class="card-body">
+                        <div id="toolbar" class="columns columns-left btn-group ">
+
+                            <button id="add" class="btn btn-primary">
+                                Dodaj
+                            </button>
+
+                            <button id="edit" class="btn btn-primary" disabled>
+                                Izmeni
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="opcije" disabled>
+                                    Opcije
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li id="interno">
+                                        <a href="#">Interno razduzen</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="print" disabled>
+                                    Štampa
+                                </button>
+                                <ul class="dropdown-menu pull-left" role="menu">
+                                    <li>
+                                        <a href="#" id="btnSpec">Specifikacija</a>
+                                        <input id="reportSpec" value="SpecifikacijaCekovaReport" type="hidden" />
+                                        <input type="hidden" id="DatumDospecaSpec" value="@ViewBag.DatumDospecaSpec">
+                                        <input type="hidden" id="BankaIdSpec" value="@ViewBag.BankaIdSpec">
+                                    </li>
+                                </ul>
+                            </div>
+                            <button id="realizacija" class="btn btn-primary" disabled>
+                                Realizuj
+                            </button>
+                            @*<button id="specifikacija" class="btn btn-primary">
+                                @Html.ActionLink("Specifikacija", "KreiranjeSpecifikacija", new { kreirajSpec = "0", datumDospeca = "", bankaId = "" }, new { @class = "white_link" })
+                            </button>*@
+                        </div>
+                        <div class="panel-default" id="reportDiv">
+                            <button type="button" class="close" id="btnCloseReportDiv">zatvori ×</button>
+                            <div class="row" id="divReport">
+
+                            </div>
+                        </div>
+                        <input type="hidden" id="Izmena" value="@ViewBag.Izmena">
+                        <div class="table-responsive" style="min-height:300px;">
+                            <table id="table"
+                                   data-pagination="true"
+                                   data-side-pagination="server"
+                                   @*data-query-params="queryParams"*@
+                                   data-show-columns="true"
+                                   data-show-refresh="true"
+                                   data-show-export="true"
+                                   @*data-detail-view="true"*@
+                                   data-page-list="[10, 25, 50, 100, Sve]"
+                                   data-show-footer="true"
+                                   data-filter-control="true" 
+                                   data-toolbar="#toolbar">
+
+                                <thead>
+                                   
+                                    <tr>
+                                        <th data-checkbox="true"></th>
+                                        <th data-field="DatumDospeca" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. dospeća</th>
+                                        <th data-field="BrojCeka" data-sortable="true" data-filter-control="input">Broj čeka</th>
+                                        <th data-field="Iznos" data-formatter="intFormat" data-sortable="true" data-footer-formatter="sumFormatter" data-filter-control="input">Iznos</th>
+                                        <th data-field="TekuciRacun" data-sortable="true" data-filter-control="input">Račun</th>
+                                        <th data-field="BankaNaziv" data-sortable="true" data-filter-control="input">Banka</th>
+                                        <th data-field="BankaTekuciRacun" data-sortable="true" data-filter-control="input">Račun banke</th>
+                                        <th data-field="DatumUnosa" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. unosa</th>
+                                        <th data-field="UserUneo" data-sortable="true" data-filter-control="input">Uneo</th>
+                                        <th data-field="BrojSpecifikacije" data-sortable="true" data-filter-control="input">Specifikacija</th>
+                                        <th data-field="InternoRazduzen" data-sortable="true" data-formatter="formatBooleanYesNo" class="text-center" data-filter-control="select" data-filter-data="var:boolean_DaNe">Interno raz.</th>
+                                        <th data-field="RealizovanCek" data-sortable="true" data-formatter="formatBooleanYesNo" class="text-center" data-filter-control="select" data-filter-data="var:boolean_DaNe">Realizovan</th>
+                                        <th data-field="DatumRealizacije" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. realizacije</th>
+                                        <th data-field="ZastupnikNaziv" data-sortable="true" data-filter-control="input">Zastupnik</th>
+                                        <th data-field="ProvizijaIznos" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Provizija</th>
+                                        <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                                        <th data-field="Storno" data-formatter="formatBooleanYesNo" data-sortable="true" data-filter-control="input">Storniran</th>
+                                        <th data-field="BankaId" data-visible="false" data-sortable="true" data-filter-control="input">BankaId</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @section Scripts {
+
+                @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+                @Scripts.Render("~/bundles/tableConfig")
+
+                <script type="text/javascript">
+                    var $table = $('#table');
+                    var $edit = $('#edit'),
+                        $add = $('#add'),
+                        $realizacija = $('#realizacija'),
+                        $interno = $('#interno'),
+                        $opcije = $('#opcije'),
+                        $print = $('#print');
+                    $("#reportDiv").hide();
+
+                    var boolean_DaNe = {
+                        "2": "Ne",
+                        "1": "Da",
+                        "": "Sve"
+                    };
+                    //alert($('#Izmena').val());
+
+
+                    $table.addFilter("RealizovanCek", 2);
+                    $table.configTable('/Cekovi/GetCekovi');
+                    $table.hideColTable();
+
+                    $("#RealizovanCek").val("2").change();
+
+                    $(document).ready(function () {
+                        if ($('#Izmena').val() == 1) alert("Nije dozvoljena izmena čeka koji je realizovan.");
+
+
+
+                       
+
+                        var $checkTableElements = [$edit, $opcije, $print];
+                        $table.checkOptionsTable($checkTableElements);
+                        $table.checkOptionsTable($checkTableElements);
+
+                        var $checkMoreTableElements = [$realizacija];
+                        $table.checkMoreOptionsTable($checkMoreTableElements);
+
+                        $table.optionsTable();
+
+                        $add.clickButtonWithoutParams('Cekovi/Create');
+                        $edit.clickOptions('Cekovi/Edit?id=');
+                        $realizacija.dropDownChoice('Cekovi/RealizujPoSpecifikaciji', "Uspešno ste upisali da su čekovi realizovani!");
+                        $interno.clickOptions('Cekovi/InternoRazduzen?id=');
+
+                        $('#btnSpec').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportSpec").val();
+                            var ids = getIdSelections();
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&datumRealizacije=" + moment(ids[0].datumDospeca).format('DD-MM-YYYY')
+                            src = src + "&banka=" + ids[0].bankaId;
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+
+                        $('#btnCloseReportDiv').click(function () {
+                            $("#reportDiv").hide();
+                        });
+
+                    });
+
+                    $.ajax({
+                        url: "Cekovi/GetCekoviStat",
+                        type: 'get',
+                        success: function (data) {
+                            $('#brojNerealizovanih').append(data.broj.toLocaleString('de-DE'));
+                            $('#iznosNerealizovanih').append(data.iznos.toLocaleString('de-DE'));
+                            $('#brojNerealizovanihTekucaNedelja').append(data.brojTekuca.toLocaleString('de-DE'));
+                            $('#iznosNerealizovanihTekucaNedelja').append(data.iznosTekuca.toLocaleString('de-DE'));
+                            $('#brojNerealizovanihProslaNedelja').append(data.brojProsla.toLocaleString('de-DE'));
+                            $('#iznosNerealizovanihProslaNedelja').append(data.iznosProsla.toLocaleString('de-DE'));
+                            $('#brojNerealizovanihPre2Nedelje').append(data.brojPre2.toLocaleString('de-DE'));
+                            $('#iznosNerealizovanihPre2Nedelje').append(data.iznosPre2.toLocaleString('de-DE'));
+                        },
+                        error: function () {
+                            alert('Ajax error!');
+                        }
+                    });
+
+                    function getIdSelections() {
+                        return $.map($table.bootstrapTable('getSelections'), function (row) {
+                            var paramsSelection = { datumDospeca: row.DatumDospeca, bankaId: row.BankaId };
+                            return paramsSelection
+                        });
+                    }
+
+                </script>
+            }
+        </div>
+    </div>

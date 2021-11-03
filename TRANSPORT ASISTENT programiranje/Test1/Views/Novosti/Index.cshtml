@@ -1,0 +1,61 @@
+﻿
+@model IEnumerable<Bex.Models.Novosti>
+
+@{
+    ViewBag.Title = "Novosti";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Novosti</h1>
+        <p>Pregled svih bitnih informacija i zakona</p>
+    </div>
+</div>
+
+<div class="row" style="background:#eee;">
+    <div class="card">
+        <div class="card-body">
+            
+            <div style="min-height:300px;">
+                @foreach (var novosti in Model)
+                {
+                <h4>
+                    @novosti.Datum   @novosti.Naslov
+                </h4>
+                    <p>
+                        @novosti.Tekst
+                    </p>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+    <script type="text/javascript">
+
+        var $table = $('#novosti');
+
+        $table = function (option) {
+            var $this = $(this);
+            $.ajax({
+                url: 'Novosti/GetNovosti',
+                type: 'get',
+
+                success: function (data) {
+                    $detail.html(data);
+                },
+                error: function () {
+                    alert('Ajax error!');
+                }
+            });
+            };
+
+    </script>
+}

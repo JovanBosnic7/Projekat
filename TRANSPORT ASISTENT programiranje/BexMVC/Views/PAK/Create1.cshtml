@@ -1,0 +1,133 @@
+﻿@model Bex.Models.PAK
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*@Html.HiddenFor(model => model.IdStari)*@
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Dodavanje novog PAK-a
+
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Id, "PAK", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UlicaId, "Ulica", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("UlicaId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.UlicaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MestoId, "Mesto", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("MestoId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.MestoId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OpstinaId, "Opstina", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("OpstinaId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.OpstinaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ReoncicId, "Reoncic", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("OpstinaId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.ReoncicId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ReonId, "Reon", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("ReonId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.ReonId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RegionId, "Region", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                                    @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OdBroja, "Od broja", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.OdBroja, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.OdBroja, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DoBroja, "Do broja", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.DoBroja, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.DoBroja, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Parnost, "Parnost", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Parnost, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.Parnost, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+            @Html.LabelFor(model => model.PttId, "PTT", htmlAttributes: new { @class = "control-label col-md-2 small" })
+            <div class="col-md-10">
+                @Html.DropDownList("PttId", null, htmlAttributes: new { @class = "form-control input-sm" })
+                @Html.ValidationMessageFor(model => model.PttId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Napomena, "Napomena", htmlAttributes: new { @class = "control-label col-md-2 small" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                    @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "../Street")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
+</div>

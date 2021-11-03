@@ -1,0 +1,8 @@
+﻿@using (Html.BeginForm("SaveImage", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("UploadedImage","", new { type = "File"})
+
+        <input type="submit" value="Upload" />
+    </div>
+}

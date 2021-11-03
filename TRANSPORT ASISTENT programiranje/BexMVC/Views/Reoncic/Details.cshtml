@@ -1,0 +1,83 @@
+﻿@model Bex.Models.Reoncic
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Podaci o reoncicu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Reoncic
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazivReoncica)
+        </dd>
+
+        <dt>
+            Preuzimanje do
+       </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreuzimanjeDoDefault)
+        </dd>
+
+        <dt>
+            Odjavljuje se
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OdjavljujeSe)
+        </dd>
+
+        <dt>
+            Datum poslednje odjave
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumPoslednjeOdjave)
+        </dd>
+
+        <dt>
+            Vreme poslednje odjave
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VremePoslednjeOdjave)
+        </dd>
+
+        <dt>
+            Sort
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sort)
+        </dd>
+
+        <dt>
+           Deo mesta
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeoMesta)
+        </dd>
+
+        <dt>
+            Napomena
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NapomenaOdjave)
+        </dd>      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "../Reoncic")
+</p>

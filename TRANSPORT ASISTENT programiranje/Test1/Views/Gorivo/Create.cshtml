@@ -1,0 +1,156 @@
+﻿@model Bex.Models.GorivoTocenje
+
+@{
+    ViewBag.Title = "Gorivo točenje - dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Gorivo točenje @ViewBag.Vozilo  <small>Evidencija točenja goriva po vozilima</small></h1>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="../PutniNalog">Putni nalog</a>
+            </li>
+            <li class="breadcrumb-item active">Dodaj</li>
+        </ol>
+
+    </div>
+</div>
+<hr />
+
+<div class="row" style="background:#eee;padding:20px;">
+
+    @*@using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
+    @using (Html.BeginForm("Create", "Gorivo", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PutniNalogId, new { id = "PutniNalogId" })
+        @Html.HiddenFor(model => model.Datum, new { id = "Datum" })
+
+
+        @*<div>
+                <label class="control-label col-sm-2">Datum sipanja</label>
+                <div class="col-sm-10">
+                    <div class="'input-group'" type="text">
+                        @Html.TextBoxFor(model => model.Datum, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-sipanja" })
+                    </div>
+                </div>
+            </div>*@
+        <div>
+            <label class="control-label col-sm-2">Vreme</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Vreme, new { @class = " form-control timepicker-sipanja" })
+
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Pumpa</label>
+            <div class="col-sm-10">
+                @Html.DropDownList("PumpaId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PumpaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Litara</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Litara, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Litara, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Cena</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Cena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Iznos</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Iznos, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Iznos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Kilometraža</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Km, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Km, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Napomena</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2"></label>
+            <div class="col-sm-10">
+                <div class="col-sm-4">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary pull-right " />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryDatePickerForm")
+            @Scripts.Render("~/bundles/jqueryval")
+            <script type="text/javascript">
+
+                //$('.datepicker-dat-sipanja, .timepicker-sipanja').datepicker({ dateFormat: 'dd-mm-yy' });
+                //$('.datepicker-dat-sipanja, .timepicker-sipanja').attr("autocomplete", "off");
+
+                $(document).ready(function () {
+
+                    $('.timepicker-sipanja').timepicker({
+                        showAnim: 'blind',
+                        hourText: 'Sati',
+                        minuteText: 'Minuti',
+                        nowButtonText: 'Trenutno',
+                        showNowButton: true
+                    });
+
+                });
+
+               
+                $.validator.methods.date = function (value, element) {
+                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+                }
+                function OnSuccess(response) {
+                    alert(response);
+                    window.close();
+                }
+
+                function OnFailure(response) {
+                    alert(response);
+                }
+
+                $("form").bind("keydown", function (e) {
+                    if (e.keyCode === 13) return false;
+                });
+              
+                $(function () {
+                    $.validator.methods.date = function (value, element) {
+                        if ($.browser.webkit) {
+                            //ES - Chrome does not use the locale when new Date objects instantiated:
+                            var d = new Date();
+
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                        }
+                        else {
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                        }
+                    };
+                });
+
+                
+
+            </script>
+        }
+

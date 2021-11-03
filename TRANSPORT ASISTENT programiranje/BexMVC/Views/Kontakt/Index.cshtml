@@ -1,0 +1,131 @@
+﻿
+@model BexMVC.ViewModels.KontaktIndexData
+
+
+@{
+    ViewBag.Title = "Kontak";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    @*<h1 class="page-header">Evidencija kontakti</h1>*@
+                    <h2 class="card-title" style="color:#666;">Evidencija kontakti</h2>
+                    <p class="card-category">Pregled svih fizičkih i pravnih lica</p>
+                </div>
+                <!-- /.col-lg-12 -->
+                @*</div>*@
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+
+                        <button id="create" class="btn btn-primary">
+                            @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        <button id="remove" class="btn btn-primary" disabled>
+                            Briši
+                        </button>
+
+
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;">
+                        @*<div class="table-responsive">*@
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               @*data-query-params="queryParams"*@
+                               data-show-columns="true"
+                               data-show-export="true"
+                               data-detail-view="true"
+                               @*data-striped="true"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar"
+                               data-filter-control="true"
+                               data-show-refresh="true"
+                               @*data-toggle="table"*@>
+
+
+
+                            <thead>
+
+                                @*<tr>
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                        <input name="search" id="KontaktNaziv" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Adresa" class="form-control input-sm" type="text" placeholder="Search">
+                                    </th>
+                                    <th>
+                                        <select name="search" id="Pravno" class="form-control input-sm">
+                                            <option value="0">Sve</option>
+                                            <option value="1">Pravna</option>
+                                            <option value="2">Fizicka</option>
+                                        </select>
+                                    </th>
+                                    <th class="text-center">
+                                        <select name="search" id="Stranac" class="form-control input-sm">
+                                            <option value="0">Sve</option>
+                                            <option value="1">Stranac</option>
+                                            <option value="2">Drzavljanin</option>
+                                        </select>
+                                    </th>
+                                </tr>*@
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="KontaktNaziv" data-sortable="true" data-filter-control="input"> Kontakt</th>
+                                    <th data-field="Adresa" data-sortable="true" data-filter-control="input">Adresa</th>
+                                    <th data-field="Pravno" data-formatter="formatBooleanYesNo" class="text-center" data-sortable="true" data-filter-control="select" data-filter-data="var:boolean_DaNe">Pravno</th>
+                                    <th data-field="Stranac" data-formatter="formatBooleanYesNo" class="text-center" data-sortable="true" data-filter-control="select" data-filter-data="var:boolean_DaNe">Stranac</th>
+                                </tr>
+
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $remove = $('#remove'),
+                    $edit = $('#edit');
+
+                var boolean_DaNe = {
+                    "2": "Ne",
+                    "1": "Da",
+                    "": "Sve"
+                };
+
+                $table.configTable('/Kontakt/GetKontakt');
+
+                $(document).ready(function () {
+
+                    var $checkTableElements = [$edit, $remove];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+
+                    $edit.clickOptions('Kontakt/Edit?id=');
+
+                    $table.detailsTable('Kontakt/Details');
+
+                });
+
+
+
+            </script>
+        }
+    </div>
+</div>

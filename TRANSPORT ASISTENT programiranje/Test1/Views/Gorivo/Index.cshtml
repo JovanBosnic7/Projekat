@@ -1,0 +1,136 @@
+﻿
+@model DDtrafic.ViewModels.GorivoIndexData
+
+@{
+    ViewBag.Title = "Gorivo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Evidencija goriva</h1>
+        <p>Pregled svih točenja goriva po vozilima</p>
+    </div>
+</div>
+<hr />
+<div class="row" style="background:#eee;">
+    <div class="card">
+        <div class="card-body">
+            <div id="toolbar" class="columns columns-left btn-group ">
+
+                <button id="add" class="btn btn-primary" disabled>
+                    Dodaj
+                </button>
+                <button id="edit" class="btn btn-primary" disabled>
+                    Izmeni
+                </button>
+                <button id="delete" class="btn btn-primary" disabled>
+                    Briši
+                </button>
+                <button id="importGoriva" class="btn btn-primary">
+                    Uvezi gorivo
+                </button>
+            </div>
+
+
+
+            <div class="table-responsive" style="min-height:300px;">
+                <table id="table"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       data-query-params="queryParams"
+                       data-show-refresh="true"
+                       data-show-columns="true"
+                       data-show-export="true"
+                       data-filter-control="true"
+                       data-detail-view="true"
+                       data-page-list="[10, 25, 50, 100]"
+                       data-toolbar="#toolbar">
+
+                    <thead>
+                        <tr>
+                            <th data-checkbox="true"></th>
+                            <th data-field="Datum" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum</th>
+                            <th data-field="Vreme" data-formatter="timeFormat" data-sortable="true" data-filter-control="input">Vreme</th>                           
+                            <th data-field="Registracija" data-sortable="true" data-filter-control="input">Registracija</th>
+                            <th data-field="PropisanaPotrosnja" data-formatter="intFormat" data-sortable="true" data-filter-control="input">Propisano</th>
+                            <th data-field="Pumpa" data-sortable="true" data-filter-control="input">Pumpa</th>
+                            <th data-field="Kilometraza" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Kilometraza</th>
+                            <th data-field="Litara" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Litara</th>
+                            <th data-field="Cena" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Cena</th>
+                            <th data-field="Iznos" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Iznos</th>
+                            <th data-field="PresaoKmOdPrethodnogSipanja" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Km od preth. sip.</th>
+                            <th data-field="ProsekOdPrethodnog" data-formatter="intFormat" data-sortable="true" data-footer-formatter="sumFormatter" data-filter-control="input">Prosek </th>
+                            <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
+
+    <script type="text/javascript">
+
+
+
+
+        var $table = $('#table');
+        var $remove = $('#remove'),
+            $add = $('#add'),
+            $edit = $('#edit'),
+            $import = $('#importGoriva'),
+            $delete = $('#delete');
+
+        $table.configTable('Gorivo/GetGorivo');
+        $table.hideColTable();
+
+        $(document).ready(function () {
+
+            var $checkTableElements = [$edit, $delete];
+            $table.checkOptionsTable($checkTableElements);
+
+            $table.optionsTable();
+
+            $edit.clickOptions('Gorivo/Edit?id=');
+            $delete.clickOptions('Gorivo/Delete?id=', false);
+            $import.clickButtonWithoutParams('Gorivo/Import');
+
+        });
+
+        function getIdSelections() {
+            return $.map($table.bootstrapTable('getSelections'), function (row) {
+                var paramsSelection = { vozniParkId: row.Id };
+                return paramsSelection
+            });
+        }
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
+
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                }
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
+
+
+    </script>
+}
+@*</div>
+    </div>*@

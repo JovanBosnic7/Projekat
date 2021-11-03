@@ -1,0 +1,141 @@
+﻿
+@model BexMVC.ViewModels.PutniNalogIndexData
+
+@{
+    ViewBag.Title = "Putni nalozi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Evidencija putnih naloga</h2>
+                    <p class="card-category">Pregled svih putnih naloga</p>
+                </div>
+                <!-- /.col-lg-12 -->
+                @*<input type="hidden" value="@ViewBag.IsFilter" id="isFilter" />*@
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+
+                        @*<button id="create" class="btn btn-primary">
+                @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+            </button>*@
+                        <button id="add" class="btn btn-primary">
+                            Dodaj
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        <button id="delete" class="btn btn-primary" disabled>
+                            Briši
+                        </button>
+                        <button id="gorivo" class="btn btn-primary" disabled>
+                            Točenje goriva
+                        </button>
+
+
+                    </div>
+                    <input type="hidden" id="Izmena" value="@ViewBag.Izmena">
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               data-show-refresh="true"
+                               data-show-columns="true"
+                               data-show-export="true"
+                               @*data-detail-view="true"*@
+                               data-show-footer="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar"
+                               data-filter-control="true">
+
+
+
+                            <thead>
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="DatumStart" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. start</th>
+                                    <th data-field="DatumStop" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. stop</th>
+                                    <th data-field="Vozilo" data-sortable="true" data-filter-control="input">Registracija</th>
+                                    <th data-field="GarazniBroj" data-sortable="true" data-filter-control="input">Garažni br.</th>
+                                    <th data-field="Vozac" data-sortable="true" data-filter-control="input">Vozac</th>
+                                    <th data-field="RadnoMesto" data-sortable="true" data-filter-control="input">RadnoMesto</th>
+                                    <th data-field="Tip" data-sortable="true" data-filter-control="input">Tip</th>
+                                    <th data-field="Reon" data-sortable="true" data-filter-control="input">Reon</th>
+                                    <th data-field="Region" data-sortable="true" data-filter-control="input">Region</th>
+                                    <th data-field="Relacija" data-sortable="true" data-filter-control="input">Relacija</th>
+                                    <th data-field="KmStart" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Start km</th>
+                                    <th data-field="KmStop" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Stop km</th>
+                                    <th data-field="KmUkupno" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Ukupno km</th>
+                                    <th data-field="UserUneo" data-sortable="true" data-filter-control="input">Uneo</th>
+                                    <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                                    <th data-field="Litraza" data-sortable="true" data-filter-control="input">Litraza</th>
+                                    <th data-field="BrojSipanja"  data-sortable="true" data-filter-control="input">Br. tocenja</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+        <script type="text/javascript">
+                var $table = $('#table');
+            var $edit = $('#edit'),
+                $add = $('#add'),
+                $gorivo = $('#gorivo'),
+                $opcije = $('#opcije')
+                $delete = $('#delete');
+
+            var $filterId = @ViewBag.FilterId;
+
+ 
+                if ($filterId == 1 ) {
+                    //$table.addFilter("Storno", "false");
+                    //$("#KmUkupno").value("0");
+                    $table.addFilter("KmUkupno", "0");
+                }
+
+                $table.configTable('/PutniNalog/GetPutniNalog');
+
+                $(document).ready(function () {
+                    if ($('#Izmena').val() == 1) alert("Nije dozvoljena izmena starih putnih naloga.");
+
+
+                    var $checkTableElements = [$edit, $opcije, $gorivo, $delete];
+                    $table.checkOptionsTable($checkTableElements);
+
+
+
+                    $table.optionsTable();
+
+                    
+                    $add.clickOptions('PutniNalog/Create?id=');
+                    $edit.clickOptions('PutniNalog/Edit?id=');
+                    $delete.clickOptions('PutniNalog/Delete?id=', false);
+                    $gorivo.clickOptions('Gorivo/Create?id=');
+
+
+
+                });
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+        </script>
+        }
+    </div>
+</div>

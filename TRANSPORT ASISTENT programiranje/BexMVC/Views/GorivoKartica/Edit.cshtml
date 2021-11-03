@@ -1,0 +1,157 @@
+﻿@model Bex.Models.GorivoKartica
+
+@{
+    ViewBag.Title = "Gorivo kartica - Izmena";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Gorivo kartica</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../GorivoKartica">Gorivo kartica</a>
+                                </li>
+                                <li class="breadcrumb-item active">Izmena kartice za gorivo</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Izmena</h3>
+                            <hr>
+                            <p></p>
+
+                        </div>
+                        @using (Ajax.BeginForm("Edit", "", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }, new { @class = "form-horizontal" }))
+
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id, new { id = "Id" })
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Naziv</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.NazivKartice, new { @class = " form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Broj kartice</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.BrojKartice, new { @class = " form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Pin</label>
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.Pincode, new { @class = " form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Vozilo">Vozilo</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("VpId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.VpId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Pumpa">Pumpa</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("PumpaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.PumpaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Datum proizodnje</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumProizvodnje, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-proizvodnje" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Datum isteka</label>
+                                <div class="col-sm-10">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model.DatumIsteka, "{0:dd-MM-yyyy}", new { @class = " form-control   datepicker-dat-isteka" })
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+            <link rel="stylesheet" href="~/Content/jquery.ui.timepicker.css">
+            @*<link rel="stylesheet" href="~/Content/multi-select.css">*@
+            <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="~/Content/bootstrap/js/jquery.ui.timepicker.js"></script>
+            @*<script src="~/Content/bootstrap/js/jquery.multi-select.js"></script>*@
+            <script type="text/javascript">
+
+
+                $(document).ready(function () {
+
+
+
+                    $('.datepicker-dat-proizvodnje, .datepicker-dat-isteka').datepicker({ dateFormat: 'dd-mm-yy' });
+                    $('.datepicker-dat-proizvodnje, .datepicker-dat-isteka').attr("autocomplete", "off");
+
+                    
+                });
+
+                function OnSuccess(response) {
+                    alert(response);
+                    window.close();
+                }
+
+                function OnFailure(response) {
+                    alert(response);
+                }
+            </script>
+
+
+
+        }
+    </div>
+</div>

@@ -1,0 +1,116 @@
+﻿@*@model PagedList.PagedList<BexMVC.ViewModels.AddressData>*@
+@model BexMVC.ViewModels.AddressData
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+      
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Opcije
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                @Html.ActionLink("Dodaj novu ulicu", "Create")
+                            </li>
+                            <li>
+                                <a href="#">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#">Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Separated link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+
+
+            </div>
+            <table class="table">
+
+                @using (Html.BeginForm("", "PAK", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+                {
+                    <tr style="background-color:#dff0d8;">
+                        <th>
+                            @Html.TextBox("searchPak", ViewBag.CurrentPakFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchUlica", ViewBag.CurrentUlicaFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchMesta", ViewBag.CurrentMestoFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchReoncic", ViewBag.CurrentReoncicFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchReon", ViewBag.CurrentReonFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchRegion", ViewBag.CurrentRegionFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchBroj", ViewBag.CurrentBrojFilter as string, htmlAttributes: new { @class = "form-control input-sm" })
+                        </th>
+                        <th>
+                            @Html.TextBox("searchDoBroj", ViewBag.CurrentDoBrojFilter as string, htmlAttributes: new { @class = "form-control input-sm", @disabled = "disabled" })
+                            <input type="submit" value="Trazi" class="btn-sm btn-primary" style="display:none;" />
+                        </th>
+                    </tr>
+                }
+                <tr>
+                    <th>
+                        @Html.ActionLink("Pak", "Index", new { sortOrder = ViewBag.PakSortParm })
+                    </th>
+
+                    <th>
+                        @Html.ActionLink("Ulica", "Index", new { sortOrder = ViewBag.UlicaSortParm })
+                    </th>
+                    <th>
+                        Mesto
+                    </th>
+                    <th>
+                        Reoncic
+                    </th>
+                    <th>
+                        Reon
+                    </th>
+                    <th>
+                        Region
+                    </th>
+                    <th>
+                        odBroja
+                    </th>
+                    <th>
+                        DoBroja
+                    </th>
+
+
+                </tr>
+           
+                    <tr>
+                        <td colspan="8" style="text-align:center">
+                            Unesite podatke u pretragu...
+                        </td>
+                    </tr>
+               
+            </table>
+           
+        </div>
+    </div>
+
+</div>

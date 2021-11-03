@@ -1,0 +1,120 @@
+﻿
+@model BexMVC.ViewModels.GorivoIndexData
+
+@{
+    ViewBag.Title = "Točenje goriva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h2 class="card-title" style="color:#666;">Evidencija točenja goriva</h2>
+                    <p class="card-category">Pregled svih točenja goriva po danima</p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar" class="columns columns-left btn-group ">
+
+
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        <button id="delete" class="btn btn-primary" disabled>
+                            Briši
+                        </button>
+                        <button id="importGoriva" class="btn btn-primary">
+                            Uvezi gorivo
+                            @*@Html.ActionLink("Uvezi gorivo", "Import", "", new { @class = "white_link" })*@
+                        </button>
+
+
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-show-refresh="true"
+                               data-show-columns="true"
+                               data-filter-control="true" 
+                               data-show-export="true"
+                               data-show-footer="true"
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar">
+
+                            <thead>
+                                
+                                <tr>
+                                    <th data-checkbox="true"></th>
+                                    <th data-field="Datum" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum</th>
+                                    <th data-field="Vreme" data-formatter="timeFormat" data-sortable="true" data-filter-control="input" >Vreme</th>
+                                    <th data-field="Vozilo" data-sortable="true" data-filter-control="input">Vozilo</th>
+                                    <th data-field="Registracija" data-sortable="true" data-filter-control="input">Registracija</th>
+                                    <th data-field="Region" data-sortable="true" data-filter-control="input">Region</th>
+                                    <th data-field="PropisanaPotrosnja" data-formatter="intFormat" data-sortable="true" data-filter-control="input">Propisana potrosnja</th>
+                                    <th data-field="Pumpa" data-sortable="true" data-filter-control="input">Pumpa</th>
+                                    <th data-field="Kartica" data-sortable="true" data-filter-control="input">Kartica</th>
+                                    <th data-field="Kilometraza" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Kilometraza</th>
+                                    <th data-field="Litara" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Litara</th>
+                                    <th data-field="Cena" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Cena</th>
+                                    <th data-field="Iznos" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Iznos</th>
+                                    <th data-field="KmOdPrethodnog" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Km od preth. sip.</th>
+                                    <th data-field="ProsekOdPrethodnog" data-formatter="intFormat" data-sortable="true" data-footer-formatter="sumFormatter" data-filter-control="input">Prosek </th>
+                                    <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $edit = $('#edit'),
+                    $import = $('#importGoriva'),
+                    $delete = $('#delete');
+
+                $table.configTable('/Gorivo/GetGorivo');
+
+                $(document).ready(function () {
+
+                   
+
+                    var $checkTableElements = [$edit, $delete];
+                    $table.checkOptionsTable($checkTableElements);
+
+                    $table.optionsTable();
+
+                    $edit.clickOptions('Gorivo/Edit?id=');
+                    $delete.clickOptions('Gorivo/Delete?id=', false);
+                    $import.clickButtonWithoutParams('Gorivo/Import');
+
+
+                });
+
+
+
+
+                
+
+                //$(window).resize(function () {
+                //    $('#table').bootstrapTable('resetView');
+                //});
+
+
+            </script>
+        }
+    </div>
+</div>

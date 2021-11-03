@@ -1,0 +1,25 @@
+﻿@model BexMVC.ViewModels.KorisniciProgramaIndexData
+@using BexMVC.Helpers
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+                <div id="registerUser">
+                    @Html.Action("Register")
+                </div>
+            </div>
+            @*<div class="card">
+                <div id="createKorisnikPrograma">
+                    @Html.Action("Create", new { id = ViewContext.RouteData.Values["id"] })
+                </div>
+            </div>*@
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,722 @@
+﻿
+@model BexMVC.ViewModels.MagacinIndexData
+
+
+
+@{
+    ViewBag.Title = "Magacin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h2 class="card-title" style="color:#666;">Pregled aktuelnih / obavljenih zadataka za dan @DateTime.Now.ToShortDateString()</h2>
+                        @*<p class="card-category"></p>*@
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <br />
+                                Preuzimanja<br />
+                                Dostava i vracanja<br />
+                                Danas aktuelno otkupa<br />
+                                Danas aktuelno otpremnica<br />
+                                Danas aktuelno cekova
+                            </div>
+                            <div class="col-xs-3">
+                                Aktuelno <br />
+                                <span id="aktuelnoPreuzimanja" style="font-weight:bold;"></span> <br />
+                                <span id="aktuelnoDostava" style="font-weight:bold;"></span> <br />
+                                <span id="aktuelnoOtkupa" style="font-weight:bold;"></span><br />
+                                <span id="aktuelnoOtpremnica" style="font-weight:bold;"></span><br />
+                                <span id="aktuelnoCekova" style="font-weight:bold;"></span>
+                            </div>
+                            <div class="col-xs-3">
+                                Obavljeno <br />
+                                <span id="obavljenoPreuzimanja" style="font-weight:bold;"></span><br />
+                                <span id="obavljenoDostava" style="font-weight:bold;"></span><br />
+                                <span id="obavljenoOtkupa" style="font-weight:bold;"></span><br />
+                                <span id="obavljenoOtpremnica" style="font-weight:bold;"></span><br />
+                                <span id="obavljenoCekova" style="font-weight:bold;"></span>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h2 class="card-title" style="color:#666;">Banka</h2>
+                        @*<p class="card-category">Pregled aktuelnih / obavljenih zadataka za dan @DateTime.Now.ToShortDateString()</p>*@
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="banka_data">
+                            <div class="col-xs-6">
+                                Pazara za uplatu: <br />
+                                Otkupa za uplatu: <br />
+                                Otkupa za isplatu: <br />
+                            </div>
+                            <div class="col-xs-6">
+                                <span id="pazarZaUplatu" style="font-weight:bold;"></span> rsd <br />
+                                <span id="otkupZaUplatu" style="font-weight:bold;"></span> rsd <br />
+                                <span id="otkupZaIsplatu" style="font-weight:bold;"></span> rsd
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h2 class="card-title" style="color:#666;">Evidencija zaduzenja kurira</h2>
+                        <p class="card-category">Pregled aktuelnih / obavljenih zadataka za dan @DateTime.Now.ToShortDateString()</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="toolbar">
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Opcije
+                                    
+                                </button>
+                                <ul class="dropdown-menu pull-left" role="menu">
+                                    <li>
+                                        @*@Html.ActionLink("Spisak za razduzenje", "PrintSpisakZaRazduzenje")*@
+                                        <a href="#" id="kreirajZbirneOtkupe"> Kreiraj zbirne otkupe </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-print"></i> Stampa
+                                    
+                                </button>
+                                <ul class="dropdown-menu pull-left" role="menu">
+                                    <li>
+                                        @*@Html.ActionLink("Spisak za razduzenje", "PrintSpisakZaRazduzenje")*@
+                                        <a href="#" id="printSpisakZaRazduzenje"> Spisak za razduzenje</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch3">Koverte za zbirne otkupe</a>
+                                        <input id="reportName3" value="KoverteZaZbirneOtkupeReport" type="hidden" />
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch4">Specifikacija zbirnih otkupa</a>
+                                        <input id="reportName4" value="SpecifikacijaZbirnihOtkupaReport" type="hidden" />
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch5">Kurirska lista dostava</a>
+                                        <input id="reportName5" value="KurirskaListaDostavaReport" type="hidden" />
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch6">Spisak dostava</a>
+                                        <input id="reportName6" value="SpisakDostavaReport" type="hidden" />
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch7">Spisak otkupnina</a>
+                                        <input id="reportName7" value="SpisakOtkupninaReport" type="hidden" />
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch8">Spisak T zadataka</a>
+                                        <input id="reportName8" value="SpisakTzadatakaReport" type="hidden" />
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch9">Koverte za pojedinačne otkupe</a>
+                                        <input id="reportName9" value="KovertaZaOtkupninuReport" type="hidden" />
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" id="btnSearch10">Koverte za T dokumenta</a>
+                                        <input id="reportName10" value="KovertaZaDokumentReport" type="hidden" />
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="table-responsive">
+                            <table id="table" 
+                                  
+                                   data-pagination="true"
+                                   data-side-pagination="server"
+                                   @*data-query-params="queryParams"*@
+                                   data-show-columns="true"
+                                   data-show-export="true"
+                                   data-show-refresh="true"
+                                   @*data-export-data-type="selected"
+               data-export-types="['xml', 'csv', 'excel', 'pdf']"*@
+                                   data-detail-view="true"
+                                   @*data-detail-formatter="detailFormatter"*@
+                                   @*data-striped="true"*@
+                                   data-show-footer="true"
+                                   data-filter-control="true" 
+                                   data-page-list="[10, 25, 50, 100]"
+                                   data-toolbar="#toolbar">
+
+                                <thead>
+                                    @*<tr>
+                                        <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                        <th>
+                                            <input type='text' id="DatumZaduzenja" placeholder="" class="form-control input-sm" disabled />
+                                        </th>
+                                        <th>
+                                            <input name="search" id="VremeZaduzenja" class="form-control input-sm" type="text" placeholder="" disabled>
+                                        </th>
+                                        <th>
+                                            <input name="search" id="KurirNaziv" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input name="search" id="ReonNaziv" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input name="search" id="Vozilo" class="form-control input-sm" type="text" placeholder="">
+                                        </th>
+                                        <th>
+                                            <input name="search" id="UkupnoRazduzio" class="form-control input-sm" type="text" placeholder="" disabled>
+                                        </th>
+                                    </tr>*@
+                                    <tr>
+                                        <th data-checkbox="true"></th>
+                                        <th data-field="DatumZaduzenja" data-sortable="true" data-formatter="dateFormat" data-filter-control="datepicker">Dat. zaduzenja</th>
+                                        <th data-field="VremeZaduzenja" data-formatter="timeFormat" data-sortable="true" data-filter-control="input">Vreme zaduzenja</th>
+                                        <th data-field="KurirNaziv" data-sortable="true" data-filter-control="input">Kurir</th>
+                                        <th data-field="ReonNaziv" data-sortable="true" data-filter-control="input">Reon</th>
+                                        <th data-field="Vozilo" data-sortable="true" data-filter-control="input">Vozilo</th>
+                                        <th data-field="UkupnoRazduzio" data-sortable="true" data-filter-control="input">Ukupno razduzio</th>
+                                        <th data-field="DanasDostave" data-visible="false" data-sortable="true" data-filter-control="input">Dostave</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+                       
+
+                    </div>
+                </div>
+            </div>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+                    <script type="text/javascript">
+                        var $table = $('#table');
+                        var $search = $('#table #search');
+                        var $ok = $('#ok');
+                        var pageSize = 10;
+                        var pageNumber = 1;
+                        //var searchText = "";
+                        //var searchColumn = "";
+                        var sortColumn = "";
+                        var sortOrder = "";
+                        var searchArray = [];
+                        
+                        //var searchTerms = "";
+                        //var searchConcatenate = "";
+
+                        $table.bootstrapTable({
+                            url: '/Magacin/GetZaduzenja',
+                            classes: 'table-no-bordered table-sm table-hover'
+                        });
+
+                        var $remove = $('#remove');
+                        $edit = $('#edit');
+                        $zona = $('#zona');
+                        $alarm = $('#alarm');
+                        selections = [];
+
+                        $(document).ready(function () {
+
+
+                            $table.on('check.bs.table uncheck.bs.table ' +
+                                'check-all.bs.table uncheck-all.bs.table', function () {
+
+                                    //alert("Selekotovan: " + getIdSelections());
+                                    // save your data, here just save the current page
+                                    selections = getIdSelections();
+
+
+                                    if (selections.length == 1) {
+                                        $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                                        $edit.prop('disabled', false);
+
+                                    } else {
+                                        $remove.prop('disabled', true);
+                                        $edit.prop('disabled', true);
+                                    }
+
+                                    // push or splice the selections if you want to save all data selections
+                                });
+
+                            //$("td.of_number_to_be_evaluated:contains('-')").addClass('red');
+                            //$("td.of_number_to_be_evaluated:contains('+')").addClass('green');
+
+                            $table.on('page-change.bs.table', function (e, number, size) {
+                                pageNumber = number;
+                                pageSize = size;
+
+                                $table.bootstrapTable('refresh');
+                                //$table.bootstrapTable('destroy').bootstrapTable({
+                                //    url: "/Posiljka/GetPosiljkaData",
+                                //    pageNumber: number
+                                //});
+
+                            });
+
+                            $table.on('sort.bs.table', function (order, name) {
+                                //alert(name + " ---- " + order);
+                                console.log("Name: " + name);
+                                //alert("dadsdasd");
+                                sortColumn = name;
+                                //sortOrder = order;
+
+                                //$table.bootstrapTable('refresh');
+                                //$table.bootstrapTable('destroy').bootstrapTable({
+                                //    url: "/Posiljka/GetPosiljkaData",
+                                //    pageNumber: number
+                                //});
+
+                            });
+
+                            $("#table select").change(function () {
+
+                                addSearchTerms($table);
+
+                            });
+
+                            $("#table input").keypress(function (event) {
+                                if (event.which == 13) {
+
+                                    event.preventDefault();
+                                    addSearchTerms($table);
+                                }
+
+                            });
+
+                            $('#toolbar').find('select').change(function () {
+                                $('#table').bootstrapTable('destroy').bootstrapTable({
+                                    exportDataType: $(this).val()
+                                });
+                            });
+
+
+
+
+                        });
+
+
+                        $.ajax({
+                            url: "Magacin/GetBankaData",
+                            type: 'get',
+                            success: function (data) {
+                                $('#pazarZaUplatu').append(data.pazar);
+                                $('#otkupZaUplatu').append(data.otkupUplatni);
+                                $('#otkupZaIsplatu').append(data.otkupIsplatni);
+
+                            },
+                            error: function () {
+                                $('#banka_data').hide();
+                                //alert('Ajax error!');
+                            }
+                        });
+
+                        $.ajax({
+                            url: "Magacin/GetStatData",
+                            type: 'get',
+                            success: function (data) {
+                                $('#aktuelnoPreuzimanja').append(data.aktuelnoP);
+                                $('#obavljenoPreuzimanja').append(data.obavljenoP);
+                                $('#aktuelnoDostava').append(data.aktuelnoD);
+                                $('#obavljenoDostava').append(data.obavljenoD);
+                                $('#aktuelnoOtkupa').append(data.aktuelnoN);
+                                $('#obavljenoOtkupa').append(data.obavljenoN);
+                                $('#aktuelnoOtpremnica').append(data.aktuelnoT);
+                                $('#obavljenoOtpremnica').append(data.obavljenoT);
+                                $('#aktuelnoCekova').append(data.aktuelnoC);
+                                $('#obavljenoCekova').append(data.obavljenoC);
+
+                            },
+                            error: function () {
+                                alert('Ajax error!');
+                            }
+                        });
+
+                        //$('#printSpisakZaRazduzenje').click(function () {
+                        //        //var ids = getIdSelections();
+                        //        //alert(ids);
+                        //    makeCorsRequest();
+
+                        //});
+                        $('#btnSearch3').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName3").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+
+                        $('#btnSearch4').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName4").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+
+                        $('#btnSearch5').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName5").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+                        $('#btnSearch6').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName6").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+                        $('#btnSearch7').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName7").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+                        $('#btnSearch8').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName8").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+                        $('#btnSearch9').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName9").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+                        $('#btnSearch10').click(function () {
+                            $("#reportDiv").show();
+                            var reportName = $("#reportName10").val();
+                            var kurirId = $("#kurirId").val();
+
+
+                            var src = '../../Reports/BaseReport.aspx?';
+                            src = src + "reportName=" + reportName
+                            src = src + "&kurirId=" + kurirId
+
+
+                            var iframe = '<iframe id="reportFrame" width="100%" height="800" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                            $("#divReport").html(iframe);
+                        });
+
+
+                        $('#kreirajZbirneOtkupe').click(function () {
+                            $.ajax({
+                                url: "Magacin/KreirajZbirneOtkupe",
+                                type: 'POST',
+                                dataType: "json",
+                                traditional: true,
+                                data: JSON.stringify(postData),
+                                success: function (data) {
+                                    alert("Uspesno ste kreirali zbirne otkupe!");
+                                    location.reload();
+                                },
+                                error: function (xhr, textStatus, error) {
+                                    console.log(xhr.statusText);
+                                    console.log(textStatus);
+                                    console.log(error);
+                                }
+                            });
+                        });
+
+
+                        $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                            window.open('Magacin/Razduzenje?reonId=' + row.Id + '&kurirId=' + row.KurirId + '&zonaId=' + row.ZonaId, '_blank');
+                            // $detail.html('Loading from ajax request...');
+                            // //alert(row.Id);
+                            //$.ajax({
+                            //    url: "Magacin/DetailsZaduzenje",
+                            //     type: 'get',
+
+                            //    data: {
+                            //        reonId: row.Id,
+                            //        kurirId: row.KurirId
+                            //     },
+                            //     success: function (data) {
+                            //         $detail.html(data)
+                            //     },
+                            //     error: function () {
+                            //         alert('Ajax error!');
+                            //     }
+                            // });
+
+                        });
+
+                        // Helper method to parse the title tag from the response.
+                        //function getTitle(text) {
+                        //    return text.match('<title>(.*)?</title>')[1];
+                        //}
+
+                        //function makeCorsRequest() {
+                        //    // This is a sample server that supports CORS.
+                        //    var url = 'http://api.bex.rs:62502/ShipDNF/Ship/getLabelWithProperties?pageSize=4&pagePosition=0&shipmentId=190083667&parcelNo=0';
+
+                        //    var xhr = createCORSRequest('GET', url);
+                        //    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                        //    xhr.setRequestHeader('X-Auth-Token', 'f45010c4-23f4-3b8d-a37b-iv3098355d38');
+                        //    if (!xhr) {
+                        //        alert('CORS not supported');
+                        //        return;
+                        //    }
+                        //    else {
+                        //        alert("CORS OK");
+                        //    }
+
+                        //    // Response handlers.
+                        //    xhr.onload = function () {
+                        //        var text = xhr.responseText;
+                        //        var title = getTitle(text);
+                        //        alert('Response from CORS request to ' + url + ': ' + title);
+                        //    };
+
+                        //    xhr.onerror = function () {
+                        //        alert('Woops, there was an error making the request.');
+                        //    };
+
+                        //    xhr.send();
+                        //}
+
+                        //function createCORSRequest(method, url) {
+                        //    var xhr = new XMLHttpRequest();
+                        //    if ("withCredentials" in xhr) {
+
+                        //        // Check if the XMLHttpRequest object has a "withCredentials" property.
+                        //        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+                        //        xhr.open(method, url, true);
+
+                        //    } else if (typeof XDomainRequest != "undefined") {
+
+                        //        // Otherwise, check if XDomainRequest.
+                        //        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+                        //        xhr = new XDomainRequest();
+                        //        xhr.open(method, url);
+
+                        //    } else {
+
+                        //        // Otherwise, CORS is not supported by the browser.
+                        //        xhr = null;
+
+                        //    }
+                        //    return xhr;
+                        //}
+
+
+
+                        function getIdSelections() {
+                            return $.map($table.bootstrapTable('getSelections'), function (row) {
+                                return row.Id
+                            });
+                        }
+
+                        function queryParams(p) {
+                            //var params = {};
+
+                            //$('#toolbar').find('input[name]').each(function () {
+                            //    params[$(this).attr('name')] = $(this).val();
+                            //});
+                            var params = {
+                                pageNumber: pageNumber,
+                                pageSize: pageSize,
+                                searchTerms: searchArray.toString(),
+                                sortColumn: sortColumn,
+                                sortOrder: p.order,
+                                offset: 0,
+                                limit: 10
+                            };
+
+                            //searchConcatenate = "";
+                            //searchTerms = "";
+                            //console.log("ARRAY: ", searchArray.toString());
+                            //alert("PARAMS: " + pageNumber);
+
+
+                            return params;
+                        }
+
+                        function responseHandler(res) {
+                            return res.rows;
+                        }
+                        //$("#table").colResizable();
+                        //$('#tableVP').dragtable();
+
+                        //$('#toolbar').find('select').change(function () {
+                        //    $('#table').bootstrapTable('destroy').bootstrapTable({
+                        //        exportDataType: $(this).val()
+                        //    });
+                        //});
+
+                        //});
+                        function addSearchTerms(table) {
+                            var searchText = "";
+                            var searchColumn = "";
+
+                            searchArray = [];
+
+                            pageNumber = 1;
+                            pageSize = 10;
+
+                            $("table#table :input").each(function () {
+
+
+                                var input = $(this);
+
+
+                                searchText = input.val();
+                                searchColumn = input.attr('id');
+                                if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                                {
+                                    //alert(input.val() + " ---- " + input.attr('id'));
+
+                                    if (input.val() == "on") {
+                                        searchText = input.is(":checked");
+                                    }
+
+                                    //searchConcatenate += searchColumn + ":" + searchText + ",";
+                                    searchArray.push(searchColumn + ":" + searchText);
+                                    //searchT[searchColumn] = searchText;
+                                }
+                            });
+
+                            table.bootstrapTable('refresh');
+                        }
+
+                        function formatYesNo(value, row, index) {
+                            return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                        }
+
+                        function totalTextFormatter(data) {
+                            return '&Sigma;';
+                        }
+
+                        function totalFormatter(data) {
+                            return data.length;
+                        }
+
+                        function totalNameFormatter(data) {
+                            return data.length;
+                        }
+
+                        function sumFormatter(data) {
+                            field = this.field;
+                            return data.reduce(function (sum, row) {
+                                return sum + (+row[field]);
+                            }, 0);
+                        }
+
+                        function avgFormatter(data) {
+                            return sumFormatter.call(this, data) / data.length;
+                        }
+
+                        //function ToJavaScriptDate(value) {
+                        //    var pattern = /Date\(([^)]+)\)/;
+                        //    var results = pattern.exec(value);
+                        //    var dt = new Date(parseFloat(results[1]));
+                        //    return dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
+
+                        //}
+                        function dateFormat(value, row, index) {
+
+                            if (value == null) return '';
+                            return moment(value).format('DD/MM/YYYY');
+                        }
+
+                        function timeFormat(value, row, index) {
+                            if (value == null) return '';
+                            return moment(value).format('HH:MM:SS');
+                        }
+
+                        $(window).resize(function () {
+                            $('#table').bootstrapTable('resetView');
+                        });
+
+
+                    </script>
+                }
+            </div>
+        </div>

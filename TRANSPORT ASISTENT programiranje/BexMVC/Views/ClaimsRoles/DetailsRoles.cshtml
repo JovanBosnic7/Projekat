@@ -1,0 +1,51 @@
+﻿@model IEnumerable<System.Security.Claims.Claim>
+
+@{
+    ViewBag.Title = "Claims";
+    Layout = null;
+
+}
+
+<div>
+    <script type="text/javascript">
+
+      
+        $('#tableRoles_' + @ViewBag.ClaimId).bootstrapTable({
+            url: '/ClaimsRoles/GetRoleData?claimId=' + @ViewBag.ClaimId,
+            formatNoMatches: function () {
+                return ' Nema podataka ';
+            }
+        });
+
+        function formatRemoveRole(value, row, index) {
+            
+            return '<a href="ClaimsRoles/RemoveRole?roleId=' + value + '&claimId=' + @ViewBag.ClaimId+ '"><i class="glyphicon glyphicon-remove"></i></a>';
+
+        }
+    </script>
+    <div class="panel-group" id="accordion" style="margin-left:25px;margin-right:25px;">
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabRoles_@ViewBag.ClaimId">Uloge kojima pripada</a>
+                </h4>
+            </div>
+            <div id="tabRoles_@ViewBag.ClaimId" class="panel-collapse">
+                <div class="panel-body">
+                    <table id="tableRoles_@ViewBag.ClaimId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="RoleName">Naziv </th>
+                                <th data-field="RoleId" data-formatter="formatRemoveRole">Izbaci</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

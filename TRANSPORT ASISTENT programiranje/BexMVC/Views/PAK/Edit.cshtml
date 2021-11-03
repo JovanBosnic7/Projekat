@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Izmena adrese";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Izmena adrese </h2>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" value="Sacuvaj" class="btn btn-default btn-xs" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="EditAddressPartial">
+                        @Html.Action("EditAddressPartial", new { pakId = @ViewBag.PakId })
+                    </div>
+                    <div id="SelectAddressTypePartial">
+                        @Html.Action("AddressTypePartial", new { id = @ViewBag.PakId })
+                    </div>
+                    <div id="CreateAddress">
+
+                    </div>
+                </div>
+
+                <div id="map" style="width: 640px; height: 480px;"></div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <hr />
+                            <div>
+                                @Html.ActionLink("Back to List", "Index")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtNqNDTdCP2K6fxesmOfHUUhR8D61fveU&callback=initMap" type="text/javascript"></script>
+                <script type="text/javascript">
+                $(document).ready(function () {
+
+
+                    var selectedMesto = $("#Mesta").val();
+                    var selectedUlica = $("#Ulice").val();
+                    var ulicaSelect = $('#Ulice');
+
+                    //alert(selectedMesto);
+
+                    addUlice(selectedMesto, ulicaSelect);
+                    //initMap();
+
+                    if (selectedUlica != null && selectedUlica != '') {
+                        ulicaSelect.val = selectedUlica;
+                    };
+                });
+
+                $("#Mesta").change(function () {
+                    var selectedMesto = $("#Mesta").val();
+                    var ulicaSelect = $('#Ulice');
+                    ulicaSelect.empty();
+
+                    if (selectedMesto != null && selectedMesto != '') {
+                        addUlice(selectedMesto, ulicaSelect);
+                    }
+                });
+
+                function addUlice(selectedMesto, ulicaSelect) {
+
+                        $.getJSON('@Url.Action("GetUlice")', { mestoId: selectedMesto }, function (ulice) {
+                            if (ulice != null && !jQuery.isEmptyObject(ulice)) {
+                                ulicaSelect.append($('<option/>', {
+                                    value: null,
+                                    text: ""
+                            }));
+                                $.each(ulice, function (index, ulica) {
+                                    ulicaSelect.append($('<option/>', {
+                                        value: ulica.Value,
+                                        text: ulica.Text
+                                    }));
+                            });
+                        };
+                    });
+                }
+
+                //function initMap() {
+                //    // The location of Uluru
+                //    var uluru = { lat: -25.344, lng: 131.036 };
+                //    // The map, centered at Uluru
+                //    var map = new google.maps.Map(
+                //        document.getElementById('map'), { zoom: 4, center: uluru });
+                //    // The marker, positioned at Uluru
+                //    var marker = new google.maps.Marker({ position: uluru, map: map });
+                //}
+
+                    var geocoder;
+                    var map;
+                    var address = "new york city";
+
+                    function initMap() {
+                        geocoder = new google.maps.Geocoder();
+
+                        var uluru = { lat: -25.363, lng: 131.044 };
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 4,
+                            center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                        });
+                        codeAddress(address);
+
+                    }
+
+                    function codeAddress(address) {
+
+                        geocoder.geocode({ 'address': address }, function (results, status) {
+                            console.log(results);
+                            var latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+                            console.log(latLng);
+                            if (status == 'OK') {
+                                var marker = new google.maps.Marker({
+                                    position: latLng,
+                                    map: map
+                                });
+                                console.log(map);
+                            } else {
+                                alert('Geocode was not successful for the following reason: ' + status);
+                            }
+                        });
+                    }
+                </script>
+            }
+        </div>
+</div>

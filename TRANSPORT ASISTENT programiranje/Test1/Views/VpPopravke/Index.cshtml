@@ -1,0 +1,114 @@
+﻿
+@model DDtrafic.ViewModels.PopravkeIndexData
+
+@{
+    ViewBag.Title = "Popravke";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Evidencija popravki</h1>
+        <p>Pregled svih popravki i zamene delova</p>
+    </div>
+</div>
+<hr />
+<div class="row" style="background:#eee;">
+    <div class="card">        
+        <div class="card-body">
+            <div id="toolbar" class="columns columns-left btn-group ">
+
+                <button id="create" class="btn btn-primary">
+                    @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                </button>
+                <button id="edit" class="btn btn-primary" disabled>
+                    Izmeni
+                </button>
+                <button id="delete" class="btn btn-primary" disabled>
+                    Briši
+                </button>
+            </div>
+
+
+
+            <div class="table-responsive" style="min-height:300px;">
+                <table id="table"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       data-query-params="queryParams"
+                       data-show-refresh="true"
+                       data-show-columns="true"
+                       data-show-export="true"
+                       data-filter-control="true"
+                       data-detail-view="true"
+                       data-page-list="[10, 25, 50, 100]"
+                       data-toolbar="#toolbar">
+
+                    <thead>
+                        <tr>
+                            <th data-checkbox="true"></th>
+                            <th data-field="Datum" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum</th>
+                            <th data-field="Registracija" data-sortable="true" data-filter-control="input">Vozilo</th>
+                            <th data-field="Tip" data-sortable="true" data-filter-control="select" data-filter-data="url:/VpPopravke/GetTip">Tip</th>
+                            <th data-field="Delovi" data-sortable="true" data-filter-control="input">Delovi</th>
+                            <th data-field="BrojRacuna" data-sortable="true" data-filter-control="input">Račun</th>
+                            <th data-field="IznosDin" data-sortable="true" data-filter-control="input">Dinara</th>
+                            <th data-field="IznosEur" data-sortable="true" data-filter-control="input">Eura</th>
+                            <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
+    <script type="text/javascript">
+
+
+
+
+        var $table = $('#table');
+        var $remove = $('#remove'),
+            $add = $('#add'),
+            $edit = $('#edit'),
+            $delete = $('#delete');
+
+        $table.configTable('VpPopravke/GetPopravke');
+        $table.hideColTable();
+
+        $(document).ready(function () {
+
+            var $checkTableElements = [$edit, $delete];
+            $table.checkOptionsTable($checkTableElements);
+
+            $table.optionsTable();
+
+            $add.clickButtonWithoutParams('VpPopravke/Create');
+            $edit.clickOptions('VpPopravke/Edit?id=');
+            $delete.clickOptions('VpPopravke/Delete?id=');
+
+        });
+
+        function getIdSelections() {
+            return $.map($table.bootstrapTable('getSelections'), function (row) {
+                var paramsSelection = { vozniParkId: row.Id };
+                return paramsSelection
+            });
+        }
+
+
+
+    </script>
+}
+@*</div>
+    </div>*@

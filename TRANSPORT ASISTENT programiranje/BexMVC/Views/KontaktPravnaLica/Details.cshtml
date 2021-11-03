@@ -1,0 +1,83 @@
+﻿@model Bex.Models.KontaktPravnoLice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Podaci o pravnom licu : @ViewBag.KontaktNaziv</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ime
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kontakt.Ime)
+        </dd>
+
+        <dt>
+            PIB
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PIB)
+        </dd>
+
+        <dt>
+           Delatnost
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelatnostId)
+        </dd>
+
+        <dt>
+            Direktor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direktor)
+        </dd>
+
+        <dt>
+            Poslovnica
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Poslovnica)
+        </dd>
+
+        <dt>
+            Sediste
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SedisteKontaktId)
+        </dd>
+
+        <dt>
+            Sajt
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebSajt)
+        </dd>
+
+        <dt>
+            Logo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logo)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

@@ -1,0 +1,80 @@
+﻿@model Bex.Models.Banka
+
+@{
+                /**/
+
+                ViewBag.Title = "Details";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Otkup za uplatu</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <h2>@*Details*@</h2>
+
+        <div>
+            @*<h4>Kontakt</h4>*@
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Model
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.VozniParkModel.NazivModela)*@
+                </dd>
+
+                <dt>
+                    Garažni broj
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.GarazniBroj)*@
+                </dd>
+
+                <dt>
+                    Registracija
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.Oznaka)*@
+                </dd>
+
+                <dt>
+                    Region
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.Region.NazivSkraceni)*@
+                </dd>
+
+                <dt>
+                    Status
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.VozniParkStatus.NazivStatusa)*@
+                </dd>
+
+                <dt>
+                    Aktivan
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.Aktivno)*@
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

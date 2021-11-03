@@ -1,0 +1,352 @@
+﻿
+@model BexMVC.ViewModels.VozniParkIndexData
+@using PagedList;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+@{
+    ViewBag.Title = "Vozni Park";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Evidencija vozila</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div id="toolbar">
+
+            <button id="create" class="btn btn-primary">
+                <i class="glyphicon glyphicon-apple"></i> @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+            </button>
+            <button id="edit" class="btn btn-primary" disabled>
+                <i class="glyphicon glyphicon-edit"></i> Izmeni
+            </button>
+            <button id="remove" class="btn btn-primary" disabled>
+                <i class="glyphicon glyphicon-remove"></i> Brisi
+            </button>
+
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-print"></i> Print
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        @Html.ActionLink("Dodaj vozilo", "Create")
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Stampaj</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Opcije
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        @Html.ActionLink("Ubaci u zonu", "DodajZonu", new { id = Url.RequestContext.RouteData.Values["id"] })
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Stampaj</a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <table id="table"
+               data-pagination="true"
+               @*data-side-pagination="server"*@
+               data-search="true" 
+               data-toggle="table" 
+               data-show-columns="true"
+               data-show-export="true" 
+               data-export-types="['xml', 'csv', 'excel', 'pdf']"
+               data-export-data-type="selected"
+               data-url="/VozniPark/GetVozniPark"
+               data-detail-view="true" data-detail-formatter="detailFormatter"
+               data-striped="true" data-page-list="[10, 25, 50, 100]" data-toolbar="#toolbar"
+               data-show-footer="true">
+            <thead>
+                <tr>
+                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter"></th>
+                    <th data-field="Id" data-visible="false">Id</th>
+                    <th data-field="Model" data-sortable="true">Model</th>
+                    <th data-field="GarazniBroj" data-switchable="true" data-footer-formatter="totalFormatter">Garazni broj</th>
+                    <th data-field="Registracija" data-footer-formatter="totalNameFormatter">Registracija</th>
+                    <th data-field="Region" data-footer-formatter="sumFormatter">Region</th>
+                    <th data-field="Status" >Status</th>
+                    <th data-field="Aktivan" >Aktivan</th>
+                </tr>
+            </thead>
+
+        </table>
+
+        @*<div class="panel panel-default">*@
+            @*<div class="panel-heading">
+                &nbsp;*@
+                @*<div class="pull-left">
+                    @using (Html.BeginForm("", "VozniPark", FormMethod.Get))
+            {
+                        <p>
+                            Pretraga po imenu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                            <input type="submit" value="Trazi" />
+                        </p>
+                    }
+
+                </div>*@
+
+
+                @*<div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Opcije
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                @Html.ActionLink("Dodaj vozilo", "Create")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Ubaci u zonu", "DodajZonu", new { id = Url.RequestContext.RouteData.Values["id"]})
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Stampaj bar kod</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>*@
+
+
+
+
+            @*</div>*@
+            @*<table class="table">
+                <tr>
+                    <th></th>
+                    <th>Model</th>
+                    <th>Garazni broj</th>
+                    <th>Registracija</th>
+                    <th>Region</th>
+                    <th>Status</th>
+                    <th>Aktivan</th>
+                </tr>
+                @foreach (var item in Model.VozniPark)
+                {
+                    string selectedRow = "";
+                    if (item.Id == ViewBag.Id)
+                    {
+                        selectedRow = "success";
+                    }
+                    <tr class="@selectedRow" valign="top">
+                        <td>
+                            @Html.ActionLink(" ", "Index", new { id = item.Id }, new { @class = "fa fa-sitemap" }) |
+                            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "fa fa-eye" }) |
+                            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" }) |
+                            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-remove" })
+                        </td>
+                        <td>
+                            @item.VozniParkModel.NazivModela
+                        </td>
+                        <td>
+                            @item.GarazniBroj
+                        </td>
+                        <td>
+                            @item.Oznaka
+                        </td>
+                        <td>
+                            @item.RegionId
+                        </td>
+                        <td>
+                            @item.StatusVozilaId
+                        </td>
+                        <td>
+                            @item.Aktivno
+                        </td>                     
+
+                    </tr>
+                }
+            </table>*@
+        @*</div>
+        <br />*@
+        @*<div id='Paging' style="text-align:center">
+            @Html.PagedListPager((IPagedList)ViewBag.OnePageKontakt, page => Url.Action("Index", new { page }))
+            Strana @ViewBag.PageNumber od @ViewBag.TotalPages
+        </div>*@  
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+
+                    var $table = $('#table'),
+                        $remove = $('#remove'),
+                        $edit = $('#edit'),
+                        selections = [];
+
+
+
+                    $table.on('check.bs.table uncheck.bs.table ' +
+                        'check-all.bs.table uncheck-all.bs.table', function () {
+
+                            //alert("Selekotovan: " + getIdSelections());
+                            // save your data, here just save the current page
+                            selections = getIdSelections();
+
+
+                            if (selections.length == 1) {
+                                $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                                $edit.prop('disabled', false);
+
+                            } else {
+                                $remove.prop('disabled', true);
+                                $edit.prop('disabled', true);
+                            }
+
+                            // push or splice the selections if you want to save all data selections
+                        });
+
+                    $remove.click(function () {
+                        var ids = getIdSelections();
+                        $table.bootstrapTable('remove', {
+                            field: 'Id',
+                            values: ids
+                        });
+                        $remove.prop('disabled', true);
+                        location.href = "VozniPark/Delete?id=" + ids;
+                    });
+
+                    $edit.click(function () {
+                        var ids = getIdSelections();
+                        location.href = "VozniPark/Edit?id=" + ids;
+
+                    });
+
+                    //$table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                    //    $detail.html('Loading from ajax request...');
+
+                    //   $.ajax({
+                    //       url: "VozniPark/DetailsPlata",
+                    //        type: 'get',
+
+                    //        data: {
+                    //            id: row.Id
+                    //        },
+                    //        success: function (data) {
+                    //            $detail.html(data)
+                    //        },
+                    //        error: function () {
+                    //            alert('Ajax error!');
+                    //        }
+                    //    });
+                        //$.get('Details?id=2', function (res) {
+                        //    $detail.html(res.replace(/\n/g, '<br>'));
+                        //});
+                    //});
+
+                    function detailFormatter(index, row) {
+                        var html = [];
+                        $.each(row, function (key, value) {
+                            html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+                        });
+                        return html.join('');
+                    }
+
+                    function getIdSelections() {
+                        return $.map($table.bootstrapTable('getSelections'), function (row) {
+                            return row.Id
+                        });
+                    }
+
+
+                    $("table").colResizable();
+                    $('#table').dragtable();
+
+                    //$('#toolbar').find('select').change(function () {
+                    //    $('#table').bootstrapTable('destroy').bootstrapTable({
+                    //        exportDataType: $(this).val()
+                    //    });
+                    //});
+
+                });
+
+                function totalTextFormatter(data) {
+                    return '&Sigma;';
+                }
+
+                function totalFormatter(data) {
+                    return data.length;
+                }
+
+                function totalNameFormatter(data) {
+                    return data.length;
+                }
+
+                function sumFormatter(data) {
+                    field = this.field;
+                    return data.reduce(function (sum, row) {
+                        return sum + (+row[field]);
+                    }, 0);
+                }
+
+                function avgFormatter(data) {
+                    return sumFormatter.call(this, data) / data.length;
+                }
+
+                function ToJavaScriptDate(value) {
+                    var pattern = /Date\(([^)]+)\)/;
+                    var results = pattern.exec(value);
+                    var dt = new Date(parseFloat(results[1]));
+                    return dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
+
+                }
+
+                function dateFormat(value, row, index) {
+
+                    return ToJavaScriptDate(value);
+
+                }
+
+
+
+                //}
+
+                //function dateFormat(value, row, index) {
+
+                //    var date = new Date(value);
+                //    var mm = date.getMonth() + 1;
+                //    var dd = date.getDate();
+                //    var yy = new String(date.getFullYear()).substring(2);
+                //    if (mm < 10) {
+                //        mm = "0" + mm;
+                //    }
+                //    if (dd < 10) {
+                //        dd = "0" + dd;
+                //    }
+                //    return "" + mm + "/" + dd + "/" +  yy;
+                //};
+
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+            </script>
+        }
+    </div>
+</div>

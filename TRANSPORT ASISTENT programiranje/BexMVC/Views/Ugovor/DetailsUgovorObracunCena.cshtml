@@ -1,0 +1,92 @@
+﻿@model Bex.Models.UgovorObracunCena
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+<div>
+
+    <script type="text/javascript">
+
+            var $table = $('#tableUgovorObracunCena');
+            $table.bootstrapTable({
+                url: '/Ugovor/GetUgovorObracunCena?id='+@ViewBag.UgovorId
+            });
+
+        function LinkFormatter(value, row, index) {
+
+            console.log("row: ", row);
+            return "<a href='../Street?searchUlica=" + row.DnevnikId + "' target='_blank'>" + value + "</a>";
+        }
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+        $(document).ready(function () {
+
+            $('#tabUgovorObracunCena_'+ @ViewBag.UgovorId).click(function () {
+
+                $.ajax({
+                    url: "Ugovor/DetailsUgovorObracunCena",
+                    type: 'get',
+
+                    data: {
+                        id: @ViewBag.UgovorId
+
+                    },
+                    success: function (data) {
+
+                        $('#details').html(data)
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                    });
+
+            });
+
+
+        });
+    </script>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-success  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabUgovorObracunCena_@ViewBag.UgovorId">Obracun cena</a>
+                </h4>
+            </div>
+            <div id="tabUgovorObracunCena_@ViewBag.UgovorId" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table id="tableUgovorObracunCena">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="UgovorId" data-visible="false">Id</th>
+                                <th data-field="PovlasceneCeneKlijentuId">Povlascene cene</th>
+                                <th data-field="NaplataId">Naplata</th>
+                                <th data-field="BezZastitneCene">Bez zast. cene</th>
+                                <th data-field="NaplataPoFakturi">Napl. po fak.</th>
+                                <th data-field="FakturaProc">Fak. proc.</th>
+                                <th data-field="ZastitnaCenaFak">Zast. cena fak.</th>
+                                <th data-field="DodatakZaGorivo">Dodatak gorivo</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

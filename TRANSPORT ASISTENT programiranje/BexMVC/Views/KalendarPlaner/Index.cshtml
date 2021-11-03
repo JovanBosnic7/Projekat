@@ -1,0 +1,232 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="content">
+    <div class="container-fluid">
+
+        <!-- /.row -->
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <div id="calender"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="background-color: rgba(0,0,0,.4);">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background:rgba(204, 204, 204, 0.77);">
+                        <h3 class="modal-title" id="exampleModalLongTitle">Dodavanje događaja u kalendar</h3>
+                        <input type="hidden" class="form-control" id="Id" value="0">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="title" class="col-form-label">Naziv:</label>
+                                <input type="text" class="form-control" id="title">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="color" class="col-form-label">Boja:</label>
+                                <select id="color" class="form-control">
+                                    <option value="#7fdfff" style="color:blue">Plava</option>
+                                    <option value="#ff4c4c" style="color:red">Crvena</option>
+                                    <option value="#ddffdd" style="color:green">Zelena</option>
+                                    <option value="#F8FF88" style="color:yellow">Žuta</option>
+                                    <option value="#FFD688" style="color:orange">Narandžasta</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                @*<label for="date-start" class="col-form-label">Datum 1:</label>*@
+                                <input type="hidden" class="form-control" id="date-start">
+                            </div>
+                            <div class="form-group">
+                                @*<label for="date-end" class="col-form-label">Datum 2:</label>*@
+                                <input type="hidden" class="form-control" id="date-end">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                        <button type="button" class="btn btn-primary" id="save">Sačuvaj</button>
+                        <button type="button" class="btn btn-primary" id="edit">Izmeni</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="pDetails"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+        <div id="loadingDIV" style="display:none; text-align:center;margin-bottom:10px;">
+            <button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif" /> Sacekajte...</button>
+        </div>
+
+        <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
+
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/locale/sr.js"></script>
+            
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    
+                    var dateStart, dateEnd;
+                    GetCalendarData();
+
+                    $('#save, #edit').click(function (e) {
+                        e.preventDefault();
+
+                        
+                        $('#exampleModalCenter').modal('hide');
+
+                        //alert($('#title').val() + " --- " + $('#date-start').val() + " --- " + $('#date-end').val());
+                        //alert($('#Id').val());
+
+                        $.ajax(
+                            {
+                                type: "GET",
+                                url: "KalendarPlaner/SetEvents",
+                                data: {
+                                    id: $('#Id').val(),
+                                    title: $('#title').val(),
+                                    start: String(dateStart),
+                                    end: String(dateEnd),
+                                    color: $('#color').val()
+                                },
+                                success: function (data) {
+
+                                    dateStart = null;
+                                    dateEnd = null;
+                                    $('#title').val("");
+                                    GetCalendarData();
+
+                                },
+                                error: function (error) {
+                                    alert("Greška pri upisu, pokušajte ponovo.");
+
+                                }
+                            });
+
+
+                    });
+
+                    function GetCalendarData() {
+                        var events = [];
+                        $.ajax({
+                            type: "GET",
+                            url: "KalendarPlaner/GetEvents",
+                            success: function (data) {
+                                $.each(data, function (i, v) {
+
+                                    events.push({
+                                        id: v.Id,
+                                        title: v.Naziv,
+                                        description: v.Opis,
+                                        start: moment(v.DatumStart),
+                                        end: v.DatumEnd != null ? moment(v.DatumEnd) : null,
+                                        color: v.Color
+                                        //,
+                                        //allDay: v.IsFullDay
+                                    });
+                                })
+
+                                GenerateCalender(events);
+                            },
+                            error: function (error) {
+                                alert('Obratite se adminisitratoru korisnika programa.');
+                            }
+                        })
+                    }
+
+                    function GenerateCalender(events) {
+                        $('#calender').fullCalendar('destroy');
+                        $('#calender').fullCalendar({
+                            contentHeight: 600,
+                            defaultDate: new Date(),
+                            timeFormat: 'h(:mm)a',
+                            locale: 'sr',
+                            selectable: true,
+                            header: {
+                                left: 'prev,next today',
+                                center: 'title',
+                                right: 'month,basicWeek,basicDay,agenda'
+                                //center: 'addEventButton'
+                            },
+                            eventLimit: true,
+                            eventColor: '#ffdb99',
+                            events: events,
+                            eventClick: function (calEvent, jsEvent, view) {
+                                dateStart = (calEvent.start.hasTime()) ? calEvent.start.format("DD-MM-YYYY HH:mm") : calEvent.start.format("DD-MM-YYYY");
+                                dateEnd = (calEvent.end.hasTime()) ? calEvent.end.format("DD-MM-YYYY HH:mm") : calEvent.end.format("DD-MM-YYYY");
+                               
+                                $('#Id').val(calEvent.id);
+                                $('#date-start').val(calEvent.start);
+                                $('#date-end').val(calEvent.end);
+                                $('#color').val(calEvent.color);
+                                $('#title').val(calEvent.title);
+                                $('#exampleModalLongTitle').text("Izmena događaja");
+                                $('#save').hide();
+                                $('#edit').show();
+                                $('#exampleModalCenter').modal("show");
+                                $('#calender').fullCalendar('unselect');
+                                
+                            },
+
+                            select: function (start, end, jsEvent, view) {
+                                dateStart = (start.hasTime()) ? start.format("DD-MM-YYYY HH:mm") : start.format("DD-MM-YYYY");
+                                dateEnd = (end.hasTime()) ? end.format("DD-MM-YYYY HH:mm") : end.format("DD-MM-YYYY");
+                                $('#Id').val(0);
+
+                                $('#date-start').val(start);
+                                $('#date-end').val(end);
+                                $('#color').val(0);
+                                $('#title').val("");
+                                $('#exampleModalLongTitle').text("Dodavanje događaja u kalendar");
+                                $('#edit').hide();
+                                $('#save').show();
+                                $('#exampleModalCenter').modal("show");
+                                
+                                $('#calender').fullCalendar('unselect');
+
+                            }
+
+                        })
+                    }
+                })
+
+            </script>
+        }
+
+
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->

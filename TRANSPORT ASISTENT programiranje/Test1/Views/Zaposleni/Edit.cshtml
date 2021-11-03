@@ -1,0 +1,176 @@
+﻿@model Bex.Models.Zaposleni
+
+@{
+    ViewBag.Title = "Izmena zaposlenog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Izmena podataka o zaposlenom  </h1>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="../Zaposleni">Zaposleni</a>
+            </li>
+            <li class="breadcrumb-item active">Izmeni</li>
+        </ol>
+
+    </div>
+</div>
+<hr />
+
+<div class="row" style="background:#eee;padding:20px;">
+
+    @using (Html.BeginForm("Edit", "Zaposleni", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" id="Aktivan" name="Aktivan">
+        @Html.HiddenFor(model => model.Id, new { id = "Id" })
+        @Html.HiddenFor(model => model.FirmaId, new { id = "FirmaId" })
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="ImeIprezime">Ime i prezime</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.ImeIprezime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ImeIprezime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Adresa">Adresa</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Adresa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adresa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Jmbg">Jmbg</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Jmbg, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Jmbg, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Pol">Pol</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Pol, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Kategorije">Kategorije</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Kategorije, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Kategorije, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="BrojLK">Broj LK</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.BrojLK, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Kategorije, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Telefon">Telefon</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="DatumZaposlenja">D. zaposlenja</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.DatumZaposlenja, new { @class = " form-control  datepicker-dat-zaposlenja" })
+                @*@Html.ValidationMessageFor(model => model.DatumZaposlenja, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="TekuciRacun">Tekući račun</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.TekuciRacun, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TekuciRacun, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Plata">Plata</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Plata, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Plata, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Napomena">Napomena</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Napomena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Napomena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="Aktivan">Aktivan</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <label class="form-check-label control-label">
+                        <input class="form-check-input" type="checkbox" value="" id="AktivanCheck">
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2"></label>
+            <div class="col-sm-10">
+                <div class="col-sm-4">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary pull-right " />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".datepicker-dat-zaposlenja, .datepicker-prijava, .datepicker-odredjeno, .datepicker-prestanak, .datepicker-lekarskog").datepicker({ dateFormat: 'dd-mm-yy' });
+                        $(".datepicker-dat-zaposlenja, .datepicker-prijava, .datepicker-odredjeno, .datepicker-prestanak, .datepicker-lekarskog").attr("autocomplete", "off");
+
+
+
+                        $('#Aktivan').val(@(Convert.ToBoolean(Model.Aktivan) == true ? "true" : "false"));
+                        $('#AktivanCheck').change(function () {
+                      
+                            $('#Aktivan').val($(this).is(':checked'))
+
+                        });
+
+
+
+                    });
+                    function dateFormat(value) {
+                        return (value === null) ? "" :  moment(value).format('DD/MM/YYYY');
+                    }
+                    function stringFormat(value) {
+                        return (value === null || value === undefined) ? '<a href="../Kontakt/Create" target="_blank"><i class="fa fa-arrow-right fa-fw"></i>DODAJ</a>' : value;
+                }
+                $("form").bind("keydown", function (e) {
+                    if (e.keyCode === 13) return false;
+                });
+                $(function () {
+                    $.validator.methods.date = function (value, element) {
+                        if ($.browser.webkit) {
+                            //ES - Chrome does not use the locale when new Date objects instantiated:
+                            var d = new Date();
+
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                        }
+                        else {
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                        }
+                    };
+                });
+            </script>
+        }
+

@@ -1,0 +1,89 @@
+﻿@model EFproject.KontaktPravnaLica
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>KontaktPravnaLica</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kontakt.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kontakt.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PIB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DelatnostId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelatnostId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direktor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direktor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Poslovnica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Poslovnica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SedisteKontaktId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SedisteKontaktId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSajt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebSajt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "../Kontakt")
+        </div>
+    }
+</div>

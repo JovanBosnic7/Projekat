@@ -1,0 +1,359 @@
+﻿@model BexMVC.ViewModels.PrijavaIndexData
+@{
+    ViewBag.Title = "Prijave reklamacija i žalbi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                   
+                    <h2 class="card-title" style="color:#666;">Prijava reklamacija i žalbi</h2>
+                    <p class="card-category">Pregled svih prijava stiglih od klijenata i zaposlenih </p>
+                </div>
+                <!-- /.col-lg-12 -->
+
+                <div class="card-body">
+                    <div id="toolbar">
+
+                        <button id="create" class="btn btn-primary">
+                            Dodaj
+                        </button>
+                        <button id="edit" class="btn btn-primary" disabled>
+                            Izmeni
+                        </button>
+                        
+                    </div>
+
+                    <div class="table-responsive" style="min-height:300px;">
+                        <table id="table"
+                               data-pagination="true"
+                               data-side-pagination="server"
+                               data-query-params="queryParams"
+                               @*data-show-columns="true"
+                               data-show-export="true"*@
+                               data-detail-view="true"
+                               @*data-striped="true"*@
+                               data-page-list="[10, 25, 50, 100]"
+                               data-toolbar="#toolbar">
+                            <thead>
+                                <tr>
+
+                                    <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                                    <th>
+                                        @Html.DropDownList("TipPrijaveNaziv", (SelectList)ViewBag.Tip, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("PodTipPrijaveNaziv", (SelectList)ViewBag.PodTip, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("NacinPrijaveNaziv", (SelectList)ViewBag.NacinPrijave, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+                                    <th>
+                                        <input name="search" id="DatumPrijave" type="text" placeholder="Izaberite datum" class="form-control input-sm datepicker-dat-prijave">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PosiljkaId" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PrijavioUserNaziv" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PrijavioNaziv" class="form-control input-sm" type="text">
+                                    </th>
+                                    @*<th>
+                                        <input name="search" id="PrijavioPrezime" class="form-control input-sm" type="text">
+                                    </th>*@
+                                    <th>
+                                        <input name="search" id="PrijavioEmail" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="PrijavioTelefon" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        <input name="search" id="Opis" class="form-control input-sm" type="text">
+                                    </th>
+                                    <th>
+                                        @Html.DropDownList("StatusPrijaveNaziv", (SelectList)ViewBag.Status, "    ", new { @class = "form-control input-sm" })
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th data-field="TipPrijaveNaziv" data-sortable="true">Tip</th>
+                                    <th data-field="PodTipPrijaveNaziv" data-sortable="true">Razlog</th>
+                                    <th data-field="NacinPrijaveNaziv" data-sortable="true">Način prijave</th>
+                                    <th data-field="DatumPrijave" data-sortable="true" data-formatter="dateFormat" >Datum</th>
+                                    <th data-field="PosiljkaId" data-sortable="true">Pošiljka</th>
+                                    <th data-field="PrijavioUserNaziv" data-sortable="true">Prijavio zaposleni</th>
+                                    <th data-field="PrijavioNaziv" data-sortable="true">Prijavio naziv</th>
+                                    @*<th data-field="PrijavioPrezime" data-sortable="true">Prezime</th>*@
+                                    <th data-field="PrijavioEmail" data-sortable="true">Email</th>
+                                    <th data-field="PrijavioTelefon" data-sortable="true">Telefon</th>
+                                    <th data-field="Opis" data-sortable="true">Opis</th>
+                                    <th data-field="StatusPrijaveNaziv" data-sortable="true">Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+            <script type="text/javascript">
+                var $table = $('#table');
+                var $search = $('#table #search');
+                var $ok = $('#ok');
+                var pageSize = 10;
+                var pageNumber = 1;
+                var sortColumn = "";
+                var sortOrder = "";
+
+
+                var searchArray = [];
+
+                //alert("not ready");
+                $table.bootstrapTable({
+                    url: '/Prijava/GetPrijaveData',
+                    formatLoadingMessage: function () {
+                        return '<button class="btn btn-default" style="margin-top:10px;padding:10px;"> <img src="../images/ui-anim_basic_16x16.gif"/> Sacekajte...</button>';
+                    },
+                    classes: 'table-no-bordered table-sm table-hover'
+                });
+
+                var $remove = $('#remove'),
+                    $edit = $('#edit'),
+                    $create = $('#create'),
+                    selections = [];
+
+                $('span.caret').css('display', 'none');
+
+                $('.datepicker-dat-prijave').datepicker();
+                $(".datepicker-dat-prijave").attr("autocomplete", "off");
+
+                $(document).ready(function () {
+
+
+                    $('.datepicker-dat-prijave').on("change", function () {
+
+                        $('.datepicker-dat-prijave').datepicker('setDate', this.value);
+
+                        addSearchTerms($table);
+
+                    })
+
+                    $table.on('check.bs.table uncheck.bs.table ' +
+                        'check-all.bs.table uncheck-all.bs.table', function () {
+
+                            // save your data, here just save the current page
+                            selections = getIdSelections();
+
+
+                            if (selections.length == 1) {
+                                $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                                $edit.prop('disabled', false);
+
+                            } else {
+                                $remove.prop('disabled', true);
+                                $edit.prop('disabled', true);
+                            }
+
+                            // push or splice the selections if you want to save all data selections
+                        });
+
+                    $table.on('page-change.bs.table', function (e, number, size) {
+                        pageNumber = number;
+                        pageSize = size;
+
+                        $table.bootstrapTable('refresh');
+                        $table.bootstrapTable("showLoading");
+
+
+
+                    });
+
+                    $table.on('sort.bs.table', function (order, name) {
+                        //alert(name + " ---- " + order);
+                        console.log("Name: " + name);
+                        //alert("dadsdasd");
+                        sortColumn = name;
+                        $table.bootstrapTable("showLoading");
+
+                    });
+
+                    $("#table select").change(function () {
+
+                        addSearchTerms($table);
+
+                    });
+
+                    $("#table input").keypress(function (event) {
+                        if (event.which == 13) {
+
+                            event.preventDefault();
+                            addSearchTerms($table);
+                        }
+
+                    });
+
+                    $('#toolbar').find('select').change(function () {
+                        $('#table').bootstrapTable('destroy').bootstrapTable({
+                            exportDataType: $(this).val()
+                        });
+                    });
+
+                   
+
+                    $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+                        $detail.html('Ucitavanje detalja o prijavi ...');
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .css("border", "1px solid gray");
+
+                        //$detail.css("border-bottom", "1px solid gray");
+                        $detail.css("border-left", "1px solid gray");
+
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .children('td')
+                            .css("border-top", "1px solid gray");
+                        $.ajax({
+                            url: "Prijava/Details",
+                            type: 'get',
+
+                            data: {
+                                id: row.PrijavaId
+                            },
+                            success: function (data) {
+
+                                $detail.html(data)
+                            },
+                            error: function () {
+                                alert('Ajax error!');
+                            }
+                        });
+                    });
+
+                    $table.on('collapse-row.bs.table', function (e, index, row, $detail) {
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .css("border-left", "none")
+                            .css("border-bottom", "none")
+                            .css("border-top", "none");
+
+                        $detail.css("border-left", "none");
+
+                        $detail
+                            .closest('tr')
+                            .prev()
+                            .children('td')
+                            .css("border-top", "none");
+
+
+                    });
+
+                    $edit.click(function () {
+                        var ids = getIdSelections();
+                        location.href = "Prijava/edit?id=" + ids;
+                    });
+
+                    $create.click(function () {
+                        location.href = "Prijava/create";
+                    });
+
+                });
+
+
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                       
+                        return row.PrijavaId
+                    });
+                }
+
+                function queryParams(p) {
+
+                    var params = {
+                        pageNumber: pageNumber,
+                        pageSize: pageSize,
+                        searchTerms: searchArray.toString(),
+                        sortColumn: sortColumn,
+                        sortOrder: p.order,
+                        offset: 0,
+                        limit: 10
+                    };
+
+                    return params;
+                }
+                function responseHandler(res) {
+                    return res.rows;
+                }
+
+                function addSearchTerms(table) {
+                    var searchText = "";
+                    var searchColumn = "";
+
+                    searchArray = [];
+
+                    pageNumber = 1;
+                    pageSize = 10;
+
+                    $("table#table :input").each(function () {
+
+
+                        var input = $(this);
+
+
+                        searchText = input.val();
+                        searchColumn = input.attr('id');
+                        if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                        {
+                            //alert(input.val() + " ---- " + input.attr('id'));
+
+                            if (input.val() == "on") {
+                                searchText = input.is(":checked");
+                            }
+
+                            //searchConcatenate += searchColumn + ":" + searchText + ",";
+                            searchArray.push(searchColumn + ":" + searchText);
+                            //searchT[searchColumn] = searchText;
+                        }
+                    });
+
+                    table.bootstrapTable('refresh');
+                    table.bootstrapTable('showLoading');
+                    table.bootstrapTable('selectPage', 1);
+
+                }
+
+                function formatYesNo(value, row, index) {
+                    return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                }
+
+                function dateFormat(value, row, index) {
+                    return moment(value).format('DD/MM/YYYY');
+                }
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+            </script>
+        }
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@model Bex.Models.Zaposleni
+
+
+@{
+    Layout = null;
+}
+
+
+
+@using (Ajax.BeginForm("CreateObrazovanjePartial", "Zaposleni", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "createObrazovanje" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id, new { Value = @ViewBag.ZaposleniId })
+
+
+        <div class="panel panel-default  " id="div_obrazovanje">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabObrazovanje">Obrazovanje</a>
+                    @if (@ViewBag.AddObrazovanje)
+                    {
+                        <span style="color:green;"> - Uspešno ste dodali podatke...</span>
+                    }
+                </h4>
+            </div>
+            <div id="tabObrazovanje" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../Zaposleni">Zaposleni</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Unos podataka vezanih za obrazovanje zaposlenog</h3>
+                            <hr>
+                            <p>Izaberite stručnu spremu i nivo obrazovanja...</p>
+
+                        </div>
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="StrucnaSpremaId">SS</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("StrucnaSpremaId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StrucnaSpremaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="ZanimanjeId">Zanimanje</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownList("ZanimanjeId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ZanimanjeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" value="Sačuvaj" class="btn btn-default btn-xs" />
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ 
+
+
+
+}

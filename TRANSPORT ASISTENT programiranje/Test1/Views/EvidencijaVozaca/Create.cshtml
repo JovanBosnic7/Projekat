@@ -1,0 +1,203 @@
+﻿@model Bex.Models.EvidencijaVozaca
+
+@{
+    ViewBag.Title = "Evidencija - dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Evidencija radnog vremena za @ViewBag.Zaposleni  <small> Evidencija vremena vožnje</small></h1>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="../EvidencijaVozaca">Evidencija radnog vremena</a>
+            </li>
+            <li class="breadcrumb-item active">Dodaj</li>
+        </ol>
+
+    </div>
+</div>
+<hr />
+
+<div class="row" style="background:#eee;padding:20px;">
+
+    @*@using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
+    @using (Html.BeginForm("Create", "EvidencijaVozaca", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ZaposleniId, new { id = "ZaposleniId" })
+
+
+        <div>
+            <label class="control-label col-sm-2" for="zaposleni">Zaposleni </label>
+            <div class="col-sm-10">
+                <input id="zaposleni" class="form-control">
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Datum</label>
+            <div class="col-sm-10">
+                <div class="'input-group'" type="text">
+                    @Html.TextBoxFor(model => model.Datum, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-voznje" })
+                </div>
+            </div>
+        </div>
+        @*<div>
+                <label class="control-label col-sm-2">Vreme</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Vreme, new { @class = " form-control timepicker-sipanja" })
+
+                </div>
+            </div>*@
+        <div>
+            <label class="control-label col-sm-2">Vreme početka</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.VremePocetka, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VremePocetka, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Vreme završetka</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.VremeZavrsetka, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VremeZavrsetka, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Radni dan</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.RadniDan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RadniDan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Dnevno RV</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.DnevnoRadnoVreme, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DnevnoRadnoVreme, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Upravljanje vozilom</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.UpravljanjeVozilom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UpravljanjeVozilom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Ostalo RV</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.OstaloRadnoVreme, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OstaloRadnoVreme, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Vr. raspoloživosti</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.VremeRaspolozivosti, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VremeRaspolozivosti, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Vr. odmora</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.VremeOdmora, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VremeOdmora, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Plaćeno odsustvo</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.PlacenoOdsustvo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PlacenoOdsustvo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2">Noćni rad</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.NocniRad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NocniRad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div>
+            <label class="control-label col-sm-2"></label>
+            <div class="col-sm-10">
+                <div class="col-sm-4">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary pull-right " />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryDatePickerForm")
+            @Scripts.Render("~/bundles/jqueryval")
+            <script type="text/javascript">
+
+                $('.datepicker-dat-voznje').datepicker({ dateFormat: 'dd-mm-yy' });
+                $('.datepicker-dat-voznje').attr("autocomplete", "off");
+
+                $(document).ready(function () {
+
+                    $("#zaposleni").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: "../EvidencijaVozaca/GetZaposleni?query=" + request.term,
+                                dataType: "json",
+                                success: function (data) {
+                                    response($.map(data, function (v, i) {
+                                        return {
+                                            value: v.Name,
+                                            id: v.Id
+                                        };
+                                    }));
+                                }
+                            })
+                        },
+                        minLength: 2,
+                        select: function (event, ui) {
+                            $('#ZaposleniId').val(ui.item.id);
+                        }
+                    });
+
+
+                });
+
+               
+                $.validator.methods.date = function (value, element) {
+                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+                }
+                function OnSuccess(response) {
+                    alert(response);
+                    window.close();
+                }
+
+                function OnFailure(response) {
+                    alert(response);
+                }
+
+                $("form").bind("keydown", function (e) {
+                    if (e.keyCode === 13) return false;
+                });
+              
+                $(function () {
+                    $.validator.methods.date = function (value, element) {
+                        if ($.browser.webkit) {
+                            //ES - Chrome does not use the locale when new Date objects instantiated:
+                            var d = new Date();
+
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                        }
+                        else {
+                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                        }
+                    };
+                });
+
+                
+
+            </script>
+        }
+

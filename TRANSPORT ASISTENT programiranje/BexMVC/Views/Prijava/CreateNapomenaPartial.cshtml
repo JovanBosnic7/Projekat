@@ -1,0 +1,24 @@
+﻿@model Bex.Models.PrijavaNapomena
+
+
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+    $('#tablePrijavaNapomena_' +@Model.PrijavaId).bootstrapTable('refresh');
+</script>
+
+
+@using (Ajax.BeginForm("CreateNapomenaPartial", "Prijava", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "createNapomena_" + Model.PrijavaId }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PrijavaId, new { Value = Model.PrijavaId })
+    <div class="row" style="margin-top:5px;">
+        <div class="col-lg-10"><input type="text" class="form-control" id="napomena" placeholder="Unesi napomenu" name="napomena"></div>
+
+        <div class="col-lg-2">
+            <button type="submit" class="btn-sm btn-default ">Potvrdi unos</button>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,216 @@
+﻿@*@model PagedList.PagedList < EFproject.ViewModels.KontaktIndexData>*@
+@model BexMVC.ViewModels.ZaposleniIndexData
+@*@using PagedList.Mvc;*@
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+@{
+    ViewBag.Title = "Zaposleni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Evidencija zaposleni</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                &nbsp;
+                <div class="pull-left">
+                    @using (Html.BeginForm("", "Kontakt", FormMethod.Get))
+            {
+                        <p>
+                            Pretraga po imenu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                            <input type="submit" value="Trazi" />
+                        </p>
+                    }
+
+                </div>
+
+
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Opcije
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                @Html.ActionLink("Dodaj zaposlenog", "Create")
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Stampaj</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Zaposleni/th>
+                    <th>Region</th>
+                    <th>Sektor</th>
+                    <th>D. zaposlenja</th>
+                    <th>Radno mesto</th>
+                    <th>Status</th>
+                    <th>F. radi</th>
+                    <th>Sef</th>
+                    <th>Banke ovlascen</th>
+                    <th>Napomena</th>
+                    <th>Aktivan</th>
+                </tr>
+                @foreach (var item in Model.Zaposleni)
+                {
+                    string selectedRow = "";
+                    if (item.Id == ViewBag.Id)
+                    {
+                        selectedRow = "success";
+                    }
+                    <tr class="@selectedRow" valign="top">
+                        <td>
+                            @Html.ActionLink("Select", "Index", new { id = item.Id}) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                        <td>
+                            @item.SektorId @*ovde treba da bude ima zaposlenog*@
+                        </td>
+                        <td>
+                            @item.RegionId
+                        </td>
+                        <td>
+                            @item.SektorId
+                        </td>
+                        <td>
+                            @item.DatumZaposlenja
+                        </td>
+                        <td>
+                            @item.RadnoMestoId
+                        </td>
+                        <td>
+                            @item.StatusRadnika
+                        </td>
+                        <td>
+                            @item.FirmaUkojojRadiId
+                        </td>
+                        <td>
+                            @item.KontaktSefId
+                        </td>
+                        <td>
+                            @item.OvlascenZaBanke
+                        </td>
+                        <td>
+                            @item.Napomena
+                        </td>
+                        <td>
+                            @item.Aktivan
+                        </td>
+
+
+                    </tr>
+                }
+            </table>
+        </div>
+        <br />
+
+        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+        <ul class="nav nav-tabs">
+            <li class="">
+                <a href="#zaposleniPlata" data-toggle="tab" aria-expanded="false">Plata</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="zaposleniPlata">
+                @if (Model.ZaposleniPlata != null)
+                {
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Detalji o plati
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Opcije
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li>
+                                            <a href="#">Dodaj novu platu</a>
+                                        </li>                                       
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th>Firma</th>
+                                <th>Keoficijent</th>
+                                <th>Na racun</th>
+                                <th>Doprinosi</th>
+                                <th>Bruto</th>
+                                <th>Minimalac</th>
+                                <th>Kes</th>
+                                <th>Neto</th>
+                                <th>Ukupno</th>
+                                <th>Napomena</th>
+                            </tr>
+
+                           
+                            @foreach (var plata in Model.ZaposleniPlata)
+                            {
+                                <tr>
+                                    <td>
+                                        @plata.FirmaPlataId
+                                    </td>
+                                    <td>
+                                        @plata.PlataKoeficijent
+                                    </td>
+                                    <td>
+                                        @plata.PlataNaRacun
+                                    </td>
+                                    <td>
+                                        @plata.PlataDoprinosi
+                                    </td>
+                                    <td>
+                                        @plata.PlataBruto
+                                    </td>
+                                    <td>
+                                        @plata.PlataMinimalac
+                                    </td>
+                                    <td>
+                                        @plata.PlataKes
+                                    </td>
+                                    <td>
+                                        @plata.PlataNeto
+                                    </td>
+                                    <td>
+                                        @plata.PlataUkupno
+                                    </td>
+                                    <td>
+                                        @plata.PlataNapomena
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+</div>
+</div>

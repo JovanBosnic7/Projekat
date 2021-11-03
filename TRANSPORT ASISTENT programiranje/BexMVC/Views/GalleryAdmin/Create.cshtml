@@ -1,0 +1,168 @@
+﻿@model BexMVC.ViewModels.ImageEditorViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="card">
+
+                <div class="card-header card-header-primary">
+
+                    <h2 class="card-title" style="color:#666;">Unos dokumenata</h2>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container">
+                        <div class="container-fluid" style="margin-bottom:10px;">
+
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="../Zaposleni">Dokumenta</a>
+                                </li>
+                                <li class="breadcrumb-item active">Dodaj</li>
+                            </ol>
+
+                            <!-- Page Content -->
+                            <h3>Dodavanje dokumenata, slika </h3>
+                            <hr>
+                            <p>Kliknite na choose file i pronadjite fajl koji zelite da dodate</p>
+
+                        </div>
+                        @using (Html.BeginForm("Create", "GalleryAdmin", FormMethod.Post, new { enctype = "multipart/form-data", Id = "frmAddImage" }))
+                        {
+                        <div class="form-horizontal">
+                            @Html.HiddenFor(model => model.TipId, new { Value = @ViewBag.TipId })
+                            @Html.HiddenFor(model => model.StraniId, new { Value = @ViewBag.Id })
+                            @Html.HiddenFor(model => model.isProfile, new { Value = @ViewBag.IsProfile })
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Caption, "Naziv:", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label class="pull-right">  Izaberite fajl:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.FileImage, new { type = "file" })
+                                    @Html.ValidationMessageFor(model => model.FileImage, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-sm-10">
+                                    <div class="btn-group pull-right ">
+                                        <input type="submit" id="btnAddImage" value="Sačuvaj" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a>Galerija dokumenata </a>
+                            </h4>
+                        </div>
+                        
+                            <div class="panel-body">
+                                <div class="container">
+                                    <div id="ListPanel" data-url="@Url.Action("_List")">
+                                        @Html.Action("_List", new { tipId = ViewBag.TipId, id = ViewBag.Id })
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    </div>
+            </div>
+
+        </div>
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type="text/javascript">
+
+            $(function () {
+                $("#btnAddImage").on("click", function (e) {
+                    var $form = $("#frmAddImage");
+                    $form.validate();
+                    if (!$form.valid()) {
+                        return false;
+                    }
+
+                    e.preventDefault();
+                    var formData = new FormData();
+                    var data = $form.find(':input[name]:not(:disabled)').filter(':not(:checkbox), :checked').map(function () {
+                        var input = $(this);
+
+                        if (input.attr('type') == "file") {
+
+                            formData.append(input.attr('name'), input[0].files[0]);
+                            return {
+                                name: input.attr('name'),
+                                value: input[0].files[0]
+                            };
+                        } else {
+                            formData.append(input.attr('name'), input.val());
+                            return {
+                                name: input.attr('name'),
+                                value: input.val()
+                            };
+                        }
+                    }).get();
+
+                    $.ajax({
+                        url: '/GalleryAdmin/Create',
+                        data: formData,
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        success: function (data, textStatus, jqXHR) {
+                            if (data.success == true) {
+                                $("#successmessage").html(data.Caption + " has been added successfully").show().delay(5000).fadeOut();
+                                $("#ListPanel").load($("#ListPanel").data("url"));
+                                $("#ImagePanel").load($("#ImagePanel").data("url"));
+                                return true;
+                            }
+                            if (data.ExceptionMessage) {
+                                $("#errormessage").html(data.ExceptionMessage).show().delay(5000).fadeOut();
+                                return false;
+                            }
+                            if (data.ValidationMessage) {
+                                $("#errormessage").html(data.ExceptionMessage).show().delay(5000).fadeOut();
+                                return false;
+                            }
+                            return false;
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $("#errormessage").html(textStatus).show().delay(5000).fadeOut();
+                        },
+                        complete: function (jqXHR, textStatus) {
+                        }
+                    });
+
+                });
+            });
+        </script>
+    </div>
+</div>

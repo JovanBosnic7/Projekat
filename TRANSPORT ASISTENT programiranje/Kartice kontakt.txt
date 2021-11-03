@@ -1,0 +1,469 @@
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="detailsKontaktFPlice">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Detalji o kontaktu
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Opcije
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li>
+                                    @if (ViewBag.IsPravno != null)
+                                    {
+                                        if (!ViewBag.IsPravno)
+                                        {
+                                            @Html.ActionLink("Dodaj ", "../KontaktFizickoLice/CreateFL", new { kontaktId = ViewBag.KontaktId })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Dodaj ", "../KontaktPravnaLica/CreatePL", new { kontaktId = ViewBag.KontaktId })
+                                        }
+                                    }
+                                    </li>
+                                    <li>
+                                        <a href="#">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    @if (Model.KontaktsFizickaLica != null)
+                    {
+
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>D. rodjenja</th>
+                                <th>Mesto rodjenja</th>
+                                <th>Drzavljanstvo</th>
+                                <th>Broj lk</th>
+                                <th>D. isteka lk</th>
+                                <th>Mesto izdavanja lk</th>
+                                <th>Broj vozacke</th>
+                                <th>D. isteka vozacke</th>
+                                <th>Kategorije</th>
+                                <th>Mesto izdavanja vozacke</th>
+                                <th>Broj pasosa</th>
+                                <th>D. isteka pasosa</th>
+                                <th>Mesto izdavanja pasosa</th>
+                                <th>Pol</th>
+                            </tr>
+
+                            @{
+                                var item = Model.KontaktsFizickaLica;
+                            }
+
+
+                            <tr>
+                                <td>
+                                    @*@Html.ActionLink("Select", "Index", new { kontaktId = item.KontaktId })*@
+                                    @Html.ActionLink(" ", "../KontaktFizickoLice/Edit", new { id = item.Id, kontaktId = item.KontaktId }, new { @class = "glyphicon glyphicon-pencil" })
+
+                                </td>
+                                <td>
+
+                                    @item.DatumRodjenja;
+                                </td>
+                                <td>
+                                    @item.MestoRodjenja
+                                </td>
+                                <td>
+                                    @item.Drzavljanstvo
+                                </td>
+                                <td>
+                                    @item.BrojLicneKarte
+                                </td>
+                                <td>
+                                    @item.DatumIstekaLicneKarte
+                                </td>
+                                <td>
+                                    @item.MestoIzdavanjaLicneKarte
+                                </td>
+                                <td>
+                                    @item.BrojVozackeDozvole
+                                </td>
+                                <td>
+                                    @item.DatumIstekaVozackeDozvole
+                                </td>
+                                <td>
+                                    @item.KategorijaVozackeDozvole
+                                </td>
+                                <td>
+                                    @item.MestoIzdavanjaVozackeDozvole
+                                </td>
+                                <td>
+                                    @item.BrojPasosa
+                                </td>
+                                <td>
+                                    @item.DatumIstekaPasosa
+                                </td>
+                                <td>
+                                    @item.MestoIzdavanjaPasosa
+                                </td>
+                                <td>
+                                    @item.Pol
+                                </td>
+                            </tr>
+
+
+                        </table>
+
+                                }
+                </div>
+                @if (Model.KontaktsPravnaLica != null)
+                {
+                    @*<h3>Detaljit by Selected Kontakt</h3>*@
+                    <div class="panel panel-success">
+                            <table class="table">
+                                <tr>
+                                    <th></th>
+                                    <th>PIB</th>
+                                    <th>Maticni broj</th>
+                                    <th>Direktor</th>
+                                    @*<th>Delatnost</th>*@
+                                </tr>
+
+                                @{
+                                    var itemPravno = Model.KontaktsPravnaLica;
+                                }
+
+
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(" ", "../KontaktPravnaLica/Edit", new { id = itemPravno.Id, kontaktId = itemPravno.KontaktId }, new { @class = "glyphicon glyphicon-pencil" })
+                                    </td>
+                                    <td>
+                                        @itemPravno.PIB
+                                    </td>
+                                    <td>
+                                        @itemPravno.MaticniBroj
+                                    </td>
+                                    <td>
+                                        @itemPravno.Direktor
+                                    </td>
+                                    @*<td>
+                        @itemPravno.KontaktDelatnost.NazivDelatnosti
+                    </td>*@
+                                </tr>
+
+
+                            </table>
+                        </div>
+                                }
+            </div>
+            <div class="tab-pane fade" id="kontaktAdrese">
+                @if (Model.KontaktAdresa != null)
+                {
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Detalji o adresi
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Opcije
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li>
+                                            @Html.ActionLink("Dodaj ", "../KontaktAdresa/Create", new { kontaktId = ViewBag.KontaktId })
+                                        </li>                                       
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <table class="table">
+                            <tr>
+                                @*<th>Id</th>
+                                <th>KontaktId</th>*@
+                                <th></th>
+                                <th>Pak</th>
+                                <th>Broj</th>
+
+                            </tr>
+                            @foreach (var adresa in Model.KontaktAdresa)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(" ", "../KontaktAdresa/Edit", new { id = adresa.Id }, new { @class = "glyphicon glyphicon-pencil" }) |
+
+                                        @Html.ActionLink(" ", "../KontaktAdresa/Delete", new { id = adresa.Id }, new { @class = "glyphicon glyphicon-remove" })
+                                     </td>
+                                    <td>
+                                        @adresa.PakId
+                                    </td>
+                                    <td>
+                                        @adresa.BrojTxt
+                                    </td>
+
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="tab-pane fade" id="kontaktTel">
+
+                @if (Model.KontaktTelefon != null)
+                {
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Detalji o telefonima
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Opcije
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li>
+                                            @Html.ActionLink("Dodaj ", "../KontaktTelefon/Create", new { kontaktId = ViewBag.KontaktId })
+                                      
+                                        </li>
+                                        <li>
+                                            <a href="#">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>Kontakt osoba</th>
+                                <th>Telefon</th>
+
+
+                            </tr>
+                            @foreach (var tell in Model.KontaktTelefon)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(" ", "../KontaktTelefon/Edit", new { id = tell.Id }, new { @class = "glyphicon glyphicon-pencil" }) |
+
+                                        @Html.ActionLink(" ", "../KontaktTelefon/Delete", new { id = tell.Id }, new { @class = "glyphicon glyphicon-remove" })
+                                    </td>
+                                    <td>
+                                        @tell.KontaktOsoba
+                                    </td>
+                                    <td>
+                                        @tell.Telefon
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="tab-pane fade" id="kontaktEmail">
+
+                @if (Model.KontaktEmail != null)
+                {
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Detalji o email adresi
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Opcije
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li>
+                                            @Html.ActionLink("Dodaj ", "../KontaktEmail/Create", new { kontaktId = ViewBag.KontaktId })
+                                        </li>
+                                        <li>
+                                            <a href="#">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>Email adresa</th>
+
+
+                            </tr>
+                            @foreach (var email in Model.KontaktEmail)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(" ", "../KontaktEmail/Edit", new { id = email.Id }, new { @class = "glyphicon glyphicon-pencil" }) |
+
+                                        @Html.ActionLink(" ", "../KontaktEmail/Delete", new { id = email.Id }, new { @class = "glyphicon glyphicon-remove" })
+                                    </td>
+                                    <td>
+                                        @email.EmailAdresa
+                                    </td>
+
+
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="tab-pane fade" id="kontaktZiroRacuni">
+
+                @if (Model.KontaktZiroRacun != null)
+                {
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Detalji o ziro racunima
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Opcije
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li>
+                                            @Html.ActionLink("Dodaj ", "../KontaktZiroRacun/Create", new { kontaktId = ViewBag.KontaktId })
+                                        </li>
+                                        <li>
+                                            <a href="#">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>Banka</th>
+                                <th>Ziro racun</th>                          
+
+
+                            </tr>
+                            @foreach (var zr in Model.KontaktZiroRacun)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(" ", "../KontaktZiroRacun/Edit", new { id = zr.Id }, new { @class = "glyphicon glyphicon-pencil" }) |
+
+                                        @Html.ActionLink(" ", "../KontaktZiroRacun/Delete", new { id = zr.Id }, new { @class = "glyphicon glyphicon-remove" })
+                                    </td>
+                                    <td>
+                                        @zr.Banka
+                                    </td>
+                                    <td>
+                                        @zr.BrojZiroRacuna
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="tab-pane fade" id="kontaktDelatnost">
+
+                @if (Model.KontaktDelatnost != null)
+                {
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Detalji o delatnosti
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Opcije
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li>
+                                            @Html.ActionLink("Dodaj ", "../KontaktDelatnost/Create", new { kontaktId = ViewBag.KontaktId })
+                                        </li>
+                                        <li>
+                                            <a href="#">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Something else here</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Separated link</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>Sifra delatnosti</th>
+                                <th>Naziv delatnosti</th>
+
+
+                            </tr>
+                            @foreach (var del in Model.KontaktDelatnost)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(" ", "../KontaktDelatnost/Edit", new { id = del.Id }, new { @class = "glyphicon glyphicon-pencil" }) |
+
+                                        @Html.ActionLink(" ", "../KontaktDelatnost/Delete", new { id = del.Id }, new { @class = "glyphicon glyphicon-remove" })
+                                    </td>
+                                    <td>
+                                        @del.SifraDelatnosti
+                                    </td>
+                                    <td>
+                                        @del.NazivDelatnosti
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>

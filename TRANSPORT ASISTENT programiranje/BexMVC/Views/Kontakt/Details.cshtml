@@ -1,0 +1,284 @@
+﻿@model BexMVC.ViewModels.KontaktIndexData
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<div>
+
+    <script type="text/javascript">
+
+        var $tableFizicko = $('#tableFizicko_'+@ViewBag.KontaktId);
+        $tableFizicko.bootstrapTable({
+            url: '/Kontakt/GetFizickoData?id=' +@ViewBag.KontaktId,
+            formatNoMatches: function () {
+                return ' Nema podataka ';
+            }
+        });
+
+        var $tablePravno = $('#tablePravno_'+@ViewBag.KontaktId);
+        $tablePravno.bootstrapTable({
+            url: '/Kontakt/GetPravnoData?id=' +@ViewBag.KontaktId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableTelefon = $('#tableTelefon_'+@ViewBag.KontaktId);
+        $tableTelefon.bootstrapTable({
+            url: '/Kontakt/GetTelefoniData?id=' +@ViewBag.KontaktId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableEmail = $('#tableEmail_'+@ViewBag.KontaktId);
+        $tableEmail.bootstrapTable({
+            url: '/Kontakt/GetEmailData?id=' +@ViewBag.KontaktId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableAdresa = $('#tableAdresa_'+@ViewBag.KontaktId);
+        $tableAdresa.bootstrapTable({
+            url: '/Kontakt/GetAdresalData?id=' +@ViewBag.KontaktId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableZiroRacun = $('#tableZiroRacun_'+@ViewBag.KontaktId);
+        $tableZiroRacun.bootstrapTable({
+            url: '/Kontakt/GetZiroRacunData?id=' +@ViewBag.KontaktId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+        var $tableDelatnost = $('#tableDelatnost_'+@ViewBag.KontaktId);
+        $tableDelatnost.bootstrapTable({
+            url: '/Kontakt/GetDelatnostData?id=' +@ViewBag.KontaktId,
+                formatNoMatches: function () {
+                    return ' Nema podataka ';
+                }
+        });
+
+
+        function dateFormat(value, row, index) {
+            return moment(value).format('DD/MM/YYYY');
+        }
+
+        function timeFormat(value, row, index) {
+            return moment(value).format('HH:MM:SS');
+        }
+
+
+    </script>
+
+    <div class="panel-group" id="accordion">
+
+        @*-------------------------FIZICKO------------------------------------*@
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabFizicko_@ViewBag.KontaktId">Fizičko</a>
+                </h4>
+            </div>
+            <div id="tabFizicko_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableFizicko_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+
+                                <th data-field="MaticniBroj">JMBG</th>
+                                <th data-field="DatumRodjenja" data-formatter="dateFormat">Datum rođenja</th>
+                                <th data-field="MestoRodjenja">Mesto rođenja</th>
+                                <th data-field="Drzavljanstvo">Državljanstvo</th>
+                                <th data-field="BrojLicneKarte">Broj LK</th>
+                                <th data-field="DatumIstekaLicneKarte" data-formatter="dateFormat">D. isteka LK</th>
+                                <th data-field="MestoIzdavanjaLicneKarte">Mesto LK</th>
+                                <th data-field="BrojVozackeDozvole">Broj vozačke</th>
+                                <th data-field="DatumIstekaVozackeDozvole" data-formatter="dateFormat">D. isteka vozačke</th>
+                                <th data-field="KategorijaVozackeDozvole">Kategorija</th>
+                                <th data-field="MestoIzdavanjaVozackeDozvole">Mesto vozačke</th>
+                                <th data-field="BrojPasosa">Broj pasoša</th>
+                                <th data-field="DatumIstekaPasosa" data-formatter="dateFormat">D. isteka pasoša</th>
+                                <th data-field="MestoIzdavanjaPasosa">Mesto pasoša</th>
+                                <th data-field="Pol">Pol</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*-------------------------PRAVNO------------------------------------*@
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabPravno_@ViewBag.KontaktId">Pravno</a>
+                </h4>
+            </div>
+            <div id="tabPravno_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tablePravno_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+
+                                <th data-field="Poslovnica">Poslovnica</th>
+                                <th data-field="Sediste">Sedište</th>
+                                <th data-field="PIB">PIB</th>
+                                <th data-field="MaticniBroj">Matični broj</th>
+                                <th data-field="Delatnost">Delatnost</th>
+                                <th data-field="Direktor">Direktor</th>
+                                <th data-field="Sajt">Sajt</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*-------------------------TELEFON------------------------------------*@
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabTelefon_@ViewBag.KontaktId">Telefoni</a>
+                </h4>
+            </div>
+            <div id="tabTelefon_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableTelefon_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+
+                                <th data-field="KontaktOsoba">Kontakt</th>
+                                <th data-field="Telefon">Telefon</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*-------------------------EMAIL------------------------------------*@
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabEmail_@ViewBag.KontaktId">Email adrese</a>
+                </h4>
+            </div>
+            <div id="tabEmail_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableEmail_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="EmailAdresa">Email</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*-------------------------ADRESE------------------------------------*@
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabAdresa_@ViewBag.KontaktId">Adrese</a>
+                </h4>
+            </div>
+            <div id="tabAdresa_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableAdresa_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+                                <th data-field="Adresa">Adresa</th>
+                                <th data-field="BrojTxt">Broj</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*-------------------------ZIRO RACUN------------------------------------*@
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabZiroRacun_@ViewBag.KontaktId">Žiro račun</a>
+                </h4>
+            </div>
+            <div id="tabZiroRacun_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableZiroRacun_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+
+                                <th data-field="Banka">Banka</th>
+                                <th data-field="BrojZiroRacuna">Račun</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @*-------------------------DELATNOST------------------------------------*@
+        <div class="panel panel-default  ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#tabDelatnost_@ViewBag.KontaktId">Delatnosti</a>
+                </h4>
+            </div>
+            <div id="tabDelatnost_@ViewBag.KontaktId" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table id="tableDelatnost_@ViewBag.KontaktId">
+
+                        <thead>
+
+                            <tr>
+
+                                <th data-field="SifraDelatnosti">Šifra</th>
+                                <th data-field="NazivDelatnosti">Naziv</th>
+                            </tr>
+
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+

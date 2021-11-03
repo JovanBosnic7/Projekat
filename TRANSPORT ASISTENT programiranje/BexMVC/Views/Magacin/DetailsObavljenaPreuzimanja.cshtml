@@ -1,0 +1,437 @@
+﻿@model BexMVC.ViewModels.MagacinIndexData
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">UKUPNO PREUZIMANJA DANAS </h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div id="toolbar">
+
+            @*<div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                @Html.DropDownList("NapomenePreuzimanja", (SelectList)ViewBag.NapomenePreuzimanja, "    ", new { @class = "form-control input-sm" })
+            </button>
+        </div>*@
+            @*<div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                @Html.DropDownList("NapomeneDostave", (SelectList)ViewBag.NapomeneDostave, "    ", new { @class = "form-control input-sm" })
+            </button>
+        </div>*@
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-list-alt"></i> Napomene za preuzimanja
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    @foreach (var item in ViewBag.NapomenePreuzimanja)
+                    {
+                        <li>
+                            <a href="#" id="@item.Id" class="napomenaDostave"> @item.NazivPodTipa2</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+            @*<div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-list-alt"></i> Napomene za preuzimanja
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    @foreach (var item in ViewBag.NapomenePreuzimanja)
+                    {
+                        <li>
+
+                            <a href="/Magacin/DetailsObavljeneDostave?napomenaId=@item.Id&reonId=@ViewBag.ReonId"> @item.NazivPodTipa2</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>*@
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Opcije
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    @*<li id="zona">
+                        @Html.ActionLink("Ubaci u zonu", "")
+                    </li>
+                    <li id="alarm">
+                        <a href="#">Alarm</a>
+                    </li>
+                    <li class="divider"></li>*@
+                    <li>
+                        <a href="#">Stampaj</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+            <table id="table"
+                   data-pagination="true"
+                   data-side-pagination="server"
+                   data-query-params="queryParams"
+                   @*data-show-columns="true"*@
+               data-show-export="true"
+                   @*data-export-data-type="selected"*@
+               data-export-types="['csv', 'excel', 'pdf']"
+                   @*data-detail-view="true"*@
+                   @*data-detail-formatter="detailFormatter"*@
+                   data-striped="true"
+                   data-page-list="[10, 25, 50, 100]"
+                   data-toolbar="#toolbar">
+
+                <thead>
+                    <tr>
+                        <th data-checkbox="true" data-footer-formatter="totalTextFormatter" rowspan="2"></th>
+                        <th>
+                            <input name="search" id="StatusZadatka" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input type='text' id="PosiljkaId" placeholder="Search" class="form-control input-sm" />
+                        </th>
+                        <th>
+                            <input name="search" id="TipZadatka" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="KontaktOsoba" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="KontaktTel" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="KontaktTel2" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="NapomenaZadatak" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+
+                        <th>
+                            <input name="search" id="Reon" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="DatumObavljanja" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="VremeObavljanja" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="Izvrsio" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                        <th>
+                            <input name="search" id="Aktuelan" class="form-control input-sm" type="text" placeholder="Search">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th data-field="StatusZadatka" data-formatter="statusFormat">Status</th>
+                        <th data-field="PosiljkaId" data-formatter="DetailsPosiljkeLink">Id</th>
+                        <th data-field="TipZadatka">Tip</th>
+                        <th data-field="KontaktOsoba">Kontakt</th>
+                        <th data-field="KontaktTel">Telefon 1</th>
+                        <th data-field="KontaktTel2">Telefon 2</th>
+                        <th data-field="NapomenaZadatak">Napomena</th>
+
+                        <th data-field="Reon">Reon</th>
+                        <th data-field="DatumObavljanja" data-formatter="dateFormat">Dat. izvr.</th>
+                        <th data-field="VremeObavljanja" data-formatter="timeFormat">Vr. izvr.</th>
+                        <th data-field="Izvrsio">Izvrsio</th>
+                        <th data-field="Aktuelan" data-formatter="dateFormat">Aktuelan od</th>
+                    </tr>
+                </thead>
+
+            </table>
+
+            <br />
+
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+
+
+                <script type="text/javascript">
+                var $table = $('#table');
+                var $search = $('#table #search');
+                var $ok = $('#ok');
+                var pageSize = 10;
+                var pageNumber = 1;
+                //var searchText = "";
+                //var searchColumn = "";
+                var sortColumn = "";
+                var sortOrder = "";
+                var searchArray = [];
+
+                //var searchTerms = "";
+                //var searchConcatenate = "";
+
+                $table.bootstrapTable({
+                    url: '/Magacin/GetObavljenaPreuzimanjaDetailsData'
+                });
+
+                var  selections = [];
+
+                $(document).ready(function () {
+
+
+                    $table.on('check.bs.table uncheck.bs.table ' +
+                        'check-all.bs.table uncheck-all.bs.table', function () {
+
+                            //alert("Selekotovan: " + getIdSelections());
+                            // save your data, here just save the current page
+                            selections = getIdSelections();
+
+
+                            //if (selections.length == 1) {
+                            //    $remove.prop('disabled', false); //!$table.bootstrapTable('getSelections').length
+                            //    $edit.prop('disabled', false);
+
+                            //} else {
+                            //    $remove.prop('disabled', true);
+                            //    $edit.prop('disabled', true);
+                            //}
+
+                            // push or splice the selections if you want to save all data selections
+                        });
+
+                    $table.on('page-change.bs.table', function (e, number, size) {
+                        pageNumber = number;
+                        pageSize = size;
+
+                        $table.bootstrapTable('refresh');
+                        //$table.bootstrapTable('destroy').bootstrapTable({
+                        //    url: "/Posiljka/GetPosiljkaData",
+                        //    pageNumber: number
+                        //});
+
+                    });
+
+                    $table.on('sort.bs.table', function (order, name) {
+                        //alert(name + " ---- " + order);
+                        //console.log("Name: " + name);
+                        //alert("dadsdasd");
+                        sortColumn = name;
+                        //sortOrder = order;
+
+                        //$table.bootstrapTable('refresh');
+                        //$table.bootstrapTable('destroy').bootstrapTable({
+                        //    url: "/Posiljka/GetPosiljkaData",
+                        //    pageNumber: number
+                        //});
+
+                    });
+
+                    $("#table select").change(function () {
+
+                        addSearchTerms($table);
+
+                    });
+
+                    $("#table input").keypress(function (event) {
+                        if (event.which == 13) {
+
+                            event.preventDefault();
+                            addSearchTerms($table);
+                        }
+
+                    });
+
+                    $('#toolbar').find('select').change(function () {
+                        $('#table').bootstrapTable('destroy').bootstrapTable({
+                            exportDataType: $(this).val()
+                        });
+                    });
+
+
+                    $('.napomenaDostave').click(function () {
+                        var ids = getIdSelections();
+                       
+                        var napomenaId = $(this).attr('id');
+                        //alert(ids);
+                        //for (var i = 0; i <= ids.length; i++) {
+                        //    //alert(ids[i].posiljkaId);
+                        //    alert(ids[i].tipZadatka);
+                        //}
+
+                        var postData = { reonId: @ViewBag.ReonId, kurirId:@ViewBag.KurirId, napomenaId: napomenaId, selectedValues: ids };
+                        console.log(postData);
+
+                        $.ajax({
+                            url: "./UpisiNapomenu",
+                            type: 'POST',
+                            dataType: "json",
+                            traditional: true,
+                            data: JSON.stringify(postData),
+                            contentType: "application/json; charset=utf-8",
+                            @*data: {
+                                posiljkeIds: ids,
+                                reonId: @ViewBag.ReonId,
+                                napomenaId: napomenaId
+                            },*@
+                            success: function (data) {
+                                alert("Uspesno ste upisali napomenu!");
+                                location.reload();
+                            },
+                            error: function () {
+                                alert('Ajax error!');
+                            }
+                        });
+                        //location.href = "Kontakt/Edit?id=" + ids;
+
+                    });
+
+                });
+
+
+                
+
+                function getIdSelections() {
+                    return $.map($table.bootstrapTable('getSelections'), function (row) {
+                        var paramsSelection = { posiljkaId: row.PosiljkaId, tipZadatka: row.TipZadatka };
+                        return paramsSelection
+                    });
+                }
+
+                function queryParams(p) {
+                    //var params = {};
+
+                    //$('#toolbar').find('input[name]').each(function () {
+                    //    params[$(this).attr('name')] = $(this).val();
+                    //});
+                    var params = {
+                        pageNumber: pageNumber,
+                        pageSize: pageSize,
+                        searchTerms: searchArray.toString(),
+                        sortColumn: sortColumn,
+                        sortOrder: p.order,
+                        offset: 0,
+                        limit: 10,
+                        reonId: @ViewBag.ReonId,
+                        kurirId:  @ViewBag.KurirId
+                    };
+
+                    //searchConcatenate = "";
+                    //searchTerms = "";
+                    //console.log("ARRAY: ", searchArray.toString());
+                    //alert("PARAMS: " + pageNumber);
+
+
+                    return params;
+                }
+
+                function responseHandler(res) {
+                    return res.rows;
+                }
+                //$("#table").colResizable();
+                //$('#tableVP').dragtable();
+
+              
+                function addSearchTerms(table) {
+                    var searchText = "";
+                    var searchColumn = "";
+
+                    searchArray = [];
+
+                    pageNumber = 1;
+                    pageSize = 10;
+
+                    $("table#table :input").each(function () {
+
+
+                        var input = $(this);
+
+
+                        searchText = input.val();
+                        searchColumn = input.attr('id');
+                        if (typeof searchColumn !== 'undefined') //&& ((searchColumn == 'KontaktNaziv') || (searchColumn == 'Adresa')
+                        {
+                            //alert(input.val() + " ---- " + input.attr('id'));
+
+                            if (input.val() == "on") {
+                                searchText = input.is(":checked");
+                            }
+
+                            //searchConcatenate += searchColumn + ":" + searchText + ",";
+                            searchArray.push(searchColumn + ":" + searchText);
+                            //searchT[searchColumn] = searchText;
+                        }
+                    });
+
+                    table.bootstrapTable('refresh');
+                }
+
+                function formatYesNo(value, row, index) {
+                    return value == 0 ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                }
+
+                function statusFormat(value, row, index) {
+
+                    return (value == 0 && row.NapomenaZadatak == '') ? '' : '<i class="glyphicon glyphicon-ok"></i>';
+
+                }
+                function DetailsPosiljkeLink(value, row, index) {
+                    
+                    return "<a href='../Posiljka?posiljkaId="+value+"' target='_blank'>" + value + "</a>";
+                }
+
+                //function totalTextFormatter(data) {
+                //    return '&Sigma;';
+                //}
+
+                //function totalFormatter(data) {
+                //    return data.length;
+                //}
+
+                //function totalNameFormatter(data) {
+                //    return data.length;
+                //}
+
+                //function sumFormatter(data) {
+                //    field = this.field;
+                //    return data.reduce(function (sum, row) {
+                //        return sum + (+row[field]);
+                //    }, 0);
+                //}
+
+                //function avgFormatter(data) {
+                //    return sumFormatter.call(this, data) / data.length;
+                //}
+
+                //function ToJavaScriptDate(value) {
+                //    var pattern = /Date\(([^)]+)\)/;
+                //    var results = pattern.exec(value);
+                //    var dt = new Date(parseFloat(results[1]));
+                //    return dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
+
+                //}
+                function dateFormat(value, row, index) {
+
+                    if (value == null) return '';
+                    return moment(value).format('DD/MM/YYYY');
+                }
+
+                function timeFormat(value, row, index) {
+                    if (value == null) return '';
+                    return moment(value).format('HH:MM:SS');
+                }
+
+                $(window).resize(function () {
+                    $('#table').bootstrapTable('resetView');
+                });
+
+
+                </script>
+            }
+        </div>
+</div>
+
+

@@ -1,0 +1,282 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+
+                        <h4 class="card-title-first-page">
+                            <span class="pull-left">Aktivna vozila</span>
+                            <span class="pull-right">
+                                <span id="aktivnaVozila" style="font-weight:bold;"></span> vozila
+                            </span><br />
+                        </h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-car"></i></span>
+                            <span class="pull-right"><a href="/VozniPark?statusId=1"> &nbsp; Vozni park</a></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+                            <span class="pull-left">Vozila na servisu</span>
+                            <span class="pull-right">
+                                <span id="servisVozila" style="font-weight:bold;"></span> vozila
+
+                            </span><br />
+                        </h4>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-automobile"></i> </span>
+                            <span class="pull-right"><a href="/VozniPark?statusId=2">&nbsp;Vozni park</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+                            <span class="pull-left">Nezatvoreni</span>
+                            <span class="pull-right">
+                                <span id="nezatvoreniPutniNalozi" style="font-weight:bold;"></span> putni nalozi
+
+                            </span><br />
+                        </h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-bell"></i> </span>
+                            <span class="pull-right"><a href="/PutniNalog?filterId=1">&nbsp; Putni nalozi</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger ">
+                        <h4 class="card-title-first-page">
+                            <span class="pull-left">Bez putnog naloga</span>
+                            <span class="pull-right">
+                                <span id="bezPutnogNaloga" style="font-weight:bold;"></span> vozila
+                            </span><br />
+                        </h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <span class="pull-left"><i class="fa fa-bell"></i> </span>
+                            <span class="pull-right"><a href="/PutniNalog?putniNalog=0">&nbsp; Putni nalozi</a> </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+            <div class="col-lg-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title" style="color:#666;">
+                            <span id="lbl_naslov_line">Evidencija alarma</span>
+                        </h3>
+                    </div>
+                    <!-- /.col-lg-12 -->
+
+                    <div class="card-body">
+                        
+                        <div class="table-responsive" style="min-height:300px;">
+                            <table id="table"
+                                   data-pagination="true"
+                                   data-side-pagination="server"
+                                   data-show-refresh="true"
+                                   @*data-show-columns="true"*@
+                                   data-show-export="true"
+                                   data-filter-control="true" 
+                                   data-show-footer="true"
+                                   data-row-style="rowStyle"
+                                   data-page-list="[10, 25, 50, 100]"
+                                   data-toolbar="#toolbar">
+
+                                <thead>
+                                    
+
+
+                                    <tr>
+                                        <th data-field="Id" data-formatter="formatEditTrosak"></th>
+                                        <th data-field="Datum" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum</th>
+                                        <th data-field="DatumIsteka" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum isteka</th>
+                                        <th data-field="DatumAlarma" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Datum alarma</th>
+                                        <th data-field="Vozilo" data-sortable="true" data-filter-control="input">Vozilo</th>
+                                        <th data-field="Registracija" data-sortable="true" data-filter-control="input">Registracija</th>
+                                        <th data-field="Alarm" data-sortable="true" data-filter-control="input">Alarm</th>
+                                        <th data-field="Km" data-sortable="true" data-filter-control="input">Km</th>
+                                        <th data-field="KmIsteka" data-sortable="true" data-filter-control="input">Km isteka</th>
+                                        <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @section Scripts {
+
+            @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+            @Scripts.Render("~/bundles/tableConfig")
+            @Scripts.Render("~/bundles/chartVozniPark")
+            
+
+            <script type="text/javascript">
+                var izabranDatum = "";
+                var izabranTip = "";
+                var $table = $('#table');
+
+                $table.configTable('/HomeVozniPark/GetAlarm');
+                $(document).ready(function () {
+
+                    $table.optionsTable();
+
+                    
+                });
+
+                $.ajax({
+                    url: "HomeVozniPark/GetVozila",
+                    type: 'get',
+                    success: function (data) {
+                        $('#aktivnaVozila').append(data.aktivnaVozila);
+                        $('#servisVozila').append(data.servisVozila);
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                });
+
+                $.ajax({
+                    url: "HomeVozniPark/GetPutniNalozi",
+                    type: 'get',
+                    success: function (data) {
+                        $('#nezatvoreniPutniNalozi').append(data.nezatvoreniPutniNalozi);
+                        $('#bezPutnogNaloga').append(data.bezPutnogNaloga);
+                    },
+                    error: function () {
+                        alert('Ajax error!');
+                    }
+                });
+
+                function formatEditTrosak(value, row, index) {
+                    return '<a href="VozniPark/EditAlarm?alarmId=' + row.Id + '&oznaka=' + row.Registracija+'" target="_blank"><i class="glyphicon glyphicon-edit"></i></a>';
+                }
+
+                function rowStyle(row, index) {
+
+                    var danas = moment(new Date().setHours(0, 0, 0, 0));
+                    var datumIsteka = moment(row.DatumIsteka);
+
+                    //console.log(datumIsteka + " --- " + danas);
+                    if (datumIsteka.isBefore(danas)) {
+                        return {
+                            css: {
+                                color: 'red'
+                            }
+                        }
+                    } else if (datumIsteka.isAfter(danas)) {
+                        return {
+                            css: {
+                                color: 'black'
+                            }
+                        }
+                    } else {
+                        return {
+                            css: {
+                                color: 'orange'
+                            }
+                        }
+                    }
+                }
+
+                
+
+            </script>
+        }
+        <div class="row" style="margin-top:10px;">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title" style="color:#666;">
+                            <span id="lbl_naslov_bar">Gorivo točenje</span>
+                            @*<span class="pull-right">
+                                <input type='text' id="datum-line-gorivo" placeholder="Izaberite datum" class="form-control input-xs" />
+                            </span>*@
+
+                        </h3>
+
+
+                    </div>
+                    <div class="card-body">
+
+                        <div id="morris-line-gorivo-chart"></div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title" style="color:#666;">
+                            <span id="lbl_naslov_bar">Kilometraža</span>
+                            @*<span class="pull-right">
+                                <input type='text' id="datum-line-km" placeholder="Izaberite datum" class="form-control input-xs" />
+                            </span>*@
+
+                        </h3>
+
+
+                    </div>
+                    <div class="card-body">
+
+                        <div id="morris-line-km-chart"></div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        <!-- /#page-wrapper -->
+    </div>
+<!-- /#wrapper -->

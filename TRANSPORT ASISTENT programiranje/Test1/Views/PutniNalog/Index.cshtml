@@ -1,0 +1,118 @@
+﻿
+@model DDtrafic.ViewModels.PutniNalogIndexData
+
+@{
+                /**/
+
+                ViewBag.Title = "Putni nalozi";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="jumbotron" style="background-image:none;padding:0px;">
+    <div class="page-header">
+        <h1>Evidencija putnih naloga</h1>
+        <p>Pregled svih putnih naloga vozača</p>
+    </div>
+</div>
+<hr />
+<div class="row" style="background:#eee;">
+    <div class="card">
+        <div class="card-body">
+            <div id="toolbar" class="columns columns-left btn-group ">
+
+                <button id="create" class="btn btn-primary">
+                    @Html.ActionLink("Dodaj", "Create", "", new { @class = "white_link" })
+                </button>
+                <button id="edit" class="btn btn-primary" disabled>
+                    Izmeni
+                </button>
+                <button id="delete" class="btn btn-primary" disabled>
+                    Briši
+                </button>
+                <button id="gorivo" class="btn btn-primary" disabled>
+                    Točenje goriva
+                </button>
+            </div>
+
+            <div class="table-responsive" style="min-height:300px;">
+                <table id="table"
+                       data-pagination="true"
+                       data-side-pagination="server"
+                       data-query-params="queryParams"
+                       data-show-refresh="true"
+                       data-show-columns="true"
+                       data-show-export="true"
+                       data-filter-control="true"
+                       data-detail-view="true"
+                       data-page-list="[10, 25, 50, 100]"
+                       data-toolbar="#toolbar">
+
+                    <thead>
+                        <tr>
+                            <th data-checkbox="true"></th>
+                            <th data-field="DatumStart" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. start</th>
+                            <th data-field="DatumStop" data-formatter="dateFormat" data-sortable="true" data-filter-control="datepicker">Dat. stop</th>
+                            <th data-field="Vozilo" data-sortable="true" data-filter-control="input">Registracija</th>
+                            <th data-field="Vozac" data-sortable="true" data-filter-control="input">Vozac</th>
+                            <th data-field="Relacija" data-sortable="true" data-filter-control="input">Relacija</th>
+                            <th data-field="KmStart" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Start km</th>
+                            <th data-field="KmStop" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Stop km</th>
+                            <th data-field="KmUkupno" data-formatter="intFormat" data-footer-formatter="sumFormatter" data-sortable="true" data-filter-control="input">Ukupno km</th>
+                            <th data-field="Napomena" data-sortable="true" data-filter-control="input">Napomena</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval") @*For validate and validate-unobtrusive*@
+    @Scripts.Render("~/bundles/tableConfig")
+
+    <script type="text/javascript">
+        var $table = $('#table');
+        var $edit = $('#edit'),
+            $add = $('#add'),
+            $gorivo = $('#gorivo'),
+            $opcije = $('#opcije'),
+            $delete = $('#delete');
+
+
+
+        $table.configTable('PutniNalog/GetPutniNalog');
+
+        $(document).ready(function () {
+
+
+            var $checkTableElements = [$edit, $gorivo, $opcije, $delete];
+            $table.checkOptionsTable($checkTableElements);
+
+
+
+            $table.optionsTable();
+
+
+            $add.clickOptions('PutniNalog/Create?id=');
+            $edit.clickOptions('PutniNalog/Edit?id=');
+            $gorivo.clickOptions('Gorivo/Create?id=');
+
+
+
+        });
+
+        $(window).resize(function () {
+            $('#table').bootstrapTable('resetView');
+        });
+
+    </script>
+}
