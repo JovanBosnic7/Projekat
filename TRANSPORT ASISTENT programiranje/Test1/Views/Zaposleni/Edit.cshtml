@@ -1,25 +1,29 @@
 ﻿@model Bex.Models.Zaposleni
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Izmena zaposlenog";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Izmena podataka o zaposlenom  </h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Zaposleni">Zaposleni</a>
-            </li>
-            <li class="breadcrumb-item active">Izmeni</li>
-        </ol>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Izmena podataka o zaposlenom
+        <br />
+        <small style="font-size:16px; font-weight:600;">Zaposleni: @Model.ImeIprezime</small>
 
-    </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Zaposleni">Zaposleni</a>
+        </li>
+        <li class="breadcrumb-item active">Izmeni</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @using (Html.BeginForm("Edit", "Zaposleni", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
     {
@@ -130,9 +134,9 @@
     }
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-            <script type="text/javascript">
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
                     $(document).ready(function () {
                         $(".datepicker-dat-zaposlenja, .datepicker-prijava, .datepicker-odredjeno, .datepicker-prestanak, .datepicker-lekarskog").datepicker({ dateFormat: 'dd-mm-yy' });
                         $(".datepicker-dat-zaposlenja, .datepicker-prijava, .datepicker-odredjeno, .datepicker-prestanak, .datepicker-lekarskog").attr("autocomplete", "off");
@@ -141,7 +145,7 @@
 
                         $('#Aktivan').val(@(Convert.ToBoolean(Model.Aktivan) == true ? "true" : "false"));
                         $('#AktivanCheck').change(function () {
-                      
+
                             $('#Aktivan').val($(this).is(':checked'))
 
                         });
@@ -171,6 +175,6 @@
                         }
                     };
                 });
-            </script>
-        }
+    </script>
+}
 

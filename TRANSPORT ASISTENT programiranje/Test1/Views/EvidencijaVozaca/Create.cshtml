@@ -1,25 +1,28 @@
 ﻿@model Bex.Models.EvidencijaVozaca
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Evidencija - dodaj";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Evidencija radnog vremena za @ViewBag.Zaposleni  <small> Evidencija vremena vožnje</small></h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../EvidencijaVozaca">Evidencija radnog vremena</a>
-            </li>
-            <li class="breadcrumb-item active">Dodaj</li>
-        </ol>
 
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Evidencija radnog vremena za @ViewBag.Zaposleni
+        <br />
+        <small style="font-size:16px">Evidencija vremena vožnje</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../EvidencijaVozaca">Evidencija radnog vremena</a>
+        </li>
+        <li class="breadcrumb-item active">Dodaj</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
     @using (Html.BeginForm("Create", "EvidencijaVozaca", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
@@ -131,73 +134,73 @@
     }
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
-            <script type="text/javascript">
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
 
-                $('.datepicker-dat-voznje').datepicker({ dateFormat: 'dd-mm-yy' });
-                $('.datepicker-dat-voznje').attr("autocomplete", "off");
+        $('.datepicker-dat-voznje').datepicker({ dateFormat: 'dd-mm-yy' });
+        $('.datepicker-dat-voznje').attr("autocomplete", "off");
 
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    $("#zaposleni").autocomplete({
-                        source: function (request, response) {
-                            $.ajax({
-                                url: "../EvidencijaVozaca/GetZaposleni?query=" + request.term,
-                                dataType: "json",
-                                success: function (data) {
-                                    response($.map(data, function (v, i) {
-                                        return {
-                                            value: v.Name,
-                                            id: v.Id
-                                        };
-                                    }));
-                                }
-                            })
-                        },
-                        minLength: 2,
-                        select: function (event, ui) {
-                            $('#ZaposleniId').val(ui.item.id);
+            $("#zaposleni").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../EvidencijaVozaca/GetZaposleni?query=" + request.term,
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (v, i) {
+                                return {
+                                    value: v.Name,
+                                    id: v.Id
+                                };
+                            }));
                         }
-                    });
-
-
-                });
-
-               
-                $.validator.methods.date = function (value, element) {
-                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+                    })
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#ZaposleniId').val(ui.item.id);
                 }
-                function OnSuccess(response) {
-                    alert(response);
-                    window.close();
-                }
+            });
 
-                function OnFailure(response) {
-                    alert(response);
-                }
 
-                $("form").bind("keydown", function (e) {
-                    if (e.keyCode === 13) return false;
-                });
-              
-                $(function () {
-                    $.validator.methods.date = function (value, element) {
-                        if ($.browser.webkit) {
-                            //ES - Chrome does not use the locale when new Date objects instantiated:
-                            var d = new Date();
+        });
 
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
-                        }
-                        else {
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-                        }
-                    };
-                });
 
-                
-
-            </script>
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
         }
+        function OnSuccess(response) {
+            alert(response);
+            window.close();
+        }
+
+        function OnFailure(response) {
+            alert(response);
+        }
+
+        $("form").bind("keydown", function (e) {
+            if (e.keyCode === 13) return false;
+        });
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
+
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                }
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
+
+
+
+    </script>
+}
 

@@ -6,11 +6,18 @@
     {
     <li class="col-md-2">
         <br />
-        <input type="button" title="Izbriši" value="X" onclick="location.href='@Url.Action("ChangeActive", "GalleryAdmin", new { Area="", Id=item.Id , status= false })'" />
+        <input type="button" title="Izbriši" value="X" 
+               onclick="location.href='@Url.Action("ChangeActive", "GalleryAdmin", 
+                                      new { Area="", Id=item.Id , status= false })'" />
         <br />
         <br />
-        <a data-fancybox="gallery" data-caption="@item.Title" href="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= item.WebImageId })">
-            <img class="img" src="@Url.Action("GetImage", "DownloadFile", new { Area ="" , Id= item.WebImageId, t =2 })" style="width:50%;height:60px;" />
+        <a data-fancybox="gallery" data-caption="@item.Title" 
+           href="@Url.Action("GetImage", "DownloadFile", 
+                new { Area ="" , Id= item.WebImageId })">
+            <img class="img" 
+                 src="@Url.Action("GetImage", "DownloadFile", 
+                     new { Area ="" , Id= item.WebImageId, t =2 })" 
+                 style="width:100px;height:60px;" />
         </a>
 
         <br />

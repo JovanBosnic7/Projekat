@@ -1,25 +1,28 @@
 ﻿@model DDtrafic.ViewModels.PopravkeIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Izmena popravki";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Izmena popravki  <small>Vozilo: @Model.Registracija</small></h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Popravke">Popravke</a>
-            </li>
-            <li class="breadcrumb-item active">Izmeni</li>
-        </ol>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Izmena popravki
+        <br />
+        <small style="font-size:16px; font-weight:600;">Vozilo: @Model.Registracija</small>
 
-    </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Popravke">Popravke</a>
+        </li>
+        <li class="breadcrumb-item active">Izmeni</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @using (Html.BeginForm("Edit", "VpPopravke", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
 
@@ -95,69 +98,69 @@
     }
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
-            @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-                <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-                <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-            <script type="text/javascript">
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <script type="text/javascript">
 
-                $('.datepicker-dat-kreiranja').datepicker({ dateFormat: 'dd-mm-yy' });
-                $('.datepicker-dat-kreiranja').attr("autocomplete", "off");
+        $('.datepicker-dat-kreiranja').datepicker({ dateFormat: 'dd-mm-yy' });
+        $('.datepicker-dat-kreiranja').attr("autocomplete", "off");
 
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    $("#vozilo").autocomplete({
-                        source: function (request, response) {
-                            $.ajax({
-                                url: "/Alarmi/GetVozila?query=" + request.term,
-                                dataType: "json",
-                                success: function (data) {
-                                    response($.map(data, function (v, i) {
-                                        return {
-                                            value: v.Name,
-                                            id: v.Id
-                                        };
-                                    }));
-                                }
-                            })
-                        },
-                        minLength: 2,
-                        select: function (event, ui) {
-                            $('#VpId').val(ui.item.id);
+            $("#vozilo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Alarmi/GetVozila?query=" + request.term,
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (v, i) {
+                                return {
+                                    value: v.Name,
+                                    id: v.Id
+                                };
+                            }));
                         }
-                    });
-                });
-
-                $.validator.methods.date = function (value, element) {
-                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+                    })
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#VpId').val(ui.item.id);
                 }
+            });
+        });
 
-                function OnSuccess(response) {
-                    alert(response);
-                    window.close();
-                }
-
-                function OnFailure(response) {
-                    alert(response);
-                }
-
-                $(function () {
-                    $.validator.methods.date = function (value, element) {
-                        if ($.browser.webkit) {
-                            //ES - Chrome does not use the locale when new Date objects instantiated:
-                            var d = new Date();
-
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
-                        }
-                        else {
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-                        }
-                    };
-                });
-               
-
-            </script>
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
         }
+
+        function OnSuccess(response) {
+            alert(response);
+            window.close();
+        }
+
+        function OnFailure(response) {
+            alert(response);
+        }
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
+
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                }
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
+
+
+    </script>
+}
 

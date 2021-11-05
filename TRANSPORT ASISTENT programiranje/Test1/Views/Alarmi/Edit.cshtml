@@ -1,25 +1,26 @@
 ﻿@model DDtrafic.ViewModels.AlarmiIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Izmena alarma";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Izmena alarma  <small>Vozilo: @Model.Registracija</small></h1>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Izmena alarma
+        <br />
+        <small style="font-size:16px; font-weight:600;">Vozilo: @Model.Registracija</small>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Alarmi">Alarmi</a>
-            </li>
-            <li class="breadcrumb-item active">Izmeni</li>
-        </ol>
-
-    </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Alarmi">Alarmi</a>
+        </li>
+        <li class="breadcrumb-item active">Izmeni</li>
+    </ol>
 </div>
 <hr />
-
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Ajax.BeginForm("Edit", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
     @using (Html.BeginForm("Edit", "Alarmi", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
@@ -138,13 +139,13 @@
     }
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
-            @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-                <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-                <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-            <script type="text/javascript">
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <script type="text/javascript">
 
                 $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').datepicker({ dateFormat: 'dd-mm-yy' });
                 $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').attr("autocomplete", "off");
@@ -317,7 +318,7 @@
                         dataType: "JSON",
                         data: { Grupa: grupaId },
                         success: function (tipovi) {
-                            $("#VpAlarmTip").html(""); // clear before appending new list 
+                            $("#VpAlarmTip").html(""); // clear before appending new list
                             $.each(tipovi, function (i, tip) {
                                 $("#VpAlarmTip").append(
                                     $('<option></option>').val(tip.Id).html(tip.NazivAlarma));
@@ -326,6 +327,6 @@
                     });
                 }
 
-            </script>
-        }
+    </script>
+}
 

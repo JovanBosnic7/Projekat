@@ -1,26 +1,26 @@
 ﻿@model Bex.Models.VozniPark
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Izmena podataka o vozilu  <small>Vozilo: @ViewBag.VoziloRegOznaka</small></h1>
-
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../VozniPark">Vozni park</a>
-            </li>
-            <li class="breadcrumb-item active">Izmeni</li>
-        </ol>
-
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Izmena podataka o vozilu
+        <br />
+        <small style="font-size:16px; font-weight:600;">Vozilo: @ViewBag.VoziloRegOznaka</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../VozniPark">Vozni park</a>
+        </li>
+        <li class="breadcrumb-item active">Izmeni</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
-
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Html.BeginForm(new { @class = "form-horizontal" }))*@
     @using (Html.BeginForm("Edit", "VozniPark", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
@@ -235,112 +235,112 @@
     }
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
 
-            <script type="text/javascript">
-
-
-                $(document).ready(function () {
-
-                    //napuniKaroserije($('#KategorijaId').val());
-                    //napuniPodKaroserije($('#KaroserijaId').val());
+    <script type="text/javascript">
 
 
+        $(document).ready(function () {
 
-                    $('.datepicker-dat-reg').datepicker({ dateFormat: 'dd-mm-yy' });
-                    $('.datepicker-dat-reg').attr("autocomplete", "off");
-
-                    $("#KategorijaId").change(function () {
-                        var kategorijaId = $('#KategorijaId').val();
-                        napuniKaroserije(kategorijaId);
-                    });
-                    $("#KaroserijaId").change(function () {
-                        var karoserijaId = $('#KaroserijaId').val();
-                        napuniPodKaroserije(karoserijaId);
-                    });
-
-                    $("#model").autocomplete({
-                        source: function (request, response) {
-                            $.ajax({
-                                url: "../VozniPark/GetModel?query=" + request.term,
-                                dataType: "json",
-                                success: function (data) {
-                                    response($.map(data, function (v, i) {
-                                        return {
-                                            value: v.Name,
-                                            id: v.Id
-                                        };
-                                    }));
-                                }
-                            })
-                        },
-                        minLength: 2,
-                        select: function (event, ui) {
-                            $('#ModelId').val(ui.item.id);
-                            console.log("Model ---- Selected: " + ui.item.id + " aka " + ui.item.value);
-                        }
-                    });
+            //napuniKaroserije($('#KategorijaId').val());
+            //napuniPodKaroserije($('#KaroserijaId').val());
 
 
 
-                })
+            $('.datepicker-dat-reg').datepicker({ dateFormat: 'dd-mm-yy' });
+            $('.datepicker-dat-reg').attr("autocomplete", "off");
 
-                function napuniKaroserije(kategorijaId) {
+            $("#KategorijaId").change(function () {
+                var kategorijaId = $('#KategorijaId').val();
+                napuniKaroserije(kategorijaId);
+            });
+            $("#KaroserijaId").change(function () {
+                var karoserijaId = $('#KaroserijaId').val();
+                napuniPodKaroserije(karoserijaId);
+            });
+
+            $("#model").autocomplete({
+                source: function (request, response) {
                     $.ajax({
-                        url: '../VozniPark/NapuniKaroseriju?kategorijaId=' + kategorijaId,
-                        type: "GET",
-                        dataType: "JSON",
-                        data: { Kategorija: kategorijaId },
-                        success: function (karoserije) {
-                            $("#KaroserijaId").html(""); // clear before appending new list 
-                            $.each(karoserije, function (i, karoserija) {
-                                $("#KaroserijaId").append(
-                                    $('<option></option>').val(karoserija.Id).html(karoserija.NazivKaroserije));
-                            });
+                        url: "../VozniPark/GetModel?query=" + request.term,
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (v, i) {
+                                return {
+                                    value: v.Name,
+                                    id: v.Id
+                                };
+                            }));
                         }
-                    });
-                    napuniPodKaroserije($('#KaroserijaId').val());
+                    })
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#ModelId').val(ui.item.id);
+                    console.log("Model ---- Selected: " + ui.item.id + " aka " + ui.item.value);
                 }
+            });
 
-                function napuniPodKaroserije(karoserijaId) {
-                    $.ajax({
-                        url: '../VozniPark/NapuniPodKaroseriju?karoserijaId=' + karoserijaId,
-                        type: "GET",
-                        dataType: "JSON",
-                        data: { Karoserija: karoserijaId },
-                        success: function (podKaroserije) {
-                            $("#PodKaroserijaId").html(""); // clear before appending new list 
-                            $.each(podKaroserije, function (i, podKaroserija) {
-                                $("#PodKaroserijaId").append(
-                                    $('<option></option>').val(podKaroserija.Id).html(podKaroserija.NazivPodKaroserije));
-                            });
-                        }
+
+
+        })
+
+        function napuniKaroserije(kategorijaId) {
+            $.ajax({
+                url: '../VozniPark/NapuniKaroseriju?kategorijaId=' + kategorijaId,
+                type: "GET",
+                dataType: "JSON",
+                data: { Kategorija: kategorijaId },
+                success: function (karoserije) {
+                    $("#KaroserijaId").html(""); // clear before appending new list
+                    $.each(karoserije, function (i, karoserija) {
+                        $("#KaroserijaId").append(
+                            $('<option></option>').val(karoserija.Id).html(karoserija.NazivKaroserije));
                     });
                 }
-
-                $("form").bind("keydown", function (e) {
-                    if (e.keyCode === 13) return false;
-                });
-
-                $(function () {
-                    $.validator.methods.date = function (value, element) {
-                        if ($.browser.webkit) {
-                            //ES - Chrome does not use the locale when new Date objects instantiated:
-                            var d = new Date();
-
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
-                        }
-                        else {
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-                        }
-                    };
-                });
-
-            </script>
-
-
-
+            });
+            napuniPodKaroserije($('#KaroserijaId').val());
         }
+
+        function napuniPodKaroserije(karoserijaId) {
+            $.ajax({
+                url: '../VozniPark/NapuniPodKaroseriju?karoserijaId=' + karoserijaId,
+                type: "GET",
+                dataType: "JSON",
+                data: { Karoserija: karoserijaId },
+                success: function (podKaroserije) {
+                    $("#PodKaroserijaId").html(""); // clear before appending new list
+                    $.each(podKaroserije, function (i, podKaroserija) {
+                        $("#PodKaroserijaId").append(
+                            $('<option></option>').val(podKaroserija.Id).html(podKaroserija.NazivPodKaroserije));
+                    });
+                }
+            });
+        }
+
+        $("form").bind("keydown", function (e) {
+            if (e.keyCode === 13) return false;
+        });
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
+
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                }
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
+
+    </script>
+
+
+
+}
 

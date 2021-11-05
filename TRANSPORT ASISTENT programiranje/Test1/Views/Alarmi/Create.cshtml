@@ -1,25 +1,27 @@
 ﻿@model DDtrafic.ViewModels.AlarmiIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Unos alarma za vozilo  <small>Evidencija registracija i drugih alarma</small></h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Alarmi">Alarmi</a>
-            </li>
-            <li class="breadcrumb-item active">Dodaj</li>
-        </ol>
-
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Unos alarma za vozilo
+        <br />
+        <small style="font-size:16px">Evidencija registracija i drugih alarma</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Alarmi">Alarmi</a>
+        </li>
+        <li class="breadcrumb-item active">Dodaj</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
     @using (Html.BeginForm("Create", "Alarmi", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))

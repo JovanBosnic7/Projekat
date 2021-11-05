@@ -1,18 +1,21 @@
 ﻿@{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Android";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Android aplikacija</h1>
-        <p>Download aplikacije za telefon</p>
-    </div>
+
+<div class="page-heading">
+    <h1 class="heading-title">
+        Android aplikacija
+        <br />
+        <small style="font-size:16px">Download aplikacije za telefon</small>
+    </h1>
 </div>
 <hr />
-<div class="row" style="background:#eee;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
     <div class="card">
         <div class="card-body">
-            <iframe id="ifeame1" width="750px" height="500px" frameborder="0" scroll="no" src="~/Dowenload.aspx"></iframe>
+            <iframe id="ifeame1" max-width="750px" height="500px" frameborder="0" scroll="no" src="~/Dowenload.aspx"></iframe>
         </div>
     </div>
 </div>
@@ -28,11 +31,11 @@
 
 
 @*<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-    
-</body>
-</html>*@
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+
+    </body>
+    </html>*@

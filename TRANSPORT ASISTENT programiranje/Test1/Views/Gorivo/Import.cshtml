@@ -1,39 +1,40 @@
 ﻿@model Bex.Models.GorivoTocenje
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Gorivo tocenje - Import";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="page-heading">
+    <h1 class="heading-title">
+        Gorivo točenje
+        <br />
+        <small style="font-size:16px; font-weight:600;">Evidencija točenja goriva po vozilima</small>
 
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Gorivo točenje<small>Evidencija točenja goriva po vozilima</small></h1>
-
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Gorivo">Gorivo</a>
-            </li>
-            <li class="breadcrumb-item active">Import</li>
-        </ol>
-
-    </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Gorivo">Gorivo</a>
+        </li>
+        <li class="breadcrumb-item active">Import</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
     @using (Html.BeginForm("Import", "Gorivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div>
-        <label class="control-label col-sm-2">Datum</label>
-        <div class="col-sm-10">
-            <div class="'input-group'" type="text">
-                @Html.TextBoxFor(model => model.Datum, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-datum" })
+        <div>
+            <label class="control-label col-sm-2">Datum</label>
+            <div class="col-sm-10">
+                <div class="'input-group'" type="text">
+                    @Html.TextBoxFor(model => model.Datum, "{0:dd-MM-yyyy}", new { @class = " form-control  datepicker-dat-datum" })
+                </div>
             </div>
         </div>
-    </div>
         <div>
             <label class="control-label col-sm-2">Cena</label>
             <div class="col-sm-10">
@@ -54,7 +55,7 @@
                 <br />
             </div>
         </div>
-         <div>
+        <div>
             <label class="control-label col-sm-2"></label>
             <div class="col-sm-10">
                 <div class="col-sm-4">
@@ -65,49 +66,49 @@
                 </div>
             </div>
         </div>
-       
+
     }
 
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
 
 
-            <script type="text/javascript">
+    <script type="text/javascript">
 
 
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    $('.datepicker-dat').datepicker({ dateFormat: 'dd-mm-yy' });
-                    $('.datepicker-dat').attr("autocomplete", "off");
+            $('.datepicker-dat').datepicker({ dateFormat: 'dd-mm-yy' });
+            $('.datepicker-dat').attr("autocomplete", "off");
 
-                    $('#showProgress').click(function () {
-                        $('#showProgress').hide();
-                        $('#progress').show();
+            $('#showProgress').click(function () {
+                $('#showProgress').hide();
+                $('#progress').show();
 
-                    });
-                })
+            });
+        })
 
-                $("form").bind("keydown", function (e) {
-                    if (e.keyCode === 13) return false;
-                });
+        $("form").bind("keydown", function (e) {
+            if (e.keyCode === 13) return false;
+        });
 
-                $(function () {
-                    $.validator.methods.date = function (value, element) {
-                        if ($.browser.webkit) {
-                            //ES - Chrome does not use the locale when new Date objects instantiated:
-                            var d = new Date();
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
 
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
-                        }
-                        else {
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-                        }
-                    };
-                });
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                }
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
 
-            </script>
+    </script>
 
-        }
+}

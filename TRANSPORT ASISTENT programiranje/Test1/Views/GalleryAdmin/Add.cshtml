@@ -1,11 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "Gallery Admin";
+    @Styles.Render("~/Content/new.css")
+
 }
 
 @*<h2>Gallery Admin</h2>*@
 <div id="ImagePanel" data-url="@Url.Action("Create")">
-    @Html.Action("Create", new { tipId = ViewBag.TipId, id = ViewBag.Id})
+    @Html.Action("Create", new { tipId = ViewBag.TipId, id = ViewBag.Id })
 </div>
 <div class="row">
     <div class="col-md-offset-2 col-md-10">
@@ -16,19 +18,19 @@
 @*<hr />*@
 
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a>Galerija dokumenata </a>
-            </h4>
-        </div>
-        <div>
-            <div class="panel-body">
-                <div class="container">
-                    <div id="ListPanel" data-url="@Url.Action("_List")">
-                        @Html.Action("_List", new { tipId = ViewBag.TipId, id = ViewBag.Id })
-                    </div>
+<div class="panel panel-default" style="background:#eee; padding:0; margin:20px 0 0 0; border-radius:3px;">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a>Galerija dokumenata </a>
+        </h4>
+    </div>
+    <div>
+        <div class="panel-body">
+            <div class="container">
+                <div id="ListPanel" data-url="@Url.Action("_List")">
+                    @Html.Action("_List", new { tipId = ViewBag.TipId, id = ViewBag.Id })
                 </div>
             </div>
         </div>
     </div>
+</div>

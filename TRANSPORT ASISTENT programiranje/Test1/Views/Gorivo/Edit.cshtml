@@ -1,25 +1,28 @@
 ﻿@model Bex.Models.GorivoTocenje
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Izmena goriva";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Izmena točenja  <small>Vozilo: @ViewBag.Vozilo</small></h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Gorivo">Gorivo</a>
-            </li>
-            <li class="breadcrumb-item active">Izmeni</li>
-        </ol>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Izmena točenja
+        <br />
+        <small style="font-size:16px; font-weight:600;">Vozilo: @ViewBag.Vozilo</small>
 
-    </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Gorivo">Gorivo</a>
+        </li>
+        <li class="breadcrumb-item active">Izmeni</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Ajax.BeginForm("Edit", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
     @using (Html.BeginForm("Edit", "Gorivo", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
@@ -111,51 +114,51 @@
         $('.datepicker-dat-sipanja, .timepicker-sipanja').datepicker({ dateFormat: 'dd-mm-yy' });
         $('.datepicker-dat-sipanja, .timepicker-sipanja').attr("autocomplete", "off");
 
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    $('.timepicker-sipanja').timepicker({
-                        showAnim: 'blind',
-                        hourText: 'Sati',
-                        minuteText: 'Minuti',
-                        nowButtonText: 'Trenutno',
-                        showNowButton: true
-                    });
+            $('.timepicker-sipanja').timepicker({
+                showAnim: 'blind',
+                hourText: 'Sati',
+                minuteText: 'Minuti',
+                nowButtonText: 'Trenutno',
+                showNowButton: true
+            });
 
-                });
+        });
 
-                $.validator.methods.date = function (value, element) {
-                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+        }
+
+        function OnSuccess(response) {
+            alert(response);
+            window.close();
+        }
+
+        function OnFailure(response) {
+            alert(response);
+        }
+
+        $("form").bind("keydown", function (e) {
+            if (e.keyCode === 13) return false;
+        });
+
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
+
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
                 }
-
-                function OnSuccess(response) {
-                    alert(response);
-                    window.close();
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
                 }
+            };
+        });
 
-                function OnFailure(response) {
-                    alert(response);
-                }
 
-                $("form").bind("keydown", function (e) {
-                    if (e.keyCode === 13) return false;
-                });
-
-                
-                $(function () {
-                    $.validator.methods.date = function (value, element) {
-                        if ($.browser.webkit) {
-                            //ES - Chrome does not use the locale when new Date objects instantiated:
-                            var d = new Date();
-
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
-                        }
-                        else {
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-                        }
-                    };
-                });
-
-                
 
     </script>
 }

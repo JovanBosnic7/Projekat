@@ -1,25 +1,26 @@
 ﻿@model Bex.Models.Zaposleni
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Unos novog zaposlenog  <small>Unos osnovnih podataka o zaposlenom</small></h1>
-
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Zaposleni">Zaposleni</a>
-            </li>
-            <li class="breadcrumb-item active">Dodaj</li>
-        </ol>
-
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">
+    Unos novog zaposlenog
+    <br />
+    <small style="font-size:16px">Unos osnovnih podataka o zaposlenom</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Zaposleni">Zaposleni</a>
+        </li>
+        <li class="breadcrumb-item active">Dodaj</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @using (Html.BeginForm("Create", "Zaposleni", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
     {
@@ -54,7 +55,7 @@
                 @Html.EditorFor(model => model.Pol, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Pol, "", new { @class = "text-danger" })
             </div>
-        </div>        
+        </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="Kategorije">Kategorije</label>
             <div class="col-sm-10">
@@ -68,7 +69,7 @@
                 @Html.EditorFor(model => model.BrojLK, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Kategorije, "", new { @class = "text-danger" })
             </div>
-        </div>       
+        </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="Telefon">Telefon</label>
             <div class="col-sm-10">
@@ -82,7 +83,7 @@
                 @Html.TextBoxFor(model => model.DatumZaposlenja, new { @class = " form-control  datepicker-dat-zaposlenja" })
                 @*@Html.ValidationMessageFor(model => model.DatumZaposlenja, "", new { @class = "text-danger" })*@
             </div>
-        </div>       
+        </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="TekuciRacun">Tekući račun</label>
             <div class="col-sm-10">

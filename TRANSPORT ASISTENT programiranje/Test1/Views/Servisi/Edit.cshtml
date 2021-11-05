@@ -18,8 +18,23 @@
     </div>
 </div>
 <hr />
+<div class="page-heading">
+    <h1 class="heading-title">
+        Izmena servisa
+        <br />
+        <small style="font-size:16px; font-weight:600;">Vozilo: @Model.Registracija</small>
 
-<div class="row" style="background:#eee;padding:20px;">
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Servisi">Servisi</a>
+        </li>
+        <li class="breadcrumb-item active">Izmeni</li>
+    </ol>
+</div>
+<hr />
+
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Ajax.BeginForm("Edit", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
     @using (Html.BeginForm("Edit", "Servisi", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
@@ -122,10 +137,10 @@
     }
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
-            <script type="text/javascript">
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
 
 
                 $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').datepicker({ dateFormat: 'dd-mm-yy' });
@@ -206,7 +221,7 @@
                         };
                     });
                 }
-               
-            </script>
-        }
+
+    </script>
+}
 

@@ -1,25 +1,27 @@
 ﻿@model DDtrafic.ViewModels.ServisiIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Unos servisa za vozilo  <small>Unos urađenih velikih i malih servisa na vozilu</small></h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Servisi">Servisi</a>
-            </li>
-            <li class="breadcrumb-item active">Dodaj</li>
-        </ol>
-
-    </div>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Unos servisa za vozilo
+        <br />
+        <small style="font-size:16px">Unos urađenih velikih i malih servisa na vozilu</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../Zaposleni">Servisi</a>
+        </li>
+        <li class="breadcrumb-item active">Dodaj</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Ajax.BeginForm("Create", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
     @using (Html.BeginForm("Create", "Servisi", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
@@ -127,10 +129,10 @@
     }
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
-            <script type="text/javascript">
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
 
                 $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').datepicker({ dateFormat: 'dd-mm-yy' });
                 $('.datepicker-dat-kreiranja, .datepicker-dat-isteka, .datepicker-dat-alarma').attr("autocomplete", "off");
@@ -219,6 +221,6 @@
                     if (e.keyCode === 13) return false;
                 });
 
-            </script>
-        }
+    </script>
+}
 

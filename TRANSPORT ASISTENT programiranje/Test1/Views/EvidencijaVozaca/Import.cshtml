@@ -1,26 +1,29 @@
 ﻿@model Bex.Models.EvidencijaVozaca
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Evidenicija - Import";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Evidencija<small>Evidencija radnog vremena vozača</small></h1>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Evidencija
+        <br />
+        <small style="font-size:16px; font-weight:600;">Evidencija radnog vremena vozača</small>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../EvidencijaVozaca">Evidencija radnog vremena</a>
-            </li>
-            <li class="breadcrumb-item active">Import</li>
-        </ol>
-
-    </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../EvidencijaVozaca">Evidencija radnog vremena</a>
+        </li>
+        <li class="breadcrumb-item active">Import</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
+
     @using (Html.BeginForm("Import", "EvidencijaVozaca", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -57,62 +60,62 @@
 
 </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryDatePickerForm")
-            @Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryDatePickerForm")
+    @Scripts.Render("~/bundles/jqueryval")
 
 
-            <script type="text/javascript">
+    <script type="text/javascript">
 
 
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    $("#zaposleni").autocomplete({
-                        source: function (request, response) {
-                            $.ajax({
-                                url: "../EvidencijaVozaca/GetZaposleni?query=" + request.term,
-                                dataType: "json",
-                                success: function (data) {
-                                    response($.map(data, function (v, i) {
-                                        return {
-                                            value: v.Name,
-                                            id: v.Id
-                                        };
-                                    }));
-                                }
-                            })
-                        },
-                        minLength: 2,
-                        select: function (event, ui) {
-                            $('#ZaposleniId').val(ui.item.id);
+            $("#zaposleni").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../EvidencijaVozaca/GetZaposleni?query=" + request.term,
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (v, i) {
+                                return {
+                                    value: v.Name,
+                                    id: v.Id
+                                };
+                            }));
                         }
-                    });
+                    })
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#ZaposleniId').val(ui.item.id);
+                }
+            });
 
-                    $('#showProgress').click(function () {
-                        $('#showProgress').hide();
-                        $('#progress').show();
+            $('#showProgress').click(function () {
+                $('#showProgress').hide();
+                $('#progress').show();
 
-                    });
-                })
+            });
+        })
 
-                $("form").bind("keydown", function (e) {
-                    if (e.keyCode === 13) return false;
-                });
+        $("form").bind("keydown", function (e) {
+            if (e.keyCode === 13) return false;
+        });
 
-                $(function () {
-                    $.validator.methods.date = function (value, element) {
-                        if ($.browser.webkit) {
-                            //ES - Chrome does not use the locale when new Date objects instantiated:
-                            var d = new Date();
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
 
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
-                        }
-                        else {
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-                        }
-                    };
-                });
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                }
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
 
-            </script>
+    </script>
 
-        }
+}

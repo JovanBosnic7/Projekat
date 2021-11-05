@@ -1,25 +1,28 @@
 ﻿@model DDtrafic.ViewModels.PutniNalogIndexData
 
 @{
+    @Styles.Render("~/Content/new.css")
     ViewBag.Title = "Izmena putnog naloga";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron" style="background-image:none;padding:0px;">
-    <div class="page-header">
-        <h1>Izmena putnog naloga  <small>Vozilo: @Model.Vozilo</small></h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../PutniNalog">Putni nalog</a>
-            </li>
-            <li class="breadcrumb-item active">Izmeni</li>
-        </ol>
+<div class="page-heading">
+    <h1 class="heading-title">
+        Izmena putnog naloga
+        <br />
+        <small style="font-size:16px; font-weight:600;">Vozilo: @Model.Vozilo</small>
 
-    </div>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="../PutniNalog">Putni nalog</a>
+        </li>
+        <li class="breadcrumb-item active">Izmeni</li>
+    </ol>
 </div>
 <hr />
 
-<div class="row" style="background:#eee;padding:20px;">
+<div class="row" style="background:#eee;padding:20px; margin:0; border-radius:3px;">
 
     @*@using (Ajax.BeginForm("Edit", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))*@
     @using (Html.BeginForm("Edit", "PutniNalog", FormMethod.Post, new { onkeydown = "return event.keyCode!=13" }))
@@ -109,92 +112,92 @@
         $('.datepicker-dat-start, .datepicker-dat-stop').datepicker({ dateFormat: 'dd-mm-yy' });
         $('.datepicker-dat-start, .datepicker-dat-stop').attr("autocomplete", "off");
 
-                $(document).ready(function () {
+        $(document).ready(function () {
 
-                    $(".datepicker-dat-start").datepicker({
-                        onSelect: function (dateText) {
-                            alert("Selected date: " + dateText + ", Current Selected Value= " + this.value);
-                            $(this).change();
-                        }
-                    }).on("change", function () {
-                        $(".datepicker-dat-stop").datepicker("setDate", $(".datepicker-dat-kreiranja").val());
-                    });
-
-                    $("#vozilo").autocomplete({
-                        source: function (request, response) {
-                            $.ajax({
-                                url: "../PutniNalog/GetVozila?query=" + request.term,
-                                dataType: "json",
-                                success: function (data) {
-                                    response($.map(data, function (v, i) {
-                                        return {
-                                            value: v.Name,
-                                            id: v.Id
-                                        };
-                                    }));
-                                }
-                            })
-                        },
-                        minLength: 2,
-                        select: function (event, ui) {
-                            $('#VpId').val(ui.item.id);
-                        }
-                    });
-
-                    $("#vozac").autocomplete({
-                        source: function (request, response) {
-                            $.ajax({
-                                url: "../PutniNalog/GetZaposleni?query=" + request.term,
-                                dataType: "json",
-                                success: function (data) {
-                                    response($.map(data, function (v, i) {
-                                        return {
-                                            value: v.Name,
-                                            id: v.Id
-                                        };
-                                    }));
-                                }
-                            })
-                        },
-                        minLength: 2,
-                        select: function (event, ui) {
-                            $('#ZaposleniId').val(ui.item.id);
-                        }
-                    });
-                });
-
-                $.validator.methods.date = function (value, element) {
-                    return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+            $(".datepicker-dat-start").datepicker({
+                onSelect: function (dateText) {
+                    alert("Selected date: " + dateText + ", Current Selected Value= " + this.value);
+                    $(this).change();
                 }
+            }).on("change", function () {
+                $(".datepicker-dat-stop").datepicker("setDate", $(".datepicker-dat-kreiranja").val());
+            });
 
-                function OnSuccess(response) {
-                    alert(response);
-                    window.close();
-                }
-
-                function OnFailure(response) {
-                    alert(response);
-                }
-
-                $("form").bind("keydown", function (e) {
-                    if (e.keyCode === 13) return false;
-                });
-
-                $(function () {
-                    $.validator.methods.date = function (value, element) {
-                        if ($.browser.webkit) {
-                            //ES - Chrome does not use the locale when new Date objects instantiated:
-                            var d = new Date();
-
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+            $("#vozilo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../PutniNalog/GetVozila?query=" + request.term,
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (v, i) {
+                                return {
+                                    value: v.Name,
+                                    id: v.Id
+                                };
+                            }));
                         }
-                        else {
-                            return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
-                        }
-                    };
-                });
+                    })
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#VpId').val(ui.item.id);
+                }
+            });
 
-               
+            $("#vozac").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../PutniNalog/GetZaposleni?query=" + request.term,
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (v, i) {
+                                return {
+                                    value: v.Name,
+                                    id: v.Id
+                                };
+                            }));
+                        }
+                    })
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#ZaposleniId').val(ui.item.id);
+                }
+            });
+        });
+
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) || moment(value, "dd-mm-yy", true).isValid();
+        }
+
+        function OnSuccess(response) {
+            alert(response);
+            window.close();
+        }
+
+        function OnFailure(response) {
+            alert(response);
+        }
+
+        $("form").bind("keydown", function (e) {
+            if (e.keyCode === 13) return false;
+        });
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                if ($.browser.webkit) {
+                    //ES - Chrome does not use the locale when new Date objects instantiated:
+                    var d = new Date();
+
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                }
+                else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
+
+
 
     </script>
 }
