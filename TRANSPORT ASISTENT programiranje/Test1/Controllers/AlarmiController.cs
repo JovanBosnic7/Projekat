@@ -61,7 +61,11 @@ namespace DDtrafic.Controllers
             DateTime danasPre7 = danas.AddDays(-Convert.ToDouble(7));
             DateTime danasZaMesec = danas.AddMonths(1);
 
-            var alarmData = BexUow.VozniParkAlarm.GetAll(true).Where(x => x.VozniPark.FirmaId==korisnikPrograma.FirmaId || x.Zaposleni.FirmaId==korisnikPrograma.FirmaId)
+            var alarmData = BexUow.VozniParkAlarm.
+                GetAll(true)
+                .Where(x => 
+                x.VozniPark.FirmaId==korisnikPrograma.FirmaId || 
+                x.Zaposleni.FirmaId==korisnikPrograma.FirmaId)
                                                     //.Where(x=>x.DatumIsteka > danasPre15 && x.DatumIsteka < danasZa15)
                                                     //.Where(x => x.DatumIsteka > danasPre7 && x.DatumIsteka < danasZaMesec)
                                                     //.Where(x => x.VpAlarmTip == 1)

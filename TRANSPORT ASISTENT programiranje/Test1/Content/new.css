@@ -34,6 +34,7 @@
     font-size: 36px;
 }
 
+
 @media only screen and (max-width: 767px) {
     .table-responsive {
         margin-bottom: 0px;
@@ -50,6 +51,9 @@
     .fixed-table-toolbar {
         display: flex;
         flex-direction: column-reverse;
+    }
+    .table-button {
+        margin-bottom: 2px !important;
     }
 
     .table-buttons {
